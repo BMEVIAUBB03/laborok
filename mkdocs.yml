@@ -1,0 +1,97 @@
+site_name: BMEVIAUBB03 - Kliensalkalmazások laborfeladatok
+site_author: Albert István, Ekler Péter, Gazdi László, Gincsai Gábor, Somogyi Ferenc Attila, Tóth Tibor
+copyright: Copyright &copy; BME VIK AUT
+repo_name: bmeviaubb03/laborok
+repo_url: https://github.com/bmeviaubb03/laborok
+
+theme:
+  name: material
+  custom_dir: overrides
+  language: hu
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: aut
+      primary: red
+      accent: red
+      toggle:
+        icon: material/lightbulb-outline
+        name: Váltás sötét témára
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: red
+      toggle:
+        icon: material/lightbulb
+        name: Váltás világos témára
+  font:
+    text: Roboto
+    code: Roboto Mono
+  features:
+    - navigation.tabs
+    - navigation.instant
+    - navigation.top
+    - search.suggest
+  logo: logo-bme-aut.png
+  favicon: favicon.ico
+
+extra_css:
+  - extra-material-theme.css
+
+extra:
+  generator: false
+
+markdown_extensions:
+  - admonition
+  - meta
+  - toc:
+      permalink: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.details
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tabbed
+  - pymdownx.tilde
+  - md_in_html
+  - pymdownx.keys
+
+plugins:
+  - search:
+      prebuild_index: true
+  - glightbox
+  - git-revision-date-localized:
+      enable_creation_date: false
+      type: timeago
+      timezone: Europe/Budapest
+      locale: hu
+  - git-committers:
+      repository: BMEVIAUBB03/laborok
+      branch: master
+
+nav:
+  - "Tudnivalók":
+      - index.md
+      - tudnivalok/github/GitHub.md
+      - tudnivalok/github/GitHub-Actions.md
+      - tudnivalok/github/GitHub-credentials.md
+      - tudnivalok/github/contributing.md
+  - "Webes laborok":
+
+  - "Mobilos laborok":
+      - laborok/android/00-basics/index.md
+      - laborok/android/01-ui/index.md
+      - laborok/android/02-ui-fragments/index.md
+      - laborok/android/03-room/index.md
+      - laborok/android/04-network/index.md
+  - "Házi feladat":
+      - hf/mobil/index.md
