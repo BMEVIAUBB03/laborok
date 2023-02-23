@@ -8,7 +8,7 @@ RUN apk add --no-cache --virtual .build-deps gcc libc-dev libxslt-dev && \
 
 RUN pip install --no-cache-dir \
   mkdocs-git-revision-date-localized-plugin \
-  mkdocs-git-committers-plugin-2 /
+  mkdocs-git-committers-plugin-2 \
   mkdocs-glightbox
 
 RUN git config --global --add safe.directory /github/workspace
