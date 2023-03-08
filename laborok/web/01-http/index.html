@@ -1,0 +1,1134 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="hu">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Albert István, Ekler Péter, Gazdi László, Gincsai Gábor, Somogyi Ferenc Attila, Tóth Tibor" name="author"/>
+<link href="../../../tudnivalok/github/contributing/" rel="prev"/>
+<link href="../../android/00-basics/" rel="next"/>
+<link href="../../../favicon.ico" rel="icon"/>
+<meta content="mkdocs-1.4.2, mkdocs-material-9.0.14" name="generator"/>
+<title>Labor 01 - HTTP, HTML - BMEVIAUBB03 - Kliensalkalmazások laborfeladatok</title>
+<link href="../../../assets/stylesheets/main.113286f1.min.css" rel="stylesheet"/>
+<link href="../../../assets/stylesheets/palette.a0c5b2b5.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<link href="../../../css/timeago.css" rel="stylesheet"/>
+<link href="../../../extra-material-theme.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            
+                .gscrollbar-fixer { padding-right: 15px; }
+                .gdesc-inner { font-size: 0.75rem; }
+                body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+                body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+                body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+                </style><script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+<body data-md-color-accent="red" data-md-color-primary="red" data-md-color-scheme="aut" dir="ltr">
+<script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#labor-01-http-html">
+          Kihagyás
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="Élőfej" class="md-header__inner md-grid">
+<a aria-label="BMEVIAUBB03 - Kliensalkalmazások laborfeladatok" class="md-header__button md-logo" data-md-component="logo" href="../../.." title="BMEVIAUBB03 - Kliensalkalmazások laborfeladatok">
+<img alt="logo" src="../../../logo-bme-aut.png"/>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            BMEVIAUBB03 - Kliensalkalmazások laborfeladatok
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Labor 01 - HTTP, HTML
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Váltás sötét témára" class="md-option" data-md-color-accent="red" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="red" data-md-color-scheme="aut" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_2" hidden="" title="Váltás sötét témára">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"></path></svg>
+</label>
+<input aria-label="Váltás világos témára" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="red" data-md-color-scheme="slate" id="__palette_2" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Váltás világos témára">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"></path></svg>
+</label>
+</form>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Keresés" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Keresés" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</label>
+<nav aria-label="Keresés" class="md-search__options">
+<button aria-label="Törlés" class="md-search__icon md-icon" tabindex="-1" title="Törlés" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+</button>
+</nav>
+<div class="md-search__suggest" data-md-component="search-suggest"></div>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Keresés inicializálása
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/bmeviaubb03/laborok" title="Főoldalra ugrás">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+</div>
+<div class="md-source__repository">
+    bmeviaubb03/laborok
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<nav aria-label="Lapok" class="md-tabs" data-md-component="tabs">
+<div class="md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../..">
+        Tudnivalók
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link md-tabs__link--active" href="./">
+        Webes laborok
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../android/00-basics/">
+        Mobilos laborok
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../hf/mobil/">
+        Házi feladat
+      </a>
+</li>
+</ul>
+</div>
+</nav>
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigáció" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="BMEVIAUBB03 - Kliensalkalmazások laborfeladatok" class="md-nav__button md-logo" data-md-component="logo" href="../../.." title="BMEVIAUBB03 - Kliensalkalmazások laborfeladatok">
+<img alt="logo" src="../../../logo-bme-aut.png"/>
+</a>
+    BMEVIAUBB03 - Kliensalkalmazások laborfeladatok
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/bmeviaubb03/laborok" title="Főoldalra ugrás">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+</div>
+<div class="md-source__repository">
+    bmeviaubb03/laborok
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+          Tudnivalók
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_1_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_1">
+<span class="md-nav__icon md-icon"></span>
+          Tudnivalók
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../..">
+        Tárgy ismertető
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tudnivalok/github/GitHub/">
+        Feladatok beadása (GitHub)
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tudnivalok/github/GitHub-Actions/">
+        GitHub Actions ismertető
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tudnivalok/github/GitHub-credentials/">
+        Egyetemi laborokban: GitHub belépés
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tudnivalok/github/contributing/">
+        Hozzájárulás az anyaghoz
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          Webes laborok
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+          Webes laborok
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Labor 01 - HTTP, HTML
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        Labor 01 - HTTP, HTML
+      </a>
+<nav aria-label="Tartalomjegyzék" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Tartalomjegyzék
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#bevezetes">
+    Bevezetés
+  </a>
+<nav aria-label="Bevezetés" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#felev-soran-hasznalt-eszkozok">
+    Félév során használt eszközök
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#elokeszulet">
+    Előkészület
+  </a>
+<nav aria-label="Előkészület" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#git-repository-letrehozasa-es-letoltese">
+    Git repository létrehozása és letöltése
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#bongeszo-hibakereso-eszkozei">
+    Böngésző hibakereső eszközei
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-feladat">
+    1. Feladat
+  </a>
+<nav aria-label="1. Feladat" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#http-keresek">
+    HTTP kérések
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#kozos-feladat">
+    Közös feladat
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#onallo-feladat-beadando">
+    Önálló feladat beadandó
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-feladat">
+    2. Feladat
+  </a>
+<nav aria-label="2. Feladat" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#postman">
+    Postman
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#kereses-statusz-alapjan">
+    Keresés státusz alapján
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#uj-elem-letrehozasa">
+    Új elem létrehozása
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#kozos-feladat-beadando">
+    Közös feladat beadandó
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#onallo-feladat-beadando_1">
+    Önálló feladat beadandó
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-feladat">
+    3. Feladat
+  </a>
+<nav aria-label="3. Feladat" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#html-alapok">
+    HTML alapok
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#szemantikus-web">
+    Szemantikus web
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#feladat">
+    Feladat
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#beadando">
+    Beadandó
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-feladat">
+    4. Feladat
+  </a>
+<nav aria-label="4. Feladat" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#html-oldal-vizsgalata">
+    HTML oldal vizsgálata
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#beadando_1">
+    Beadandó
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-feladat">
+    5. Feladat
+  </a>
+<nav aria-label="5. Feladat" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#html-urlapok">
+    HTML űrlapok
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#beadando_2">
+    Beadandó
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          Mobilos laborok
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+          Mobilos laborok
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../android/00-basics/">
+        Labor 01 - Alapok (HelloWorld)
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../android/01-ui/">
+        Labor 02 - Felhasználói felület készítés
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../android/02-ui-fragments/">
+        Labor 04 - Felhasználói felület készítése - Fragmentek, Chartok
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../android/03-room/">
+        Labor 06 - Bevásárló alkalmazás készítése
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../android/04-network/">
+        Labor 07 - Weather Info alkalmazás készítése
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          Házi feladat
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+          Házi feladat
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../hf/mobil/">
+        Mobilos házi feladat információk - TODO
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Tartalomjegyzék" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Tartalomjegyzék
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#bevezetes">
+    Bevezetés
+  </a>
+<nav aria-label="Bevezetés" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#felev-soran-hasznalt-eszkozok">
+    Félév során használt eszközök
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#elokeszulet">
+    Előkészület
+  </a>
+<nav aria-label="Előkészület" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#git-repository-letrehozasa-es-letoltese">
+    Git repository létrehozása és letöltése
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#bongeszo-hibakereso-eszkozei">
+    Böngésző hibakereső eszközei
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-feladat">
+    1. Feladat
+  </a>
+<nav aria-label="1. Feladat" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#http-keresek">
+    HTTP kérések
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#kozos-feladat">
+    Közös feladat
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#onallo-feladat-beadando">
+    Önálló feladat beadandó
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-feladat">
+    2. Feladat
+  </a>
+<nav aria-label="2. Feladat" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#postman">
+    Postman
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#kereses-statusz-alapjan">
+    Keresés státusz alapján
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#uj-elem-letrehozasa">
+    Új elem létrehozása
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#kozos-feladat-beadando">
+    Közös feladat beadandó
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#onallo-feladat-beadando_1">
+    Önálló feladat beadandó
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-feladat">
+    3. Feladat
+  </a>
+<nav aria-label="3. Feladat" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#html-alapok">
+    HTML alapok
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#szemantikus-web">
+    Szemantikus web
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#feladat">
+    Feladat
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#beadando">
+    Beadandó
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-feladat">
+    4. Feladat
+  </a>
+<nav aria-label="4. Feladat" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#html-oldal-vizsgalata">
+    HTML oldal vizsgálata
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#beadando_1">
+    Beadandó
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-feladat">
+    5. Feladat
+  </a>
+<nav aria-label="5. Feladat" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#html-urlapok">
+    HTML űrlapok
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#beadando_2">
+    Beadandó
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="labor-01-http-html">Labor 01 - HTTP, HTML<a class="headerlink" href="#labor-01-http-html" title="Permanent link">¶</a></h1>
+<h2 id="bevezetes">Bevezetés<a class="headerlink" href="#bevezetes" title="Permanent link">¶</a></h2>
+<p>A labor során laborvezetői segítséggel, majd önállóan készítesz el feladatokat a webes technológiák gyakorlati megismerése érdekében.</p>
+<p>A labor célja, a böngésző fejlesztői eszközeinek (dev toolbar) megismerése, a HTTP kérések és válaszok vizsgálata, valamint HTML oldalak készítésének gyakorlása.</p>
+<h3 id="felev-soran-hasznalt-eszkozok">Félév során használt eszközök<a class="headerlink" href="#felev-soran-hasznalt-eszkozok" title="Permanent link">¶</a></h3>
+<ul>
+<li>Webböngésző (Chrome, Edge vagy Firefox) és a beépített hibakereső eszközei,</li>
+<li><a href="https://code.visualstudio.com/download">Visual Studio Code</a> kódszerkesztő alkalmazás,<ul>
+<li>otthoni vagy egyéni munkavégzéshez használható bármilyen más kódszerkesztő vagy fejlesztőkörnyezet, de a laborokban a VS Code-ot használjuk.</li>
+<li>A laborban előre telepítésre kerültek az alábbi kiegészítők a VS Code-hoz,<ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp">C#</a> - C# és .NET Core támogatás.</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer">Live Server</a> - egy nagyon egyszerű, fejlesztési célra szánt HTTP kiszolgáló.</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=glenn2223.live-sass">Live Saas Compiler</a> - SCSS fájlokból CSS-t tud generálni.</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">ESLint</a> - Statikus kódelemző JS-hez.</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=Zignd.html-css-class-completion">IntelliSense for Css class names in HTML</a> - CSS osztály nevekhez automatikus kiegészítés.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>npm, a <a href="https://nodejs.org/en/download/">NodeJS</a> csomagkezelője,<ul>
+<li>Az npm parancs futtatásához telepített NodeJS-re is szükség van.</li>
+</ul>
+</li>
+</ul>
+<h2 id="elokeszulet">Előkészület<a class="headerlink" href="#elokeszulet" title="Permanent link">¶</a></h2>
+<p>A feladatok megoldása során ne felejtsd el követni a feladat beadás folyamatát <a href="../../../tudnivalok/github/GitHub/">GitHub</a>.</p>
+<h3 id="git-repository-letrehozasa-es-letoltese">Git repository létrehozása és letöltése<a class="headerlink" href="#git-repository-letrehozasa-es-letoltese" title="Permanent link">¶</a></h3>
+<ol>
+<li>Moodle-ben keresd meg a laborhoz tartozó meghívó URL-jét és annak segítségével hozd létre a saját repository-dat.</li>
+<li>Várd meg, míg elkészül a repository, majd checkout-old ki.<ul>
+<li>Egyetemi laborokban, ha a checkout során nem kér a rendszer felhasználónevet és jelszót, és nem sikerül a checkout, akkor valószínűleg a gépen korábban megjegyzett felhasználónévvel próbálkozott a rendszer. Először töröld ki a mentett belépési adatokat (lásd <a href="../../../tudnivalok/github/GitHub-credentials/">itt</a>), és próbáld újra.</li>
+</ul>
+</li>
+<li>Hozz létre egy új ágat <code>megoldas</code> néven, és ezen az ágon dolgozz.</li>
+<li>A neptun.txt fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.</li>
+</ol>
+<h2 id="bongeszo-hibakereso-eszkozei">Böngésző hibakereső eszközei<a class="headerlink" href="#bongeszo-hibakereso-eszkozei" title="Permanent link">¶</a></h2>
+<p>Weboldalak készítésekor szükség lehet a HTTP forgalom megvizsgálására, viszont az esetek jelentős részében elegendő lehet, ha a böngésző forgalmát meg tudjuk vizsgálni. A mai böngészők mindegyike tartalmaz eszközöket, amellyel a weboldalak hibakeresése nagyon egyszerűen kezelhetővé válik.</p>
+<p>Nyissuk meg a laborvezető által kijelölt böngészőben a <a href="https://www.bme.hu">https://www.bme.hu</a> oldalt, majd nyissuk meg a Developer tools nézetét az <strong>F12</strong> billentyűvel.</p>
+<p>Vizsgáljuk meg, mit kínálnak az egyes böngészőkbe épített hibakereső eszközök!</p>
+<figure>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/aut-bme-hu-chrome.png"><img alt="A BME AUT kezdőlapja - Chrome" src="assets/aut-bme-hu-chrome.png"/></a>
+</p>
+<figcaption>BME AUT kezdőlapja - Chrome Dev Toolbars</figcaption>
+</figure>
+<details class="info">
+<summary>További böngészőkben található Dev Toolbarok</summary>
+<p><figure markdown="">
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/aut-bme-hu-edge.png"><img alt="A BME AUT kezdőlapja - Edge" src="assets/aut-bme-hu-edge.png"/></a>
+<figcaption>BME AUT kezdőlapja - Edge Dev Toolbars</figcaption>
+</figure></p>
+<p><figure markdown="">
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/aut-bme-hu-firefox.png"><img alt="A BME AUT kezdőlapja - FireFox" src="assets/aut-bme-hu-firefox.png"/></a>
+<figcaption>BME AUT kezdőlapja - FireFox Dev Toolbars</figcaption>
+</figure></p>
+</details>
+<p>A Chrome, Edge és Firefox böngészők eszközkészlete kisebb eltérésektől eltekintve megegyezik, a leggyakoribb funkciók az alábbiak:</p>
+<ul>
+<li>A dokkolás módja megadható: az ablak alsó részére vagy oldalára is (Chrome, Firefox) dokkolható az eszköztár, ill. kivehető a saját ablakába.</li>
+<li><strong>DOM vizsgálata (DOM Explorer, Elements, Inspector)</strong>: a dokumentumfa felépítését tudjuk megvizsgálni, látható a kirajzolt HTML tartalom. Lehetőségünk van szerkeszteni az elemeket, beszúrni attribútumokat, elemeket, törölni őket. Kiválasztható egy DOM elem egérrel a kirajzolt oldalon vagy a szöveges megjelenítőben is. Egy elemet kiválasztva jobb oldalon az elemre illeszkedő stíluslap-szabályok (CSS) láthatók, ezek is szerkeszthetők. CSS készítésekor egy nagyon hasznos eszköz.</li>
+<li><strong>JavaScript konzol (Console)</strong>: a JavaScript standard outputja a konzol, az alkalmazások által írt tartalmak itt láthatók. Lehetőségünk van kód futtatására is a konzol ablakban, ami azonnal kiértékelődik.</li>
+<li><strong>Források (Sources)</strong>: Itt látható, hogy a teljes weboldal betöltéséhez honnan és mit töltött le a böngésző. Ha itt kiválasztunk egy JS fájlt, akkor annak a teljes kódját láthatjuk, sőt töréspontokat is tehetünk bele, így lehetővé téve a JS fájlok debuggolását.</li>
+<li><strong>Hálózat (Network)</strong>: itt láthatjuk a kimenő kéréseket és a rájuk érkező válaszokat. Előnye, hogy csak a konkrét oldalhoz tartozik, nem a teljes böngészőhöz, így könnyebb leszűrnünk, melyik kérések tartoznak melyik alkalmazáshoz/oldalhoz. Láthatók a pontos időzítések is, HTTP kérések indítását viszont nem lehetséges kézzel megejtenünk a beépített lehetőségekkel.</li>
+<li><strong>Teljesítménymérők (Performance)</strong>: különböző teljesítménymérő eszközök állnak rendelkezésünkre a weboldalak elemzéséhez, amik jellemzően a memória- és processzorhasználatot mérik.</li>
+<li><strong>Alkalmazás (Application)</strong>: az alkalmazás által a különböző tárolókban - Local Storage, Session Storage, Cookies, ... - tárolt kulcs-érték párokat tudjuk megtekinteni.</li>
+</ul>
+<p>Az eszközök legalább alapszintű ismerete (elsősorban a DOM Explorer, Console és Network használata) a laborokon elengedhetetlen.</p>
+<h2 id="1-feladat">1. Feladat<a class="headerlink" href="#1-feladat" title="Permanent link">¶</a></h2>
+<h3 id="http-keresek">HTTP kérések<a class="headerlink" href="#http-keresek" title="Permanent link">¶</a></h3>
+<p>A hálózati kéréseket csak akkor rögzíti a Network fül, ha a Dev Toolbart korábban nyitjuk meg, minthogy az oldalt betöltenénk.
+Az alábbi ábrán látható, hogy milyen funkciókat és beállításokat rejt a hálózat fül.</p>
+<figure>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/network-tab.png"><img alt="Network tab" src="assets/network-tab.png"/></a>
+</p>
+<figcaption>Network tab</figcaption>
+</figure>
+<p><strong>Disable cache</strong>: bekapcsolása nagyon fontos JS és HTML kód debuggolása során, ugyanis a böngészők elég agresszívan gyorsítotárazzák ezeket a kéréseket. Fontos azonban tudni, hogy a gyorsítótár csak addig van letiltva amíg a Dev Toolban meg van nyitva és csak arra az egy oldalra (fülre) vonatkozik.</p>
+<p><strong>Preserve log</strong>: bekapcsolásával lehetőségünk van a logok megőrzésére navigációkor is. Azonban ezt a pipát óvatosan használjuk, mert a sok log nagyon be tudja lassítani a böngészőt.</p>
+<h3 id="kozos-feladat">Közös feladat<a class="headerlink" href="#kozos-feladat" title="Permanent link">¶</a></h3>
+<ol>
+<li>Nyissuk meg a böngészőben a <a href="https://www.aut.bme.hu">https://www.aut.bme.hu</a> oldalt úgy, hogy a Dev Toolbar Network füle már meg van nyitva.</li>
+<li>Keressük meg és kattintsunk arra a kérésre, amiben a HTML tartalom letöltődik.</li>
+<li>
+<p>A megjelenő ablakban láthatók a HTTP kérés fejlécei</p>
+<ul>
+<li><strong>General</strong>: A legfontosabb adatokat láthatjuk itt a kérésről és a válaszról.<ul>
+<li>Request URL: <a href="https://www.aut.bme.hu/">https://www.aut.bme.hu/</a> </li>
+<li>HTTP Method: GET</li>
+<li>Status Code: 200</li>
+</ul>
+</li>
+<li><strong>Response Headers</strong>: Itt találjuk a HTTP válasz fejléceit. Alapértelmezés szerint egy feldolgozott formában látjuk az adatokat, viszont a View Source gombra kattintva meg tudjuk nézni a nyers adatokat is.</li>
+<li><strong>Request Headers</strong>: Itt találjuk a HTTP kérés fejléc mezőit. Alapértelmezés szerint egy feldolgozott formában látjuk az adatokat, viszont a View Source gombra kattintva meg tudjuk nézni a nyers adatokat is.</li>
+</ul>
+<p><figure markdown="">
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/http-request-response.png"><img alt="Http kérés-válasz" src="assets/http-request-response.png"/></a>
+<figcaption>HTTP kérés-válaszok fejlécei</figcaption>
+</figure></p>
+<details class="info">
+<summary>Hogyan másoljuk ki egy kéréshez tartozó fejléc adatokat</summary>
+<p>A kérésen kattints jobb egérgombbal majd ott válaszd a Copy menüpontból, hogy mit szeretnénk másolni.
+<figure markdown="">
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/copy-request-headers.png"><img alt="Request headers" src="assets/copy-request-headers.png"/></a>
+<figcaption>HTTP kérés-válaszok fejlécek másolása</figcaption>
+</figure></p>
+</details>
+</li>
+<li>
+<p>Nézzük meg, hogy milyen HTTP kérés ment ki az oldal letöltéséhez.
+    <div class="highlight"><pre><span></span><code><span class="nf">GET</span> <span class="nn">/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9</span>
+<span class="na">Accept-Encoding</span><span class="o">:</span> <span class="l">gzip, deflate, br</span>
+<span class="na">Accept-Language</span><span class="o">:</span> <span class="l">hu-HU,hu;q=0.9,en-US;q=0.8,en;q=0.7</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">www.aut.bme.hu</span>
+<span class="na">User-Agent</span><span class="o">:</span> <span class="l">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36</span>
+</code></pre></div></p>
+</li>
+<li>Nézzük meg a kérésre kapott választ.
+    <div class="highlight"><pre><span></span><code><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Cache-Control</span><span class="o">:</span> <span class="l">no-cache, no-store</span>
+<span class="na">Pragma</span><span class="o">:</span> <span class="l">no-cache</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">text/html; charset=utf-8</span>
+<span class="na">Content-Encoding</span><span class="o">:</span> <span class="l">gzip</span>
+<span class="na">Expires</span><span class="o">:</span> <span class="l">-1</span>
+<span class="na">Vary</span><span class="o">:</span> <span class="l">Accept-Encoding</span>
+<span class="na">Server</span><span class="o">:</span> <span class="l">Microsoft-IIS/8.0</span>
+<span class="na">X-AspNet-Version</span><span class="o">:</span> <span class="l">4.0.30319</span>
+<span class="na">X-Powered-By</span><span class="o">:</span> <span class="l">ASP.NET</span>
+<span class="na">X-Frame-Options</span><span class="o">:</span> <span class="l">deny</span>
+<span class="na">Date</span><span class="o">:</span> <span class="l">Mon, 03 Oct 2022 05:54:57 GMT</span>
+<span class="na">Content-Length</span><span class="o">:</span> <span class="l">11344</span>
+</code></pre></div></li>
+</ol>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Ha még nem tetted volna meg, nyisd meg a GitHub Classroom leklónozott beadandójának repositoryját, aminek gyökér könyvtárát nyisd meg a VS Code szerkesztőben! A <code>index.html</code> fájlban dolgozzunk és a <code>megoldas</code> ágra pusholjunk.</p>
+</div>
+<h3 id="onallo-feladat-beadando">Önálló feladat beadandó<a class="headerlink" href="#onallo-feladat-beadando" title="Permanent link">¶</a></h3>
+<div class="admonition example">
+<p class="admonition-title">1. feladat beadandó (0.5 pont)</p>
+<ul>
+<li>Nyisd meg a böngészőben a <a href="http://www.aut.bme.hu">http://www.aut.bme.hu</a> oldalt. <strong>HTTP kérés nem HTTPS</strong></li>
+<li>Keresd meg az azt a kérést, ami a <a href="http://www.aut.bme.hu">http://www.aut.bme.hu</a> -ra érkezett és vizsgáld meg a kapott HTTP választ.</li>
+<li>Készíts képernyőképet a Dev Toolbar Network füléről ahol látszódnak a kérés fejlécei. (General, Request Headers, Response Headers)</li>
+<li>A készített képernyőképet másold be <strong><code>f1.png</code></strong> néven a repository gyökerébe!</li>
+</ul>
+</div>
+<h2 id="2-feladat">2. Feladat<a class="headerlink" href="#2-feladat" title="Permanent link">¶</a></h2>
+<h3 id="postman">Postman<a class="headerlink" href="#postman" title="Permanent link">¶</a></h3>
+<p>Postman segítségével egyszerűen tudunk HTTP kéréseket indítani és a kapott válaszokat vizsgálni.
+Leggyakrabban akkor használjuk ha egy REST API-t kell kipróbálni vagy tesztelni.</p>
+<p>Webes és desktopos verzió is létezik belőle.</p>
+<ul>
+<li>A webes felület regisztráció után használható a <a href="https://www.postman.com/">https://www.postman.com/</a> oldalon.</li>
+<li>Az asztali verziót a <a href="https://www.postman.com/downloads/">https://www.postman.com/downloads/</a> oldalról lehet letölteni.</li>
+</ul>
+<p>A labor gépekre az asztali verzió fel van telepítve, így azt fogjuk használni.
+Ahhoz, hogy ne kelljen szerver oldali kódot készíteni egy tesztelésre kiadott REST API-t használunk melynek leírása a <strong><a href="https://petstore.swagger.io/">https://petstore.swagger.io/</a></strong> oldalon érhető el. A legfontosabb végpontok az alábbi swagger ábrán is látható.</p>
+<figure>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/petstore.png"><img alt="PetStore REST API" src="assets/petstore.png"/></a>
+</p>
+<figcaption>PetStore REST API</figcaption>
+</figure>
+<h3 id="kereses-statusz-alapjan">Keresés státusz alapján<a class="headerlink" href="#kereses-statusz-alapjan" title="Permanent link">¶</a></h3>
+<ol>
+<li>Indítsuk el a Postmant.</li>
+<li>Bal oldalon hozzunk létre egy új kategóriát és nevezzük át MobWeb-re.</li>
+<li>Állítsunk össze egy kérést, ami státusz alapján kérdez le kutyákat. A leírása a swagger oldalon található. (Akár onnan is ki lehet próbálni.)<ul>
+<li>Method: <strong>GET</strong></li>
+<li>URL: <strong><a href="https://petstore.swagger.io/v2/pet/findByStatus">https://petstore.swagger.io/v2/pet/findByStatus</a></strong></li>
+<li>Query paramétert a Params fülön tudunk felvenni (vagy beírhatjuk az URL-be is)<ul>
+<li>Key: <strong>status</strong></li>
+<li>Value: <strong>sold</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Küldjük el a kérést a <strong>Send</strong> gombra kattintva és ellenőrizzük a visszakapott adatokat.</li>
+<li>Mentsük el a jobb felső sarokban lévő <strong>Save</strong> gombbal a MobWeb kategóriába.</li>
+</ol>
+<figure>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/postman-filter.png"><img alt="Postman" src="assets/postman-filter.png"/></a>
+</p>
+<figcaption>Postman - Filter kérés összeállítása</figcaption>
+</figure>
+<h3 id="uj-elem-letrehozasa">Új elem létrehozása<a class="headerlink" href="#uj-elem-letrehozasa" title="Permanent link">¶</a></h3>
+<ol>
+<li>Állítsunk össze egy új kérést, ami egy kutyát hoz létre. Ehhez a <em>/pet</em> URL-re kell egy <em>POST</em> kérést küldeni a <em>Body</em> -ban megadva azt a JSON-t amivel létre kell hozni a kutyát. A pontos leírás a swagger oldalon érhető el.<ul>
+<li>Method: <strong>POST</strong></li>
+<li>URL: <strong><a href="https://petstore.swagger.io/v2/pet">https://petstore.swagger.io/v2/pet</a></strong></li>
+</ul>
+</li>
+<li>Válasszuk ki a Body fület, ott a raw opciót és adjuk meg hogy JSON adat lesz a bodyban.</li>
+<li>A body-t az alábbiak szerint állítsd össze. A kutya neve legyen a neptunkódod.
+    <div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Z2I8RG"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"available"</span>
+<span class="p">}</span>
+</code></pre></div></li>
+<li>Ha minden jól megy a válaszban visszakapjuk a létrehozott kutyát, amiből az ID lesz számunkra fontos
+    <div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9223372036854248826</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Z2I8RG"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"photoUrls"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">    </span><span class="nt">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"available"</span>
+<span class="p">}</span>
+</code></pre></div></li>
+</ol>
+<h3 id="kozos-feladat-beadando">Közös feladat beadandó<a class="headerlink" href="#kozos-feladat-beadando" title="Permanent link">¶</a></h3>
+<div class="admonition example">
+<p class="admonition-title">2. a) Feladat beadandó (0.5 pont)</p>
+<ul>
+<li>A kutya létrehozásához összeállított kérés sikeres lefuttatásáról készíts egy képernyőképet.</li>
+<li>A képernyőképet másold be <strong><code>f2a.png</code></strong> néven a repository gyökerébe! </li>
+</ul>
+</div>
+<h3 id="onallo-feladat-beadando_1">Önálló feladat beadandó<a class="headerlink" href="#onallo-feladat-beadando_1" title="Permanent link">¶</a></h3>
+<ol>
+<li>Készíts egy új kérést, ami módosítja a közösen létrehozott azonosítójú kutya állapotát (<code>status</code>) <code>sold</code>-ra.</li>
+<li>Készíts egy új kérést, ami törli a korábban módosított kutyát.</li>
+</ol>
+<div class="admonition example">
+<p class="admonition-title">2. b) Önálló feladat beadandó (1 pont)</p>
+<ul>
+<li>Készíts képernyőképet a sikeresen lefuttatott módosításról és törlésről.</li>
+<li>A képernyőképeket másold be <strong><code>f2b.png</code></strong> és <strong><code>f2c.png</code></strong> néven a repository gyökerébe! </li>
+</ul>
+</div>
+<h2 id="3-feladat">3. Feladat<a class="headerlink" href="#3-feladat" title="Permanent link">¶</a></h2>
+<h3 id="html-alapok">HTML alapok<a class="headerlink" href="#html-alapok" title="Permanent link">¶</a></h3>
+<p>A HTML (HyperText Markup Language) a web nyelve. A böngészők elsősorban HTTP-n keresztül eljuttatott HTML tartalom  kirajzolásáért és feldolgozásáért felelősek.</p>
+<p>A HTML egy XML-szerű nyelv, amelyben elemek (tag) írják le a dokumentumunkat. Az egyes elemeknek lehetnek tulajdonságai, amiket attribútumoknak (attribute) nevezünk. Az attribútum értéke leggyakrabban szám, szöveg, korlátozott értékkészletű szöveg (enumeráció), ritkábban felsorolás vagy objektum lehet. A HTML-ben bizonyos szabályrendszernek kell eleget tennünk: megkötések vonatkoznak arra, hogy milyen jellegű elemeket milyen más elemekben helyezhetünk el.</p>
+<p>A kód könnyen értelmezhető, az egyes elemek nyitó és záró tag-je között találhatók a hozzárendelt gyerekelemek. A whitespace-ek, behúzások csak az olvashatóságot segítik.</p>
+<div class="admonition tip">
+<p class="admonition-title">Fontos</p>
+<p>A HTML-ben vétett esetleges hibák <strong>csendes</strong> hibák, az esetleges hibás elhelyezések vagy helytelen formázás/szintaxis következtében a böngésző meg fogja jeleníteni az oldalt, amennyire a HTML alapján azt meg tudja tenni. Egy lemaradt <code>&lt;/lezáró tag&gt;</code> pl. nem minden esetben rontja el a HTML oldal kinézetét, de okozhat nemkívánatos mellékhatásokat.</p>
+</div>
+<h3 id="szemantikus-web">Szemantikus web<a class="headerlink" href="#szemantikus-web" title="Permanent link">¶</a></h3>
+<p>Mielőtt belevágnánk a feladatba érdemes feleleveníteni a szemantikus HTML tageket, amit a <code>div</code>-ek helyett használunk a kódban, ezzel jelölve a nagyobb logikai egységeket.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/semantic-outline.png"><img alt="Szemantikus web áttekintés" src="assets/semantic-outline.png"/></a>
+Forrás: <a href="https://internetingishard.com/html-and-css/semantic-html/">https://internetingishard.com/html-and-css/semantic-html/</a></p>
+<h3 id="feladat">Feladat<a class="headerlink" href="#feladat" title="Permanent link">¶</a></h3>
+<ol>
+<li>
+<p>Nyisd meg az <code>index.html</code> fájlt és jobb gombbal kattints bele, majd választ az <strong>Open with Live Server</strong> opciót. Ezzel elindul egy fejlesztő webszerver a 5500-as porton és az alapértelmezett böngészőt is megnyitja a kiválasztott oldal tartalmával. (<a href="http://127.0.0.1:5500/index.html">http://127.0.0.1:5500/index.html</a>)</p>
+<div class="admonition tip fontos">
+<p class="admonition-title">Tip</p>
+<p>Ez az opció csak könyvtárakra működik, tehát ha csak simán a fájlt nyitod meg (nem a projekt könyvtárát) akkor nem fog működni.</p>
+</div>
+</li>
+<li>
+<p>Egyszerű HTML elemek áttekintése</p>
+<p>A kiinduló kódban már megtalálható ez a részlet így csak a viselkedésüket kell megvizsgálni. Láthatjuk, hogy egy-egy elemnek van egy alapértelmezett kinézete, amit a böngésző definiál. A későbbiekben ezt a Dev Toolbar segítségével közelebbről is megnézzük.</p>
+<ul>
+<li><code>div</code> - blokk elem (új sorban kezdődik)</li>
+<li><code>span</code> - inline elem (nem kezd új sort)</li>
+<li><code>p</code> - bekezdés</li>
+<li><code>b</code> vagy<code>strong</code> vagy <code>em</code> - kiemelt szöveg</li>
+<li><code>i</code> - dőlt betűs</li>
+<li><code>br</code> - sortörés</li>
+</ul>
+</li>
+<li>
+<p>A következő pontokban az <code>index.html</code> oldalban található <em>TODO</em> elemek helyére készítsd el a szükséges HTML kódrészletet.</p>
+</li>
+<li>
+<p>Fejléc</p>
+<ul>
+<li>A megfelelő szemantikus HTML taget használd.</li>
+<li>A megfelelő heading-ben jelenítsd meg a "Mobil- és Webes szoftverek fejlesztése" szöveget.</li>
+</ul>
+</li>
+<li>
+<p>Navigációs linkek</p>
+<ul>
+<li>A megfelelő szemantikus HTML taget használd.</li>
+<li>Az alábbi két linket hozd létre<ul>
+<li>Főoldal az az <code>index.html</code>-re mutat</li>
+<li>Form ami a <code>form.html</code>-re mutat.</li>
+</ul>
+</li>
+</ul>
+<details class="info">
+<summary>Segítség</summary>
+<ul>
+<li><code>a</code> - hyperlink készítése a nyitó és záró tag közé kerül a megjelenített szöveg.</li>
+<li><code>href</code> - az <code>a</code> tag attribútuma, hova kell navigálni.</li>
+<li><code>target</code> - az <code>a</code> tag attribútuma, hol nyissa meg a linket (új tab, vagy ebben az ablakban).</li>
+</ul>
+</details>
+</li>
+<li>
+<p>Fő tartalmi blokk
+    Az alább felsorolt blokkokat kell létrehozni. Minden blokk előtt legyen egy megfelelő heading és alatta a szükséges kódrészlet.</p>
+<ul>
+<li>
+<p><strong>Felsorolások</strong> 
+    Egy heading-ben jelezd, hogy ez a rész a "Felsorolások", majd készíts egy bullet pointos listát és egy sorszámozott listát 2-2 elemmel.</p>
+<details class="info">
+<summary>Segítség</summary>
+<ul>
+<li><code>ul</code> - bullet pointos felsorolás.</li>
+<li><code>ol</code> - számozott felsorolás.</li>
+<li><code>li</code> - lista elem.</li>
+<li><strong>Táblázatok</strong> </li>
+</ul>
+</details>
+<p>Egy heading-ben jelezd, hogy ez a rész a "Táblázatok", majd készítsd el az alábbi képen látható táblázatot.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/table.png"><img alt="Táblázat" src="assets/table.png"/></a></p>
+<details class="info">
+<summary>Segítség</summary>
+<ul>
+<li><code>table</code> - táblázat</li>
+<li><code>thead</code> - táblázat fejléce (legelső sor)</li>
+<li><code>tbody</code> - táblázat törzse</li>
+<li><code>tfoot</code> - táblázat lábléce (legalsó sor)</li>
+<li><code>tr</code> - táblázat sor</li>
+<li><code>td</code> - táblázat cella</li>
+<li><code>th</code> - táblázat fejléc oszlop</li>
+<li><code>colspan</code> - oszlopok összevonása (attribútum a td-re)</li>
+<li><code>rowspan</code> - sorok összevonása (attribútum a td-re)</li>
+<li><code>border</code> - táblázat keret vastagsága (attribútum a table-re )</li>
+<li><strong>Kép kezelése képaláírással</strong>:</li>
+</ul>
+</details>
+<ul>
+<li>Egy heading-ben jelezd, hogy ez a rész a "Képek", majd adj az oldalhoz egy képet képfelirattal.</li>
+<li>A képeknél használjunk placeholder-t pl: <a href="https://via.placeholder.com/200x200">https://via.placeholder.com/200x200</a>. Adj meg alternative textet is.</li>
+</ul>
+<details class="info">
+<summary>Segítség</summary>
+<ul>
+<li><code>figure</code> - tag ami összefogja a képet és képaláírást.</li>
+<li><code>img</code> - maga a kép</li>
+<li><code>alt</code> - az <code>img</code> tagnek attribútuma, amit érdemes mindig megadni. Ez egy helyettesítő szöveg, ha a képet nem lehet letölteni.</li>
+<li><code>figcaption</code> - Képaláírás</li>
+<li><strong>Formázott szöveg</strong>:</li>
+</ul>
+</details>
+<ul>
+<li>Egy heading-ben jelezd, hogy ez a rész a "Formázott szöveg"</li>
+<li><code>pre</code> - olyan előre formázott szöveg amiben megtartja rendereléskor a white spaceeket és sortöréseket is. Olyan szöveget írj bele, ami demonstrálja ezt a viselkedést.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Készítsünk egy a tartalomtól független rész a szerzőről</p>
+<ul>
+<li>Szerző neve a megfelelő heading típussal.</li>
+<li>Egy kép a szerzőről, vagy keress egy képet és azt is tedd a repositoryba vagy használd a <a href="https://via.placeholder.com/80x80">https://via.placeholder.com/80x80</a> placeholdert.</li>
+<li>Egy bekezdés szöveg, amit legegyszerűbben a <a href="https://www.lipsum.com/">https://www.lipsum.com/</a> oldal segítségével generálhatunk.</li>
+</ul>
+</li>
+<li>
+<p>Készítsük el a láblécet, amibe az évszám és a BME AUT felirat kerüljön.</p>
+</li>
+</ol>
+<h3 id="beadando">Beadandó<a class="headerlink" href="#beadando" title="Permanent link">¶</a></h3>
+<div class="admonition example">
+<p class="admonition-title">3. feladat beadandó (1.5 pont)</p>
+<ul>
+<li>Az <code>index.html</code> módosításait commitold!</li>
+<li>Az elkészült weboldal képernyőképet másold be <code>f3.png</code> néven a repository gyökerébe!</li>
+</ul>
+</div>
+<h2 id="4-feladat">4. Feladat<a class="headerlink" href="#4-feladat" title="Permanent link">¶</a></h2>
+<h3 id="html-oldal-vizsgalata">HTML oldal vizsgálata<a class="headerlink" href="#html-oldal-vizsgalata" title="Permanent link">¶</a></h3>
+<p>Láthatjuk, hogy a szövegek formázását nem a whitespace-ek, hanem az elemek típusa adja. Ha szeretnénk látni, melyik elem hol helyezkedik el a felületen illetve a DOM-ban, az F12 eszköztáron, a DOM Explorer felső során levő ikonokkal változtathatjuk, hogy a felületen navigálva a DOM elem kijelölődjön-e, illetve a DOM-ban navigálva a felületen jelezve legyen-e a kiválasztott elem. </p>
+<p>Az alapértelmezett formázást a böngészők beépítetten adják, ezért nagyobbak az egyes címsor (<code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code>) mezők, ill. ezért törik a <code>&lt;div&gt;</code> (ami blockszintű elem), és marad folyószöveg a <code>&lt;span&gt;</code> (ami inline).</p>
+<p>A beépített stílusokat megvizsgálhatjuk egy elemet kijelölve. A CSS szabály mellett látható a "user agent stylesheet" jelzi, hogy a böngésző beépített stíluslapjában található ez a formázás.</p>
+<figure>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/beepitett-stilusok.png"><img alt="A böngésző beépített stílusainak vizsgálata F12 eszközökkel" src="assets/beepitett-stilusok.png"/></a>
+</p>
+<figcaption>A böngésző beépített stílusainak vizsgálata F12 eszközökkel</figcaption>
+</figure>
+<h3 id="beadando_1">Beadandó<a class="headerlink" href="#beadando_1" title="Permanent link">¶</a></h3>
+<div class="admonition example">
+<p class="admonition-title">4. feladat beadandó (0.5 pont)</p>
+<p>Készíts egy képernyőképet, ahol látható, hogy a <code>h3</code> tagre milyen alapértelmezett stílusok vonatkoznak. Az így készült képernyőképet másold be <code>f4.png</code> néven a repository gyökerébe!</p>
+</div>
+<h2 id="5-feladat">5. Feladat<a class="headerlink" href="#5-feladat" title="Permanent link">¶</a></h2>
+<h3 id="html-urlapok">HTML űrlapok<a class="headerlink" href="#html-urlapok" title="Permanent link">¶</a></h3>
+<p>A HTML űrlapok egységes, megszokott adatbeviteli eszközként szolgálnak számunkra a felhasználóval való kommunikációra. </p>
+<p>Állíts össze egy űrlapot a repositoryban található <code>form.html</code> fájlba, az alábbiak szerint.</p>
+<ul>
+<li>
+<p>Az űrlap az alábbi adatokat kéri be a felületen a felhasználótól (a *-gal jelölt mezők kötelezően kitöltendők):</p>
+<ul>
+<li><strong>Név*</strong>: szöveges mező</li>
+<li><strong>Jelszó*</strong>: jelszó mező (nem látható karakterek – használja a "mobweb" jelszót szemléltetésre)</li>
+<li><strong>Leírás</strong>: szöveges mező, többsoros</li>
+<li><strong>Születési dátum*</strong>: dátum</li>
+<li><strong>Nem</strong>: fiú/lány/egyéb, legördülő menüből</li>
+<li><strong>Lábméret</strong>: szám, 0.5-ös léptékkel</li>
+</ul>
+</li>
+<li>
+<p>Minden mezőhöz tartozzon egy címke is, amely tőle balra helyezkedjen el! A címkére kattintva a fókusz kerüljön a releváns mezőbe (használd az <code>id</code> és <code>for</code> attribútumokat)! Az egyes mezők egymás alatt helyezkedjenek el!</p>
+</li>
+<li>Legyen egy <em>Küldés</em> feliratú gomb, amely az adatokat a saját szerverünknek küldi a <strong>/postform.html</strong> URL-re, ahol egy egyszerű oldal jelenjen meg GET kérés hatására (POST kérés esetén nem szükséges betöltődnie az oldalnak, de az URL legyen ugyanez)!</li>
+</ul>
+<details class="info">
+<summary>Segítség</summary>
+<ul>
+<li>Szükséges elemek<ul>
+<li><code>form</code> - maga az űrlap</li>
+<li><code>input</code> - beviteli mező, aminek a <code>type</code> attribútuma adja meg, hogy milyen típusú.</li>
+<li><code>label</code> - címke ahol a <code>for</code> attribútum adja meg, hogy melyik beviteli mezőhöz tartozik.</li>
+<li><code>select</code> - Legördülő lista.</li>
+<li><code>option</code> - Legördülő lista elem.</li>
+<li><code>textarea</code> - többsoros beviteli mező.</li>
+</ul>
+</li>
+<li>Szükséges attribútumok<ul>
+<li><code>action</code> - az <code>form</code> milyen URL-re irányítson át.</li>
+<li><code>for</code> - a <code>label</code> melyik <code>input</code>-hoz tartozik.</li>
+<li><code>id</code> - a tag egyedi azonosítója.</li>
+<li><code>method</code> - A <code>form</code> elküldésekor milyen HTTP method-ot használjon (GET / POST)</li>
+<li><code>name</code> - a tag neve. Ha nincs megadva az <code>input</code>-nál, akkor nem tudja a szerverre elküldeni az inputban lévő adatot.</li>
+<li><code>required</code> - kötelező <code>input</code> mező.</li>
+<li><code>step</code> - szám típusú <code>input</code> esetén a fel/le nyílra kattintva mennyivel változzon az érték.</li>
+<li><code>type</code> - az <code>input</code> típusa</li>
+<li><code>value</code> - az <code>input</code>-ban szereplő kezdeti érték.</li>
+</ul>
+</li>
+</ul>
+</details>
+<h3 id="beadando_2">Beadandó<a class="headerlink" href="#beadando_2" title="Permanent link">¶</a></h3>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ (1 pont)</p>
+<ul>
+<li>Commitold a <code>form.html</code> módosított tartalmát!</li>
+<li>Készíts képernyőképet <code>f5a.png</code> néven tetszőleges böngészőben a teljesen kitöltött űrlapról, amin pontosan egy validációs hiba található!</li>
+<li>Demonstráld a böngésző Network fülének segítségével az űrlapadatok elküldésének tényét GET <code>f5b.png</code> és POST <code>f5c.png</code> igék használatával is! Fontos, hogy a képen láthatóak legyenek az elküldött paraméterek.</li>
+</ul>
+</div>
+<hr/>
+<div class="md-source-file">
+<span class="md-source-file__fact"> <span class="md-icon" title="Utolsó frissítés"> <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z">
+</path>
+</svg>
+</span>
+<span title="2023. március 8. 12:51:54">
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-03-08T12:51:54+01:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-03-08</span>
+</span>
+</span>
+<span class="md-source-file__fact">
+<span class="md-icon" title="Szerzők">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z">
+</path>
+</svg>
+</span>
+<span>Szerzők</span>
+<nav><a class="md-author" href="https://github.com/gincsai" rel="noopener noreferrer" target="_blank" title="@gincsai">
+<img alt="@gincsai" src="https://avatars.githubusercontent.com/u/17701398?size=72"/>
+</a></nav>
+</span>
+</div>
+</article>
+</div>
+</div>
+<a class="md-top md-icon" data-md-component="top" hidden="" href="#">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
+            Vissza a tetejére
+          </a>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Copyright © BME VIK AUT
+    </div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.instant", "navigation.top", "search.suggest"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "V\u00e1g\u00f3lapra m\u00e1solva", "clipboard.copy": "M\u00e1sol\u00e1s v\u00e1g\u00f3lapra", "search.result.more.one": "1 tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.more.other": "# tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.none": "Nincs tal\u00e1lat", "search.result.one": "1 egyez\u0151 dokumentum", "search.result.other": "# egyez\u0151 dokumentum", "search.result.placeholder": "Keres\u00e9shez \u00edrj ide valamit", "search.result.term.missing": "\u00dcres", "select.version": "Verzi\u00f3v\u00e1lt\u00e1s"}}</script>
+<script src="../../../assets/javascripts/bundle.2a6f1dda.min.js"></script>
+<script src="../../../js/timeago.min.js"></script>
+<script src="../../../js/timeago_mkdocs_material.js"></script>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>
