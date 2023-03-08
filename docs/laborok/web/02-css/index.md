@@ -332,9 +332,7 @@ A követkeő feladat alkalmával az alábbi képből (és egy kicsi HTML váz se
 
 ### Kiinduló projekt
 
-1. Nyissuk meg a VS Code-dal leklónozott repository `feladat` mappáját (File -> Open Folder)!
-2. Az alkalmazás futtatásához használjuk a VS Code Live Servert a megszokott módon (Go Live lehetőség a jobb alsó sarokban az `index.html` megnyitása után, vagy F1 > "Live Server: Open with Live Server")!
-3. Ellenőrizzük, hogy megfelelően betöltődik-e az alkalmazás!
+Live Server segítségével indítsuk el a **feladat4** mappában található **index.html** oldalt és ellenőrizzük, hogy megfelelően betöltődik-e az alkalmazás!
 
 A dizájnolás folyamán általában valamilyen keretrendszerből indulunk ki, mely kész megoldásokat ad a leggyakoribb feladatokra, így csökkentve az egyedi CSS mennyiségét. A [Bootstrap](http://getbootstrap.com) két alapvető funkciót nyújt:
 
