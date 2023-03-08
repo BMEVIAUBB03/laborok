@@ -86,7 +86,7 @@ nav:
       - tudnivalok/github/GitHub-credentials.md
       - tudnivalok/github/contributing.md
   - "Webes laborok":
-      - laborok/web/basics/index.md
+      - laborok/web/01-http/index.md
   - "Mobilos laborok":
       - laborok/android/00-basics/index.md
       - laborok/android/01-ui/index.md
