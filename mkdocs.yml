@@ -87,6 +87,7 @@ nav:
       - tudnivalok/github/contributing.md
   - "Webes laborok":
       - laborok/web/01-http/index.md
+      - laborok/web/02-css/index.md
   - "Mobilos laborok":
       - laborok/android/00-basics/index.md
       - laborok/android/01-ui/index.md
