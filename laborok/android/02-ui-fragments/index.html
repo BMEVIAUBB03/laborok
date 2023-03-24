@@ -237,6 +237,11 @@
         Labor 03 - JavaScript alapok
       </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../web/04-ts/">
+        Labor 04 - TypeScript, AJAX
+      </a>
+</li>
 </ul>
 </nav>
 </li>
@@ -512,11 +517,11 @@
 <h2 id="bevezeto">Bevezető<a class="headerlink" href="#bevezeto" title="Permanent link">¶</a></h2>
 <p>A labor során egy HR alkalmazást készítünk el, amelybe belépve a felhasználó meg tudja tekinteni személyes adatait, illetve szabadságot tud rögzíteni. Az alkalmazás nem használ perzisztens adattárolást és valós bejelentkeztetést, csak demo adatokkal dolgozik. A labor fő témája a Fragmentekkel való felületkészítés, illetve a Navigation Component használata lesz.</p>
 <p align="center">
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="./assets/menu.png"><img src="./assets/menu.png" width="160"/></a>
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="./assets/profile1.png"><img src="./assets/profile1.png" width="160"/></a>
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="./assets/profile2.png"><img src="./assets/profile2.png" width="160"/></a>
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="./assets/holiday1.png"><img src="./assets/holiday1.png" width="160"/></a>
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="./assets/datepicker.png"><img src="./assets/datepicker.png" width="160"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="./assets/menu.png"><img src="./assets/menu.png" width="160"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="./assets/profile1.png"><img src="./assets/profile1.png" width="160"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="./assets/profile2.png"><img src="./assets/profile2.png" width="160"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="./assets/holiday1.png"><img src="./assets/holiday1.png" width="160"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="./assets/datepicker.png"><img src="./assets/datepicker.png" width="160"/></a>
 </p>
 <div class="admonition warning">
 <p class="admonition-title">IMSc</p>
@@ -625,7 +630,7 @@ A most hozzáadott <code>FragmentContainerView</code> lesz az a nézet, melyben 
 <p>Az első képernyő, amit létrehozunk, a főoldal lesz, melyről a többi oldalra tudunk navigálni. A labor során 2 funkciót fogunk megvalósítani, ezek a Profil és a Szabadság.</p>
 <p>Nyissuk meg a <code>nav_graph.xml</code> fájlt, és kattintsunk a <em>New Destination</em> gombra (bal felső gomb), majd a <em>Create new destination</em> gombra:</p>
 <p align="center">
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="./assets/new_destination.png"><img src="./assets/new_destination.png" width="640"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="./assets/new_destination.png"><img src="./assets/new_destination.png" width="640"/></a>
 </p>
 <p>Válasszuk ki a <em>Fragment (Blank)</em> gombot, és legyen az oldal neve <em>MenuFragment</em>. Ezzel létrehoztunk az első oldalunkat, ami automatikusan megkapta a <em>Home Destination</em> jelölőt, ezzel mutatva, hogy az alkalmazás indulásakor ez lesz az első oldalunk.
 A létrejött <code>fragment_menu.xml</code> tartalmát cseréljük ki az alábbira:</p>
@@ -728,7 +733,7 @@ A gombon a háttér és a felirat elhelyezéséhez a korábbi laboron már láto
 <p>Ne felejtsük el a szövegeket kiszervezni erőforrásba! (a szövegen állva <code>Alt+Enter</code>)</p>
 <p>Valósítsuk meg a navigációt a két oldalra. Hozzunk létre két új <em>Fragment (Blank)</em> képernyőt (<code>ProfileFragment</code> és <code>HolidayFragment</code>). A navigációs gráfban az oldalak közötti navigációt akciókkal tudjuk meghatározni. Egy új akcióhoz fogjuk meg a kiindulási képernyő jobb oldalán lévő kis pöttyöt, és húzzuk a cél oldalra. A két akció létrehozása után így fog kinézni a navigációs gráf:</p>
 <p align="center">
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="./assets/actions.png"><img src="./assets/actions.png" width="640"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="./assets/actions.png"><img src="./assets/actions.png" width="640"/></a>
 </p>
 <p>Az akciók meghívásához használjuk a view binding-ot a <code>MenuFragment</code>-ben:</p>
 <p><div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">MenuFragment</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Fragment</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>

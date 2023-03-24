@@ -237,6 +237,11 @@
         Labor 03 - JavaScript alapok
       </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../web/04-ts/">
+        Labor 04 - TypeScript, AJAX
+      </a>
+</li>
 </ul>
 </nav>
 </li>
@@ -494,10 +499,10 @@
 <h2 id="bevezeto">Bevezető<a class="headerlink" href="#bevezeto" title="Permanent link">¶</a></h2>
 <p>A labor során egy tömegközlekedési vállalat számára megálmodott alkalmazás vázát készítjük el. Az alkalmazással a felhasználók különböző járművekre vásárolhatnak majd bérleteket. Az üzleti logikát (az authentikációt, a bevitt adatok ellenőrzését, a fizetés lebonyolítását) egyelőre csak szimulálni fogjuk, a labor fókusza a felületek és a köztük való navigáció elkészítése lesz.</p>
 <p align="center">
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="./assets/login.png"><img src="./assets/login.png" width="160"/></a>
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="./assets/list.png"><img src="./assets/list.png" width="160"/></a>
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="./assets/details.png"><img src="./assets/details.png" width="160"/></a>
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="./assets/pass.png"><img src="./assets/pass.png" width="160"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="./assets/login.png"><img src="./assets/login.png" width="160"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="./assets/list.png"><img src="./assets/list.png" width="160"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="./assets/details.png"><img src="./assets/details.png" width="160"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="./assets/pass.png"><img src="./assets/pass.png" width="160"/></a>
 </p>
 <div class="admonition warning">
 <p class="admonition-title">IMSc</p>
@@ -551,7 +556,7 @@
 <h2 id="splash-kepernyo-05-pont">Splash képernyő (0.5 pont)<a class="headerlink" href="#splash-kepernyo-05-pont" title="Permanent link">¶</a></h2>
 <p>Az első Activity-nk a nevéhez híven a felhasználó bejelentkezéséért lesz felelős, azonban még mielőtt ez megjelenik a felhasználó számára, egy splash képernyővel fogjuk üdvözölni. Ez egy elegáns megoldás arra, hogy az alkalmazás betöltéséig ne egy egyszínű képernyő legyen a felhasználó előtt, hanem egy tetszőleges saját design.</p>
 <p align="center">
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="./assets/splash.png"><img src="./assets/splash.png" width="320"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="./assets/splash.png"><img src="./assets/splash.png" width="320"/></a>
 </p>
 <p>Először töltsük le <a href="./downloads/res.zip">az alkalmazáshoz képeit tartalmazó tömörített fájlt</a>, ami tartalmazza az összes képet, amire szükségünk lesz. A tartalmát másoljuk be az <code>app/src/main/res</code> mappába (ehhez segít, ha Android Studio-ban bal fent a szokásos Android nézetről a Project nézetre váltunk, esetleg a mappán jobb klikk &gt; Show in Explorer).</p>
 <p>Hozzunk létre egy új XML fájlt a <code>drawable</code> mappában <code>splash_background.xml</code> néven. Ez lesz a splash képernyőnkön megjelenő grafika. A tartalma az alábbi legyen:</p>
@@ -615,7 +620,7 @@
 <h2 id="login-kepernyo-05-pont">Login képernyő (0.5 pont)<a class="headerlink" href="#login-kepernyo-05-pont" title="Permanent link">¶</a></h2>
 <p>Most már elkészíthetjük a login képernyőt. A felhasználótól egy email címet, illetve egy számokból álló jelszót fogunk bekérni, és egyelőre csak azt fogjuk ellenőrizni, hogy beírt-e valamit a mezőkbe.</p>
 <p align="center">
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="./assets/login.png"><img src="./assets/login.png" width="320"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="./assets/login.png"><img src="./assets/login.png" width="320"/></a>
 </p>
 <p>Az <code>activity_login.xml</code> fájlba kerüljön az alábbi kód. Alapértelmezetten egy grafikus szerkesztő nyílik meg, ezt át kell állítani a szöveges szerkesztőre. Ezt az Android Studio verziójától függően a jobb felső, vagy a jobb alsó sarokban lehet megtenni:</p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
@@ -769,7 +774,7 @@ A <code>binding</code> példány működéséhez három dolgot kell tennünk:</p
 <h2 id="lehetosegek-listaja-1-pont">Lehetőségek listája (1 pont)<a class="headerlink" href="#lehetosegek-listaja-1-pont" title="Permanent link">¶</a></h2>
 <p>A következő képernyőn a felhasználó a különböző járműtípusok közül válaszhat. Egyelőre három szolgáltatás működik a fiktív vállalatunkban: biciklik, buszok illetve vonatok.</p>
 <p align="center">
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="./assets/list.png"><img src="./assets/list.png" width="320"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="./assets/list.png"><img src="./assets/list.png" width="320"/></a>
 </p>
 <p>Hozzunk ehhez létre egy új Activity-t (a package-ünkön jobb klikk &gt; New &gt; Activity &gt; Empty Activity), nevezzük el <code>ListActivity</code>-nek. Most, hogy ez már létezik, menjünk vissza a <code>LoginActivity</code> kódjában lévő TODO-hoz, és indítsuk ott el ezt az új Activity-t:</p>
 <div class="highlight"><pre><span></span><code><span class="n">binding</span><span class="p">.</span><span class="na">btnLogin</span><span class="p">.</span><span class="na">setOnClickListener</span><span class="w"> </span><span class="p">{</span>
@@ -853,7 +858,7 @@ A <code>binding</code> példány működéséhez három dolgot kell tennünk:</p
 <h2 id="reszletes-nezet-1-pont">Részletes nézet (1 pont)<a class="headerlink" href="#reszletes-nezet-1-pont" title="Permanent link">¶</a></h2>
 <p>Miután a felhasználó kiválasztotta a kívánt közlekedési eszközt, néhány további opciót fogunk még felajánlani számára. Ezen a képernyőn fogja kiválasztani a bérleten szereplő dátumokat, illetve a rá vonatkozó kedvezményt, amennyiben van ilyen.</p>
 <p align="center">
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="./assets/details.png"><img src="./assets/details.png" width="320"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="./assets/details.png"><img src="./assets/details.png" width="320"/></a>
 </p>
 <p>Hozzuk létre ezt az új Activity-t <code>DetailsActivity</code> néven, a layout-ját kezdjük az alábbi kóddal:</p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
@@ -1041,7 +1046,7 @@ A <code>binding</code> példány működéséhez három dolgot kell tennünk:</p
 <h2 id="a-berlet-1-pont">A bérlet (1 pont)<a class="headerlink" href="#a-berlet-1-pont" title="Permanent link">¶</a></h2>
 <p>Az alkalmazás utolsó képernyője már kifejezetten egyszerű lesz, ez magát a bérletet fogja reprezentálni. Itt a bérlet típusát és érvényességi idejét fogjuk megjeleníteni, illetve egy QR kódot, amivel ellenőrizni lehet a bérletet.</p>
 <p align="center">
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="./assets/pass.png"><img src="./assets/pass.png" width="320"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="./assets/pass.png"><img src="./assets/pass.png" width="320"/></a>
 </p>
 <p>Hozzuk létre a szükséges Activity-t, <code>PassActivity</code> néven. Ennek az Activity-nek szüksége lesz a jegy típusára és a kiválasztott dátumokra - a QR kód az egyszerűség kedvéért egy fix kép lesz.</p>
 <p>Az adatok átadásához először vegyünk fel két kulcsot a <code>PassActivity</code>-ben:</p>
@@ -1218,11 +1223,11 @@ A <code>binding</code> példány működéséhez három dolgot kell tennünk:</p
 </div>
 <h3 id="extra-feladat-labor-atirasa-jetpack-compose-ra">Extra feladat: Labor átírása Jetpack Compose-ra<a class="headerlink" href="#extra-feladat-labor-atirasa-jetpack-compose-ra" title="Permanent link">¶</a></h3>
 <p align="center">
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/LoginActivity.png"><img alt="LoginScreen" src="assets/LoginActivity.png" width="19%"/>
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/ListActivity.png"><img alt="TypeOfTravelScreen" src="assets/ListActivity.png" width="19%"/>
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/DetailsActivity.png"><img alt="DetailsScreen" src="assets/DetailsActivity.png" width="19%"/>
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/DetailsActivityDateRangePicker.png"><img alt="DateRangePicker a DetailsScreen-en keresztül" src="assets/DetailsActivityDateRangePicker.png" width="19%"/>
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/PassActivity.png"><img alt="PassScreen" src="assets/PassActivity.png" width="19%"/>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="assets/LoginActivity.png"><img alt="LoginScreen" src="assets/LoginActivity.png" width="19%"/>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="assets/ListActivity.png"><img alt="TypeOfTravelScreen" src="assets/ListActivity.png" width="19%"/>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="assets/DetailsActivity.png"><img alt="DetailsScreen" src="assets/DetailsActivity.png" width="19%"/>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="assets/DetailsActivityDateRangePicker.png"><img alt="DateRangePicker a DetailsScreen-en keresztül" src="assets/DetailsActivityDateRangePicker.png" width="19%"/>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="assets/PassActivity.png"><img alt="PassScreen" src="assets/PassActivity.png" width="19%"/>
 </a></a></a></a></a></p>
 <p>A labor a tárgy egyik fiatal laborvezetője által átírásra került <a href="https://developer.android.com/jetpack/compose"><code>Jetpack Compose</code></a>-ra. A labor feladat célja a <code>Jetpack Compose</code> és a modern eszközök, fejlesztési módszertanok népszerűsítése Android platformra. Az útmutató vezetetten, hasznos információkkal és tippekkel megtámogatva mutat be egy ideális példát a feladat megoldására. Elvégzése extra munkával jár. <strong><em>Az extra labor kísérleti jelleggel készült és nem része a pontozási rendszernek.</em></strong></p>
 <p>Ha bármi probléma lenne az extra laborral, <strong><em>Püspök-Kiss Balázs</em></strong>-ra írjatok rá Teams-en, ő szívesen segít bármiben. Visszajelzéseket is nagy örömmel fogad. 🙂</p>

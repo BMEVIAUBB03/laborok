@@ -408,6 +408,11 @@
         Labor 03 - JavaScript alapok
       </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../04-ts/">
+        Labor 04 - TypeScript, AJAX
+      </a>
+</li>
 </ul>
 </nav>
 </li>
@@ -691,18 +696,18 @@
 <p>Nyissuk meg a laborvezető által kijelölt böngészőben a <a href="https://www.bme.hu">https://www.bme.hu</a> oldalt, majd nyissuk meg a Developer tools nézetét az <strong>F12</strong> billentyűvel.</p>
 <p>Vizsgáljuk meg, mit kínálnak az egyes böngészőkbe épített hibakereső eszközök!</p>
 <figure>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/aut-bme-hu-chrome.png"><img alt="A BME AUT kezdőlapja - Chrome" src="assets/aut-bme-hu-chrome.png"/></a>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="assets/aut-bme-hu-chrome.png"><img alt="A BME AUT kezdőlapja - Chrome" src="assets/aut-bme-hu-chrome.png"/></a>
 </p>
 <figcaption>BME AUT kezdőlapja - Chrome Dev Toolbars</figcaption>
 </figure>
 <details class="info">
 <summary>További böngészőkben található Dev Toolbarok</summary>
 <p><figure markdown="">
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/aut-bme-hu-edge.png"><img alt="A BME AUT kezdőlapja - Edge" src="assets/aut-bme-hu-edge.png"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="assets/aut-bme-hu-edge.png"><img alt="A BME AUT kezdőlapja - Edge" src="assets/aut-bme-hu-edge.png"/></a>
 <figcaption>BME AUT kezdőlapja - Edge Dev Toolbars</figcaption>
 </figure></p>
 <p><figure markdown="">
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/aut-bme-hu-firefox.png"><img alt="A BME AUT kezdőlapja - FireFox" src="assets/aut-bme-hu-firefox.png"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="assets/aut-bme-hu-firefox.png"><img alt="A BME AUT kezdőlapja - FireFox" src="assets/aut-bme-hu-firefox.png"/></a>
 <figcaption>BME AUT kezdőlapja - FireFox Dev Toolbars</figcaption>
 </figure></p>
 </details>
@@ -722,7 +727,7 @@
 <p>A hálózati kéréseket csak akkor rögzíti a Network fül, ha a Dev Toolbart korábban nyitjuk meg, minthogy az oldalt betöltenénk.
 Az alábbi ábrán látható, hogy milyen funkciókat és beállításokat rejt a hálózat fül.</p>
 <figure>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/network-tab.png"><img alt="Network tab" src="assets/network-tab.png"/></a>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="assets/network-tab.png"><img alt="Network tab" src="assets/network-tab.png"/></a>
 </p>
 <figcaption>Network tab</figcaption>
 </figure>
@@ -745,14 +750,14 @@ Az alábbi ábrán látható, hogy milyen funkciókat és beállításokat rejt 
 <li><strong>Request Headers</strong>: Itt találjuk a HTTP kérés fejléc mezőit. Alapértelmezés szerint egy feldolgozott formában látjuk az adatokat, viszont a View Source gombra kattintva meg tudjuk nézni a nyers adatokat is.</li>
 </ul>
 <p><figure markdown="">
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/http-request-response.png"><img alt="Http kérés-válasz" src="assets/http-request-response.png"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="assets/http-request-response.png"><img alt="Http kérés-válasz" src="assets/http-request-response.png"/></a>
 <figcaption>HTTP kérés-válaszok fejlécei</figcaption>
 </figure></p>
 <details class="info">
 <summary>Hogyan másoljuk ki egy kéréshez tartozó fejléc adatokat</summary>
 <p>A kérésen kattints jobb egérgombbal majd ott válaszd a Copy menüpontból, hogy mit szeretnénk másolni.
 <figure markdown="">
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/copy-request-headers.png"><img alt="Request headers" src="assets/copy-request-headers.png"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="assets/copy-request-headers.png"><img alt="Request headers" src="assets/copy-request-headers.png"/></a>
 <figcaption>HTTP kérés-válaszok fejlécek másolása</figcaption>
 </figure></p>
 </details>
@@ -809,7 +814,7 @@ Leggyakrabban akkor használjuk ha egy REST API-t kell kipróbálni vagy tesztel
 <p>A labor gépekre az asztali verzió fel van telepítve, így azt fogjuk használni.
 Ahhoz, hogy ne kelljen szerver oldali kódot készíteni egy tesztelésre kiadott REST API-t használunk melynek leírása a <strong><a href="https://petstore.swagger.io/">https://petstore.swagger.io/</a></strong> oldalon érhető el. A legfontosabb végpontok az alábbi swagger ábrán is látható.</p>
 <figure>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/petstore.png"><img alt="PetStore REST API" src="assets/petstore.png"/></a>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="assets/petstore.png"><img alt="PetStore REST API" src="assets/petstore.png"/></a>
 </p>
 <figcaption>PetStore REST API</figcaption>
 </figure>
@@ -831,7 +836,7 @@ Ahhoz, hogy ne kelljen szerver oldali kódot készíteni egy tesztelésre kiadot
 <li>Mentsük el a jobb felső sarokban lévő <strong>Save</strong> gombbal a MobWeb kategóriába.</li>
 </ol>
 <figure>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/postman-filter.png"><img alt="Postman" src="assets/postman-filter.png"/></a>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="assets/postman-filter.png"><img alt="Postman" src="assets/postman-filter.png"/></a>
 </p>
 <figcaption>Postman - Filter kérés összeállítása</figcaption>
 </figure>
@@ -891,7 +896,7 @@ Ahhoz, hogy ne kelljen szerver oldali kódot készíteni egy tesztelésre kiadot
 </div>
 <h3 id="szemantikus-web">Szemantikus web<a class="headerlink" href="#szemantikus-web" title="Permanent link">¶</a></h3>
 <p>Mielőtt belevágnánk a feladatba érdemes feleleveníteni a szemantikus HTML tageket, amit a <code>div</code>-ek helyett használunk a kódban, ezzel jelölve a nagyobb logikai egységeket.</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/semantic-outline.png"><img alt="Szemantikus web áttekintés" src="assets/semantic-outline.png"/></a>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="assets/semantic-outline.png"><img alt="Szemantikus web áttekintés" src="assets/semantic-outline.png"/></a>
 Forrás: <a href="https://internetingishard.com/html-and-css/semantic-html/">https://internetingishard.com/html-and-css/semantic-html/</a></p>
 <h3 id="feladat">Feladat<a class="headerlink" href="#feladat" title="Permanent link">¶</a></h3>
 <ol>
@@ -960,7 +965,7 @@ Forrás: <a href="https://internetingishard.com/html-and-css/semantic-html/">htt
 </ul>
 </details>
 <p>Egy heading-ben jelezd, hogy ez a rész a "Táblázatok", majd készítsd el az alábbi képen látható táblázatot.</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/table.png"><img alt="Táblázat" src="assets/table.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="assets/table.png"><img alt="Táblázat" src="assets/table.png"/></a></p>
 <details class="info">
 <summary>Segítség</summary>
 <ul>
@@ -1024,7 +1029,7 @@ Forrás: <a href="https://internetingishard.com/html-and-css/semantic-html/">htt
 <p>Az alapértelmezett formázást a böngészők beépítetten adják, ezért nagyobbak az egyes címsor (<code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code>) mezők, ill. ezért törik a <code>&lt;div&gt;</code> (ami blockszintű elem), és marad folyószöveg a <code>&lt;span&gt;</code> (ami inline).</p>
 <p>A beépített stílusokat megvizsgálhatjuk egy elemet kijelölve. A CSS szabály mellett látható a "user agent stylesheet" jelzi, hogy a böngésző beépített stíluslapjában található ez a formázás.</p>
 <figure>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/beepitett-stilusok.png"><img alt="A böngésző beépített stílusainak vizsgálata F12 eszközökkel" src="assets/beepitett-stilusok.png"/></a>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="assets/beepitett-stilusok.png"><img alt="A böngésző beépített stílusainak vizsgálata F12 eszközökkel" src="assets/beepitett-stilusok.png"/></a>
 </p>
 <figcaption>A böngésző beépített stílusainak vizsgálata F12 eszközökkel</figcaption>
 </figure>
