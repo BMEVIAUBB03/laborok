@@ -600,7 +600,7 @@ Igazítsuk hozzá a stílust (`src\app\app.component.scss`):
 !!! example "4. feladat beadandó (1 pont)"
     Illessz be egy képernyőképet, bal oldalon a kész kezdőoldallal, jobb oldalon a VS Code-ban futó terminállal! (`f4.png`)
 
-# 5. feladat - NEPTUN kód
+## 5. feladat - NEPTUN kód
 
 A currentGuess mezőben tároljuk a felhasználó által aktuálisan szerkesztett tipp példányt, aminek 4 elemet kell tartalmaznia, de semmi nem akadályozza meg, hogy több vagy kevesebb elem kerüljön bele.
 
