@@ -89,6 +89,7 @@ nav:
       - laborok/web/01-http/index.md
       - laborok/web/02-css/index.md
       - laborok/web/03-js/index.md
+      - laborok/web/04-ts/index.md
   - "Mobilos laborok":
       - laborok/android/00-basics/index.md
       - laborok/android/01-ui/index.md
