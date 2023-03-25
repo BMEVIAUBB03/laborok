@@ -186,7 +186,7 @@ Vizsgáljuk meg a létrejött projekt tartalmát (a számunkra jelenleg releván
 
 ### Beadandó
 !!! example "1. feladat beadandó (1 pont)"
-    Illessz be egy képernyőképet, bal oldalon a böngészőben futó Angular kezdőprojekttel, jobb oldalon a VS Code-ban futó terminállal! (`f1.png`)
+    Illessz be egy képernyőképet, ahol bal oldalon a böngészőben futó Angular kezdőprojekt, jobb oldalon a VS Code-ban futó terminál látható! (`f1.png`)
 
 ## 2. feladat - Peg komponens
 
@@ -422,7 +422,7 @@ A `peg.component.ts`-ből törölhetjük a `getColorChar()` függvényt, nem les
 
 ### Beadandó
 !!! example "2. feladat beadandó (1 pont)"
-    Illessz be egy képernyőképet bal oldalon a színes golyókról az oldalon, jobb oldalon a VS Code termináljáról! (`f2.png`)
+    Illessz be egy képernyőképet, ahol bal oldalon a színes golyók, jobb oldalon a VS Code-ban futó terminál látható! (`f2.png`)
 
 ## 3. feladat - Sor definiálása
 
@@ -522,7 +522,7 @@ Stílusozzuk a komponenst (`src\app\app.component.scss`) az alábbiak szerint.
 
 ### Beadandó
 !!! example "3. feladat beadandó (1 pont)"
-    Illessz be egy képernyőképet, bal oldalon a tippek megjelenítésével, jobb oldalon a VS Code-ban futó terminállal! (`f3.png`)
+    Illessz be egy képernyőképet, ahol bal oldalon a tippek megjelenítése, jobb oldalon a VS Code-ban futó terminál látható! (`f3.png`)
 
 ## 4. feladat - Tipp összeállítása
 
@@ -598,7 +598,7 @@ Igazítsuk hozzá a stílust (`src\app\app.component.scss`):
 
 ### Beadandó
 !!! example "4. feladat beadandó (1 pont)"
-    Illessz be egy képernyőképet, bal oldalon a kész kezdőoldallal, jobb oldalon a VS Code-ban futó terminállal! (`f4.png`)
+    Illessz be egy képernyőképet, ahol bal oldalon a kész kezdőoldal, jobb oldalon a VS Code-ban futó terminál látható! (`f4.png`)
 
 ## 5. feladat - NEPTUN kód
 
@@ -629,4 +629,4 @@ Ennek eredményeképp a példa `XYZ012` Neptun kód esetén a `[88, 89, 90, 48, 
 
 ### Beadandó
 !!! example "5. feladat beadandó (1 pont)"
-    Illessz be egy képernyőképet, bal oldalon a NEPTUN kódod vizualizációjával, jobb oldalon a VS Code-ban futó terminállal! (`f5.png`)
+    Illessz be egy képernyőképet, ahol bal oldalon a NEPTUN kódod vizualizációja, jobb oldalon a VS Code-ban futó terminál látható! (`f5.png`)
