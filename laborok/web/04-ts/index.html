@@ -505,7 +505,7 @@
 <li>A neptun.txt fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.</li>
 </ol>
 <h2 id="1-feladat-blackjack-kiindulo-projekt-megismerese">1. feladat - BlackJack kiinduló projekt megismerése<a class="headerlink" href="#1-feladat-blackjack-kiindulo-projekt-megismerese" title="Permanent link">¶</a></h2>
-<p>Vizsgáljuk meg a kiinduló projektet! A kiinduló index.html a <code>&lt;head&gt;</code> részben hivatkozza a függőségeket, és később a HTML állomány végén a saját <code>blackjack.js</code> fájlunkat. Vegyük észre, hogy ilyen fájl nem található, mi magunk kézzel nem is fogjuk létrehozni; ezt a TypeScript compiler fogja nekünk generálni a <code>blackjack.ts</code> fájlból indulva. Vizsgáljuk meg a <code>tsconfig.json</code> nevű fájlt, ami a TypeScript compiler konfigurációját tartalmazza!</p>
+<p>Vizsgáljuk meg a kiinduló projektet! A kiinduló index.html a <code>&lt;head&gt;</code> részben hivatkozza a függőségeket, és később a HTML állomány végén a saját <code>blackjack.js</code> fájlunkat. Vegyük észre, hogy ilyen fájl nem található, mi magunk kézzel nem is fogjuk létrehozni; ezt a TypeScript compiler fogja nekünk generálni az összes <code>.ts</code> fájlból kiindulva. Vizsgáljuk meg a <code>tsconfig.json</code> nevű fájlt, ami a TypeScript compiler konfigurációját tartalmazza!</p>
 <p>Terminálból (Ctrl+ö) adjuk ki az alábbi parancsot a munkamappában:</p>
 <blockquote>
 <p><code>npm install</code></p>
@@ -567,7 +567,7 @@
 <li>Konstruktora privát, példányosítani egy <code>Game</code> objektumot a statikus, aszinkron <code>NewGame</code> függvény meghívásával lehetséges.</li>
 <li>A konstruktorban jelzett <code>public</code> módosítószóval az objektumon automatikusan létrejön a konstruktorparaméter nevével és értékével egy egyszer beállítható, csak olvasható <code>deck_id</code> mező.</li>
 <li>Minden távoli HTTP hívás a <code>Call</code> függvényen megy keresztül, ahol egy relatív útvonalat kell megadnunk, ami a <code>https://deckofcardsapi.com/api/</code>-hoz képesti relatív útvonalra indít egy aszinkron AJAX kérést a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch" target="_blank">fetch</a> API használatával.</li>
-<li>Érdemes észrevenni a C#-ból már ismerős <code>async/await</code> minta használatát. A Call hívás ekvivalens az alábbi JavaScript kóddal:</li>
+<li>Érdemes észrevenni a C#-ból már ismerős <code>async/await</code> minta használatát. A <code>Call</code> függvény hívása ekvivalens az alábbi JavaScript kóddal:</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">Call</span><span class="p">(</span><span class="nx">relativeUrl</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">reject</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
@@ -760,7 +760,7 @@
 <li><code>addCardToContainer</code>: a megfelelő játékos kezébe kirajzolja a kártyát a <code>getCardHtml</code> függvény segítségével,</li>
 <li><code>getCardHtml</code>: a paramétereknek alapján összeállítja a kártya képét reprezentáló HTML-t.</li>
 </ul>
-<p>Ezután a játék állapotát ki is tudjuk rajzolni, ha a játék indítását kezelő eseménykezelőnk végén meghívjuk a <code>renderHands</code> függvényt:</p>
+<p>Ezután a játék állapotát ki is tudjuk rajzolni, ha a játék indítását kezelő eseménykezelőnk végén (<code>start.ts</code>) meghívjuk a <code>renderHands</code> függvényt:</p>
 <div class="highlight"><pre><span></span><code><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">"click"</span><span class="p">,</span><span class="w"> </span><span class="s2">"#start-game-button"</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="nx">e</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// ...</span>
 <span class="w">    </span><span class="nx">renderHands</span><span class="p">(</span><span class="nx">game</span><span class="p">);</span>
@@ -772,7 +772,7 @@
 <figcaption>Első állapot megjelenítése</figcaption>
 </figure>
 <h3 id="uj-kartya-huzasa">Új kártya húzása<a class="headerlink" href="#uj-kartya-huzasa" title="Permanent link">¶</a></h3>
-<p>A következő feladatunk a játék első lényegi eleme, az új kártya húzása. Ehhez a <code>start.ts</code> függvénybe vegyünk fel egy új eseménykezelőt:</p>
+<p>A következő feladatunk a játék első lényegi eleme, az új kártya húzása. Ehhez a <code>start.ts</code> fájlba vegyünk fel egy új eseménykezelőt:</p>
 <div class="highlight"><pre><span></span><code><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">"click"</span><span class="p">,</span><span class="w"> </span><span class="s2">"#hit-button"</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="nx">e</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nx">$</span><span class="p">(</span><span class="s2">".actions button"</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">"disabled"</span><span class="p">,</span><span class="w"> </span><span class="s2">"disabled"</span><span class="p">);</span>
 <span class="w">    </span><span class="nx">game</span><span class="p">.</span><span class="nx">playersHand</span><span class="p">.</span><span class="nx">cards</span><span class="p">.</span><span class="nx">push</span><span class="p">(...(</span><span class="k">await</span><span class="w"> </span><span class="nx">game</span><span class="p">.</span><span class="nx">Draw</span><span class="p">(</span><span class="mf">1</span><span class="p">)).</span><span class="nx">cards</span><span class="p">);</span>
@@ -810,8 +810,8 @@
 </path>
 </svg>
 </span>
-<span title="2023. március 24. 21:33:27">
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-03-24T21:33:27+01:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-03-24</span>
+<span title="2023. március 26. 12:01:27">
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-03-26T12:01:27+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-03-26</span>
 </span>
 </span>
 <span class="md-source-file__fact">
