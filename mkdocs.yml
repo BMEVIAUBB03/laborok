@@ -99,4 +99,5 @@ nav:
       - laborok/android/03-room/index.md
       - laborok/android/04-network/index.md
   - "Házi feladat":
+      - hf/web/index.md
       - hf/mobil/index.md
