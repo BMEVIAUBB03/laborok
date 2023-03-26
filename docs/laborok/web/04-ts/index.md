@@ -32,7 +32,7 @@ A feladatok megoldása során ne felejtsd el követni a feladat beadás folyamat
 
 ## 1. feladat - BlackJack kiinduló projekt megismerése
 
-Vizsgáljuk meg a kiinduló projektet! A kiinduló index.html a `<head>` részben hivatkozza a függőségeket, és később a HTML állomány végén a saját `blackjack.js` fájlunkat. Vegyük észre, hogy ilyen fájl nem található, mi magunk kézzel nem is fogjuk létrehozni; ezt a TypeScript compiler fogja nekünk generálni a `blackjack.ts` fájlból indulva. Vizsgáljuk meg a `tsconfig.json` nevű fájlt, ami a TypeScript compiler konfigurációját tartalmazza!
+Vizsgáljuk meg a kiinduló projektet! A kiinduló index.html a `<head>` részben hivatkozza a függőségeket, és később a HTML állomány végén a saját `blackjack.js` fájlunkat. Vegyük észre, hogy ilyen fájl nem található, mi magunk kézzel nem is fogjuk létrehozni; ezt a TypeScript compiler fogja nekünk generálni az összes `.ts` fájlból kiindulva. Vizsgáljuk meg a `tsconfig.json` nevű fájlt, ami a TypeScript compiler konfigurációját tartalmazza!
 
 Terminálból (Ctrl+ö) adjuk ki az alábbi parancsot a munkamappában:
 > `npm install`
@@ -95,7 +95,7 @@ class Game {
 - Konstruktora privát, példányosítani egy `Game` objektumot a statikus, aszinkron `NewGame` függvény meghívásával lehetséges.
 - A konstruktorban jelzett `public` módosítószóval az objektumon automatikusan létrejön a konstruktorparaméter nevével és értékével egy egyszer beállítható, csak olvasható `deck_id` mező.
 - Minden távoli HTTP hívás a `Call` függvényen megy keresztül, ahol egy relatív útvonalat kell megadnunk, ami a `https://deckofcardsapi.com/api/`-hoz képesti relatív útvonalra indít egy aszinkron AJAX kérést a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch" target="_blank">fetch</a> API használatával.
-- Érdemes észrevenni a C#-ból már ismerős `async/await` minta használatát. A Call hívás ekvivalens az alábbi JavaScript kóddal:
+- Érdemes észrevenni a C#-ból már ismerős `async/await` minta használatát. A `Call` függvény hívása ekvivalens az alábbi JavaScript kóddal:
 
 ``` JS
 function Call(relativeUrl) {
@@ -320,7 +320,7 @@ A függvények az alábbi funkciókkal rendelkeznek:
 - `addCardToContainer`: a megfelelő játékos kezébe kirajzolja a kártyát a `getCardHtml` függvény segítségével,
 - `getCardHtml`: a paramétereknek alapján összeállítja a kártya képét reprezentáló HTML-t.
 
-Ezután a játék állapotát ki is tudjuk rajzolni, ha a játék indítását kezelő eseménykezelőnk végén meghívjuk a `renderHands` függvényt:
+Ezután a játék állapotát ki is tudjuk rajzolni, ha a játék indítását kezelő eseménykezelőnk végén (`start.ts`) meghívjuk a `renderHands` függvényt:
 
 ``` TS
 
@@ -337,7 +337,7 @@ $(document).on("click", "#start-game-button", async e => {
 
 ### Új kártya húzása
 
-A következő feladatunk a játék első lényegi eleme, az új kártya húzása. Ehhez a `start.ts` függvénybe vegyünk fel egy új eseménykezelőt:
+A következő feladatunk a játék első lényegi eleme, az új kártya húzása. Ehhez a `start.ts` fájlba vegyünk fel egy új eseménykezelőt:
 
 ``` TS
 $(document).on("click", "#hit-button", async e => {

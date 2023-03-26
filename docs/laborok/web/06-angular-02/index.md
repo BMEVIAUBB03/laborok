@@ -10,6 +10,16 @@ A labor folyamán a Mastermind klasszikus táblajátékot folytatjuk ott, ahol a
 ??? warning "Házi feladat információk"
     A két Angular labor során előkerülnek az Angular alapvetői funkciói és készítünk egy egyszerűbb alkalmazást. Nem foglalkozunk viszont azzal, hogy hogyan kommunikálunk egy szerverrel (minden logika a kliensben van jelenleg), illetve [`routing`](https://angular.io/guide/router)-ot sem valósítottunk meg. A szerverrel való kommunikáció a tárgy szempontjából nem olyan fontos (házi feladatnál kiváltható adatok memóriában tárolásával, vagy akár nyers mock adatok használatával is), viszont utóbbit érdemes részletesebben megnézni! Ezek a fogalmak egy harmadik Angular labor keretein belül pár éve szóba kerültek, viszont az elmaradó laborok miatt erre idén nincs lehetőség. A régi laboranyag még [elérhető](https://github.com/bmeaut/VIAUBB03/tree/master/Web/07%20-%20Angular%203), itt is találhatunk információkat a fenti kimaradt problémákról, amik a házi feladat készítése során jól jöhetnek - de ez nem kötelező, bőven elegendő a hivatalos Angular dokumentáció használata is.
 
+### Git repository létrehozása és letöltése
+
+A feladatok megoldása során ne felejtsd el követni a feladat beadás folyamatát [Github](../../tudnivalok/github/GitHub.md).
+
+1. Moodle-ben keresd meg a laborhoz tartozó meghívó URL-jét és annak segítségével hozd létre a saját repository-dat.
+2. Várd meg, míg elkészül a repository, majd checkout-old ki.
+    * Egyetemi laborokban, ha a checkout során nem kér a rendszer felhasználónevet és jelszót, és nem sikerül a checkout, akkor valószínűleg a gépen korábban megjegyzett felhasználónévvel próbálkozott a rendszer. Először töröld ki a mentett belépési adatokat (lásd [itt](../../tudnivalok/github/GitHub-credentials.md)), és próbáld újra.
+3. Hozz létre egy új ágat `megoldas` néven, és ezen az ágon dolgozz.
+4. A neptun.txt fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.
+
 ### Előkészítés
 
 A kiinduló repository `feladat` mappájában adjuk ki az alábbi parancsokat a VS Code beépített termináljának segítségével (`Ctrl+ö`):
