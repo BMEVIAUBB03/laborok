@@ -48,9 +48,6 @@ A DOM manipuláció közvetlenül kódból (a document objektumon keresztül vag
 
 ## Beadási határidő és bemutatás
 
-??? warning "FONTOS: Időpontok változása"
-    Ha ezt látod, az azt jelenti, hogy az időpontok még változhatnak és nemsokára (várhatóan április elejére) véglegesek lesznek!
-
 A házi feladatot **május 3. 23:59-ig** kell feltölteni moodle-re, a feltöltési útmutatót (vagyis hogy milyen fájlokat kell pontosan feltölteni) is ott találod. A házi feladatot **május 4-én kell bemutatni** a laborvezetőnek, online, Teams-en, kb. 10 percben. Beosztás (vagyis hogy május 4-én belül pontosan mely időpontokban lehet majd bemutatni) később várható. A laborvezető tetszőleges kérdést feltehet a kóddal, az alkalmazással kapcsolatban, akár megkérhet, hogy módosíts vagy magyarázz el valamit.
 
 A bemutatás menete a következő:
