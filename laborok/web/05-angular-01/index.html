@@ -673,7 +673,7 @@
 </blockquote>
 <details class="tip" open="open">
 <summary>ng parancs különböző környezetekben</summary>
-<p>Ha valaki járatos a PowerShell világában, akkor érdemes tisztában lenni vele, hogy a globális <code>ng</code> parancs futtatása PowerShellből a PATH-ban található <code>ng.ps1</code> PowerShell scriptet preferálja az <code>ng.cmd</code> helyett. Mivel a PS1 szkript nem digitálisan aláírt, ezért nem futtatható anélkül, hogy a felhasználó ehhez kifejezetten hozzá ne járulna. Az aláíratlan PowerShell szkriptek futtatása veszélyes lehet, ezért csak akkor engedélyezzük az aláíratlan szkript futtatását, ha tudjuk, mit csinálunk (vagy kontrollált környezetben, pl. konténerben vagy virtuális gépen futunk, amit nem zavar, ha tönkretesztünk). Az aláíratlan szkriptek engedélyezéséhez lásd a <a href="https:/go.microsoft.com/fwlink/?LinkID=135170">hivatalos leírást</a>. Más operációs rendszereken vagy más shell használatával (pl. bash) az ng parancs meghívásának szintaxisa változhat (pl. <code>ng</code>, <code>ng.cmd</code> vagy <code>ng.ps1</code>)</p>
+<p>Ha valaki járatos a PowerShell világában, akkor érdemes tisztában lenni vele, hogy a globális <code>ng</code> parancs futtatása PowerShellből a PATH-ban található <code>ng.ps1</code> PowerShell scriptet preferálja az <code>ng.cmd</code> helyett. Mivel a PS1 szkript nem digitálisan aláírt, ezért nem futtatható anélkül, hogy a felhasználó ehhez kifejezetten hozzá ne járulna. Az aláíratlan PowerShell szkriptek futtatása veszélyes lehet, ezért csak akkor engedélyezzük az aláíratlan szkript futtatását, ha tudjuk, mit csinálunk (vagy kontrollált környezetben, pl. konténerben vagy virtuális gépen futunk, amit nem zavar, ha tönkretesztünk). Az aláíratlan szkriptek engedélyezéséhez lásd a <a href="https://go.microsoft.com/fwlink/?LinkID=135170">hivatalos leírást</a>. Más operációs rendszereken vagy más shell használatával (pl. bash) az ng parancs meghívásának szintaxisa változhat (pl. <code>ng</code>, <code>ng.cmd</code> vagy <code>ng.ps1</code>)</p>
 <p><strong><em>FONTOS:</em></strong> a fentiek tükrében a későbbiekben futtatandó parancsokban értelemszerűen használjuk az <code>ng</code> parancs helyett az <code>ng.cmd</code>-t, ha szükséges.</p>
 </details>
 <p>A parancs futtatásakor az eszköz megválaszolandó kérdéseket tehet fel, pl. azzal kapcsolatban, hogy engedélyezzük-e a <a href="https://angular.io/guide/strict-mode">strict</a> módot. Ezt érdemes engedélyezni, mivel manapság a TypeScript esetén a strict mode best practice-nek számít.</p>
@@ -1044,7 +1044,7 @@ Build at: 202x-xx-xxT14:45:10.108Z - Hash: a68362840213b0526fdc - Time: 259ms
 <details class="tip">
 <summary>Megvalósítás: AppComponent logika</summary>
 <div class="highlight"><pre><span></span><code><span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">AppComponent</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">guesses</span><span class="o">:</span><span class="w"> </span><span class="kt">Guess</span><span class="p">[];</span>
+<span class="w">  </span><span class="nx">guesses</span><span class="o">:</span><span class="w"> </span><span class="kt">Guess</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
 <span class="w">  </span><span class="nx">currentGuess</span><span class="o">:</span><span class="w"> </span><span class="kt">PegColor</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
 <span class="w">  </span><span class="nx">possibleValues</span><span class="o">:</span><span class="w"> </span><span class="kt">PegColor</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">'red'</span><span class="p">,</span><span class="w"> </span><span class="s1">'purple'</span><span class="p">,</span><span class="w"> </span><span class="s1">'blue'</span><span class="p">,</span><span class="w"> </span><span class="s1">'green'</span><span class="p">,</span><span class="w"> </span><span class="s1">'yellow'</span><span class="p">,</span><span class="w"> </span><span class="s1">'orange'</span><span class="p">];</span>
 
@@ -1136,8 +1136,8 @@ Build at: 202x-xx-xxT14:45:10.108Z - Hash: a68362840213b0526fdc - Time: 259ms
 </path>
 </svg>
 </span>
-<span title="2023. március 26. 12:01:27">
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-03-26T12:01:27+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-03-26</span>
+<span title="2023. március 31. 16:21:05">
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-03-31T16:21:05+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-03-31</span>
 </span>
 </span>
 <span class="md-source-file__fact">
