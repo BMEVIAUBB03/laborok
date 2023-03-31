@@ -109,7 +109,7 @@ Ezután adjuk ki az alábbi parancsot, ami egy új, üres projektet hoz nekünk 
 > `ng.cmd new mastermind --prefix=mm --skip-tests=true --routing=false --style=scss --inline-style=false --inline-template=false --directory=.`
 
 ???+ tip "ng parancs különböző környezetekben"
-    Ha valaki járatos a PowerShell világában, akkor érdemes tisztában lenni vele, hogy a globális `ng` parancs futtatása PowerShellből a PATH-ban található `ng.ps1` PowerShell scriptet preferálja az `ng.cmd` helyett. Mivel a PS1 szkript nem digitálisan aláírt, ezért nem futtatható anélkül, hogy a felhasználó ehhez kifejezetten hozzá ne járulna. Az aláíratlan PowerShell szkriptek futtatása veszélyes lehet, ezért csak akkor engedélyezzük az aláíratlan szkript futtatását, ha tudjuk, mit csinálunk (vagy kontrollált környezetben, pl. konténerben vagy virtuális gépen futunk, amit nem zavar, ha tönkretesztünk). Az aláíratlan szkriptek engedélyezéséhez lásd a [hivatalos leírást](https:/go.microsoft.com/fwlink/?LinkID=135170). Más operációs rendszereken vagy más shell használatával (pl. bash) az ng parancs meghívásának szintaxisa változhat (pl. `ng`, `ng.cmd` vagy `ng.ps1`)
+    Ha valaki járatos a PowerShell világában, akkor érdemes tisztában lenni vele, hogy a globális `ng` parancs futtatása PowerShellből a PATH-ban található `ng.ps1` PowerShell scriptet preferálja az `ng.cmd` helyett. Mivel a PS1 szkript nem digitálisan aláírt, ezért nem futtatható anélkül, hogy a felhasználó ehhez kifejezetten hozzá ne járulna. Az aláíratlan PowerShell szkriptek futtatása veszélyes lehet, ezért csak akkor engedélyezzük az aláíratlan szkript futtatását, ha tudjuk, mit csinálunk (vagy kontrollált környezetben, pl. konténerben vagy virtuális gépen futunk, amit nem zavar, ha tönkretesztünk). Az aláíratlan szkriptek engedélyezéséhez lásd a [hivatalos leírást](https://go.microsoft.com/fwlink/?LinkID=135170). Más operációs rendszereken vagy más shell használatával (pl. bash) az ng parancs meghívásának szintaxisa változhat (pl. `ng`, `ng.cmd` vagy `ng.ps1`)
 
     ***FONTOS:*** a fentiek tükrében a későbbiekben futtatandó parancsokban értelemszerűen használjuk az `ng` parancs helyett az `ng.cmd`-t, ha szükséges.
 
@@ -543,7 +543,7 @@ Egészítsük ki az `src\app\app.component.ts` funkcionalitását és megjelení
 ??? tip "Megvalósítás: AppComponent logika"
     ```TS
     export class AppComponent {
-      guesses: Guess[];
+      guesses: Guess[] = [];
       currentGuess: PegColor[] = [];
       possibleValues: PegColor[] = ['red', 'purple', 'blue', 'green', 'yellow', 'orange'];
 

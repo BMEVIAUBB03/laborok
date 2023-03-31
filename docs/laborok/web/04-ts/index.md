@@ -46,6 +46,10 @@ Indítsuk el Terminálból (célszerű Ctrl+Shift+ö billentyűkombinációval e
     Ha MAC-en lennénk és a fenti nem működik, a következő paranccsal próbálkozhatunk:
     > `tsc --watch`
 
+??? warning "PowerShell"
+    Ha Windows-on lennénk és script execution policy-vel kapcsolatban kapnánk egy hibaüzenetet, a következő parancsot adjuk ki PowerShell terminálból (nem VSCode-ból!):
+    > `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned`
+
 Indítást követően a következő képernyő fogad minket:
 
 <figure markdown>
