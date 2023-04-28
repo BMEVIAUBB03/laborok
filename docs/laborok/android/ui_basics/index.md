@@ -1,6 +1,6 @@
 # Labor 01 - Felhasználói felület készítés (PublicTransport)
 
-[erőforrások](../res.zip)
+[erőforrások](/res.zip)
 
 ## Bevezető
 
