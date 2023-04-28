@@ -1,6 +1,5 @@
 # Labor 01 - Felhasználói felület készítés (PublicTransport)
 
-[erőforrások](/res.zip)
 
 ## Bevezető
 
@@ -249,7 +248,9 @@ A következő képernyőn a felhasználó a különböző járműtípusok közü
 <img src="./assets/list.png" width="320">
 </p>
 
-Hozzunk ehhez létre egy új Activity-t (a package-ünkön jobb klikk > New > Activity > Empty Activity), nevezzük el `ListActivity`-nek. Most, hogy ez már létezik, menjünk vissza a `LoginActivity` kódjában lévő TODO-hoz, és indítsuk ott el ezt az új Activity-t:
+Először töltsük le [az alkalmazáshoz képeit tartalmazó tömörített fájlt](./downloads/res.zip), ami tartalmazza az összes képet, amire szükségünk lesz. A tartalmát másoljuk be az `app/src/main/res` mappába (ehhez segít, ha Android Studio-ban bal fent a szokásos Android nézetről a Project nézetre váltunk, esetleg a mappán jobb klikk > Show in Explorer).
+
+Majd hozzunk létre egy új Activity-t (a package-ünkön jobb klikk > New > Activity > Empty Activity), nevezzük el `ListActivity`-nek. Most, hogy ez már létezik, menjünk vissza a `LoginActivity` kódjában lévő TODO-hoz, és indítsuk ott el ezt az új Activity-t:
 
 
 ```kotlin
