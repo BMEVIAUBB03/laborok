@@ -1,5 +1,7 @@
 # Labor 01 - Felhasználói felület készítés (PublicTransport)
 
+[erőforrások](../res.zip)
+
 ## Bevezető
 
 A labor során egy tömegközlekedési vállalat számára megálmodott alkalmazás vázát készítjük el. Az alkalmazással a felhasználók különböző járművekre vásárolhatnak majd bérleteket. Az üzleti logikát (az authentikációt, a bevitt adatok ellenőrzését, a fizetés lebonyolítását) egyelőre csak szimulálni fogjuk, a labor fókusza a felületek és a köztük való navigáció elkészítése lesz.
