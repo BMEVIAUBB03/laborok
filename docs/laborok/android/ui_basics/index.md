@@ -198,11 +198,6 @@ A `binding` példány működéséhez három dolgot kell tennünk:
 private lateinit var binding: ActivityLoginBinding
 
 override fun onCreate(savedInstanceState: Bundle?) {
-    try {
-        Thread.sleep(1000)
-    } catch (e: InterruptedException) {
-        e.printStackTrace()
-    }
     super.onCreate(savedInstanceState)
     binding = ActivityLoginBinding.inflate(layoutInflater)
     setContentView(binding.root)
