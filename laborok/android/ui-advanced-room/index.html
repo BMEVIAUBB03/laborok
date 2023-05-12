@@ -1459,14 +1459,11 @@ A létrejött <code>fragment_shopping_list.xml</code> tartalmát cseréljük ki 
 <span class="w">        </span><span class="na">app:layout_constraintLeft_toLeftOf=</span><span class="s">&quot;parent&quot;</span>
 <span class="w">        </span><span class="na">app:srcCompat=</span><span class="s">&quot;@drawable/ic_chart&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 
-<span class="nt">&lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;</span>```
-
-A<span class="w"> </span>*ConstraintLayout*-ban<span class="w"> </span>a<span class="w"> </span>*RecyclerView*-n<span class="w"> </span>kívül<span class="w"> </span>két<span class="w"> </span>*FloatingActionButton*-t<span class="w"> </span>helyeztünk<span class="w"> </span>el.
-
-A<span class="w"> </span>`tools:listitem`<span class="w"> </span>paraméter<span class="w"> </span>segítségével<span class="w"> </span>az<span class="w"> </span>Android<span class="w"> </span>Studio<span class="w"> </span>layout<span class="w"> </span>megjelenítő<span class="w"> </span>felületén<span class="w"> </span>megjelenik<span class="w"> </span>a<span class="w"> </span>paraméterben<span class="w"> </span>átadott<span class="w"> </span>listaelem.<span class="w"> </span>Ezt<span class="w"> </span>most<span class="w"> </span>pirossal<span class="w"> </span>jelöli<span class="w"> </span>a<span class="w"> </span>környezet,<span class="w"> </span>mert<span class="w"> </span>még<span class="w"> </span>nem<span class="w"> </span>létezik.<span class="w"> </span>Készítsük<span class="w"> </span>tehát<span class="w"> </span>el<span class="w"> </span>(`item_shopping_list.xml`):
-
-```xml
-<span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="nt">&lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;</span>
+</code></pre></div>
+<p>A <em>ConstraintLayout</em>-ban a <em>RecyclerView</em>-n kívül két <em>FloatingActionButton</em>-t helyeztünk el.</p>
+<p>A <code>tools:listitem</code> paraméter segítségével az Android Studio layout megjelenítő felületén megjelenik a paraméterben átadott listaelem. Ezt most pirossal jelöli a környezet, mert még nem létezik. Készítsük tehát el (<code>item_shopping_list.xml</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
 <span class="nt">&lt;LinearLayout</span><span class="w"> </span><span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
 <span class="w">    </span><span class="na">xmlns:tools=</span><span class="s">&quot;http://schemas.android.com/tools&quot;</span>
 <span class="w">    </span><span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
@@ -2042,6 +2039,7 @@ A kiolvasás után a törlés is fontos, mert ha az érték benn marad az argume
 </code></pre></div>
 <p>Figyeljük meg, hogy ebben az esetben is <code>thread</code>-be csomagolva futtatunk adatbázis műveletet. A <code>Room</code> tiltja a UI szálon történő adatbázis műveletek futtatását. Emellett a <em>user experience (UX)</em> is romlik, ha az esetlegesen lassú műveletek megakasztják a UI szálat.</p>
 <p>Az adatbázisba való beillesztés után szükséges az eredeti objektumunk id-jét az adatbázistól kapott id-re beállítani, különben egyéb műveletek nem végezhetők rajta.</p>
+<p>Próbáljuk ki az alkalmazást!</p>
 <h3 id="statisztika-kepernyo-elkeszitese">Statisztika képernyő elkészítése<a class="headerlink" href="#statisztika-kepernyo-elkeszitese" title="Permanent link">&para;</a></h3>
 <p>A Statisztika képernyőn egy kördiagramot fogunk megjeleníteni, ami az egyes kategóriák egymáshoz való arányát mutatja a már megvásárolt és a még meg nem vásárolt termékek között. A két diagram közötti váltani a menü gombok megnyolásával lehet.</p>
 <p>A PieChart kirajzolásához az <a href="https://github.com/PhilJay/MPAndroidChart">MPAndroidChart</a> library-t fogjuk használni. A függöségek már benne vannak a projektben, ahogyan a diagram is fönt van a felületen. Már csak fel kell tölteni adattal.</p>
@@ -2057,8 +2055,6 @@ A kiolvasás után a törlés is fontos, mert ha az érték benn marad az argume
 <span class="w">        </span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?</span>
 <span class="w">    </span><span class="p">):</span><span class="w"> </span><span class="n">View? </span><span class="p">{</span>
 <span class="w">        </span><span class="n">_binding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FragmentChartBinding</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">inflater</span><span class="p">,</span><span class="w"> </span><span class="n">container</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span>
-
-<span class="w">        </span><span class="n">setHasOptionsMenu</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
 
 <span class="w">        </span><span class="n">loadChart</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
 
@@ -2176,10 +2172,11 @@ A kiolvasás után a törlés is fontos, mert ha az érték benn marad az argume
 <p>Próbáljuk ki az alkalmazást! Most már teljes a funkciónalitás, lehet elemeket felvenni, megvásároltnak jelölni és megnézni a statisztikákat.</p>
 <div class="admonition example">
 <p class="admonition-title">BEADANDÓ (0,5 pont)</p>
+<p>Ezen a ponton összsen <strong>három képernyőképet</strong> kell készítened:</p>
 <p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik a <strong>lista</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy <strong>ahhoz tartozó kódrészlet</strong>, valamint a <strong>neptun kódod a listában egy termék neveként</strong>. A képet a megoldásban a repository-ba f1.png néven töltsd föl. </p>
 <p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik az <strong>új elem felvétele felület</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy <strong>ahhoz tartozó kódrészlet</strong>, valamint a <strong>neptun kódod a termék neveként</strong>. A képet a megoldásban a repository-ba f2.png néven töltsd föl. </p>
 <p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik a <strong>statisztikák felület</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy <strong>ahhoz tartozó kódrészlet</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>. A képet a megoldásban a repository-ba f3.png néven töltsd föl. </p>
-<p>A képernyőkép szükséges feltétele a pontszám megszerzésének.</p>
+<p>A képernyőképek szükséges feltételei a pontszám megszerzésének.</p>
 </div>
 <h2 id="onallo-feladat-torles-megvalositasa-05-pont">Önálló feladat: törlés megvalósítása (0,5 pont)<a class="headerlink" href="#onallo-feladat-torles-megvalositasa-05-pont" title="Permanent link">&para;</a></h2>
 <p>Elem törlése egyesével, az elemeken található szemetes ikonra kattintás hatására.</p>
@@ -2209,8 +2206,8 @@ A kiolvasás után a törlés is fontos, mert ha az érték benn marad az argume
           </path>
         </svg>
       </span>
-      <span title="2023. május 12. 07:12:03">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-05-12T07:12:03+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-05-12</span>
+      <span title="2023. május 12. 11:13:24">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-05-12T11:13:24+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-05-12</span>
       </span>
     </span>
 
