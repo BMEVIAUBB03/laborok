@@ -342,7 +342,8 @@ A létrejött `fragment_shopping_list.xml` tartalmát cseréljük ki az alábbir
         app:layout_constraintLeft_toLeftOf="parent"
         app:srcCompat="@drawable/ic_chart" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>```
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
 
 A *ConstraintLayout*-ban a *RecyclerView*-n kívül két *FloatingActionButton*-t helyeztünk el.
 
@@ -1012,6 +1013,8 @@ Figyeljük meg, hogy ebben az esetben is `thread`-be csomagolva futtatunk adatb�
 
 Az adatbázisba való beillesztés után szükséges az eredeti objektumunk id-jét az adatbázistól kapott id-re beállítani, különben egyéb műveletek nem végezhetők rajta.
 
+Próbáljuk ki az alkalmazást!
+
 ### Statisztika képernyő elkészítése
 
 A Statisztika képernyőn egy kördiagramot fogunk megjeleníteni, ami az egyes kategóriák egymáshoz való arányát mutatja a már megvásárolt és a még meg nem vásárolt termékek között. A két diagram közötti váltani a menü gombok megnyolásával lehet.
@@ -1032,8 +1035,6 @@ class ChartFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentChartBinding.inflate(inflater, container, false)
-
-        setHasOptionsMenu(true)
 
         loadChart(true)
 
@@ -1168,6 +1169,8 @@ override fun onCreateView(
 Próbáljuk ki az alkalmazást! Most már teljes a funkciónalitás, lehet elemeket felvenni, megvásároltnak jelölni és megnézni a statisztikákat.
 
 !!!example "BEADANDÓ (0,5 pont)"
+	Ezen a ponton összsen **három képernyőképet** kell készítened:
+
 	Készíts egy **képernyőképet**, amelyen látszik a **lista** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a listában egy termék neveként**. A képet a megoldásban a repository-ba f1.png néven töltsd föl. 
 
 	Készíts egy **képernyőképet**, amelyen látszik az **új elem felvétele felület** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a termék neveként**. A képet a megoldásban a repository-ba f2.png néven töltsd föl. 
@@ -1175,7 +1178,7 @@ Próbáljuk ki az alkalmazást! Most már teljes a funkciónalitás, lehet eleme
 	Készíts egy **képernyőképet**, amelyen látszik a **statisztikák felület** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f3.png néven töltsd föl. 
 
 
-	A képernyőkép szükséges feltétele a pontszám megszerzésének.
+	A képernyőképek szükséges feltételei a pontszám megszerzésének.
 
 ## Önálló feladat: törlés megvalósítása (0,5 pont)
 Elem törlése egyesével, az elemeken található szemetes ikonra kattintás hatására.
