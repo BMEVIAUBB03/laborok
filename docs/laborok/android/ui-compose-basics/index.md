@@ -562,7 +562,7 @@ fun NavGraph(
 }
 ```
 
-Ezek után a navigációval összefűzött képernyőket már föl tudjuk rakni a felületre. Ehhez hozzunk létre egy új *Activity*-t, és a template-ek közül válasszuk az `Empty Compose Activity (Material3)`-mat. Ezzel megkapjuk a kotlin fájlt, azonban nem kapunk layout xml-t, hiszen a felületet most *@Composable* objektumokból fogjuk összerakni. Illesszük is be tehát a `NavGraph`-ot az Activity-be:
+Ezek után a navigációval összefűzött képernyőket már föl tudjuk rakni a felületre. Ehhez hozzunk létre egy új *Activity*-t, és a template-ek közül válasszuk az `Empty Compose Activity (Material3)`-mat, (ha ez nincs, jó a sima Empty Compose Activity is) illetve ne felejtsük el bepipálni a **Launcher Activity** checkboxot. Ezzel megkapjuk a kotlin fájlt, azonban nem kapunk layout xml-t, hiszen a felületet most *@Composable* objektumokból fogjuk összerakni. Illesszük is be tehát a `NavGraph`-ot az Activity-be:
 
 ```kotlin
 @ExperimentalFoundationApi
@@ -819,7 +819,7 @@ Próbáljuk ki az alkalmazást!
 
 ## Önálló feladat (0,5 pont)
 
-Valósítsuk meg a regosztrációs képernyőt! A LoginScreenen a **Registration** gomb megnyomására navigáljunk át egy őj felületre, ahol a felhasználó megadhatja az e-mail címét, a jelszavát, és a jelszavának megerősítését. Ott gonbnyomás hatására szintén tovább mehetünk a *MenuScreenre*.
+Valósítsuk meg a regosztrációs képernyőt! A LoginScreenen a **Registration** gomb megnyomására navigáljunk át egy őj felületre, ahol a felhasználó megadhatja az e-mail címét, a jelszavát, és a jelszavának megerősítését. Ott gombnyomás hatására szintén tovább mehetünk a *MenuScreenre*.
 
 !!!example "BEADANDÓ"
 	Készíts egy **képernyőképet**, amelyen látszik a **regisztrációs képernyő** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod az e-mail mezőben**. A képet a megoldásban a repository-ba f4.png néven töltsd föl. 
