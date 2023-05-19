@@ -94,9 +94,9 @@ nav:
       - laborok/web/06-angular-02/index.md
   - "Mobilos laborok":
       - laborok/android/basics/index.md
-      - laborok/android/ui_basics/index.md
+      - laborok/android/ui-basics/index.md
       - laborok/android/ui-advanced-room/index.md
-      - laborok/android/room/index.md
+      - laborok/android/ui-compose-basics/index.md
       - laborok/android/network-compose/index.md
   - "Házi feladat":
       - hf/web/index.md
