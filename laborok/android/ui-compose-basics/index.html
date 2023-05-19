@@ -1513,7 +1513,7 @@ paraméterezések esetén. Vizsgáljuk meg a hibajelzéssel ellátott megjelené
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Ezek után a navigációval összefűzött képernyőket már föl tudjuk rakni a felületre. Ehhez hozzunk létre egy új <em>Activity</em>-t, és a template-ek közül válasszuk az <code>Empty Compose Activity (Material3)</code>-mat. Ezzel megkapjuk a kotlin fájlt, azonban nem kapunk layout xml-t, hiszen a felületet most <em>@Composable</em> objektumokból fogjuk összerakni. Illesszük is be tehát a <code>NavGraph</code>-ot az Activity-be:</p>
+<p>Ezek után a navigációval összefűzött képernyőket már föl tudjuk rakni a felületre. Ehhez hozzunk létre egy új <em>Activity</em>-t, és a template-ek közül válasszuk az <code>Empty Compose Activity (Material3)</code>-mat, (ha ez nincs, jó a sima Empty Compose Activity is) illetve ne felejtsük el bepipálni a <strong>Launcher Activity</strong> checkboxot. Ezzel megkapjuk a kotlin fájlt, azonban nem kapunk layout xml-t, hiszen a felületet most <em>@Composable</em> objektumokból fogjuk összerakni. Illesszük is be tehát a <code>NavGraph</code>-ot az Activity-be:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@ExperimentalFoundationApi</span>
 <span class="nd">@ExperimentalMaterial3Api</span>
 <span class="kd">class</span><span class="w"> </span><span class="nc">MainActivity</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ComponentActivity</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
@@ -1742,7 +1742,7 @@ paraméterezések esetén. Vizsgáljuk meg a hibajelzéssel ellátott megjelené
 <p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik a <strong>profil képernyő</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy <strong>ahhoz tartozó kódrészlet</strong>, valamint a <strong>neptun kódod valahol a kódban kommentként</strong>. A képet a megoldásban a repository-ba f3.png néven töltsd föl. </p>
 </div>
 <h2 id="onallo-feladat-05-pont">Önálló feladat (0,5 pont)<a class="headerlink" href="#onallo-feladat-05-pont" title="Permanent link">&para;</a></h2>
-<p>Valósítsuk meg a regosztrációs képernyőt! A LoginScreenen a <strong>Registration</strong> gomb megnyomására navigáljunk át egy őj felületre, ahol a felhasználó megadhatja az e-mail címét, a jelszavát, és a jelszavának megerősítését. Ott gonbnyomás hatására szintén tovább mehetünk a <em>MenuScreenre</em>.</p>
+<p>Valósítsuk meg a regosztrációs képernyőt! A LoginScreenen a <strong>Registration</strong> gomb megnyomására navigáljunk át egy őj felületre, ahol a felhasználó megadhatja az e-mail címét, a jelszavát, és a jelszavának megerősítését. Ott gombnyomás hatására szintén tovább mehetünk a <em>MenuScreenre</em>.</p>
 <div class="admonition example">
 <p class="admonition-title">BEADANDÓ</p>
 <p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik a <strong>regisztrációs képernyő</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy <strong>ahhoz tartozó kódrészlet</strong>, valamint a <strong>neptun kódod az e-mail mezőben</strong>. A képet a megoldásban a repository-ba f4.png néven töltsd föl. </p>
@@ -1757,8 +1757,8 @@ paraméterezések esetén. Vizsgáljuk meg a hibajelzéssel ellátott megjelené
           </path>
         </svg>
       </span>
-      <span title="2023. május 19. 06:54:03">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-05-19T06:54:03+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-05-19</span>
+      <span title="2023. május 19. 14:14:26">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-05-19T14:14:26+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-05-19</span>
       </span>
     </span>
 
