@@ -119,6 +119,7 @@ A házi feladat elkészítése közben a "hf" branchen dolgozz. Erre az ágra ak
 A projektet mindenképpen ebbe a repository-ba hozd létre, a fejlesztést végig itt végezd.
 A beadás akkor teljes, ha a "hf" branch-en megtalálható a projekted teljes forráskódja. A beadást egy pull request jelzi, amely pull request-et a laborvezetődhöz kell rendelned.
 A házi feladathoz mindenképpen tartozik **házi feladat védés** is. Ennek ideje a **14. heti laboron** van.
+
 A házi feladatot nem szükséges külön dokumentálni, csak a Repository-ban lévő README.md fájl értelemszerű kitöltése szükséges.
 
 ### Házi feladat pótlás - fizetésköteles!
