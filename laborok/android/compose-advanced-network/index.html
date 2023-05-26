@@ -1,0 +1,1653 @@
+
+<!doctype html>
+<html lang="hu" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Albert István, Ekler Péter, Gazdi László, Gincsai Gábor, Somogyi Ferenc Attila, Tóth Tibor">
+      
+      
+      
+        <link rel="prev" href="../ui-compose-basics/">
+      
+      
+        <link rel="next" href="../../../hf/web/">
+      
+      <link rel="icon" href="../../../favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.14">
+    
+    
+      
+        <title>Labor 04 - Időjárás alkalmazás készítése - Compose, Network (Weather Info) - BMEVIAUBB03 - Kliensalkalmazások laborfeladatok</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.113286f1.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/timeago.css">
+    
+      <link rel="stylesheet" href="../../../extra-material-theme.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+        html.glightbox-open { overflow: initial; height: 100%; }
+        .gslide-title { margin-top: 0px; user-select: text; }
+        .gslide-desc { color: #666; user-select: text; }
+        .gslide-image img { background: white; }
+        
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+            </style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="aut" data-md-color-primary="red" data-md-color-accent="red">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#labor-04-idojaras-alkalmazas-keszitese-compose-network-weather-info" class="md-skip">
+          Kihagyás
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Élőfej">
+    <a href="../../.." title="BMEVIAUBB03 - Kliensalkalmazások laborfeladatok" class="md-header__button md-logo" aria-label="BMEVIAUBB03 - Kliensalkalmazások laborfeladatok" data-md-component="logo">
+      
+  <img src="../../../logo-bme-aut.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BMEVIAUBB03 - Kliensalkalmazások laborfeladatok
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Labor 04 - Időjárás alkalmazás készítése - Compose, Network (Weather Info)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="aut" data-md-color-primary="red" data-md-color-accent="red"  aria-label="Váltás sötét témára"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Váltás sötét témára" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent=""  aria-label="Váltás világos témára"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Váltás világos témára" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Keresés" placeholder="Keresés" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Keresés">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Törlés" aria-label="Törlés" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Keresés inicializálása
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/bmeviaubb03/laborok" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    bmeviaubb03/laborok
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Lapok" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        Tudnivalók
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../web/01-http/" class="md-tabs__link">
+        Webes laborok
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../basics/" class="md-tabs__link md-tabs__link--active">
+        Mobilos laborok
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../hf/web/" class="md-tabs__link">
+        Házi feladat
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigáció" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="BMEVIAUBB03 - Kliensalkalmazások laborfeladatok" class="md-nav__button md-logo" aria-label="BMEVIAUBB03 - Kliensalkalmazások laborfeladatok" data-md-component="logo">
+      
+  <img src="../../../logo-bme-aut.png" alt="logo">
+
+    </a>
+    BMEVIAUBB03 - Kliensalkalmazások laborfeladatok
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/bmeviaubb03/laborok" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    bmeviaubb03/laborok
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+          Tudnivalók
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Tudnivalók
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Tárgy ismertető
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tudnivalok/github/GitHub/" class="md-nav__link">
+        Feladatok beadása (GitHub)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tudnivalok/github/GitHub-Actions/" class="md-nav__link">
+        GitHub Actions ismertető
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tudnivalok/github/GitHub-credentials/" class="md-nav__link">
+        Egyetemi laborokban: GitHub belépés
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tudnivalok/github/contributing/" class="md-nav__link">
+        Hozzájárulás az anyaghoz
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          Webes laborok
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Webes laborok
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../web/01-http/" class="md-nav__link">
+        Labor 01 - HTTP, HTML
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../web/02-css/" class="md-nav__link">
+        Labor 02 - CSS és Bootstrap
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../web/03-js/" class="md-nav__link">
+        Labor 03 - JavaScript alapok
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../web/04-ts/" class="md-nav__link">
+        Labor 04 - TypeScript, AJAX
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../web/05-angular-01/" class="md-nav__link">
+        Labor 05 - Angular bevezető
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../web/06-angular-02/" class="md-nav__link">
+        Labor 06 - Angular haladó
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          Mobilos laborok
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Mobilos laborok
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basics/" class="md-nav__link">
+        Labor 00 - Alapok (HelloWorld)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ui-basics/" class="md-nav__link">
+        Labor 01 - Felhasználói felület készítés (PublicTransport)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ui-advanced-room/" class="md-nav__link">
+        Labor 02 - Bevásárló alkalmazás készítése - Fragmentek, Navigation, Room (ShoppingList)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ui-compose-basics/" class="md-nav__link">
+        Labor 03 - Felhasználói felület készítése Jetpack Compose-zal (WorkplaceApp)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Labor 04 - Időjárás alkalmazás készítése - Compose, Network (Weather Info)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Labor 04 - Időjárás alkalmazás készítése - Compose, Network (Weather Info)
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tartalomjegyzék">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tartalomjegyzék
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bevezeto" class="md-nav__link">
+    Bevezető
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#az-alkalmazas-specifikacioja" class="md-nav__link">
+    Az alkalmazás specifikációja
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elokeszuletek" class="md-nav__link">
+    Előkészületek
+  </a>
+  
+    <nav class="md-nav" aria-label="Előkészületek">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#git-repository-letrehozasa-es-letoltese" class="md-nav__link">
+    Git repository létrehozása és letöltése
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kozos-feladatok-05-pont" class="md-nav__link">
+    Közös feladatok (0,5 pont)
+  </a>
+  
+    <nav class="md-nav" aria-label="Közös feladatok (0,5 pont)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#projekt-megnyitasa" class="md-nav__link">
+    Projekt megnyitása
+  </a>
+  
+    <nav class="md-nav" aria-label="Projekt megnyitása">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openweathermap-api-kulcs" class="md-nav__link">
+    OpenWeatherMap API kulcs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#halozati-kommunikacio-megvalositasa" class="md-nav__link">
+    Hálózati kommunikáció megvalósítása
+  </a>
+  
+    <nav class="md-nav" aria-label="Hálózati kommunikáció megvalósítása">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-halozati-reteg-megvalositasa" class="md-nav__link">
+    A hálózati réteg megvalósítása
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-reszletezo-nezet-megvalositasa" class="md-nav__link">
+    A részletező nézet megvalósítása
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-reszletes-nezet-bekotese-a-navigacioba" class="md-nav__link">
+    A részletes nézet bekötése a navigációba
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onallo-feladat-varos-lista-torles-megvalositasa-05-pont" class="md-nav__link">
+    Önálló feladat: város lista törlés megvalósítása (0,5 pont)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bonusz-feladat-elorejelzes" class="md-nav__link">
+    Bónusz feladat: Előrejelzés
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          Házi feladat
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Házi feladat
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hf/web/" class="md-nav__link">
+        Webes házi feladat információk - 2023 tavasz
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hf/mobil/" class="md-nav__link">
+        Mobilos házi feladat információk - 2023 tavasz
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tartalomjegyzék">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tartalomjegyzék
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bevezeto" class="md-nav__link">
+    Bevezető
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#az-alkalmazas-specifikacioja" class="md-nav__link">
+    Az alkalmazás specifikációja
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elokeszuletek" class="md-nav__link">
+    Előkészületek
+  </a>
+  
+    <nav class="md-nav" aria-label="Előkészületek">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#git-repository-letrehozasa-es-letoltese" class="md-nav__link">
+    Git repository létrehozása és letöltése
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kozos-feladatok-05-pont" class="md-nav__link">
+    Közös feladatok (0,5 pont)
+  </a>
+  
+    <nav class="md-nav" aria-label="Közös feladatok (0,5 pont)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#projekt-megnyitasa" class="md-nav__link">
+    Projekt megnyitása
+  </a>
+  
+    <nav class="md-nav" aria-label="Projekt megnyitása">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openweathermap-api-kulcs" class="md-nav__link">
+    OpenWeatherMap API kulcs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#halozati-kommunikacio-megvalositasa" class="md-nav__link">
+    Hálózati kommunikáció megvalósítása
+  </a>
+  
+    <nav class="md-nav" aria-label="Hálózati kommunikáció megvalósítása">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-halozati-reteg-megvalositasa" class="md-nav__link">
+    A hálózati réteg megvalósítása
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-reszletezo-nezet-megvalositasa" class="md-nav__link">
+    A részletező nézet megvalósítása
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-reszletes-nezet-bekotese-a-navigacioba" class="md-nav__link">
+    A részletes nézet bekötése a navigációba
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onallo-feladat-varos-lista-torles-megvalositasa-05-pont" class="md-nav__link">
+    Önálló feladat: város lista törlés megvalósítása (0,5 pont)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bonusz-feladat-elorejelzes" class="md-nav__link">
+    Bónusz feladat: Előrejelzés
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="labor-04-idojaras-alkalmazas-keszitese-compose-network-weather-info">Labor 04 - Időjárás alkalmazás készítése - Compose, Network (Weather Info)<a class="headerlink" href="#labor-04-idojaras-alkalmazas-keszitese-compose-network-weather-info" title="Permanent link">&para;</a></h1>
+<h2 id="bevezeto">Bevezető<a class="headerlink" href="#bevezeto" title="Permanent link">&para;</a></h2>
+<p>A labor során egy időjárás információkat megjelenítő alkalmazás elkészítése a feladat. A korábban látott Compose UI elemek használata mellett láthatunk majd példát hálózati kommunkáció hatékony megvalósítására is a <a href="https://square.github.io/retrofit/"><code>Retrofit</code></a> library felhasználásával.</p>
+<p>Az alkalmazás városok listáját jeleníti meg, illetve tárolja egy adatbázisban. Egy kiválasztott város részletes időjárás adatait az <a href="https://openweathermap.org/">OpenWeatherMap</a> REST API-jának segítségével kérdezi le. Új város hozzáadására egy  <a href="https://developer.android.com/guide/topics/ui/floating-action-button"><code>FloatingActionButton</code></a> megnyomásával van lehetőség. </p>
+<div class="admonition info">
+<p class="admonition-title">REST</p>
+<p>REST = <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">Representational State Transfer</a></p>
+</div>
+<p align="center">
+<a class="glightbox" href="./assets/list.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img src="./assets/list.png" width="240"></a>
+<a class="glightbox" href="./assets/add.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img src="./assets/add.png" width="240"></a>
+<a class="glightbox" href="./assets/weather.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img src="./assets/weather.png" width="240"></a>
+</p>
+
+<h2 id="az-alkalmazas-specifikacioja">Az alkalmazás specifikációja<a class="headerlink" href="#az-alkalmazas-specifikacioja" title="Permanent link">&para;</a></h2>
+<p>Az alkalmazás két fő <code>Screen</code>-ből áll. </p>
+<p>Az alkalmazás indulásakor megjelenő <code>Screen</code> a felhasználó által felvett városok listáját jeleníti meg. Minden lista elemhez tartozik egy <em>Remove</em> gomb, aminek a megnyomására az adott város törlődik a listából. Új várost a nézet jobb alsó sarkában található <code>FloatingActionButton</code> megnyomásával lehet felvenni.</p>
+<p>Egy városra való kattintás hatására megnyílik egy új <code>Screen</code> két , amely a kiválasztott város időjárásának leírását és az ahhoz tartozó ikont jeleníti meg. </p>
+<h2 id="elokeszuletek">Előkészületek<a class="headerlink" href="#elokeszuletek" title="Permanent link">&para;</a></h2>
+<p>A feladatok megoldása során ne felejtsd el követni a <a href="../../tudnivalok/github/GitHub.md">feladat beadás folyamatát</a>.</p>
+<h3 id="git-repository-letrehozasa-es-letoltese">Git repository létrehozása és letöltése<a class="headerlink" href="#git-repository-letrehozasa-es-letoltese" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Moodle-ben keresd meg a laborhoz tartozó meghívó URL-jét és annak segítségével hozd létre a saját repository-dat.</p>
+</li>
+<li>
+<p>Várd meg, míg elkészül a repository, majd checkout-old ki.</p>
+<div class="admonition tip">
+<p>Egyetemi laborokban, ha a checkout során nem kér a rendszer felhasználónevet és jelszót, és nem sikerül a checkout, akkor valószínűleg a gépen korábban megjegyzett felhasználónévvel próbálkozott a rendszer. Először töröld ki a mentett belépési adatokat (lásd <a href="../../tudnivalok/github/GitHub-credentials.md">itt</a>), és próbáld újra.</p>
+</div>
+</li>
+<li>
+<p>Hozz létre egy új ágat <code>megoldas</code> néven, és ezen az ágon dolgozz.</p>
+</li>
+<li>
+<p>A <code>neptun.txt</code> fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.</p>
+</li>
+</ol>
+<h2 id="kozos-feladatok-05-pont">Közös feladatok (0,5 pont)<a class="headerlink" href="#kozos-feladatok-05-pont" title="Permanent link">&para;</a></h2>
+<h3 id="projekt-megnyitasa">Projekt megnyitása<a class="headerlink" href="#projekt-megnyitasa" title="Permanent link">&para;</a></h3>
+<p>Ezen a laboron nem új projektet fogunk létrehozni, hanem egy már létezőből indulunk ki, ez megtalálható a kicheckoutolt repositoryban <code>WorkplaceApp</code> néven. Nyissuk meg a projektet és a laborvezetővel nézzük át a felépítését.</p>
+<div class="admonition info">
+<p class="admonition-title">A kezőprojekt</p>
+<p>A megnyitott projekt egy már kellően komlex alkalmazás, ami képes a felvett városok adataim Room adatbázisban eltárolni. A laborvezető segítségével tekintsük át a kezdőporjektet, de annak mérete és komplexitása miatt otthon is érdemes még rá időt szánni.</p>
+</div>
+<h4 id="openweathermap-api-kulcs">OpenWeatherMap API kulcs<a class="headerlink" href="#openweathermap-api-kulcs" title="Permanent link">&para;</a></h4>
+<p>Regisztráljunk saját felhasználót az <a href="https://openweathermap.org/">OpenWeatherMap</a> oldalon, és hozzunk létre egy API kulcsot, aminek a segítségével használhatjuk majd a szolgáltatást az alkalmazásunkban! </p>
+<ol>
+<li>Kattintsunk a <em>Sign in</em> majd a <em>Create an account</em> gombra.</li>
+<li>Töltsük ki a regisztrációs formot</li>
+<li>A <em>Company</em> mező értéke legyen "BME", a <em>Purpose</em> értéke legyen "Education/Science"</li>
+<li>Sikeres regisztráció után az <em>API keys</em> tabon található az alapértelmezettként létrehozott API kulcs.</li>
+</ol>
+<p>A kapott API kulcsra később szükségünk lesz az időjárás adatokat lekérő API hívásnál.</p>
+<h3 id="halozati-kommunikacio-megvalositasa">Hálózati kommunikáció megvalósítása<a class="headerlink" href="#halozati-kommunikacio-megvalositasa" title="Permanent link">&para;</a></h3>
+<p>Az alkalmazásban szükségünk lesz internet elérésre. Vegyük fel az <code>AndroidManifest.xml</code> állományban az <em>Internet permission</em>-t az <code>application</code> tagen <em>kívülre</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;uses-permission</span><span class="w"> </span><span class="na">android:name=</span><span class="s">&quot;android.permission.INTERNET&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Engedélyek</p>
+<p>Androidon API 23-tól (6.0, Marshmallow) az engedélyek két csoportba lettek osztva. A <em>normal</em> csoportba tartozó engedélyeket elég felvenni az <code>AndroidManifest.xml</code> fájlba az előbb látott módon és az alkalmazás automatikusan megkapja őket. A <em>dangerous</em> csoportba tartozó engedélyek esetén ez már nem elég, futás időben explicit módon el kell kérni őket a felhasználótól, aki akármikor meg is tagadhatja az alkalmazástól a kért engedélyt. Az engedélyek kezeléséről bővebben a <a href="https://developer.android.com/guide/topics/permissions/overview">developer.android.com</a> oldalon lehet tájékozódni.</p>
+</div>
+<h4 id="a-halozati-reteg-megvalositasa">A hálózati réteg megvalósítása<a class="headerlink" href="#a-halozati-reteg-megvalositasa" title="Permanent link">&para;</a></h4>
+<p>A <code>hu.bme.aut.kliensalkalmazasok.weatherinfo.data.remote.api</code> package-ben hozzuk létre egy <code>WeatherApi</code> nevű interfészt. </p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.data.remote.api</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.data.remote.model.WeatherData</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">retrofit2.Call</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">retrofit2.http.GET</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">retrofit2.http.Query</span>
+
+<span class="kd">interface</span><span class="w"> </span><span class="nc">WeatherApi</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@GET</span><span class="p">(</span><span class="s">&quot;/data/2.5/weather&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getWeather</span><span class="p">(</span>
+<span class="w">        </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&quot;q&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">cityName</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="p">,</span>
+<span class="w">        </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&quot;units&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">units</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="p">,</span>
+<span class="w">        </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&quot;appid&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">appId</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span>
+<span class="w">    </span><span class="p">):</span><span class="w"> </span><span class="n">Call</span><span class="o">&lt;</span><span class="n">WeatherData?&gt;</span><span class="o">?</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Látható, hogy <em>annotációk</em> alkalmazásával tuduk jelezni, hogy az adott függvényhívás milyen hálózati hívásnak fog megfelelni. A <code>@GET</code> annotáció <em>HTTP GET</em> kérést jelent, a paraméterként adott string pedig azt jelzi, hogy hogy a szerver alap <em>URL</em>-éhez képest melyik végpontra szeretnénk küldeni a kérést.</p>
+<div class="admonition note">
+<p>Hasonló módon tudjuk leírni a többi HTTP kérés típust is: @POST, @UPDATE, @PATCH, @DELETE</p>
+</div>
+<p>A függvény paremétereit a <code>@Query</code> annotációval láttuk el. Ez azt jelenti, hogy a <code>Retrofit</code> az adott paraméter értékét a kéréshez fűzi <em>query paraméterként</em> az annotációban megadott kulccsal.</p>
+<div class="admonition note">
+<p>További említésre méltó annotációk a teljesség igénye nélkül: @HEAD, @Multipart, @Field</p>
+</div>
+<p>A hálózati hívást jelölő interfész függvény visszatérési értéke egy<code>Call&lt;WeatherData&gt;</code> típusú objektum lesz. (A retrofites Callt importáljuk a megjelenő lehetőségek közül.) Ez egy olyan hálózati hívást ír le, aminek a válasza <code>WeatherData</code> típusú objektummá alakítható.</p>
+<p>Hozzunk létre a <code>remote.repository</code> package-ben egy <code>WeatherRepository</code> osztályt:</p>
+<p><div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.data.remote.repository</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.data.remote.model.WeatherData</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">retrofit2.Call</span>
+
+<span class="kd">interface</span><span class="w"> </span><span class="nc">WeatherRepository</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">suspend</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getWeather</span><span class="p">(</span><span class="n">city</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="p">):</span><span class="w"> </span><span class="n">Call</span><span class="o">&lt;</span><span class="n">WeatherData?&gt;</span><span class="o">?</span>
+<span class="p">}</span>
+</code></pre></div>
+Majd ennek egy konkrét implementációját is:</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.data.remote.repository</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">com.squareup.moshi.Moshi</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.data.remote.api.WeatherApi</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.data.remote.model.WeatherData</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">okhttp3.OkHttpClient</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">retrofit2.Call</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">retrofit2.Retrofit</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">retrofit2.converter.moshi.MoshiConverterFactory</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">WeatherRepositoryImpl</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">WeatherRepository</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">retrofit</span><span class="p">:</span><span class="w"> </span><span class="n">Retrofit</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">weatherApi</span><span class="p">:</span><span class="w"> </span><span class="n">WeatherApi</span>
+
+<span class="w">    </span><span class="kd">companion</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="err">{</span>
+<span class="w">        </span><span class="kd">private</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">SERVICE_URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;https://api.openweathermap.org&quot;</span>
+<span class="w">        </span><span class="kd">private</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">APP_ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;310b7a8053e8224177e0847644f726ef&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">init</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">moshi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Moshi</span><span class="p">.</span><span class="na">Builder</span><span class="p">().</span><span class="na">addLast</span><span class="p">(</span><span class="n">KotlinJsonAdapterFactory</span><span class="p">()).</span><span class="na">build</span><span class="p">()</span>
+<span class="w">        </span><span class="n">retrofit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Retrofit</span><span class="p">.</span><span class="na">Builder</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">baseUrl</span><span class="p">(</span><span class="n">SERVICE_URL</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">client</span><span class="p">(</span><span class="n">OkHttpClient</span><span class="p">.</span><span class="na">Builder</span><span class="p">().</span><span class="na">build</span><span class="p">())</span>
+<span class="w">            </span><span class="p">.</span><span class="na">addConverterFactory</span><span class="p">(</span><span class="n">MoshiConverterFactory</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">moshi</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">build</span><span class="p">()</span>
+<span class="w">        </span><span class="n">weatherApi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">retrofit</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">WeatherApi</span><span class="o">::</span><span class="n">class</span><span class="p">.</span><span class="na">java</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">suspend</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getWeather</span><span class="p">(</span><span class="n">city</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="p">):</span><span class="w"> </span><span class="n">Call</span><span class="o">&lt;</span><span class="n">WeatherData?&gt;</span><span class="o">?</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">weatherApi</span><span class="p">.</span><span class="na">getWeather</span><span class="p">(</span><span class="n">city</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;metric&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">APP_ID</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Ez az osztály lesz felelős a hálózati kérések lebonyolításáért. </p>
+<p>A <code>Retrofit.Builder()</code> hívással kérhetünk egy pareméterezhető <code>Builder</code> példányt. Ebben adhatjuk meg a hálózati hívásaink tulajdonságait. Jelen példában beállítjuk az elérni kívánt szolgáltatás címét, a HTTP kliens implementációt (<a href="http://square.github.io/okhttp/">OkHttp</a>), valamint a JSON és objektum reprezentációk közötti konvertert (Gson).</p>
+<p>A <code>WeatherApi</code> interfészből a <code>Builder</code>-rel létrehozott <code>Retrofit</code> példány segítségével tudjuk elkérni a fordítási időben generált, paraméterezett implementációt.</p>
+<p>A <code>retrofit.create(WeatherApi.class)</code> hívás eredményeként kapott objektum megvalósítja a <code>WeatherApi</code> interfészt.  Ha ezen az objektumon meghívjuk a <code>getWeather(...)</code> függvényt, akkor megtörténik az általunk az interfészben definiált hálózati hívás. </p>
+<p><strong>Cseréljük le</strong> az <code>APP_ID</code> értékét az <a href="https://openweathermap.org/">OpenWeatherMap</a> oldalon kapott saját API kulcsunkra!</p>
+<p>Egyetlen példányra lesz szükségünk az osztályból, ezt vegyük föl a lokális repository-hoz hasonlóan a WeatherInfoApplication osztályba:</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">android.app.Application</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.room.Room</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.data.local.CityDatabase</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.data.local.repository.CityRepositoryImpl</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.data.remote.repository.WeatherRepositoryImpl</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">WeatherInfoApplication</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Application</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">companion</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="err">{</span>
+<span class="w">        </span><span class="kd">private</span><span class="w"> </span><span class="kd">lateinit</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">db</span><span class="p">:</span><span class="w"> </span><span class="n">CityDatabase</span>
+
+<span class="w">        </span><span class="kd">lateinit</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">cityRepository</span><span class="p">:</span><span class="w"> </span><span class="n">CityRepositoryImpl</span>
+
+<span class="w">        </span><span class="kd">lateinit</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">weatherRepository</span><span class="p">:</span><span class="w"> </span><span class="n">WeatherRepositoryImpl</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">()</span>
+<span class="w">        </span><span class="n">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Room</span><span class="p">.</span><span class="na">databaseBuilder</span><span class="p">(</span>
+<span class="w">            </span><span class="n">applicationContext</span><span class="p">,</span>
+<span class="w">            </span><span class="n">CityDatabase</span><span class="o">::</span><span class="n">class</span><span class="p">.</span><span class="na">java</span><span class="p">,</span>
+<span class="w">            </span><span class="s">&quot;city_database&quot;</span>
+<span class="w">        </span><span class="p">).</span><span class="na">fallbackToDestructiveMigration</span><span class="p">().</span><span class="na">build</span><span class="p">()</span>
+
+<span class="w">        </span><span class="n">cityRepository</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CityRepositoryImpl</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="na">dao</span><span class="p">)</span>
+
+<span class="w">        </span><span class="n">weatherRepository</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WeatherRepositoryImpl</span><span class="p">()</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Ezek után készítsük el a lokálishoz hasonló UseCase-eket, amikkel egyszerűen összefoghatjuk a funkcióinkat. Vegyük fel a <code>domain.usecases.weather</code> package-ben a követkető osztályokat:</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.domain.usecases.weather</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.data.remote.repository.WeatherRepository</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">WeatherUseCases</span><span class="p">(</span><span class="n">repository</span><span class="p">:</span><span class="w"> </span><span class="n">WeatherRepository</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">getCityWeatherUseCase</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetCityWeatherUseCase</span><span class="p">(</span><span class="n">repository</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>és</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.domain.usecases.weather</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.data.remote.model.WeatherData</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.data.remote.repository.WeatherRepository</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">retrofit2.Call</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">java.io.IOException</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">GetCityWeatherUseCase</span><span class="p">(</span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">repository</span><span class="p">:</span><span class="w"> </span><span class="n">WeatherRepository</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">suspend</span><span class="w"> </span><span class="kd">operator</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">invoke</span><span class="p">(</span><span class="n">city</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">):</span><span class="w"> </span><span class="n">Call</span><span class="o">&lt;</span><span class="n">WeatherData?&gt;</span><span class="o">?</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">repository</span><span class="p">.</span><span class="na">getWeather</span><span class="p">(</span><span class="n">city</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="n">IOException</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">()</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+<p>A hálózati kommunikáció beállításával elkészültünk, a megfelelő függvényhívással már megkaphatjuk a kívánt adatot. Először a Város listába helyezzük el az aktuális időjárásnak megfelelő ikont. </p>
+<div class="admonition note">
+<p>Az <em>OpenWeatherMap</em> API-tól a képek lekérhetők a visszakapott adatok alapján, pl: <a href="http://openweathermap.org/img/w/10d.png">https://openweathermap.org/img/w/10d.png</a> </p>
+</div>
+<p>Ezek a kódrészletek kikommnetezve találhatóak a fájlokban. Távolítsuk el a komment jeleket a következő fájlokból, és nézzük át a függvényeket:</p>
+<ul>
+<li>CityListItem.kt</li>
+<li>CityListViewModel.kt</li>
+</ul>
+<p>Figyeljük meg, hogy hogy használjuk a kódban a <code>Coin</code> library <code>AsyncImage</code> függvényét!</p>
+<p>El is készültünk a hálózati kommunikáció beállításával, próbáljuk ki az alkalmazást!</p>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ</p>
+<p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik a <strong>város lista nézet az ikonokkal</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), a <strong>WeatherApiImpl osztály kódja</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>. </p>
+<p>A képet a megoldásban a repository-ba f1.png néven töltsd föl. </p>
+<p>A képernyőkép szükséges feltétele a pontszám megszerzésének.</p>
+</div>
+<h4 id="a-reszletezo-nezet-megvalositasa">A részletező nézet megvalósítása<a class="headerlink" href="#a-reszletezo-nezet-megvalositasa" title="Permanent link">&para;</a></h4>
+<p>Kezdjük a részletes nézet felületével. Ezeket a fájlokat a <code>feature.weather</code> package-be készítsük el. Az állapotokat a <code>WeatherState</code> fogja össze:</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.feature.weather</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.data.remote.model.WeatherData</span>
+
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">WeatherState</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">isLoading</span><span class="p">:</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">error</span><span class="p">:</span><span class="w"> </span><span class="n">Throwable? </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">isError</span><span class="p">:</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">currentWeather</span><span class="p">:</span><span class="w"> </span><span class="n">WeatherData? </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>Amelyeket a <code>WeatherViewModel</code> tárol. Itt található meg a hálózati hívás is.</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.feature.weather</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.*</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.viewmodel.initializer</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.viewmodel.viewModelFactory</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.WeatherInfoApplication</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.data.remote.model.WeatherData</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.domain.usecases.weather.WeatherUseCases</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.CoroutineScope</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.Dispatchers</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.flow.MutableStateFlow</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.flow.asStateFlow</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.flow.update</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.launch</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">retrofit2.Call</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">retrofit2.Callback</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">retrofit2.Response</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">WeatherViewModel</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">savedStateHandle</span><span class="p">:</span><span class="w"> </span><span class="n">SavedStateHandle</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">weatherOperations</span><span class="p">:</span><span class="w"> </span><span class="n">WeatherUseCases</span>
+<span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ViewModel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MutableStateFlow</span><span class="p">(</span><span class="n">WeatherState</span><span class="p">())</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_state</span><span class="p">.</span><span class="na">asStateFlow</span><span class="p">()</span>
+
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">cityName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span>
+
+<span class="w">    </span><span class="k">init</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">cityName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">checkNotNull</span><span class="p">(</span><span class="n">savedStateHandle</span><span class="o">[</span><span class="s">&quot;cityName&quot;</span><span class="o">]</span><span class="p">)</span>
+<span class="w">        </span><span class="n">loadWeatherData</span><span class="p">()</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">loadWeatherData</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="n">viewModelScope</span><span class="p">.</span><span class="na">launch</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">CoroutineScope</span><span class="p">(</span><span class="n">coroutineContext</span><span class="p">).</span><span class="na">launch</span><span class="p">(</span><span class="n">Dispatchers</span><span class="p">.</span><span class="na">IO</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">weatherOperations</span><span class="p">.</span><span class="na">getCityWeatherUseCase</span><span class="p">(</span><span class="n">cityName</span><span class="p">)</span>
+<span class="w">                        </span><span class="o">?.</span><span class="na">enqueue</span><span class="p">(</span><span class="k">object</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nc">Callback</span><span class="o">&lt;</span><span class="n">WeatherData?&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                            </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onResponse</span><span class="p">(</span>
+<span class="w">                                </span><span class="n">call</span><span class="p">:</span><span class="w"> </span><span class="n">Call</span><span class="o">&lt;</span><span class="n">WeatherData?&gt;</span><span class="p">,</span>
+<span class="w">                                </span><span class="n">response</span><span class="p">:</span><span class="w"> </span><span class="n">Response</span><span class="o">&lt;</span><span class="n">WeatherData?&gt;</span>
+<span class="w">                            </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">response</span><span class="o">?.</span><span class="na">isSuccessful</span><span class="o">!!</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                                    </span><span class="n">_state</span><span class="p">.</span><span class="na">update</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                                        </span><span class="nb">it</span><span class="p">.</span><span class="na">copy</span><span class="p">(</span>
+<span class="w">                                            </span><span class="n">isLoading</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">                                            </span><span class="n">currentWeather</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">response</span><span class="p">.</span><span class="na">body</span><span class="p">()</span>
+<span class="w">                                        </span><span class="p">)</span>
+<span class="w">                                    </span><span class="p">}</span>
+<span class="w">                                </span><span class="p">}</span>
+<span class="w">                            </span><span class="p">}</span>
+
+<span class="w">                            </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onFailure</span><span class="p">(</span>
+<span class="w">                                </span><span class="n">call</span><span class="p">:</span><span class="w"> </span><span class="n">Call</span><span class="o">&lt;</span><span class="n">WeatherData?&gt;</span><span class="p">,</span>
+<span class="w">                                </span><span class="n">t</span><span class="p">:</span><span class="w"> </span><span class="n">Throwable</span>
+<span class="w">                            </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                                </span><span class="n">t</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">()</span>
+<span class="w">                            </span><span class="p">}</span>
+<span class="w">                        </span><span class="p">})</span>
+
+<span class="w">                </span><span class="p">}</span>
+
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="n">Exception</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">_state</span><span class="p">.</span><span class="na">update</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nb">it</span><span class="p">.</span><span class="na">copy</span><span class="p">(</span>
+<span class="w">                        </span><span class="n">isLoading</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span>
+<span class="w">                    </span><span class="p">)</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+
+<span class="w">    </span><span class="kd">companion</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="err">{</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">Factory</span><span class="p">:</span><span class="w"> </span><span class="n">ViewModelProvider</span><span class="p">.</span><span class="na">Factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModelFactory</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">initializer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kd">val</span><span class="w"> </span><span class="nv">savedStateHandle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createSavedStateHandle</span><span class="p">()</span>
+<span class="w">                </span><span class="kd">val</span><span class="w"> </span><span class="nv">weatherOperations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WeatherUseCases</span><span class="p">(</span><span class="n">WeatherInfoApplication</span><span class="p">.</span><span class="na">weatherRepository</span><span class="p">)</span>
+<span class="w">                </span><span class="n">WeatherViewModel</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">savedStateHandle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">savedStateHandle</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">weatherOperations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weatherOperations</span>
+<span class="w">                </span><span class="p">)</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Az eredményt pedig végül a <code>WeatherScreen</code> jeleníti meg:</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.feature.weather</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.ExperimentalFoundationApi</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.background</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.*</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material3.*</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.Composable</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.getValue</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Alignment</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Modifier</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.layout.ContentScale</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.platform.LocalContext</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.res.painterResource</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.res.stringResource</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.unit.dp</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.unit.sp</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.compose.collectAsStateWithLifecycle</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.viewmodel.compose.viewModel</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">coil.compose.AsyncImage</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">coil.request.ImageRequest</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.R</span>
+
+<span class="nd">@OptIn</span><span class="p">(</span><span class="n">ExperimentalFoundationApi</span><span class="o">::</span><span class="n">class</span><span class="p">,</span><span class="w"> </span><span class="n">ExperimentalMaterial3Api</span><span class="o">::</span><span class="n">class</span><span class="p">)</span>
+<span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">WeatherScreen</span><span class="p">(</span>
+<span class="w">    </span><span class="n">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">WeatherViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">(</span><span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WeatherViewModel</span><span class="p">.</span><span class="na">Factory</span><span class="p">)</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">state</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">viewModel</span><span class="p">.</span><span class="na">state</span><span class="p">.</span><span class="na">collectAsStateWithLifecycle</span><span class="p">()</span>
+
+<span class="w">    </span><span class="n">Scaffold</span><span class="p">(</span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">(),</span>
+
+<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Box</span><span class="p">(</span>
+<span class="w">            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<span class="w">                </span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">()</span>
+<span class="w">                </span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="nb">it</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">background</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">state</span><span class="p">.</span><span class="na">isLoading</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">state</span><span class="p">.</span><span class="na">isError</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="n">MaterialTheme</span><span class="p">.</span><span class="na">colorScheme</span><span class="p">.</span><span class="na">secondaryContainer</span>
+<span class="w">                    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="n">MaterialTheme</span><span class="p">.</span><span class="na">colorScheme</span><span class="p">.</span><span class="na">background</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">),</span>
+<span class="w">            </span><span class="n">contentAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">Center</span>
+<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="na">isLoading</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">CircularProgressIndicator</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MaterialTheme</span><span class="p">.</span><span class="na">colorScheme</span><span class="p">.</span><span class="na">secondaryContainer</span>
+<span class="w">                </span><span class="p">)</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="na">isError</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">error</span><span class="o">?.</span><span class="na">message</span>
+<span class="w">                        </span><span class="o">?:</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">some_error_message</span><span class="p">)</span>
+<span class="w">                </span><span class="p">)</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">Column</span><span class="p">(</span>
+
+<span class="w">                </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">                        </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">.</span><span class="na">cityName</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">fontSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">24.</span><span class="n">sp</span>
+<span class="w">                    </span><span class="p">)</span>
+<span class="w">                    </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">                        </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">currentWeather</span><span class="o">?.</span><span class="na">weather</span><span class="o">?.</span><span class="na">get</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="o">?.</span><span class="na">main</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">                    </span><span class="p">)</span>
+
+
+<span class="w">                    </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">                        </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">currentWeather</span><span class="o">?.</span><span class="na">weather</span><span class="o">?.</span><span class="na">get</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="o">?.</span><span class="na">description</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">                    </span><span class="p">)</span>
+<span class="w">                    </span><span class="n">AsyncImage</span><span class="p">(</span>
+<span class="w">                        </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ImageRequest</span><span class="p">.</span><span class="na">Builder</span><span class="p">(</span><span class="n">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LocalContext</span><span class="p">.</span><span class="na">current</span><span class="p">)</span>
+<span class="w">                            </span><span class="p">.</span><span class="na">data</span><span class="p">(</span><span class="s">&quot;https://openweathermap.org/img/w/</span><span class="si">${</span><span class="n">state</span><span class="p">.</span><span class="na">currentWeather</span><span class="o">?.</span><span class="na">weather</span><span class="o">?.</span><span class="na">first</span><span class="p">()</span><span class="o">?.</span><span class="na">icon</span><span class="si">}</span><span class="s">.png&quot;</span><span class="p">)</span>
+<span class="w">                            </span><span class="p">.</span><span class="na">crossfade</span><span class="p">(</span><span class="n">enable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+<span class="w">                            </span><span class="p">.</span><span class="na">build</span><span class="p">(),</span>
+<span class="w">                        </span><span class="n">contentDescription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">contentScale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ContentScale</span><span class="p">.</span><span class="na">Crop</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">placeholder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">painterResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">placeholder</span><span class="p">),</span>
+<span class="w">                        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<span class="w">                            </span><span class="p">.</span><span class="na">size</span><span class="p">(</span><span class="m">320.</span><span class="n">dp</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">)</span>
+
+
+
+<span class="w">                    </span><span class="n">Spacer</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">size</span><span class="p">(</span><span class="m">24.</span><span class="n">dp</span><span class="p">))</span>
+
+<span class="w">                    </span><span class="n">Row</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">                            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">weight</span><span class="p">(</span><span class="m">1f</span><span class="p">),</span>
+<span class="w">                            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">label_temperature</span><span class="p">)</span>
+<span class="w">                        </span><span class="p">)</span>
+<span class="w">                        </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">                            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">currentWeather</span><span class="o">?.</span><span class="na">main</span><span class="o">?.</span><span class="na">temp</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">                        </span><span class="p">)</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                    </span><span class="n">Row</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">                            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">weight</span><span class="p">(</span><span class="m">1f</span><span class="p">),</span>
+<span class="w">                            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">label_min_temperature</span><span class="p">)</span>
+<span class="w">                        </span><span class="p">)</span>
+<span class="w">                        </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">                            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">currentWeather</span><span class="o">?.</span><span class="na">main</span><span class="o">?.</span><span class="na">temp_min</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">                        </span><span class="p">)</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                    </span><span class="n">Row</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">                            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">weight</span><span class="p">(</span><span class="m">1f</span><span class="p">),</span>
+<span class="w">                            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">label_max_temperature</span><span class="p">)</span>
+<span class="w">                        </span><span class="p">)</span>
+<span class="w">                        </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">                            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">currentWeather</span><span class="o">?.</span><span class="na">main</span><span class="o">?.</span><span class="na">temp_max</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">                        </span><span class="p">)</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                    </span><span class="n">Row</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">                            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">weight</span><span class="p">(</span><span class="m">1f</span><span class="p">),</span>
+<span class="w">                            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">label_pressure</span><span class="p">)</span>
+<span class="w">                        </span><span class="p">)</span>
+<span class="w">                        </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">                            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">currentWeather</span><span class="o">?.</span><span class="na">main</span><span class="o">?.</span><span class="na">pressure</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">                        </span><span class="p">)</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                    </span><span class="n">Row</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">                            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">weight</span><span class="p">(</span><span class="m">1f</span><span class="p">),</span>
+<span class="w">                            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">label_humidity</span><span class="p">)</span>
+<span class="w">                        </span><span class="p">)</span>
+<span class="w">                        </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">                            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">currentWeather</span><span class="o">?.</span><span class="na">main</span><span class="o">?.</span><span class="na">humidity</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">                        </span><span class="p">)</span>
+<span class="w">                    </span><span class="p">}</span>
+
+
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="a-reszletes-nezet-bekotese-a-navigacioba">A részletes nézet bekötése a navigációba<a class="headerlink" href="#a-reszletes-nezet-bekotese-a-navigacioba" title="Permanent link">&para;</a></h4>
+<p>A felületek elkészülte után már csak össze kell kötnünk őket a navigációs gráffal. Itt fontos, hogy a részletes nézetnek át kell adnunk a megjeleníteni kívánt város nevét, hogy ő maga is le tudja kérni az adatokat. Először vegyük fel a <code>WeatherScreen</code>-t a <code>Screen</code> osztályba, és ne felejtsük el a paramétert:</p>
+<p>package hu.bme.aut.kliensalkalmazasok.weatherinfo.navigation</p>
+<div class="highlight"><pre><span></span><code><span class="kd">sealed</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Screen</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">route</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">object</span><span class="w"> </span><span class="nc">CityListScreen</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Screen</span><span class="p">(</span><span class="n">route</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;city_list&quot;</span><span class="p">)</span>
+
+<span class="w">    </span><span class="kd">object</span><span class="w"> </span><span class="nc">WeatherScreen</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Screen</span><span class="p">(</span><span class="n">route</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;weather/{</span><span class="si">${</span><span class="n">Args</span><span class="p">.</span><span class="na">cityName</span><span class="si">}</span><span class="s">}&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">fun</span><span class="w"> </span><span class="nf">passCityName</span><span class="p">(</span><span class="n">cityName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;weather/</span><span class="si">$</span><span class="n">cityName</span><span class="s">&quot;</span>
+
+<span class="w">        </span><span class="kd">object</span><span class="w"> </span><span class="nc">Args</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">cityName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;cityName&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Majd pedig egészítsük ki a <code>NavGraph</code>-ot:</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.navigation</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.ExperimentalFoundationApi</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material3.ExperimentalMaterial3Api</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.Composable</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Modifier</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.navigation.NavHostController</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.navigation.NavType</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.navigation.compose.NavHost</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.navigation.compose.composable</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.navigation.compose.rememberNavController</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.navigation.navArgument</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.feature.CityListScreen</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.feature.weather.WeatherScreen</span>
+
+<span class="nd">@ExperimentalFoundationApi</span>
+<span class="nd">@ExperimentalMaterial3Api</span>
+<span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">NavGraph</span><span class="p">(</span>
+<span class="w">    </span><span class="n">navController</span><span class="p">:</span><span class="w"> </span><span class="n">NavHostController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rememberNavController</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">NavHost</span><span class="p">(</span>
+<span class="w">        </span><span class="n">navController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">navController</span><span class="p">,</span>
+<span class="w">        </span><span class="n">startDestination</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Screen</span><span class="p">.</span><span class="na">CityListScreen</span><span class="p">.</span><span class="na">route</span><span class="p">,</span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">composable</span><span class="p">(</span><span class="n">Screen</span><span class="p">.</span><span class="na">CityListScreen</span><span class="p">.</span><span class="na">route</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">CityListScreen</span><span class="p">(</span>
+<span class="w">                </span><span class="n">onListItemClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">navController</span><span class="p">.</span><span class="na">navigate</span><span class="p">(</span><span class="n">Screen</span><span class="p">.</span><span class="na">WeatherScreen</span><span class="p">.</span><span class="na">passCityName</span><span class="p">(</span><span class="nb">it</span><span class="p">))</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">composable</span><span class="p">(</span><span class="n">Screen</span><span class="p">.</span><span class="na">WeatherScreen</span><span class="p">.</span><span class="na">route</span><span class="p">,</span>
+<span class="w">        </span><span class="n">arguments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listOf</span><span class="p">(</span>
+<span class="w">            </span><span class="n">navArgument</span><span class="p">(</span><span class="s">&quot;cityName&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NavType</span><span class="p">.</span><span class="na">StringType</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">WeatherScreen</span><span class="p">()</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Ezzel készen is vagyunk, már megjelennek a részletes nézeten az adatok. Próbáljuk is ki az alkalmazást!</p>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ</p>
+<p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik egy város <strong>részletes nézete</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), a <strong>WeatherViewModel</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>. </p>
+<p>A képet a megoldásban a repository-ba f2.png néven töltsd föl. </p>
+<p>A képernyőkép szükséges feltétele a pontszám megszerzésének.</p>
+</div>
+<h2 id="onallo-feladat-varos-lista-torles-megvalositasa-05-pont">Önálló feladat: város lista törlés megvalósítása (0,5 pont)<a class="headerlink" href="#onallo-feladat-varos-lista-torles-megvalositasa-05-pont" title="Permanent link">&para;</a></h2>
+<p>Valósítsuk meg a városok törlését egy újonnan felvett <em>Floating Action Button</em> megnyomásának hatására.</p>
+<div class="admonition example">
+<p class="admonition-title">BEADANDÓ</p>
+<p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik az <strong>üres lista nézet</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), a <strong>törléshez tartozó kód</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>. </p>
+<p>A képet a megoldásban a repository-ba f3.png néven töltsd föl. </p>
+<p>A képernyőkép szükséges feltétele a pontszám megszerzésének.</p>
+</div>
+<h2 id="bonusz-feladat-elorejelzes">Bónusz feladat: Előrejelzés<a class="headerlink" href="#bonusz-feladat-elorejelzes" title="Permanent link">&para;</a></h2>
+<p>Az aktuális időjárás nézet mellé (mondjuk egy horizontalPagerbe, lsd. előző labor) készítsünk egy előrejelző felületet! Az <code>OpenWeatherMap</code> API szerencsére ehhez is biztosít végpontot:</p>
+<p><a href="http://api.openweathermap.org/data/2.5/forecast?q=Budapest&amp;units=metric&amp;appid={APPID">http://api.openweathermap.org/data/2.5/forecast?q=Budapest&amp;units=metric&amp;appid={APPID</a>}</p>
+
+    <hr>
+  <div class="md-source-file">
+    <span class="md-source-file__fact"> <span class="md-icon" title="Utolsó frissítés"> <svg
+          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path
+            d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z">
+          </path>
+        </svg>
+      </span>
+      <span title="2023. május 26. 10:03:56">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-05-26T10:03:56+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-05-26</span>
+      </span>
+    </span>
+
+    
+
+    <span class="md-source-file__fact">
+      <span class="md-icon" title="Szerzők">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path
+            d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z">
+          </path>
+        </svg>
+      </span>
+      <span>Szerzők</span>
+      <nav><a href="https://github.com/gazdilaci" target="_blank" rel="noopener noreferrer" class="md-author" title="@gazdilaci">
+          <img src="https://avatars.githubusercontent.com/u/23335752?size=72" alt="@gazdilaci">
+        </a></nav>      
+    </span>
+  </div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Vissza a tetejére
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; BME VIK AUT
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.instant", "navigation.top", "search.suggest"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "V\u00e1g\u00f3lapra m\u00e1solva", "clipboard.copy": "M\u00e1sol\u00e1s v\u00e1g\u00f3lapra", "search.result.more.one": "1 tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.more.other": "# tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.none": "Nincs tal\u00e1lat", "search.result.one": "1 egyez\u0151 dokumentum", "search.result.other": "# egyez\u0151 dokumentum", "search.result.placeholder": "Keres\u00e9shez \u00edrj ide valamit", "search.result.term.missing": "\u00dcres", "select.version": "Verzi\u00f3v\u00e1lt\u00e1s"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.2a6f1dda.min.js"></script>
+      
+        <script src="../../../js/timeago.min.js"></script>
+      
+        <script src="../../../js/timeago_mkdocs_material.js"></script>
+      
+    
+  <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>
