@@ -302,8 +302,8 @@ Valósítsd meg a teljes tippelési logikát a guess() függvényben (`src\app\a
       }
 
       const currentInList = this.guesses.find(g => g.colors.indexOf('unset') !== -1); // Megkeressük az első elemet a listában, ahol van üres elem.
-      currentInList.colors = this.currentGuess; // A tipp színeit átadjuk a listaelemnek.
-      currentInList.keys = Array.from(Array(4).keys())
+      currentInList!.colors = this.currentGuess; // A tipp színeit átadjuk a listaelemnek.
+      currentInList!.keys = Array.from(Array(4).keys())
         .map<PegColor>(i => i < matches ? 'black' : i < matches + wrongPlace ? 'white' : 'unset') // Létrehozunk annyi fekete key-t, ahány talált, annyi fehéret, amennyi nem, a többi pedig üres.
       this.currentGuess = Array.from(Array(4)).map(_ => 'unset'); // Az új tippünk pedig legyen simán csak üres.  
 
@@ -355,7 +355,7 @@ A fent felsorolt két lehetőség közül az elsőt valósítjuk meg. Ehhez lét
 
 ??? tip "Megvalósítás: GameOverComponent"
     ```TS
-    export class GameOverComponent implements OnInit {
+    export class GameOverComponent {
 
       @Input()
       won!: boolean;
@@ -373,9 +373,6 @@ A fent felsorolt két lehetőség közül az elsőt valósítjuk meg. Ehhez lét
       restart = new EventEmitter<void>();
 
       constructor() { }
-
-      ngOnInit(): void {
-      }
 
       initParameters(inputs: { won: boolean, numberOfGuesses: number, lastGuess: PegColor[], secretColors: PegColor[] }, outputs: { restart: (...args: any[]) => any }) {
         this.won = inputs["won"];
