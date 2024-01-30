@@ -56,17 +56,15 @@
     
     
    <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
-        html.glightbox-open { overflow: initial; height: 100%; }
-        .gslide-title { margin-top: 0px; user-select: text; }
-        .gslide-desc { color: #666; user-select: text; }
-        .gslide-image img { background: white; }
-        
-            .gscrollbar-fixer { padding-right: 15px; }
-            .gdesc-inner { font-size: 0.75rem; }
-            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
-            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
-            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
-            </style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -1117,7 +1115,7 @@
 <summary>Az Angular-ről dióhéjban</summary>
 <p>Érdemes bevezetőként megnézni a hivatalos dokumentáció áttekintő oldalát: <a href="https://angular.io/guide/architecture">https://angular.io/guide/architecture</a>.</p>
 <p><figure markdown>
-  <a class="glightbox" href="https://angular.io/generated/images/guide/architecture/overview2.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Angular architektúra áttekintése" src="https://angular.io/generated/images/guide/architecture/overview2.png" /></a>
+  <a class="glightbox" href="https://angular.io/generated/images/guide/architecture/overview2.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Angular architektúra áttekintése" src="https://angular.io/generated/images/guide/architecture/overview2.png" /></a>
   <figcaption>Angular architektúra áttekintése</figcaption>
 </figure></p>
 <p>Az <a href="https://angular.io/">Angular</a> egy komplett alkalmazásfejlesztési keretrendszer, aminek segítségével böngészőben futtatható, JavaScript alapú kliensalkalmazásokat tudunk írni. Általában bonyolultabb <em>single-page application</em>-ök készítésére szoktuk használni, egyszerűbb esetekben nem biztos, hogy a legjobb megoldás. Az Angular kulcsgondolatai:</p>
@@ -1191,7 +1189,7 @@
 </blockquote>
 <p>Ezután adjuk ki az alábbi parancsot, ami egy új, üres projektet hoz nekünk létre a jelenlegi útvonalon:</p>
 <blockquote>
-<p><code>ng.cmd new mastermind --prefix=mm --skip-tests=true --routing=false --style=scss --inline-style=false --inline-template=false --directory=.</code></p>
+<p><code>ng new mastermind --prefix=mm --style=scss --skip-tests=true --routing=false --no-standalone --directory=.</code></p>
 </blockquote>
 <details class="tip" open="open">
 <summary>ng parancs különböző környezetekben</summary>
@@ -1204,11 +1202,11 @@
 <summary>Ha az ng parancs nem futna le</summary>
 <p>Ha a parancs nem fut le, mert nem találja a <code>ng.cmd</code>/<code>ng</code> parancsot, ellenőzizzük, hogy a rendszer PATH környezeti változójában megtalálható-e az <code>%APPDATA%\npm</code> bejegyzés, és ha nem, <strong>vegyük fel, majd indítsuk újra a VS Code-ot</strong>, hogy beolvassa az új környezeti változókat!</p>
 <p><figure markdown>
-  <a class="glightbox" href="assets/env_vars.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Környezeti változók Windows-on" src="assets/env_vars.png" /></a>
+  <a class="glightbox" href="assets/env_vars.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Környezeti változók Windows-on" src="assets/env_vars.png" /></a>
   <figcaption>Környezeti változók Windows-on</figcaption>
 </figure></p>
 <p><figure markdown>
-  <a class="glightbox" href="assets/env_vars_path.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="A PATH környezeti változó Windows-on" src="assets/env_vars_path.png" /></a>
+  <a class="glightbox" href="assets/env_vars_path.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="A PATH környezeti változó Windows-on" src="assets/env_vars_path.png" /></a>
   <figcaption>A PATH környezeti változó Windows-on</figcaption>
 </figure></p>
 <p>Ha ezután sem sikerül futtatni az <code>ng</code> parancsot, az útmutatóban szereplő <code>ng</code> parancsokat mindenütt cserélni szükséges az alábbiak valamelyikére: <code>npm run ng</code> vagy <code>.\node_modules\.bin\ng.cmd</code> (ez utóbbi nem a gépen telepített globális, hanem az aktuális mappában, lokálisan telepített Angular CLI-t futtatja).</p>
@@ -1219,17 +1217,17 @@
 </blockquote>
 <p>Ezzel a paranccsal egy <strong>fejlesztésre használható</strong> (éles bevetésre nem alkalmas) szerver szolgálja ki az Angular alkalmazásunkat. Figyeli a háttérben a változásokat, szükség esetén a megfelelő részeket újrafordítja, és frissíti a böngésző megfelelő részeit (nem a teljes oldalt).</p>
 <p>Kis idő után az alábbihoz hasonlót látunk:
-<div class="highlight"><pre><span></span><code>Date: 202x-xx-xxT14:45:07.219Z - Hash: c285db261424f94374a8 - Time: 13135ms
-** Angular Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/ **
-√ Compiled successfully.
-√ Browser application bundle generation complete.
+<div class="highlight"><pre><span></span><code>Initial Chunk Files | Names         |  Raw Size
+polyfills.js        | polyfills     |  83.46 kB |
+main.js             | main          |  21.80 kB |
+styles.css          | styles        |  96 bytes |
 
-Initial Chunk Files   | Names  |      Size
-styles.css, styles.js | styles | 346.72 kB
+                    | Initial Total | 105.35 kB
 
-4 unchanged chunks
-
-Build at: 202x-xx-xxT14:45:10.108Z - Hash: a68362840213b0526fdc - Time: 259ms
+Application bundle generation complete. [2.646 seconds]
+Watch mode enabled. Watching for file changes...
+  ➜  Local:   http://localhost:4200/
+  ➜  press h + enter to show help
 </code></pre></div></p>
 <p>Nyissuk meg tehát a böngészőt a <a href="http://localhost:4200" target="_blank"><code>http://localhost:4200</code></a>-on (ha magától nem nyílna meg)!</p>
 <p>Az <code>ng serve</code> parancsot hagyjuk a háttérben futni. Ha új parancsokat kell végrehajtanunk, nyissunk egy új terminált a <code>Ctrl+Shift+ö</code> billentyűkombinációval! <strong>FONTOS!</strong> Ha a fordítás hibát jelez, és úgy gondoljuk, hogy mégsincs hiba, akkor állítsuk le az <code>ng serve</code> parancsot (pl. <code>Ctrl+C</code>), és indítsuk újra. Ez akkor fordulhat elő esetenként, ha például fájlt törlünk vagy új függőségi csomagot hivatkozunk be.</p>
@@ -1239,7 +1237,7 @@ Build at: 202x-xx-xxT14:45:10.108Z - Hash: a68362840213b0526fdc - Time: 259ms
 <p><strong>FONTOS!</strong> Ha problémába ütközöl/nem várt működést tapasztalsz, <strong>mindig</strong> használd a debuggert, vizsgáld meg a környező változók állapotát!</p>
 </details>
 <figure>
-<p><a class="glightbox" href="assets/start.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="A kiinduló Angular projekt böngészőben" src="assets/start.png" /></a>
+<p><a class="glightbox" href="assets/start.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="A kiinduló Angular projekt böngészőben" src="assets/start.png" /></a>
   </p>
 <figcaption>A kiinduló Angular projekt böngészőben</figcaption>
 </figure>
@@ -1256,16 +1254,14 @@ Build at: 202x-xx-xxT14:45:10.108Z - Hash: a68362840213b0526fdc - Time: 259ms
 </ul>
 </li>
 <li><strong>main.ts</strong>: az alkalmazás belépési pontja, ez állítja össze magát az alkalmazást és indítja el</li>
-<li><strong>polyfills.ts</strong>: itt adhatjuk meg a különböző támogatandó böngészőkhöz szükséges <a href="https://en.wikipedia.org/wiki/Polyfill_(programming)">polyfill</a>-eket</li>
 <li><strong>styles.scss</strong>: a globális stíluslapunk<ul>
 <li>jelenleg ez a fájl üres, ide írhatjuk a globális CSS(/SCSS) szabályainkat</li>
 <li>Angular-ben a komponenseknek lehet saját stíluslapjuk is, ami csak az adott komponensen fog érvényesülni, ezt is fogjuk látni később</li>
 </ul>
 </li>
 <li><strong>assets</strong>: ebben a mappában tárolhatjuk a statikus tartalmainkat (pl. képek)</li>
-<li><strong>environments</strong>: különböző környezeteinknek (pl. dev, teszt, prod) hozhatunk létre egyedi konfigurációkat</li>
 <li><strong>app</strong>: az alkalmazásunk lényegi forráskódja<ul>
-<li><strong>app-routing.module.ts</strong>: az alkalmazás útvonalválasztási logikáját írja le (milyen URL-re milyen komponens töltődjön be), jelenleg üres (bármilyen URL-re a root URL, így az app-root töltődik csak be) vagy nem létezik</li>
+<li><strong>app-routing.module.ts</strong>: az alkalmazás útvonalválasztási logikáját írja le (milyen URL-re milyen komponens töltődjön be), jelenleg még nem létezik, ugyanis a <code>--routing=false</code> kapcsolót használtuk a projekt létrehozásakor</li>
 <li><strong>app.module.ts</strong>: az alkalmazásunk modulja, ami összefogja a teljes alkalmazásban definiált elemeinket (komponensek, direktívák, szolgáltatások)</li>
 <li><strong>app.component</strong><ul>
 <li><strong>.ts</strong>: a komponensünk TypeScript forrása, egy egyszerű TypeScript osztály, ami dekorálva van az Angular <code>@Component()</code> dekorátorával, így tudatjuk az Angular-rel, hogy az osztályunk egy komponens</li>
@@ -1277,7 +1273,6 @@ Build at: 202x-xx-xxT14:45:10.108Z - Hash: a68362840213b0526fdc - Time: 259ms
 </li>
 </ul>
 </li>
-<li>a kihagyott részek jellemzően a unit- és integrációs tesztelést segítik (pl. az e2e mappa, test.ts fájl, karma.conf.js, tsconfig.spec.json)</li>
 </ul>
 <h3 id="beadando">Beadandó<a class="headerlink" href="#beadando" title="Permanent link">&para;</a></h3>
 <div class="admonition example">
@@ -1309,19 +1304,14 @@ Build at: 202x-xx-xxT14:45:10.108Z - Hash: a68362840213b0526fdc - Time: 259ms
 <ul>
 <li>a komponens mögöttes kódját, vagyis a logikáját (.ts):</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="p">,</span><span class="w"> </span><span class="nx">OnInit</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
 
 <span class="kd">@Component</span><span class="p">({</span>
 <span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;mm-peg&#39;</span><span class="p">,</span>
 <span class="w">  </span><span class="nx">templateUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;./peg.component.html&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">styleUrls</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;./peg.component.scss&#39;</span><span class="p">]</span>
+<span class="w">  </span><span class="nx">styleUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;./peg.component.scss&#39;</span>
 <span class="p">})</span>
-<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">PegComponent</span><span class="w"> </span><span class="k">implements</span><span class="w"> </span><span class="nx">OnInit</span><span class="w"> </span><span class="p">{</span>
-
-<span class="w">  </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
-
-<span class="w">  </span><span class="nx">ngOnInit</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="p">}</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">PegComponent</span><span class="w"> </span><span class="p">{</span>
 
 <span class="p">}</span>
 </code></pre></div>
@@ -1333,12 +1323,12 @@ Build at: 202x-xx-xxT14:45:10.108Z - Hash: a68362840213b0526fdc - Time: 259ms
 </code></pre></div>
 <p>Vegyük észre, hogy a kód írása közben kapunk IntelliSense-t a komponens nevéhez. Ha mégsem kapnánk IntelliSense-t, ellenőrizzük, hogy telepítettük-e az <a href="https://marketplace.visualstudio.com/items?itemName=Angular.ng-template">Angular Language Service</a> bővítményt, indítsuk újra a VS Code-ot, és indítsuk újra az <code>ng serve</code>-öt!</p>
 <figure>
-<p><a class="glightbox" href="assets/peg-works.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="peg works!" src="assets/peg-works.png" /></a>
+<p><a class="glightbox" href="assets/peg-works.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="peg works!" src="assets/peg-works.png" /></a>
   </p>
 <figcaption>peg works!</figcaption>
 </figure>
 <p>A komponensünket tehát úgy példányosítottuk, hogy a komponenshez tartozó CSS selector-nak megfelelő elemet elhelyeztük a HTML-ben. Jellemzően elemszintű selectorokat alkalmazunk, mint most a példában is, de van lehetőség más szabályszerűség (pl. class) alapján is példányosítani.</p>
-<p>Vegyük észre továbbá, hogy a komponensünk megvalósítja az ún. <code>OnInit</code> interfészt, ez később az <a href="https://angular.io/guide/lifecycle-hooks">Angular komponens/direktíva életciklus</a> során lehet még hasznos.</p>
+<p>A komponensünk akár megvalósíthatja az ún. <code>OnInit</code> interfészt, ez később az <a href="https://angular.io/guide/lifecycle-hooks">Angular komponens/direktíva életciklus</a> során lehet még hasznos, de alapesetben nem generálódott bele a komponens TypeScript kódjába.</p>
 <p>Hozzuk létre a színeket reprezentáló típust az <code>src\app\models\peg-color.ts</code> fájlba (a mappát és fájlt is hozzuk létre). A típus egy TypeScript uniótípus legyen a 'red', 'purple', 'blue', 'green', 'yellow', 'orange', 'black', 'white', és 'unset' string értékekkel!</summary></p>
 <div class="highlight"><pre><span></span><code><span class="k">export</span><span class="w"> </span><span class="kr">type</span><span class="w"> </span><span class="nx">PegColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;red&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;purple&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;blue&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;green&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;yellow&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;orange&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;black&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;white&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;unset&#39;</span><span class="p">;</span>
 </code></pre></div>
@@ -1348,7 +1338,7 @@ Build at: 202x-xx-xxT14:45:10.108Z - Hash: a68362840213b0526fdc - Time: 259ms
 <p>A PegComponent-be vegyünk fel egy adatkötött 'color' és 'type' tulajdonságot (komponens paraméter)! Vegyünk fel két számított, csak lekérdezhető értéket (getter): colorChar (a szín első karakterét adja vissza nagybetűsítve, vagy az "X" értéket, ha nincs szín) és colorLower (a szín nevét adja vissza, vagy az "unset" értéket, ha nincs szín).</p>
 <details class="tip">
 <summary>Megvalósítás: PegComponent</summary>
-<div class="highlight"><pre><span></span><code><span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">PegComponent</span><span class="w"> </span><span class="k">implements</span><span class="w"> </span><span class="nx">OnInit</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">PegComponent</span><span class="w"> </span><span class="p">{</span>
 
 <span class="w">  </span><span class="kd">@Input</span><span class="p">()</span><span class="w"> </span><span class="c1">// Az Input dekorátort importálnunk kell a jelenlegi scope-ba. Ehhez használhatjuk a VS Code segítségét (Ctrl+. a kurzort a hibára helyezve) vagy fentre beírhatjuk: import { Input } from &#39;@angular/core&#39;;</span>
 <span class="w">  </span><span class="nx">color?</span><span class="o">:</span><span class="w"> </span><span class="kt">PegColor</span><span class="p">;</span><span class="w"> </span><span class="c1">// Hasonlóképp a PegColor-ra is, csak itt a lokális &#39;../models/peg-color&#39;-ból importálunk.</span>
@@ -1363,9 +1353,6 @@ Build at: 202x-xx-xxT14:45:10.108Z - Hash: a68362840213b0526fdc - Time: 259ms
 <span class="w">  </span><span class="nx">get</span><span class="w"> </span><span class="nx">colorLower</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">color</span><span class="w"> </span><span class="o">??</span><span class="w"> </span><span class="s2">&quot;unset&quot;</span><span class="p">;</span><span class="w"> </span>
 <span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="c1">// A maradék, már itt levő kódot ne töröljük ki!</span>
-
 <span class="p">}</span>
 </code></pre></div>
 </details>
@@ -1425,9 +1412,9 @@ Build at: 202x-xx-xxT14:45:10.108Z - Hash: a68362840213b0526fdc - Time: 259ms
 <span class="p">&lt;</span><span class="nt">mm-peg</span> <span class="err">[</span><span class="na">color</span><span class="err">]=&quot;&#39;</span><span class="na">blue</span><span class="err">&#39;&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">mm-peg</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">mm-peg</span> <span class="err">[</span><span class="na">color</span><span class="err">]=&quot;&#39;</span><span class="na">orange</span><span class="err">&#39;&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">mm-peg</span><span class="p">&gt;</span>
 </code></pre></div>
-<p>Ha most megnézzük az oldalt, már haladást láthatunk:</p>
+<p>Ha most megnézzük az oldalt, a következőt láthatjuk:</p>
 <figure>
-<p><a class="glightbox" href="assets/colors.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Színek az oldalon #1" src="assets/colors.png" /></a>
+<p><a class="glightbox" href="assets/colors.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Színek az oldalon #1" src="assets/colors.png" /></a>
   </p>
 <figcaption>Színek az oldalon #1</figcaption>
 </figure>
@@ -1442,7 +1429,7 @@ Build at: 202x-xx-xxT14:45:10.108Z - Hash: a68362840213b0526fdc - Time: 259ms
 <span class="p">&lt;</span><span class="nt">mm-peg</span> <span class="err">[</span><span class="na">color</span><span class="err">]=&quot;&#39;</span><span class="na">white</span><span class="err">&#39;&quot;</span> <span class="err">[</span><span class="na">type</span><span class="err">]=&quot;&#39;</span><span class="na">key</span><span class="err">&#39;&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">mm-peg</span><span class="p">&gt;</span>
 </code></pre></div>
 <figure>
-<p><a class="glightbox" href="assets/colors-2.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Színek az oldalon #2" src="assets/colors-2.png" /></a>
+<p><a class="glightbox" href="assets/colors-2.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Színek az oldalon #2" src="assets/colors-2.png" /></a>
   </p>
 <figcaption>Színek az oldalon #2</figcaption>
 </figure>
@@ -1459,7 +1446,7 @@ Build at: 202x-xx-xxT14:45:10.108Z - Hash: a68362840213b0526fdc - Time: 259ms
 </code></pre></div>
 <p>A <code>peg.component.ts</code>-ből törölhetjük a <code>getColorChar()</code> függvényt, nem lesz rá szükség.</p>
 <figure>
-<p><a class="glightbox" href="assets/colors-3.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Színek az oldalon #3" src="assets/colors-3.png" /></a>
+<p><a class="glightbox" href="assets/colors-3.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Színek az oldalon #3" src="assets/colors-3.png" /></a>
   </p>
 <figcaption>Színek az oldalon #3</figcaption>
 </figure>
@@ -1551,7 +1538,7 @@ Build at: 202x-xx-xxT14:45:10.108Z - Hash: a68362840213b0526fdc - Time: 259ms
 </code></pre></div>
 </details>
 <figure>
-<p><a class="glightbox" href="assets/guesses.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Leadott tippek megjelenítése" src="assets/guesses.png" /></a>
+<p><a class="glightbox" href="assets/guesses.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Leadott tippek megjelenítése" src="assets/guesses.png" /></a>
   </p>
 <figcaption>Leadott tippek megjelenítése</figcaption>
 </figure>
@@ -1620,7 +1607,7 @@ Build at: 202x-xx-xxT14:45:10.108Z - Hash: a68362840213b0526fdc - Time: 259ms
 </code></pre></div>
 </details>
 <figure>
-<p><a class="glightbox" href="assets/main-page.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="A kész kezdőoldal" src="assets/main-page.png" /></a>
+<p><a class="glightbox" href="assets/main-page.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="A kész kezdőoldal" src="assets/main-page.png" /></a>
   </p>
 <figcaption>A kész kezdőoldal</figcaption>
 </figure>
@@ -1642,7 +1629,7 @@ Build at: 202x-xx-xxT14:45:10.108Z - Hash: a68362840213b0526fdc - Time: 259ms
 <p>Vedd a <code>possibleValues</code> ennek az indexnek megfelelő elemeit minden karakterre!</p>
 <p>Ennek eredményeképp a példa <code>XYZ012</code> Neptun kód esetén a <code>[88, 89, 90, 48, 49, 50]</code> értékek, ebből a <code>[4, 5, 0, 0, 1, 2]</code> maradékok tömbje, ebből pedig a <code>['yellow', 'orange', 'red', 'red', 'purple', 'blue']</code> tömb áll elő, amely a felületen az alábbi módon jelenik meg:</p>
 <figure>
-<p><a class="glightbox" href="assets/colorful-code.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Az 'XYZ012' Neptun kódhoz tartozó színkód vizualizációja" src="assets/colorful-code.png" /></a>
+<p><a class="glightbox" href="assets/colorful-code.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Az 'XYZ012' Neptun kódhoz tartozó színkód vizualizációja" src="assets/colorful-code.png" /></a>
   </p>
 <figcaption>Az 'XYZ012' Neptun kódhoz tartozó színkód vizualizációja</figcaption>
 </figure>
@@ -1661,8 +1648,8 @@ Build at: 202x-xx-xxT14:45:10.108Z - Hash: a68362840213b0526fdc - Time: 259ms
           </path>
         </svg>
       </span>
-      <span title="2023. március 31. 16:21:05">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-03-31T16:21:05+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-03-31</span>
+      <span title="2024. január 30. 13:24:18">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-01-30T13:24:18+01:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-01-30</span>
       </span>
     </span>
 
@@ -1678,7 +1665,7 @@ Build at: 202x-xx-xxT14:45:10.108Z - Hash: a68362840213b0526fdc - Time: 259ms
       </span>
       <span>Szerzők</span>
       <nav><a href="https://github.com/Fsomogyi" target="_blank" rel="noopener noreferrer" class="md-author" title="@Fsomogyi">
-          <img src="https://avatars.githubusercontent.com/u/5766384?size=72" alt="@Fsomogyi">
+          <img src="https://avatars.githubusercontent.com/u/5766384?v=4?size=72" alt="@Fsomogyi">
         </a></nav>      
     </span>
   </div>

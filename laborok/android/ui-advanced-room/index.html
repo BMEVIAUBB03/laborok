@@ -56,17 +56,15 @@
     
     
    <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
-        html.glightbox-open { overflow: initial; height: 100%; }
-        .gslide-title { margin-top: 0px; user-select: text; }
-        .gslide-desc { color: #666; user-select: text; }
-        .gslide-image img { background: white; }
-        
-            .gscrollbar-fixer { padding-right: 15px; }
-            .gdesc-inner { font-size: 0.75rem; }
-            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
-            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
-            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
-            </style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -1181,12 +1179,12 @@
 Az új felületen az <em>Add new item</em> gombra kattintva a megadott adatokkal létrejön egy lista elem a listában. Az egyes lista elemeken <code>CheckBox</code> segítségével jelezhetjük, hogy már megvásároltuk őket. A kuka ikonra kattintva törölhetjük az adott elemet.
 A bal alsó sarokban található <code>FloatingActionButton</code>-re kattintva statisztikákat láthatunk a listánkról. A jobb fölső menü gombokra kattintva válthatunk a két mód között.</p>
 <p align="center">
-<a class="glightbox" href="./assets/list.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img src="./assets/list.png" width="240"></a>
-<a class="glightbox" href="./assets/create.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img src="./assets/create.png" width="240"></a>
+<a class="glightbox" href="./assets/list.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="./assets/list.png" width="240"></a>
+<a class="glightbox" href="./assets/create.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="./assets/create.png" width="240"></a>
 </p>
 <p align="center">
-<a class="glightbox" href="./assets/chart1.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img src="./assets/chart1.png" width="240"></a>
-<a class="glightbox" href="./assets/chart2.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img src="./assets/chart2.png" width="240"></a>
+<a class="glightbox" href="./assets/chart1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="./assets/chart1.png" width="240"></a>
+<a class="glightbox" href="./assets/chart2.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="./assets/chart2.png" width="240"></a>
 </p>
 
 <h2 id="elokeszuletek">Előkészületek<a class="headerlink" href="#elokeszuletek" title="Permanent link">&para;</a></h2>
@@ -1421,7 +1419,7 @@ Az erőforrások között szerepelnek még a szükséges <em>string</em> -ek és
 <p>Az első képernyő, amit létrehozunk, a lista lesz.</p>
 <p>Nyissuk meg a <code>nav_graph.xml</code> fájlt, és kattintsunk a <em>New Destination</em> gombra (bal felső gomb), majd a <em>Create new destination</em> gombra:</p>
 <p align="center"> 
-<a class="glightbox" href="./assets/new_destination.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img src="./assets/new_destination.png" width="640"></a>
+<a class="glightbox" href="./assets/new_destination.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="./assets/new_destination.png" width="640"></a>
 </p>
 <p>Válasszuk ki a <em>Fragment (Blank)</em> gombot, és legyen az oldal neve <em>ListFragment</em>. Ezzel létrehoztunk az első oldalunkat, ami automatikusan megkapta a <em>Home Destination</em> jelölőt, ezzel mutatva, hogy az alkalmazás indulásakor ez lesz az első oldalunk.
 A létrejött <code>fragment_shopping_list.xml</code> tartalmát cseréljük ki az alábbira:</p>
@@ -1533,7 +1531,7 @@ A létrejött <code>fragment_shopping_list.xml</code> tartalmát cseréljük ki 
 </code></pre></div>
 <p>Valósítsuk meg a navigációt a másik két oldalra. Hozzunk létre két új <em>Fragment (Blank)</em> képernyőt (<code>CreateNewShoppingItemFragment</code> és <code>ChartFragment</code>). A navigációs gráfban az oldalak közötti navigációt akciókkal tudjuk meghatározni. Egy új akcióhoz fogjuk meg a kiindulási képernyő jobb oldalán lévő kis pöttyöt, és húzzuk a cél oldalra. A <code>ShoppingListFragment</code>-ből induló két akció mellett egy harmadikra is szükségünk van: az új elem létrehozás után vissza kell navigálnunk a lista képernyőre. A három akció létrehozása után tehát így fog kinézni a navigációs gráf:</p>
 <p align="center"> 
-<a class="glightbox" href="./assets/actions.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img src="./assets/actions.png" width="640"></a>
+<a class="glightbox" href="./assets/actions.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="./assets/actions.png" width="640"></a>
 </p>
 
 <p>Az akciók meghívásához használjuk a view binding-ot a <code>ShoppingListFragment</code>-ben:</p>
@@ -2223,7 +2221,7 @@ A kiolvasás után a törlés is fontos, mert ha az érték benn marad az argume
       </span>
       <span>Szerzők</span>
       <nav><a href="https://github.com/gazdilaci" target="_blank" rel="noopener noreferrer" class="md-author" title="@gazdilaci">
-          <img src="https://avatars.githubusercontent.com/u/23335752?size=72" alt="@gazdilaci">
+          <img src="https://avatars.githubusercontent.com/u/23335752?v=4?size=72" alt="@gazdilaci">
         </a></nav>      
     </span>
   </div>

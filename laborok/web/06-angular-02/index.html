@@ -56,17 +56,15 @@
     
     
    <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
-        html.glightbox-open { overflow: initial; height: 100%; }
-        .gslide-title { margin-top: 0px; user-select: text; }
-        .gslide-desc { color: #666; user-select: text; }
-        .gslide-image img { background: white; }
-        
-            .gscrollbar-fixer { padding-right: 15px; }
-            .gdesc-inner { font-size: 0.75rem; }
-            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
-            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
-            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
-            </style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -1011,7 +1009,7 @@
 <p><em>Fontos!</em> Ha a parancsok nem futnak le, akkor az előző Angular labor <em>Kiindulás</em> fejezetében leírtakat</a> vizsgáljuk meg!</p>
 <p>Ha sikeresen lefutnak a parancsok, nyissuk meg a <a href="http://localhost:4200">http://localhost:4200</a>-as porton:</p>
 <figure>
-<p><a class="glightbox" href="assets/main-page.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Kezdőoldal" src="assets/main-page.png" /></a>
+<p><a class="glightbox" href="assets/main-page.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Kezdőoldal" src="assets/main-page.png" /></a>
   </p>
 <figcaption>Kezdőoldal</figcaption>
 </figure>
@@ -1056,7 +1054,7 @@
 </code></pre></div>
 </details>
 <figure>
-<p><a class="glightbox" href="assets/peg-click.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Peg click esemény" src="assets/peg-click.png" /></a>
+<p><a class="glightbox" href="assets/peg-click.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Peg click esemény" src="assets/peg-click.png" /></a>
   </p>
 <figcaption>Peg click esemény</figcaption>
 </figure>
@@ -1098,7 +1096,7 @@
 </code></pre></div>
 <p>Ez annyiban működik másképpen, hogy ha az <code>indexOf('unset')</code> <code>-1</code>-gyel tér vissza, akkor a tömb végéről vesszük ki az utolsó elemet és cseréljük le. Ez nekünk így pont meg is felel.</p>
 <figure>
-<p><a class="glightbox" href="assets/guessing.gif" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Tippelés folyamata" src="assets/guessing.gif" /></a>
+<p><a class="glightbox" href="assets/guessing.gif" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Tippelés folyamata" src="assets/guessing.gif" /></a>
   </p>
 <figcaption>Tippelés folyamata</figcaption>
 </figure>
@@ -1121,7 +1119,7 @@
 </code></pre></div>
 <p>Láthatjuk, hogy az <code>NgFor</code> segítségével kivettük az aktuális elem indexét az <code>i</code> változóba, amit átadunk a <code>pegClick</code> eseménykezelőben a függvényünknek.</p>
 <figure>
-<p><a class="glightbox" href="assets/guess-remove.gif" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Tipp eltávolítása" src="assets/guess-remove.gif" /></a>
+<p><a class="glightbox" href="assets/guess-remove.gif" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Tipp eltávolítása" src="assets/guess-remove.gif" /></a>
   </p>
 <figcaption>Tipp eltávolítása</figcaption>
 </figure>
@@ -1150,7 +1148,7 @@
 </details>
 <p>Láthatjuk, hogy a <code>disabled</code> attribútum értéke azzal egyezik meg (<em>minden adott időpillanatban!</em>), hogy a <code>currentGuess</code> tömb tartalmaz-e <code>unset</code> értéket. Nem kellett tehát felvennünk egy külön erre a célra szolgáló tulajdonságot/mezőt/változót, amit nekünk kell kézzel karbantartani, egyszerűen csak megadtuk az adatkötött kritériumot, hogy mikor legyen letiltva a gomb.</p>
 <figure>
-<p><a class="glightbox" href="assets/guess-button.gif" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Guess gomb" src="assets/guess-button.gif" /></a>
+<p><a class="glightbox" href="assets/guess-button.gif" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Guess gomb" src="assets/guess-button.gif" /></a>
   </p>
 <figcaption>Guess gomb</figcaption>
 </figure>
@@ -1389,7 +1387,7 @@
 </details>
 <p>Ezzel elkészültünk az alkalmazás önállóan játszható verziójával.</p>
 <figure>
-<p><a class="glightbox" href="assets/end-result.gif" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="A játék végállapota" src="assets/end-result.gif" /></a>
+<p><a class="glightbox" href="assets/end-result.gif" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="A játék végállapota" src="assets/end-result.gif" /></a>
   </p>
 <figcaption>A játék végállapota</figcaption>
 </figure>
@@ -1425,7 +1423,7 @@
       </span>
       <span>Szerzők</span>
       <nav><a href="https://github.com/Fsomogyi" target="_blank" rel="noopener noreferrer" class="md-author" title="@Fsomogyi">
-          <img src="https://avatars.githubusercontent.com/u/5766384?size=72" alt="@Fsomogyi">
+          <img src="https://avatars.githubusercontent.com/u/5766384?v=4?size=72" alt="@Fsomogyi">
         </a></nav>      
     </span>
   </div>

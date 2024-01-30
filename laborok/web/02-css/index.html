@@ -56,17 +56,15 @@
     
     
    <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
-        html.glightbox-open { overflow: initial; height: 100%; }
-        .gslide-title { margin-top: 0px; user-select: text; }
-        .gslide-desc { color: #666; user-select: text; }
-        .gslide-image img { background: white; }
-        
-            .gscrollbar-fixer { padding-right: 15px; }
-            .gdesc-inner { font-size: 0.75rem; }
-            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
-            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
-            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
-            </style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -1296,7 +1294,7 @@
 <p>Vizsgáljuk meg, milyen szabályok érvényesülnek az egyes elemekre!</p>
 <p>Nyissuk meg a böngésző beépített fejlesztői eszközeit (<strong>F12</strong>)! Lehetőségünk van az elemeket kijelölni (<strong>Jobb klikk</strong> &gt; <strong>Inspect</strong>), megnézni elhelyezkedésüket a felületen és a DOM szöveges reprezentációjában egyaránt.</p>
 <figure>
-<p><a class="glightbox" href="assets/1-inspector.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="A HTML alapértelmezett megjelenése a böngészőben" src="assets/1-inspector.png" /></a>
+<p><a class="glightbox" href="assets/1-inspector.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="A HTML alapértelmezett megjelenése a böngészőben" src="assets/1-inspector.png" /></a>
   </p>
 <figcaption>A HTML alapértelmezett megjelenése a böngészőben</figcaption>
 </figure>
@@ -1309,7 +1307,7 @@
 <p>A CSS feloldásában a <code>cascading</code>, azaz "egymásba ágyazható" rész szerint több stíluslap létezik a származás szempontjából; mi most a <em>böngészőbe beépített</em>, ún. <code>user agent stylesheet</code>-et látjuk.</p>
 <p>A Computed fülön lenyitva az egyes szabályokat látható, hogy honnan származik az a stílus, sőt az is, hogy egy érték beállítása pontosan melyik szabályból származik, azaz melyik szabály melyiket írta felül.</p>
 <figure>
-<p><a class="glightbox" href="assets/1-computed-chrome.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Chrome computed fül" src="assets/1-computed-chrome.png" /></a>
+<p><a class="glightbox" href="assets/1-computed-chrome.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Chrome computed fül" src="assets/1-computed-chrome.png" /></a>
   </p>
 <figcaption>Chrome computed fül</figcaption>
 </figure>
@@ -1318,7 +1316,7 @@
 <p>A <strong>html</strong>, <strong>body</strong>, <strong>div</strong>, <strong>h1</strong>, <strong>h2</strong> elemek <code>display</code> tulajdonsága <code>block</code>, a <strong>span</strong>, <strong>a</strong> és <strong>b</strong> elemek pedig <code>inline</code> típusúak. A <code>display: block;</code> tulajdonságú elemek egy blokkot (sort) foglalnak el az őket befoglaló elemben, az inline típusúak sorfolytonosak (egymás mellett is elhelyezkedhetnek).</p>
 <p>Láthatjuk, hogy a <code>body</code> elemen található <code>8px</code> margó (<code>margin</code>) mind a 4 irányban:</p>
 <figure>
-<p><a class="glightbox" href="assets/1-body-margin.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Margók vizsgálata" src="assets/1-body-margin.png" /></a>
+<p><a class="glightbox" href="assets/1-body-margin.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Margók vizsgálata" src="assets/1-body-margin.png" /></a>
   </p>
 <figcaption>Margók vizsgálata</figcaption>
 </figure>
@@ -1341,8 +1339,8 @@
 </ul>
 <p>A sorrendhez hozzátartozik az <code>!important</code> kulcsszó, ami önmagában a fentiektől specifikusabb, viszont az <code>!important</code> szabályokra a fenti specificitási sorrend szintén érvényesül.</p>
 <p>A szabályok definiálása:</p>
-<p><a class="glightbox" href="assets/selectors-1.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Egyszerű CSS selectorok" src="assets/selectors-1.png" /></a>
-<a class="glightbox" href="assets/selectors-2.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Összetett selectorok" src="assets/selectors-2.png" /></a></p>
+<p><a class="glightbox" href="assets/selectors-1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Egyszerű CSS selectorok" src="assets/selectors-1.png" /></a>
+<a class="glightbox" href="assets/selectors-2.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Összetett selectorok" src="assets/selectors-2.png" /></a></p>
 </details>
 <ul>
 <li>Ha új szabályt akarunk felvenni, akkor a kapcsos zárójelek közé kattintva tehetjük ezt meg, ezután az automatikus kiegészítés funkcióval láthatjuk az összes, a böngésző által ismert CSS tulajdonságot (Firefox Developerben ezt az üres kurzoron a <strong>fel-le nyilak</strong>-kal tehetjük meg, Edge-ben és Chrome-ban a <strong>Ctrl+szóköz</strong>-zel).</li>
@@ -1379,7 +1377,7 @@
 <span class="p">}</span>
 </code></pre></div>
     <figure markdown>
-    <a class="glightbox" href="assets/2-new-style.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Új szabály létrehozása" src="assets/2-new-style.png" /></a>
+    <a class="glightbox" href="assets/2-new-style.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Új szabály létrehozása" src="assets/2-new-style.png" /></a>
     <figcaption>Új szabály létrehozása</figcaption>
     </figure></p>
 </li>
@@ -1430,7 +1428,7 @@
 <li>A felsorolás után következő elem felcsúszott a listával egy sorba.</li>
 </ul>
 <figure>
-<p><a class="glightbox" href="assets/3-float.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Float" src="assets/3-float.png" /></a>
+<p><a class="glightbox" href="assets/3-float.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Float" src="assets/3-float.png" /></a>
   </p>
 <figcaption>Float</figcaption>
 </figure>
@@ -1449,13 +1447,13 @@
 <span class="p">&lt;/</span><span class="nt">ol</span><span class="p">&gt;</span>
 </code></pre></div>
 <figure>
-<p><a class="glightbox" href="assets/3-clearfix.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Float megtörése a clear segítségével" src="assets/3-clearfix.png" /></a>
+<p><a class="glightbox" href="assets/3-clearfix.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Float megtörése a clear segítségével" src="assets/3-clearfix.png" /></a>
   </p>
 <figcaption>Float megtörése a clear segítségével</figcaption>
 </figure>
 <p>Vegyük észre, hogy az oldal alján is volt egy felsorolás, és sajnos olyan általános szabályt sikerült íni, hogy az ott lévő felsorolásra is érvényre jutott.</p>
 <figure>
-<p><a class="glightbox" href="assets/3-general-rule.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Túl általános szabály" src="assets/3-general-rule.png" /></a>
+<p><a class="glightbox" href="assets/3-general-rule.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Túl általános szabály" src="assets/3-general-rule.png" /></a>
   </p>
 <figcaption>Túl általános szabály</figcaption>
 </figure>
@@ -1530,19 +1528,19 @@
 <ul>
 <li>A drótváz (wireframe), ahol a hangsúly az elrendezésen és az adatokon van, nem a színeken ott gyakran <a href="https://www.figma.com/">Figma</a>-ban készül a kinézet.
     <figure markdown>
-      <a class="glightbox" href="assets/bootstrap/figma.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Figma" src="assets/bootstrap/figma.png" /></a>
+      <a class="glightbox" href="assets/bootstrap/figma.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Figma" src="assets/bootstrap/figma.png" /></a>
       <figcaption>Elkészített oldalváz figma segítségével</figcaption>
     </figure></li>
 <li>Ha a hangsúly inkább a színvilágon és a designon van, akkor pedig a <a href="https://app.zeplin.io/">Zeplin</a> egy gyakori választás.
     <figure markdown>
-      <a class="glightbox" href="assets/bootstrap/zeplin.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Zeplin" src="assets/bootstrap/zeplin.png" /></a>
+      <a class="glightbox" href="assets/bootstrap/zeplin.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Zeplin" src="assets/bootstrap/zeplin.png" /></a>
       <figcaption>Zeplin</figcaption>
     </figure></li>
 </ul>
 <p>A fejlesztés céljából mindegy is, hogy melyik alkalmazásban készül el az oldal designja, a rajzokból CSS és HTML kódot a fejlesztőnek kell készítenie.</p>
 <p>A követkeő feladat alkalmával az alábbi képből (és egy kicsi HTML váz segítségével) kell az oldalt elkészíteni.</p>
 <figure>
-<p><a class="glightbox" href="assets/bootstrap/4.0-design.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Elkészítendő oldal design" src="assets/bootstrap/4.0-design.png" /></a>
+<p><a class="glightbox" href="assets/bootstrap/4.0-design.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Elkészítendő oldal design" src="assets/bootstrap/4.0-design.png" /></a>
   </p>
 <figcaption>Elkészítendő oldal designja</figcaption>
 </figure>
@@ -1618,15 +1616,15 @@
 <details class="tip" open="open">
 <summary>Fejléc tervezett kinézete az egyes felbontásokon</summary>
 <p><figure markdown>
-<a class="glightbox" href="assets/bootstrap/4.1-nav.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Fejléc magas felbontáson" src="assets/bootstrap/4.1-nav.png" /></a>
+<a class="glightbox" href="assets/bootstrap/4.1-nav.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Fejléc magas felbontáson" src="assets/bootstrap/4.1-nav.png" /></a>
 <figcaption>Fejléc magas felbontáson</figcaption>
 </figure></p>
 <p><figure markdown>
-<a class="glightbox" href="assets/bootstrap/4.1-nav-small-close.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Fejléc alacsony felbontáson" src="assets/bootstrap/4.1-nav-small-close.png" /></a>
+<a class="glightbox" href="assets/bootstrap/4.1-nav-small-close.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Fejléc alacsony felbontáson" src="assets/bootstrap/4.1-nav-small-close.png" /></a>
 <figcaption>Fejléc alacsony felbontáson</figcaption>
 </figure></p>
 <p><figure markdown>
-<a class="glightbox" href="assets/bootstrap/4.1-nav-small-open.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Fejléc alacsony felbontáson" src="assets/bootstrap/4.1-nav-small-open.png" /></a>
+<a class="glightbox" href="assets/bootstrap/4.1-nav-small-open.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Fejléc alacsony felbontáson" src="assets/bootstrap/4.1-nav-small-open.png" /></a>
 <figcaption>Fejléc alacsony felbontáson nyitva</figcaption>
 </figure></p>
 </details>
@@ -1778,7 +1776,7 @@
 <h3 id="42-feladat-blog-bejegyzes">4.2. Feladat - Blog bejegyzés<a class="headerlink" href="#42-feladat-blog-bejegyzes" title="Permanent link">&para;</a></h3>
 <p>A navigációs sáv elkészítése után térjünk át a fő tartalmi elemre, a blog bejegyzések formázására. Először csak egy bejegyzést formázzunk meg úgy, hogy az alábbi designt kapjuk.</p>
 <figure>
-<p><a class="glightbox" href="assets/bootstrap/4.2-card-component.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Egy blogbejegyzés megjelenése card használatával" src="assets/bootstrap/4.2-card-component.png" /></a>
+<p><a class="glightbox" href="assets/bootstrap/4.2-card-component.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Egy blogbejegyzés megjelenése card használatával" src="assets/bootstrap/4.2-card-component.png" /></a>
   </p>
 <figcaption>Egy blogbejegyzés megjelenése card használatával</figcaption>
 </figure>
@@ -1847,15 +1845,15 @@
 <details class="info">
 <summary>Képernyőképek különböző felbontások</summary>
 <p><figure markdown>
-<a class="glightbox" href="assets/bootstrap/4.3-high.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Nagy" src="assets/bootstrap/4.3-high.png" /></a>
+<a class="glightbox" href="assets/bootstrap/4.3-high.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Nagy" src="assets/bootstrap/4.3-high.png" /></a>
 <figcaption>Nagy képernyőméret</figcaption>
 </figure></p>
 <p><figure markdown>
-<a class="glightbox" href="assets/bootstrap/4.3-medium.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Közepes" src="assets/bootstrap/4.3-medium.png" /></a>
+<a class="glightbox" href="assets/bootstrap/4.3-medium.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Közepes" src="assets/bootstrap/4.3-medium.png" /></a>
 <figcaption>Közepes képernyőméret</figcaption>
 </figure></p>
 <p><figure markdown>
-<a class="glightbox" href="assets/bootstrap/4.3-small.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Kicsi" src="assets/bootstrap/4.3-small.png" /></a>
+<a class="glightbox" href="assets/bootstrap/4.3-small.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Kicsi" src="assets/bootstrap/4.3-small.png" /></a>
 <figcaption>Kicsi képernyőméret</figcaption>
 </figure></p>
 </details>
@@ -1909,7 +1907,7 @@
 </ul>
 <p>A layout kialakításához vizsgáld meg a <a href="https://getbootstrap.com/docs/5.2/forms/layout/">Bootstrap form layout</a> megoldásokat.</p>
 <figure>
-<p><a class="glightbox" href="assets/bootstrap/4.5-high.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="register-magas" src="assets/bootstrap/4.5-high.png" /></a>
+<p><a class="glightbox" href="assets/bootstrap/4.5-high.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="register-magas" src="assets/bootstrap/4.5-high.png" /></a>
   </p>
 <figcaption>Regisztrációs űrlap asztali nézetben</figcaption>
 </figure>
@@ -1917,7 +1915,7 @@
 <li>Ellenőrizd, hogy az oldal kis képernyő méreten az alábbi elrendezésben jelenik-e meg. Ha nem, akkor javítsd a kódot, hogy az alábbi kinézetet kell kapnod.</li>
 </ul>
 <figure>
-<p><a class="glightbox" href="assets/bootstrap/4.5-small.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="register-small" src="assets/bootstrap/4.5-small.png" /></a>
+<p><a class="glightbox" href="assets/bootstrap/4.5-small.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="register-small" src="assets/bootstrap/4.5-small.png" /></a>
   </p>
 <figcaption>Regisztrációs űrlap mobil nézetben</figcaption>
 </figure>
@@ -1953,7 +1951,7 @@
       </span>
       <span>Szerzők</span>
       <nav><a href="https://github.com/gincsai" target="_blank" rel="noopener noreferrer" class="md-author" title="@gincsai">
-          <img src="https://avatars.githubusercontent.com/u/17701398?size=72" alt="@gincsai">
+          <img src="https://avatars.githubusercontent.com/u/17701398?v=4?size=72" alt="@gincsai">
         </a></nav>      
     </span>
   </div>
