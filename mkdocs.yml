@@ -93,11 +93,11 @@ nav:
       - laborok/web/05-angular-01/index.md
       - laborok/web/06-angular-02/index.md
   - "Mobilos laborok":
-      - laborok/android/00-basics/index.md
-      - laborok/android/01-ui/index.md
-      - laborok/android/02-ui-fragments/index.md
-      - laborok/android/03-room/index.md
-      - laborok/android/04-network/index.md
+      - laborok/android/basics/index.md
+      - laborok/android/ui-basics/index.md
+      - laborok/android/ui-advanced-room/index.md
+      - laborok/android/ui-compose-basics/index.md
+      - laborok/android/compose-advanced-network/index.md
   - "Házi feladat":
       - hf/web/index.md
       - hf/mobil/index.md
