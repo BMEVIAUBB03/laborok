@@ -106,7 +106,7 @@ A telepítő felteheti az alábbi kérdést, erre válaszoljunk `n`-nel:
 
 Ezután adjuk ki az alábbi parancsot, ami egy új, üres projektet hoz nekünk létre a jelenlegi útvonalon:
 
-> `ng.cmd new mastermind --prefix=mm --skip-tests=true --routing=false --style=scss --inline-style=false --inline-template=false --directory=.`
+> `ng new mastermind --prefix=mm --style=scss --skip-tests=true --routing=false --no-standalone --directory=.`
 
 ???+ tip "ng parancs különböző környezetekben"
     Ha valaki járatos a PowerShell világában, akkor érdemes tisztában lenni vele, hogy a globális `ng` parancs futtatása PowerShellből a PATH-ban található `ng.ps1` PowerShell scriptet preferálja az `ng.cmd` helyett. Mivel a PS1 szkript nem digitálisan aláírt, ezért nem futtatható anélkül, hogy a felhasználó ehhez kifejezetten hozzá ne járulna. Az aláíratlan PowerShell szkriptek futtatása veszélyes lehet, ezért csak akkor engedélyezzük az aláíratlan szkript futtatását, ha tudjuk, mit csinálunk (vagy kontrollált környezetben, pl. konténerben vagy virtuális gépen futunk, amit nem zavar, ha tönkretesztünk). Az aláíratlan szkriptek engedélyezéséhez lásd a [hivatalos leírást](https://go.microsoft.com/fwlink/?LinkID=135170). Más operációs rendszereken vagy más shell használatával (pl. bash) az ng parancs meghívásának szintaxisa változhat (pl. `ng`, `ng.cmd` vagy `ng.ps1`)
@@ -141,17 +141,17 @@ Ezzel a paranccsal egy **fejlesztésre használható** (éles bevetésre nem alk
 
 Kis idő után az alábbihoz hasonlót látunk:
 ```
-Date: 202x-xx-xxT14:45:07.219Z - Hash: c285db261424f94374a8 - Time: 13135ms
-** Angular Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/ **
-√ Compiled successfully.
-√ Browser application bundle generation complete.
+Initial Chunk Files | Names         |  Raw Size
+polyfills.js        | polyfills     |  83.46 kB |
+main.js             | main          |  21.80 kB |
+styles.css          | styles        |  96 bytes |
 
-Initial Chunk Files   | Names  |      Size
-styles.css, styles.js | styles | 346.72 kB
+                    | Initial Total | 105.35 kB
 
-4 unchanged chunks
-
-Build at: 202x-xx-xxT14:45:10.108Z - Hash: a68362840213b0526fdc - Time: 259ms
+Application bundle generation complete. [2.646 seconds]
+Watch mode enabled. Watching for file changes...
+  ➜  Local:   http://localhost:4200/
+  ➜  press h + enter to show help
 ```
 
 Nyissuk meg tehát a böngészőt a <a href="http://localhost:4200" target="_blank">`http://localhost:4200`</a>-on (ha magától nem nyílna meg)!
@@ -179,20 +179,17 @@ Vizsgáljuk meg a létrejött projekt tartalmát (a számunkra jelenleg releván
         - a kiinduló fájlunk, gyakorlatilag semmi érdemi nem található benne, az Angular build fogja kitölteni a megfelelő `<script>` és egyéb hivatkozásokkal
         - a törzsben található egy `<mm-root>` nevű elem, ami az alkalmazásunk gyökéreleme, erről még lesz szó később
     - **main.ts**: az alkalmazás belépési pontja, ez állítja össze magát az alkalmazást és indítja el
-    - **polyfills.ts**: itt adhatjuk meg a különböző támogatandó böngészőkhöz szükséges [polyfill](https://en.wikipedia.org/wiki/Polyfill_(programming))-eket
     - **styles.scss**: a globális stíluslapunk
         - jelenleg ez a fájl üres, ide írhatjuk a globális CSS(/SCSS) szabályainkat
         - Angular-ben a komponenseknek lehet saját stíluslapjuk is, ami csak az adott komponensen fog érvényesülni, ezt is fogjuk látni később
     - **assets**: ebben a mappában tárolhatjuk a statikus tartalmainkat (pl. képek)
-    - **environments**: különböző környezeteinknek (pl. dev, teszt, prod) hozhatunk létre egyedi konfigurációkat
     - **app**: az alkalmazásunk lényegi forráskódja
-        - **app-routing.module.ts**: az alkalmazás útvonalválasztási logikáját írja le (milyen URL-re milyen komponens töltődjön be), jelenleg üres (bármilyen URL-re a root URL, így az app-root töltődik csak be) vagy nem létezik
+        - **app-routing.module.ts**: az alkalmazás útvonalválasztási logikáját írja le (milyen URL-re milyen komponens töltődjön be), jelenleg még nem létezik, ugyanis a `--routing=false` kapcsolót használtuk a projekt létrehozásakor
         - **app.module.ts**: az alkalmazásunk modulja, ami összefogja a teljes alkalmazásban definiált elemeinket (komponensek, direktívák, szolgáltatások)
         - **app.component**
             - **.ts**: a komponensünk TypeScript forrása, egy egyszerű TypeScript osztály, ami dekorálva van az Angular `@Component()` dekorátorával, így tudatjuk az Angular-rel, hogy az osztályunk egy komponens
             - **.html**: a komponenshez tartozó HTML kód, itt tudunk adatkötni a TypeScript osztályban definiált tulajdonságokhoz
             - **.scss**: a komponenshez tartozó, csak a komponens *scope*-jára vonatkozó stíluslap
-- a kihagyott részek jellemzően a unit- és integrációs tesztelést segítik (pl. az e2e mappa, test.ts fájl, karma.conf.js, tsconfig.spec.json)
 
 ### Beadandó
 !!! example "1. feladat beadandó (1 pont)"
@@ -230,20 +227,15 @@ A parancs 3 fájlt hoz nekünk létre a `mastermind\src\app\peg` mappában:
 - a komponens mögöttes kódját, vagyis a logikáját (.ts):
 
 ```TS
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'mm-peg',
   templateUrl: './peg.component.html',
-  styleUrls: ['./peg.component.scss']
+  styleUrl: './peg.component.scss'
 })
-export class PegComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class PegComponent {
+  
 }
 
 ```
@@ -266,7 +258,7 @@ Vegyük észre, hogy a kód írása közben kapunk IntelliSense-t a komponens ne
 
 A komponensünket tehát úgy példányosítottuk, hogy a komponenshez tartozó CSS selector-nak megfelelő elemet elhelyeztük a HTML-ben. Jellemzően elemszintű selectorokat alkalmazunk, mint most a példában is, de van lehetőség más szabályszerűség (pl. class) alapján is példányosítani.
 
-Vegyük észre továbbá, hogy a komponensünk megvalósítja az ún. `OnInit` interfészt, ez később az [Angular komponens/direktíva életciklus](https://angular.io/guide/lifecycle-hooks) során lehet még hasznos.
+A komponensünk akár megvalósíthatja az ún. `OnInit` interfészt, ez később az [Angular komponens/direktíva életciklus](https://angular.io/guide/lifecycle-hooks) során lehet még hasznos, de alapesetben nem generálódott bele a komponens TypeScript kódjába.
 
 Hozzuk létre a színeket reprezentáló típust az `src\app\models\peg-color.ts` fájlba (a mappát és fájlt is hozzuk létre). A típus egy TypeScript uniótípus legyen a 'red', 'purple', 'blue', 'green', 'yellow', 'orange', 'black', 'white', és 'unset' string értékekkel!</summary>
 
@@ -284,7 +276,7 @@ A PegComponent-be vegyünk fel egy adatkötött 'color' és 'type' tulajdonságo
 
 ??? tip "Megvalósítás: PegComponent"
     ```TS
-    export class PegComponent implements OnInit {
+    export class PegComponent {
 
       @Input() // Az Input dekorátort importálnunk kell a jelenlegi scope-ba. Ehhez használhatjuk a VS Code segítségét (Ctrl+. a kurzort a hibára helyezve) vagy fentre beírhatjuk: import { Input } from '@angular/core';
       color?: PegColor; // Hasonlóképp a PegColor-ra is, csak itt a lokális '../models/peg-color'-ból importálunk.
@@ -299,9 +291,6 @@ A PegComponent-be vegyünk fel egy adatkötött 'color' és 'type' tulajdonságo
       get colorLower() {
         return this.color ?? "unset"; 
       }
-
-      // A maradék, már itt levő kódot ne töröljük ki!
-
     }
     ```
 
@@ -379,7 +368,7 @@ Cseréljük le az `app-component.html` tartalmát (ez az oldalunk fő komponense
 <mm-peg [color]="'orange'"></mm-peg>
 ```
 
-Ha most megnézzük az oldalt, már haladást láthatunk:
+Ha most megnézzük az oldalt, a következőt láthatjuk:
 
 <figure markdown>
   ![Színek az oldalon #1](./assets/colors.png)
