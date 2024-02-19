@@ -1,17 +1,17 @@
-# Labor 01 - HTTP, HTML
+# Labor 01 – HTTP, HTML
 
 ## Bevezetés
 
 A labor során laborvezetői segítséggel, majd önállóan készítesz el feladatokat a webes technológiák gyakorlati megismerése érdekében.
 
-A labor célja, a böngésző fejlesztői eszközeinek (dev toolbar) megismerése, a HTTP kérések és válaszok vizsgálata, valamint HTML oldalak készítésének gyakorlása.
+A labor célja, a böngésző fejlesztői eszközeinek (dev toolbar) megismerése, a HTTP-kérések és -válaszok vizsgálata, valamint HTML-oldalak készítésének gyakorlása.
 
-### Félév során használt eszközök
+### A félév során használt eszközök
 
-* Webböngésző (Chrome, Edge vagy Firefox) és a beépített hibakereső eszközei,
-* [Visual Studio Code](https://code.visualstudio.com/download) kódszerkesztő alkalmazás,
-    * otthoni vagy egyéni munkavégzéshez használható bármilyen más kódszerkesztő vagy fejlesztőkörnyezet, de a laborokban a VS Code-ot használjuk.
-    * A laborban előre telepítésre kerültek az alábbi kiegészítők a VS Code-hoz,
+* Webböngésző (Chrome, Edge vagy Firefox) és annak beépített hibakereső eszközei
+* [Visual Studio Code](https://code.visualstudio.com/download) kódszerkesztő alkalmazás
+    * Otthoni vagy egyéni munkavégzéshez használható bármilyen más kódszerkesztő vagy fejlesztőkörnyezet, de a laborokban a VS Code-ot használjuk
+    * A laborban előre telepítésre kerültek az alábbi kiegészítők a VS Code-hoz:
         * [C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) - C# és .NET Core támogatás.
         * [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) - egy nagyon egyszerű, fejlesztési célra szánt HTTP kiszolgáló.
         * [Live Saas Compiler](https://marketplace.visualstudio.com/items?itemName=glenn2223.live-sass) - SCSS fájlokból CSS-t tud generálni.
