@@ -140,7 +140,7 @@ Az alábbi ábrán látható, hogy milyen funkciókat és beállításokat rejt 
 
 ### Önálló feladat beadandó
 
-!!! example "1. feladat beadandó (0.5 pont)"
+!!! example "1. feladat beadandó (0.1 pont)"
     * Nyisd meg a böngészőben a http://www.aut.bme.hu oldalt. **HTTP kérés, nem HTTPS!**
     * Keresd meg az azt a kérést, ami a http://www.aut.bme.hu -ra érkezett, és vizsgáld meg a kapott HTTP-választ.
     * Készíts képernyőképet a Dev Toolbar Network füléről, ahol látszódnak a kérés fejlécei. (General, Request Headers, Response Headers)
@@ -211,7 +211,7 @@ Ahhoz, hogy ne kelljen szerver oldali kódot készíteni egy tesztelésre kiadot
 
 ### Közös feladat – beadandó
 
-!!! example "2. a) Feladat beadandó (0.5 pont)"
+!!! example "2. a) Feladat beadandó (0.1 pont)"
     * A kutya létrehozásához összeállított kérés sikeres lefuttatásáról készíts egy képernyőképet.
     * A képernyőképet másold be **`f2a.png`** néven a repository gyökerébe! 
 
@@ -220,7 +220,7 @@ Ahhoz, hogy ne kelljen szerver oldali kódot készíteni egy tesztelésre kiadot
 1. Készíts egy új kérést, ami módosítja a közösen létrehozott azonosítójú kutya állapotát (`status`) `sold`-ra.
 2. Készíts egy új kérést, ami törli a korábban módosított kutyát.
 
-!!! example "2. b) Önálló feladat beadandó (1 pont)"
+!!! example "2. b) Önálló feladat beadandó (0.2 pont)"
     * Készíts képernyőképet a sikeresen lefuttatott módosításról és törlésről.
     * A képernyőképeket másold be **`f2b.png`** és **`f2c.png`** néven a repository gyökerébe! 
 
@@ -326,7 +326,7 @@ Forrás: https://internetingishard.com/html-and-css/semantic-html/
 8. Készítsük el a láblécet, amibe az évszám és a _BME AUT_ felirat kerüljön.
 
 ### Beadandó
-!!! example "3. feladat beadandó (1.5 pont)"
+!!! example "3. feladat beadandó (0.3 pont)"
     * Az `index.html` módosításait commitold!
     * Az elkészült weboldal képernyőképét másold be `f3.png` néven a repository gyökerébe!
 
@@ -347,7 +347,7 @@ A beépített stílusokat megvizsgálhatjuk egy elemet kijelölve. A CSS-szabál
 
 ### Beadandó
 
-!!! example "4. feladat beadandó (0.5 pont)"
+!!! example "4. feladat beadandó (0.1 pont)"
     Készíts egy képernyőképet, ahol látható, hogy a `h3` tagre milyen alapértelmezett stílusok vonatkoznak. Az így készült képernyőképet másold be `f4.png` néven a repository gyökerébe!
 
 ## 5. Feladat 
@@ -390,7 +390,7 @@ A HTML-űrlapok egységes, megszokott adatbeviteli eszközként szolgálnak szá
 
 ### Beadandó
 
-!!! example "BEADANDÓ (1 pont)"
+!!! example "BEADANDÓ (0.2 pont)"
     * Commitold a `form.html` módosított tartalmát!
     * Készíts képernyőképet `f5a.png` néven tetszőleges böngészőben a teljesen kitöltött űrlapról, amin pontosan 1 db validációs hiba található!
     * Demonstráld a böngésző _Network_ fülének segítségével az űrlapadatok elküldésének tényét a GET `f5b.png` és POST `f5c.png` igék használatával is! Fontos, hogy a képen láthatóak legyenek az elküldött paraméterek.
