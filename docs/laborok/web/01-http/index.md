@@ -68,7 +68,7 @@ A Chrome, Edge és Firefox böngészők eszközkészlete kisebb eltérésektől 
 
 Az eszközök legalább alapszintű ismerete (elsősorban a DOM Explorer, Console és Network használata) a laborokon elengedhetetlen.
 
-## 1. Feladat 
+## 1. feladat 
 
 ### HTTP-kérések
 
@@ -146,7 +146,7 @@ Az alábbi ábrán látható, hogy milyen funkciókat és beállításokat rejt 
     * Készíts képernyőképet a Dev Toolbar Network füléről, ahol látszódnak a kérés fejlécei. (General, Request Headers, Response Headers)
     * A készített képernyőképet másold be **`f1.png`** néven a repository gyökerébe!
 
-## 2. Feladat 
+## 2. feladat 
 
 ### Postman
 
@@ -224,7 +224,7 @@ Ahhoz, hogy ne kelljen szerver oldali kódot készíteni egy tesztelésre kiadot
     * Készíts képernyőképet a sikeresen lefuttatott módosításról és törlésről.
     * A képernyőképeket másold be **`f2b.png`** és **`f2c.png`** néven a repository gyökerébe! 
 
-## 3. Feladat 
+## 3. feladat 
 
 ### HTML-alapok
 
@@ -330,7 +330,7 @@ Forrás: https://internetingishard.com/html-and-css/semantic-html/
     * Az `index.html` módosításait commitold!
     * Az elkészült weboldal képernyőképét másold be `f3.png` néven a repository gyökerébe!
 
-## 4. Feladat 
+## 4. feladat 
 
 ### HTML-oldal vizsgálata
 
@@ -350,7 +350,7 @@ A beépített stílusokat megvizsgálhatjuk egy elemet kijelölve. A CSS-szabál
 !!! example "4. feladat beadandó (0.1 pont)"
     Készíts egy képernyőképet, ahol látható, hogy a `h3` tagre milyen alapértelmezett stílusok vonatkoznak. Az így készült képernyőképet másold be `f4.png` néven a repository gyökerébe!
 
-## 5. Feladat 
+## 5. feladat 
 
 ### HTML-űrlapok
 
