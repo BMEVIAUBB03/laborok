@@ -191,8 +191,8 @@ Vizsgáljuk meg a létrejött projekt tartalmát (a számunkra jelenleg releván
             - **.html**: a komponenshez tartozó HTML kód, itt tudunk adatkötni a TypeScript osztályban definiált tulajdonságokhoz
             - **.scss**: a komponenshez tartozó, csak a komponens *scope*-jára vonatkozó stíluslap
 
-### Beadandó
-!!! example "1. feladat beadandó (1 pont)"
+### Beadandó (0.2 pont)
+!!! example "1. feladat beadandó"
     Illessz be egy képernyőképet, ahol bal oldalon a böngészőben futó Angular kezdőprojekt, jobb oldalon a VS Code-ban futó terminál látható! (`f1.png`)
 
 ## 2. feladat - Peg komponens
@@ -419,8 +419,8 @@ A `peg.component.ts`-ből törölhetjük a `getColorChar()` függvényt, nem les
   <figcaption>Színek az oldalon #3</figcaption>
 </figure>
 
-### Beadandó
-!!! example "2. feladat beadandó (1 pont)"
+### Beadandó (0.2 pont)
+!!! example "2. feladat beadandó"
     Illessz be egy képernyőképet, ahol bal oldalon a színes golyók, jobb oldalon a VS Code-ban futó terminál látható! (`f2.png`)
 
 ## 3. feladat - Sor definiálása
@@ -519,8 +519,8 @@ Stílusozzuk a komponenst (`src\app\app.component.scss`) az alábbiak szerint.
   <figcaption>Leadott tippek megjelenítése</figcaption>
 </figure>
 
-### Beadandó
-!!! example "3. feladat beadandó (1 pont)"
+### Beadandó (0.2 pont)
+!!! example "3. feladat beadandó"
     Illessz be egy képernyőképet, ahol bal oldalon a tippek megjelenítése, jobb oldalon a VS Code-ban futó terminál látható! (`f3.png`)
 
 ## 4. feladat - Tipp összeállítása
@@ -595,8 +595,8 @@ Igazítsuk hozzá a stílust (`src\app\app.component.scss`):
 
  Az adatkötést egy irányban gyakoroltuk, a modell (komponens) felől a nézet (template) irányába. A következő alkalommal bekötjük az eseménykezelőket, és megírjuk a szükséges logikákat, hogy a játék játszható legyen.
 
-### Beadandó
-!!! example "4. feladat beadandó (1 pont)"
+### Beadandó (0.2 pont)
+!!! example "4. feladat beadandó"
     Illessz be egy képernyőképet, ahol bal oldalon a kész kezdőoldal, jobb oldalon a VS Code-ban futó terminál látható! (`f4.png`)
 
 ## 5. feladat - NEPTUN kód
@@ -626,6 +626,6 @@ Ennek eredményeképp a példa `XYZ012` Neptun kód esetén a `[88, 89, 90, 48, 
   <figcaption>Az 'XYZ012' Neptun kódhoz tartozó színkód vizualizációja</figcaption>
 </figure>
 
-### Beadandó
-!!! example "5. feladat beadandó (1 pont)"
+### Beadandó (0.2 pont)
+!!! example "5. feladat beadandó"
     Illessz be egy képernyőképet, ahol bal oldalon a NEPTUN kódod vizualizációja, jobb oldalon a VS Code-ban futó terminál látható! (`f5.png`)

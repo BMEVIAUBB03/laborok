@@ -246,8 +246,8 @@ class Hand {
 
 A `value` nevű mező csak lekérdezhető, számított érték: kiszámítja a kézben szereplő kártyák értékét.
 
-### Beadandó
-!!! example "1. feladat beadandó (1 pont)"
+### Beadandó (0.25 pont)
+!!! example "1. feladat beadandó"
     Illessz be egy képernyőképet a böngészőről, ahol látható a `deckofcardsapi.com` oldalról a két kártya húzására kapott, JSON formátumú válasz! (`f1.png`)
 
 ## 2. feladat - Játék indítása
@@ -355,13 +355,13 @@ $(document).on("click", "#hit-button", async e => {
 
 A fenti kód a korrábiakhoz képest értelemszerű, az egyetlen érdekesség, hogy a hívás előtt az akciógombokat letiltjuk (`attr`), a válasz megérkezése után pedig újra engedélyezzük őket (`removeAttr`).
 
-### Beadandó
+### Beadandó (0.25 pont)
 !!! example "2. feladat beadandó (1 pont)"
     Illessz be egy képernyőképet a játék állásásáról egy vagy több kártya húzása után! (`f2.png`)
 
 ## 3. feladat - Önálló feladatok
 
-A következő feladatok közül a maximális 5 pont megszerzéséhez legalább 3 feladatot kell teljesítened! Tehát minden feladat 1 pontot ér, bármennyit megcsinálhatsz, de maximum +3 pontot szerezhetsz a vezetett rész 2 pontján túl. Bármely fájlban módosíthatsz, létrehozhatsz és törölhetsz is fájlokat.
+A következő feladatok közül legalább 3 feladatot kell teljesítened! Tehát bármennyit megcsinálhatsz, de maximum 1 pontot szerezhetsz a laboron (beleértve a vezetett részt is) 3 feladat jó megoldásával. Bármely fájlban módosíthatsz, létrehozhatsz és törölhetsz is fájlokat.
 
 - Az osztó első lapja ne legyen látható! Helyette használd a `back.png` fájlt! Ne legyen látható a `title` szöveg sem, ha az egeret a kártya fölé visszük!
 - Kezeld az ászok értékét: az ász 11-et ér, ha nem lépnénk túl vele a 21-et, egyébként 1-et.
@@ -371,6 +371,6 @@ A következő feladatok közül a maximális 5 pont megszerzéséhez legalább 3
 - Kezeld a játékos pénzét! A játékos 1000$-ról indít, minden játék 100$-ba kerül, amit győzelem esetén a játékos duplán elnyer.
 - Kezeld a *split* szabályt: a játékos, ha a játék elején két ugyanolyan értékű lapja van, választhat egy új lehetőséget: *split*. Ekkor az egy-egy ugyanolyan értékű lap két külön kezébe kerül, a tét duplázódik, és mindkét új kezébe 1-1 új lapot kap. Mindkét kezéhez külön kéthet új lapot, vagy megállhat. A két keze külön-külön értékelődik ki az osztó lapjaival, tehát 0, 1 vagy 2 kezével nyerhet, ennek megfelelően részesül jutalomban.
 
-### Beadandó
-!!! example "3. feladat beadandó (3 pont)"
+### Beadandó (0.5 pont)
+!!! example "3. feladat beadandó"
     Illessz be minden elkészített feladatról 1-1 képernyőképet! A pull request szövegébe írd bele azt is, hogy melyik feladatokat oldottad meg (bemásolhatod a feladat szövegét)! (`f3.png` - `f9.png`)
