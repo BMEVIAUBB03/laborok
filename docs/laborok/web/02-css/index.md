@@ -138,7 +138,7 @@ Lehetőség van esetenként több szabály aggregált megadására is ún. short
 * Figyeljük meg a fenti képernyőn, hogy az új szabállyal nem egy cellára állítottuk be a padding-ot hanem minden cellára.
 * Az új szabály alatt egyébként látható a user agent styleheet-ből érvényre jutott szabályok is, illetve ez alatt az örökölt szabályok is.
 
-### Beadandó – 0.1 pont
+### Beadandó
 
 !!! example "2. feladat beadandó (0.1 pont)"
     * Hozz létre egy új szabályt a `table`-re ahol beállítod az alábbi szabályt
@@ -293,7 +293,7 @@ A fenti szabály 768 és 991 pixel közötti szélességű viewporton jelenik me
 
 Próbáljuk ki, mi történik, hogyha a két szabály sorrendjét felcseréljük!
 
-### Beadandó – 0.2 pont
+### Beadandó
 
 !!! example "3. feladat beadandó (0.2 pont)"
     * Commitolja a módosított HTML-fájlt és a létrehozott CSS-fájlt a repositoryba!
@@ -531,7 +531,7 @@ Alapvetően két irányba indulhatunk el
     * Állítsuk be, hogy a `form` alsó margóra 0 legyen. Tipp: `mb-0`.
     * *Részletek [Kereső form](https://getbootstrap.com/docs/5.2/components/navbar/#forms).*
 
-#### Beadandó – 0.2 pont
+#### Beadandó
 
 !!! example "4.1. feladat beadandó (0.2 pont)"
     Készítsd el a fent ismertetett navigációs sávot Bootstrap segítségével. Ügyelj a reszpozív megjelenítésre.
@@ -602,7 +602,7 @@ A fenti kártyatemplate alapján ki kell egészíteni az előre elkészített k�
     * a láblécben szereplő linkek legyenek szürkék és ha fölé visszük az egeret akkor zöldek. Az ikonok mindig legyenek zöldek.
     * a láblécben lévő szöveg elrendezésére is figyelj! Tipp: használj flexboxot `d-flex` úgy hogy az elemek közötti távolság nőjön csak. `justify-content-between`.
 
-#### Beadandó – 0.2 pont
+#### Beadandó
 
 !!! example "4.2. feladat beadandó (0.2 pont)"
     Készíts egy képernyőképet a teljes oldalról, amin látható az elkészített blogposzt – csak ez az egy – megformázva, és másold a képernyőképet **`f4-2.png`** néven a repository gyökerébe!
@@ -634,7 +634,7 @@ Mivel több kártya kerül egymás mellé, egy layoutmegoldást kell készíteni
     <figcaption>Kicsi képernyőméret</figcaption>
     </figure>
 
-#### Beadandó - 0.1 pont
+#### Beadandó
 
 !!! example "4.3. feladat beadandó (0.1 pont)"
     Készíts egy képernyőképet, közepes felbontáson, ahol két hasábban jelennek meg a képek. A képernyőn legyen látható a böngésző DevToolbarja, ahol ki van jelölve az első `div` amin a `col` osztály szerepel és látható a rajta beállított CSS szabályok is. 
@@ -695,7 +695,7 @@ A legfontosabb CSS osztályok az űrlapok formázásához az alábbiak:
   <figcaption>Regisztrációs űrlap mobilnézetben</figcaption>
 </figure>
 
-#### Beadandó – 0.2 pont
+#### Beadandó
 
 !!! example "4.4. feladat beadandó (0.2 pont)"
     Az elkészített űrlapot töltsd ki, és a *Address* mezőbe a **Neptun-kódodat** írd be, majd kattints a *Sign in* gombra. Ekkor az URL-ben láthatóak lesznek a formban megadott adatok is. Erről készíts egy képernyőképet, amit **`f4-5.png`** néven másolj be a repository gyökerébe.
