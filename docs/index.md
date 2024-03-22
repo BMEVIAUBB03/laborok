@@ -28,7 +28,7 @@ A laborok megoldását egy személyre szóló git repository-ban kell beadni. En
 
 ### Laborok értékelése
 
-Minden labort külön jeggyel értékelünk. A teljesítés feltétele a határidőig történő beadás. A jegy (1-5 skálán) a labor feladatokon megszerezhető 5 pont alapján történik. A feladatok beadásához minden esetben a GitHub platformot használjuk. 
+Minden labort külön pontozunk, minden labor maximum 1 pontot érhet. A teljesítés feltétele a határidőig történő beadás. A feladatok beadásához minden esetben a GitHub platformot használjuk. 
 
 A feladatok kiértékelése egyes laborok esetén részben **automatikusan** történik. A futtatható kódokat valóban le fogjuk futtatni, ezért minden esetben fontos a feladatleírások pontos követése (kiinduló kód váz használata, csak a megengedett fájlok változtatása, stb.)!
 

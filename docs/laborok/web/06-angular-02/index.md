@@ -189,8 +189,8 @@ Láthatjuk, hogy az `NgFor` segítségével kivettük az aktuális elem indexét
   <figcaption>Tipp eltávolítása</figcaption>
 </figure>
 
-### Beadandó
-!!! example "1. feladat beadandó (2 pont)"
+### Beadandó (0.25 pont)
+!!! example "1. feladat beadandó"
     Illessz be egy képernyőképet, ahol bal oldalon egy kész tippelés, jobb oldalon a VS Code terminálja látható! (`f1.png`)
 
 ## 2. feladat - Tipp elküldése
@@ -320,8 +320,8 @@ Valósítsd meg a teljes tippelési logikát a guess() függvényben (`src\app\a
 
 Az adatkötés segítségével a felületre automatikusan bekerül a megfelelő tipp, ugyanis az adatkötés automatikusan újrarajzolja az elemeket a felületen.
 
-### Beadandó
-!!! example "2. feladat beadandó (1.5 pont)"
+### Beadandó (0.25 pont)
+!!! example "2. feladat beadandó"
     Illessz be egy képernyőképet, ahol bal oldalon a játék vége (alert-ben "You won!" vagy "You lost..."), jobb oldalon a VS Code terminálja látható! (`f2.png`)
 
 ## 3. feladat - Játék végét jelző modális ablak
@@ -488,6 +488,6 @@ Ezzel elkészültünk az alkalmazás önállóan játszható verziójával.
   <figcaption>A játék végállapota</figcaption>
 </figure>
 
-### Beadandó
-!!! example "3. feladat beadandó (1.5 pont)"
+### Beadandó (0.5 pont)
+!!! example "3. feladat beadandó"
     Illessz be egy képernyőképet, ahol bal oldalon a felugró modális ablak, jobb oldalon a VS Code-ban futó terminál látható! (`f3.png`)
