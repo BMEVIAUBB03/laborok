@@ -1,4 +1,4 @@
-# Labor 04 - TypeScript, AJAX
+# Labor 04 – TypeScript, AJAX
 
 ## Bevezetés
 
@@ -30,24 +30,24 @@ A feladatok megoldása során ne felejtsd el követni a feladat beadás folyamat
 3. Hozz létre egy új ágat `megoldas` néven, és ezen az ágon dolgozz.
 4. A neptun.txt fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.
 
-## 1. feladat - BlackJack kiinduló projekt megismerése
+## 1. feladat – BlackJack kiinduló projekt megismerése
 
-Vizsgáljuk meg a kiinduló projektet! A kiinduló index.html a `<head>` részben hivatkozza a függőségeket, és később a HTML állomány végén a saját `blackjack.js` fájlunkat. Vegyük észre, hogy ilyen fájl nem található, mi magunk kézzel nem is fogjuk létrehozni; ezt a TypeScript compiler fogja nekünk generálni az összes `.ts` fájlból kiindulva. Vizsgáljuk meg a `tsconfig.json` nevű fájlt, ami a TypeScript compiler konfigurációját tartalmazza!
+Vizsgáljuk meg a kiinduló projektet! A kiinduló index.html a `<head>` részben hivatkozza a függőségeket, és később a HTML-állomány végén a saját `blackjack.js` fájlunkat. Vegyük észre, hogy ilyen fájl nem található, mi magunk kézzel nem is fogjuk létrehozni; ezt a TypeScript compiler fogja nekünk generálni az összes `.ts` fájlból kiindulva. Vizsgáljuk meg a `tsconfig.json` nevű fájlt, ami a TypeScript compiler konfigurációját tartalmazza!
 
-Terminálból (Ctrl+ö) adjuk ki az alábbi parancsot a munkamappában:
+Terminálból (`Ctrl+Ö`) adjuk ki az alábbi parancsot a `feladat` mappában:
 > `npm install`
 
-Ezzel a paranccsal a package.json fájlban található függőségeket telepítjük a Node.js Package Manager (`npm`) segítségével. Itt a Bootstrap, a JQuery és Popper osztálykönyvtárak találhatók (utóbbi kettő a Bootstrap függősége).
+Ezzel a paranccsal a `package.json` fájlban található függőségeket telepítjük a Node.js Package Manager (`npm`) segítségével. Itt a Bootstrap, a JQuery és a Popper osztálykönyvtárak találhatóak (utóbbi kettő a Bootstrap függősége).
 
-Indítsuk el Terminálból (célszerű Ctrl+Shift+ö billentyűkombinációval egy új terminált indítani a szokásos `live-server` parancsnak) a TypeScript compilert `watch` módban, ami figyelni fogja az összes hivatkozott TypeScript fájl módosítását, és újragenerálja szükség esetén a kimenetet:
+Indítsuk el terminálból (célszerű Ctrl+Shift+Ö billentyűkombinációval egy új terminált indítani a szokásos `live-server` parancsnak) a TypeScript compilert `watch` módban, ami figyelni fogja az összes hivatkozott TypeScript-fájl módosítását, és újragenerálja szükség esetén a kimenetet:
 > `node_modules\.bin\tsc -w`
 
-??? warning "MAC"
-    Ha MAC-en lennénk és a fenti nem működik, a következő paranccsal próbálkozhatunk:
+??? warning "macOS"
+    Ha macOS-en a fenti nem működik, a következő paranccsal próbálkozhatunk:
     > `tsc --watch`
 
 ??? warning "PowerShell"
-    Ha Windows-on lennénk és script execution policy-vel kapcsolatban kapnánk egy hibaüzenetet, a következő parancsot adjuk ki PowerShell terminálból (nem VSCode-ból!):
+    Ha Windowson a script execution policyvel kapcsolatban kapnánk egy hibaüzenetet, a következő parancsot adjuk ki PowerShell terminálból (nem a VSCode-ból!):
     > `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned`
 
 Indítást követően a következő képernyő fogad minket:
@@ -99,7 +99,7 @@ class Game {
 - Konstruktora privát, példányosítani egy `Game` objektumot a statikus, aszinkron `NewGame` függvény meghívásával lehetséges.
 - A konstruktorban jelzett `public` módosítószóval az objektumon automatikusan létrejön a konstruktorparaméter nevével és értékével egy egyszer beállítható, csak olvasható `deck_id` mező.
 - Minden távoli HTTP hívás a `Call` függvényen megy keresztül, ahol egy relatív útvonalat kell megadnunk, ami a `https://deckofcardsapi.com/api/`-hoz képesti relatív útvonalra indít egy aszinkron AJAX kérést a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch" target="_blank">fetch</a> API használatával.
-- Érdemes észrevenni a C#-ból már ismerős `async/await` minta használatát. A `Call` függvény hívása ekvivalens az alábbi JavaScript kóddal:
+- Érdemes észrevenni a C#-ból már ismerős `async/await` minta használatát. A `Call` függvény hívása ekvivalens az alábbi JavaScript-kóddal:
 
 ``` JS
 function Call(relativeUrl) {
@@ -121,7 +121,6 @@ Az így kapott válaszból helyettesítsük be a `deck_id` értékét az alábbi
 
 Láthatjuk, hogy az így kapott válasz az alábbihoz hasonló lesz:
 ``` JSON
-
 {
 	"success": true,
 	"deck_id": "g7ldwoe33ss4", 
@@ -152,39 +151,33 @@ Láthatjuk, hogy az így kapott válasz az alábbihoz hasonló lesz:
     ], 
     "remaining": 310
 }
-
 ```
 
 
 A fenti válasz típus leírója interfész formájában szerepel a `draw-card-response.ts` fájlban:
 
 ``` TS
-
 interface DrawCardResponse extends DeckOfCardsResponse {
     cards: Card[];
 }
-
 ```
 
 ???+ tip "TypeScript interfészek és típusosság"
     A TypeScript - a szokásos objektum-orientált nyelvekkel ellentében - úgynevezett `structural subtyping`-ot vagy `duck typing`-ot használ. Ez azt jelenti, hogy TypeScript-ben az interfészek nem csak metódusok megvalósítását írhatják elő, hanem egy objektum struktúrájára is tehetnek megkötéseket. Egy objektumnak nem kell explicit implementálnia az adott interfészt, elég, hogyha megnézzük, hogy úgy "viselkedik-e", mint az adott interfész. Innen ered a `duck typing` kifejezés, vagyis ha valami úgy hápog és néz ki, mint egy kacsa, akkor az valószínűleg egy kacsa.
 
-A fenti interfész egy kártya tömböt tartalmaz, továbbá származik a DeckOfCardsResponse-ból, melynek kódja az alábbi:
+A fenti interfész egy kártyatömböt tartalmaz, továbbá származik a DeckOfCardsResponse-ból, melynek kódja az alábbi:
 
 ``` TS
-
 interface DeckOfCardsResponse {
     success: boolean;
     deck_id: string;
     remaining: number;
 }
-
 ```
 
 A kártyák pedig így néznek ki:
 
 ``` TS
-
 interface Card {
     image: string;
     value: Rank;
@@ -192,19 +185,16 @@ interface Card {
     code: string;
     images: { [key: string]: string }
 }
-
 ```
 
 Az `images` objektum egy stringekkel indexelhető objektum, ami stringeket tartalmaz. Ez képzi le a válasz "format" : "file" formátumát, ami a fenti példában látható ("svg" : "..."). A value Rank típusú, a suit Suit típusú, amik rendre az alábbi típusoknak felelnek meg:
 
 ``` TS
-
 type Rank = "ACE" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10" | "JACK" | "QUEEN" | "KING";
 type Suit = "SPADES" | "HEARTS" | "DIAMONDS" | "CLUBS";
-
 ```
 
-???+ tip "Unió típusok"
+???+ tip "Uniótípusok"
     TypeScript-ben az `unió típusok` (`discriminated union type`) csak megadott értékeket vehetnek fel. Minden érték egyúttal saját maga típusa is, pl. az `"ACE"` érték egy olyan típus, ami kizárólag ezt az egyetlen értéket veheti fel. A fenti kódban a `Rank` és `Suit` unió típusok.
 
 A játékunkat a statikus, aszinkron `NewGame` függvény meghívásával példányosíthatjuk. A játékban az osztó és a játékos kezét a `Hand` osztály reprezentálja:
@@ -246,11 +236,12 @@ class Hand {
 
 A `value` nevű mező csak lekérdezhető, számított érték: kiszámítja a kézben szereplő kártyák értékét.
 
-### Beadandó (0.25 pont)
-!!! example "1. feladat beadandó"
+### Beadandó
+
+!!! example "1. feladat beadandó (0.25 pont)"
     Illessz be egy képernyőképet a böngészőről, ahol látható a `deckofcardsapi.com` oldalról a két kártya húzására kapott, JSON formátumú válasz! (`f1.png`)
 
-## 2. feladat - Játék indítása
+## 2. feladat – Játék indítása
 
 A játék indításához vegyük fel a `start.ts` fájlba az alábbi kódrészletet:
 
@@ -292,7 +283,7 @@ function renderHands(game: Game) {
     for (let card of game.dealersHand.cards) {
         addCardToContainer("dealer", card);
     }
-    for (let card of game.playersHand.cards){
+    for (let card of game.playersHand.cards) {
         addCardToContainer("player", card);
     }
 
@@ -327,11 +318,7 @@ A függvények az alábbi funkciókkal rendelkeznek:
 Ezután a játék állapotát ki is tudjuk rajzolni, ha a játék indítását kezelő eseménykezelőnk végén (`start.ts`) meghívjuk a `renderHands` függvényt:
 
 ``` TS
-
-$(document).on("click", "#start-game-button", async e => {
-    // ...
-    renderHands(game);
-});
+renderHands(game);
 ```
 
 <figure markdown>
@@ -355,22 +342,24 @@ $(document).on("click", "#hit-button", async e => {
 
 A fenti kód a korrábiakhoz képest értelemszerű, az egyetlen érdekesség, hogy a hívás előtt az akciógombokat letiltjuk (`attr`), a válasz megérkezése után pedig újra engedélyezzük őket (`removeAttr`).
 
-### Beadandó (0.25 pont)
-!!! example "2. feladat beadandó (1 pont)"
+### Beadandó
+
+!!! example "2. feladat beadandó (0.25 pont)"
     Illessz be egy képernyőképet a játék állásásáról egy vagy több kártya húzása után! (`f2.png`)
 
-## 3. feladat - Önálló feladatok
+## 3. feladat – Önálló feladatok
 
-A következő feladatok közül legalább 3 feladatot kell teljesítened! Tehát bármennyit megcsinálhatsz, de maximum 1 pontot szerezhetsz a laboron (beleértve a vezetett részt is) 3 feladat jó megoldásával. Bármely fájlban módosíthatsz, létrehozhatsz és törölhetsz is fájlokat.
+A következő feladatok közül legfeljebb 3 feladat teljesítése ér pontot! Tehát bármennyit megcsinálhatsz, de maximum 1 pontot szerezhetsz a laboron (beleértve a vezetett részt is). Bármely fájlt módosíthatod, és akár létrehozhatsz vagy törölhetsz is továbbiakat.
 
-- Az osztó első lapja ne legyen látható! Helyette használd a `back.png` fájlt! Ne legyen látható a `title` szöveg sem, ha az egeret a kártya fölé visszük!
-- Kezeld az ászok értékét: az ász 11-et ér, ha nem lépnénk túl vele a 21-et, egyébként 1-et.
-- Ha a játékos túllépi a 21-et: ebben az esetben jeleníts meg egy megfelelő üzenetet, és legyen lehetőség új játék indítására!
-- Ha a játékos megnyomja a Stand gombot: a játékos nem kér több lapot, ekkor viszont az osztó nem látható lapja felfedésre kerül, majd az osztó addig húz automatikusan, amíg el nem éri a játékos pontszámát vagy túllépi a 21-et (előbbi esetben az osztó nyer, utóbbiban veszít). A feszültség fokozása érdekében használhatod a `setTimeout(() => { /* ... */}, 2000)` hívást, amivel várakoztathatod a futást, mintha az osztó gondolkodna 2 másodpercig.
-- Kezeld, ha a játékos győz!
-- Kezeld a játékos pénzét! A játékos 1000$-ról indít, minden játék 100$-ba kerül, amit győzelem esetén a játékos duplán elnyer.
-- Kezeld a *split* szabályt: a játékos, ha a játék elején két ugyanolyan értékű lapja van, választhat egy új lehetőséget: *split*. Ekkor az egy-egy ugyanolyan értékű lap két külön kezébe kerül, a tét duplázódik, és mindkét új kezébe 1-1 új lapot kap. Mindkét kezéhez külön kéthet új lapot, vagy megállhat. A két keze külön-külön értékelődik ki az osztó lapjaival, tehát 0, 1 vagy 2 kezével nyerhet, ennek megfelelően részesül jutalomban.
+3. Az osztó első lapja ne legyen látható! Helyette használd a `back.png` fájlt! Ne legyen látható a `title` szöveg sem, ha az egeret a kártya fölé visszük!
+4. Kezeld az ászok értékét: az ász 11-et ér, ha nem lépnénk túl vele a 21-et, egyébként 1-et.
+5. Ha a játékos túllépi a 21-et: ebben az esetben jeleníts meg egy megfelelő üzenetet, és legyen lehetőség új játék indítására!
+6. Ha a játékos megnyomja a Stand gombot: a játékos nem kér több lapot, ekkor viszont az osztó nem látható lapja felfedésre kerül, majd az osztó addig húz automatikusan, amíg el nem éri a játékos pontszámát vagy túllépi a 21-et (előbbi esetben az osztó nyer, utóbbiban veszít). A feszültség fokozása érdekében használhatod a `setTimeout(() => { /* ... */}, 2000)` hívást, amivel várakoztathatod a futást, mintha az osztó gondolkodna 2 másodpercig.
+7. Kezeld, ha a játékos győz!
+8. Kezeld a játékos pénzét! A játékos 1000$-ról indít, minden játék 100$-ba kerül, amit győzelem esetén a játékos duplán elnyer.
+9. Kezeld a *split* szabályt: a játékos, ha a játék elején két ugyanolyan értékű lapja van, választhat egy új lehetőséget: *split*. Ekkor az egy-egy ugyanolyan értékű lap két külön kezébe kerül, a tét duplázódik, és mindkét új kezébe 1-1 új lapot kap. Mindkét kezéhez külön kéthet új lapot, vagy megállhat. A két keze külön-külön értékelődik ki az osztó lapjaival, tehát 0, 1 vagy 2 kezével nyerhet, ennek megfelelően részesül jutalomban.
 
-### Beadandó (0.5 pont)
-!!! example "3. feladat beadandó"
-    Illessz be minden elkészített feladatról 1-1 képernyőképet! A pull request szövegébe írd bele azt is, hogy melyik feladatokat oldottad meg (bemásolhatod a feladat szövegét)! (`f3.png` - `f9.png`)
+### Beadandó
+
+!!! example "3. feladat beadandó (⅙-⅙ pont, max. 0.5 pont)"
+    Illessz be minden elkészített feladatról 1-1 képernyőképet! A pull request szövegébe írd bele azt is, hogy hanyadik feladatokat oldottad meg! (`f3.png`–`f9.png`)

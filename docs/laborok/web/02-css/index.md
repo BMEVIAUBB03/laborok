@@ -1,4 +1,4 @@
-# Labor 02 - CSS és Bootstrap
+# Labor 02 – CSS és Bootstrap
 
 ## Bevezetés
 
@@ -18,26 +18,26 @@ A feladatok megoldása során ne felejtsd el követni a feladat beadás folyamat
 3. Hozz létre egy új ágat `megoldas` néven, és ezen az ágon dolgozz.
 4. A neptun.txt fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.
 
-## 1. Feladat - Stíluslapok
+## 1. feladat – Stíluslapok
 
-Webes HTML tartalmak stílusozására CSS-t használunk. A CSS alapjai:
+Webes HTML-tartalmak stílusozására CSS-t használunk. A CSS alapjai:
 
-* szabály (mintaillesztés) alapú, deklaratív programozási nyelv,
-* DOM elemekhez megjelenést rendel.
+* szabály (mintaillesztés) alapú, deklaratív programozási nyelv
+* DOM-elemekhez megjelenést rendel.
 
-A böngészőben megjelenített HTML tartalmak alapértelmezés szerint formázatlanok, viszont bizonyos szabályokat a böngésző alapértelmezetten illeszt az egyes elemekre, az elem típusa szerint.
+A böngészőben megjelenített HTML-tartalmak alapértelmezés szerint formázatlanok, viszont bizonyos szabályokat a böngésző alapértelmezetten illeszt az egyes elemekre, az elem típusa szerint.
 
-Vizsgáljuk meg, milyen szabályokat illeszt a böngésző a HTML, a BODY, a DIV, a SPAN, a H1, H2 és egyéb elemekre!
+Vizsgáljuk meg, milyen szabályokat illeszt a böngésző a `html`, `body`, `div`, `span`, `H1`, `H2` és egyéb elemekre!
 
-Nyissuk meg a Visual Studio Code-ban a leklónozott repositorynkat, és a gyökér könyvtárba található `index.html` fájlba dolgozzunk.
+Nyissuk meg a Visual Studio Code-ban a leklónozott repositorynkat, és a gyökérkönyvtárban található `index.html` fájlba dolgozzunk.
 
-Ahhoz, hogy böngészőben is lássuk a weboldalt az `index.html`-en kattintsunk jobb gombbal és válasszuk az **Open with Live Server** opciót, ami elindítja a fejlesztői webszervert és az alapértelmezett böngészőben megnyitja az oldal.
+Ahhoz, hogy böngészőben is lássuk a weboldalt, az `index.html`-re kattintsunk jobb gombbal és válasszuk az *Open with Live Server* opciót, ami elindítja a fejlesztői webszervert, és az alapértelmezett böngészőben megnyitja az oldalt.
 
 Vegyük észre, hogy az oldalhoz nem vettünk fel saját stíluslapot, valamilyen formázás mégis érvényesült. Egyes elemek félkövérek, kisebbek-nagyobbak, elrendezésük sorfolytonos vagy tördelt.
 
 Vizsgáljuk meg, milyen szabályok érvényesülnek az egyes elemekre!
 
-Nyissuk meg a böngésző beépített fejlesztői eszközeit (**F12**)! Lehetőségünk van az elemeket kijelölni (**Jobb klikk** > **Inspect**), megnézni elhelyezkedésüket a felületen és a DOM szöveges reprezentációjában egyaránt.
+Nyissuk meg a böngésző beépített fejlesztői eszközeit (`F12`)! Lehetőségünk van az elemeket kijelölni (*jobb klikk* > *Inspect*), megnézni elhelyezkedésüket a felületen és a DOM szöveges reprezentációjában egyaránt.
 
 <figure markdown>
   ![A HTML alapértelmezett megjelenése a böngészőben](./assets/1-inspector.png)
@@ -45,26 +45,26 @@ Nyissuk meg a böngésző beépített fejlesztői eszközeit (**F12**)! Lehetős
 </figure>
 
 !!! tip "Fontos"
-    A böngészők és/vagy bizonyos szerverek túl agresszívan gyorsítótárazhatnak bizonyos fájlokat, pl. a HTML és CSS fájljainkat, így a változásokat nem biztos, hogy látni fogjuk egyszerű újratöltés után. Ha ez előfordul, a cache letiltásához a Developer Tools eszköztáron ki kell kapcsolnunk a cache-t.
+    A böngészők és/vagy bizonyos szerverek túl agresszívan gyorsítótárazhatnak bizonyos fájlokat, pl. a HTML- és CSS-fájljainkat, így a változásokat nem biztos, hogy látni fogjuk egy egyszerű újratöltés után. Ha ez előfordul, a cache letiltásához a *Developer Tools* eszköztáron ki kell kapcsolnunk a cache-t.
 
-Jellemzően a menüsor bal oldalán találhatók a kijelöléshez szükséges műveletek ikonjai, jobb oldalon a részletes nézet.
+Jellemzően a menüsor bal oldalán találhatóak a kijelöléshez szükséges műveletek ikonjai, jobb oldalon pedig a részletes nézet.
 
-A kiválasztott elemhez a jobb oldali **Computed** fülön a ténylegesen érvényre lépett szabályokat láthatjuk. Mivel nincs explicit CSS fájlunk linkelve és CSS szabályokat sem írtunk a HTML-ben, ezért kizárólag a böngésző beépített **user agent stylesheet**-je érvényesül. Itt láthatjuk a **CSS Box model**-t is, ami az elem **tartalma**, a hozzá tartozó **padding**, **border** és **margin** értékek egymásra halmozását jelenti a *2 dimenziós téglalap* oldalaihoz mérten.
+A kiválasztott elemhez a jobb oldali *Computed* fülön a ténylegesen érvényre lépett szabályokat láthatjuk. Mivel nincs explicit CSS-fájlunk linkelve, és CSS-szabályokat sem írtunk a HTML-ben, ezért kizárólag a böngésző beépített *user agent stylesheet*je érvényesül. Itt láthatjuk a *CSS Box model*t is, ami az elem **tartalma**, a hozzá tartozó *padding*, *border* és *margin* értékek egymásra halmozását jelenti a *2 dimenziós téglalap* oldalaihoz mérten.
 
-A CSS feloldásában a `cascading`, azaz "egymásba ágyazható" rész szerint több stíluslap létezik a származás szempontjából; mi most a *böngészőbe beépített*, ún. `user agent stylesheet`-et látjuk.
+A CSS feloldásában a `cascading`, avagy az "egymásba ágyazható" rész szerint több stíluslap létezik a származás szempontjából; mi most a *böngészőbe beépített*, ún. *user agent stylesheet*et látjuk.
 
-A Computed fülön lenyitva az egyes szabályokat látható, hogy honnan származik az a stílus, sőt az is, hogy egy érték beállítása pontosan melyik szabályból származik, azaz melyik szabály melyiket írta felül.
+A *Computed* fülön lenyitva az egyes szabályokat látható, hogy honnan származik az a stílus, sőt az is, hogy egy érték beállítása pontosan melyik szabályból származik, azaz melyik szabály melyiket írta felül.
 
 <figure markdown>
   ![Chrome computed fül](./assets/1-computed-chrome.png)
   <figcaption>Chrome computed fül</figcaption>
 </figure>
 
-A fenti szűrőt használva van lehetőségünk az alkalmazott CSS szabályok között keresni is.
+A fenti szűrőt használva van lehetőségünk az alkalmazott CSS-szabályok között keresni is.
 
-A **h1**, **h2** és **b** elemek alapértelmezetten félkövérek, ezt a `font-weight: 700;` tulajdonság írja le nekünk.
+A `h1`, `h2` és `b` elemek alapértelmezetten félkövérek, ezt a `font-weight: 700;` tulajdonság írja le nekünk.
 
-A **html**, **body**, **div**, **h1**, **h2** elemek `display` tulajdonsága `block`, a **span**, **a** és **b** elemek pedig `inline` típusúak. A `display: block;` tulajdonságú elemek egy blokkot (sort) foglalnak el az őket befoglaló elemben, az inline típusúak sorfolytonosak (egymás mellett is elhelyezkedhetnek).
+A `html`, `body`, `div`, `h1`, `h2` elemek `display` tulajdonsága `block`, a `span`, `a` és `b` elemek pedig `inline` típusúak. A `display: block;` tulajdonságú elemek egy blokkot (sort) foglalnak el az őket befoglaló elemben, az inline típusúak sorfolytonosak (egymás mellett is elhelyezkedhetnek).
 
 Láthatjuk, hogy a `body` elemen található `8px` margó (`margin`) mind a 4 irányban:
 
@@ -73,20 +73,20 @@ Láthatjuk, hogy a `body` elemen található `8px` margó (`margin`) mind a 4 ir
   <figcaption>Margók vizsgálata</figcaption>
 </figure>
 
-## 2. Feladat - Módosítás futási időben
+## 2. feladat – Módosítás futásidőben
 
-??? note "Emlékeztető a CSS szabályok definiálásához"
-    Saját CSS szabályokat többféle módon tudunk az oldalunkhoz rendelni:
+??? note "Emlékeztető a CSS-szabályok definiálásához"
+    Saját CSS-szabályokat többféle módon tudunk az oldalunkhoz rendelni:
 
-    * CSS fájlokra történő hivatkozással,
-    * CSS szabályok felvételével a HTML tartalmán belüli `<style>` tagben,
-    * inline, a HTML elemek `style` attribútumának beállításával.
+    * CSS-fájlokra történő hivatkozással,
+    * CSS-szabályok felvételével a HTML tartalmán belüli `<style>` tagben,
+    * inline, a HTML-elemek `style` attribútumának beállításával.
 
     Ütköző CSS szabályok közül az érvényesül, amelynek nagyobb a specificitása (megegyező specificitás esetében az utoljára definiált).
 
     Emlékeztetőként a szabályok specificitási sorrendje:
 
-    * inline stílus (`<div style="..."> `),
+    * `inline` stílus (`<div style="..."> `),
     * ID-k száma (`#azonosito`),
     * osztályok, attribútumok és pszeudo-osztályok száma (`.osztaly`, `[attributum]`, `[attributum="ertek"]`, `:hover`),
     * pszeudo-elemek (`:before`, `:after`).
@@ -95,17 +95,17 @@ Láthatjuk, hogy a `body` elemen található `8px` margó (`margin`) mind a 4 ir
 
     A szabályok definiálása:
 
-    ![Egyszerű CSS selectorok](./assets/selectors-1.png)
+    ![Egyszerű CSS-selectorok](./assets/selectors-1.png)
     ![Összetett selectorok](./assets/selectors-2.png)
 
 * Ha új szabályt akarunk felvenni, akkor a kapcsos zárójelek közé kattintva tehetjük ezt meg, ezután az automatikus kiegészítés funkcióval láthatjuk az összes, a böngésző által ismert CSS tulajdonságot (Firefox Developerben ezt az üres kurzoron a **fel-le nyilak**-kal tehetjük meg, Edge-ben és Chrome-ban a **Ctrl+szóköz**-zel).
-* Vegyük fel a `<h1>` elemhez az alábbi CSS tulajdonságot:
+* Vegyük fel a `<h1>` elemhez az alábbi CSS-tulajdonságot:
 
     ```css
     color: red;
     ```
 
-* Közben vegyük észre a DOM reprezentációban, hogy bár a jobb oldali panelen szerkesztünk, pontosan ugyanaz történik, mintha a HTML elem `style` attribútumát adtuk volna meg.
+* Közben vegyük észre a DOM-reprezentációban, hogy bár a jobb oldali panelen szerkesztünk, pontosan ugyanaz történik, mintha a HTML elem `style` attribútumát adtuk volna meg.
 * Ha beállítjuk a `font-weight: bold;` tulajdonságot a `<body>`-n, akkor láthatjuk, hogy az összes gyermekére is érvényesül a szabály. Bizonyos szabályok öröklődnek (a `font-weight` ilyen), mások (például a `padding` és `margin`) viszont nem.
 
 Lehetőség van esetenként több szabály aggregált megadására is ún. shorthandek használatával. Gyakori például a 4-irányú értékadás, ami a **top-right-bottom-left** iránysorrend szerint ad meg több értéket.
@@ -122,7 +122,7 @@ Lehetőség van esetenként több szabály aggregált megadására is ún. short
 !!! warning "Inline stílusok"
     Inline stílusokat csak kivételes esetekben használjunk, jellemzően programozottan (JavaScriptből) elfogadott lehet egy elem megjelenését ilyen módon állítani, de a nyers HTML-ben nem!
 
-* Vegyünk fel egy új szabályt, amiben megadjuk, hogy a táblázat cellák `td` paddingja 1rem legyen minden irányba. Ehhez a Syles fülön a jobb oldalon található + jelre kell kattintani és akkor létrejön egy új szabály ahol megadhatjuk a selectort és a beállításokat is.
+* Vegyünk fel egy új szabályt, amiben megadjuk, hogy a táblázat cellák `td` paddingja `1rem` legyen minden irányba. Ehhez a *Syles* fülön a jobb oldalon található + jelre kell kattintani és akkor létrejön egy új szabály ahol megadhatjuk a selectort és a beállításokat is.
     ``` css
     td {
         padding: 1rem;
@@ -138,9 +138,9 @@ Lehetőség van esetenként több szabály aggregált megadására is ún. short
 * Figyeljük meg a fenti képernyőn, hogy az új szabállyal nem egy cellára állítottuk be a padding-ot hanem minden cellára.
 * Az új szabály alatt egyébként látható a user agent styleheet-ből érvényre jutott szabályok is, illetve ez alatt az örökölt szabályok is.
 
-### Beadandó - 0.5 pont
+### Beadandó
 
-!!! example "2. feladat beadandó (0.5 pont)"
+!!! example "2. feladat beadandó (0.1 pont)"
     * Hozz létre egy új szabályt a `table`-re ahol beállítod az alábbi szabályt
     ``` css
     table {
@@ -152,11 +152,11 @@ Lehetőség van esetenként több szabály aggregált megadására is ún. short
     * Az első sor utolsó cellájának tartalmát (de csak azt az egyet) igazítsd középre. Tipp: `text-align: center`
     * Készíts egy képernyőképek amin látható az összes fenti módosítás és a készített képernyőképet másold **`f2.png`** néven a repository gyökerébe!
 
-## 3. Feladat - CSS alapok
+## 3. feladat – CSS-alapok
 
-A HTML oldalhoz kétféle tudunk stíluslapot rendelni: külső CSS fájlból vagy az oldal `head` tagjében definiált `<style>` tagben.
+A HTML-oldalhoz kétféle tudunk stíluslapot rendelni: külső CSS-fájlból, vagy az oldal `head` tagjében definiált `<style>` tagben.
 
-### Float használata
+### `float` használata
 
 Az `index.html` forráskódját egészítsük ki, a `<head>` elembe helyezzük el az alábbi kódot:
 
@@ -178,9 +178,9 @@ Az `index.html` forráskódját egészítsük ki, a `<head>` elembe helyezzük e
 
 Ha frissítjük az oldalt (nem szükséges újraindítani a szervert, csak menteni a fájlt), akkor az elrendezés módosul.
 
-* A listaelemet jelző pötty eltűnik.
-* A listánkban a listaelemek egymás mellé kerülnek
-* A felsorolás után következő elem felcsúszott a listával egy sorba.
+* A listaelemet jelző pötty eltűnt
+* A listánkban a listaelemek egymás mellé kerültek
+* A felsorolás után következő elem felcsúszott a listával egy sorba
 
 <figure markdown>
   ![Float](./assets/3-float.png)
@@ -221,7 +221,7 @@ Vegyük észre, hogy az oldal alján is volt egy felsorolás, és sajnos olyan �
 
 ### Specifikus szabályok
 
-A CSS szabályainknak az esetek nagy többségében nem tesz jót, ha túl általánosak. A fenti szabályok minden listaelemre általánosan illeszkedni fognak, ami ebben a konkrét esetben nem jó döntés, ugyanis valahol az oldal törzsében lehet, hogy szeretnénk használni a "klasszikus" listás megjelenítést is. Ezért a szabályunkat át kell gondolnunk, specifikusabb szabályt érdemes írni:
+A CSS-szabályainknak az esetek nagy többségében nem tesz jót, ha túl általánosak. A fenti szabályok minden listaelemre általánosan illeszkedni fognak, ami ebben a konkrét esetben nem jó döntés, ugyanis valahol az oldal törzsében lehet, hogy szeretnénk használni a "klasszikus" listás megjelenítést is. Ezért a szabályunkat át kell gondolnunk, specifikusabb szabályt érdemes írni:
 
 ```css
 ul.menu {
@@ -239,7 +239,7 @@ ul.menu > li {
 
 A fenti osztállyal megkülönböztettük a `menu` osztállyal ellátott `ul` elemeket azoktól, amiken nincs rajta az osztály.
 
-### Pszeudo osztályok
+### Pszeudoosztályok
 
 A pszeudoosztályok használatával az elemek különböző állapotainak különböző stílust tudunk adni. Ha a listaelemek kijelölése a felhasználó számára speciális állapot, ezt érdemes jeleznünk a felületen. Használjuk az alábbi szabályt:
 
@@ -255,7 +255,7 @@ ul.menu > li:focus {
 ```html
 <ul class="menu">
     <li tabindex="1">Első elem</li>
-    <li tabindex="2">Mádosik elem</li>
+    <li tabindex="2">Második elem</li>
 </ul>
 ```
 
@@ -273,9 +273,9 @@ A fájlt a HTML-ből az alábbi módon tudjuk linkelni: tegyük az oldal `<head>
 
 ### Reszponzív elrendezés
 
-A weboldalakat különböző képernyőméretű és felbontású eszközökről szoktuk látogatni. A túl részletes táblázatok, hosszú, meg nem törő sorok nem felhasználóbarátak kisebb méretű kijelzőkön, még ha az eszköz felbontása kellően nagy is. A mobil eszközök ezért szorzókat alkalmaznak a valós és a hasznos felbontás közötti megkülönböztetésképpen.
+A weboldalakat különböző képernyőméretű és felbontású eszközökről szoktuk látogatni. A túl részletes táblázatok, hosszú, meg nem törő sorok nem felhasználóbarátak kisebb méretű kijelzőkön, még ha az eszköz felbontása kellően nagy is. A mobileszközök ezért szorzókat alkalmaznak a valós és a hasznos felbontás közötti megkülönböztetés miatt.
 
-A reszponzív elrendezés során a legfontosabb koncepciók közé tartozik a szélesség függvényében történő átméretezése az oldalnak. Ezeket az alábbi szintaxis alapján, ún. media query-vel tudjuk implementálni:
+A reszponzív elrendezés során a legfontosabb koncepciók közé tartozik a szélesség függvényében történő átméretezése az oldalnak. Ezeket az alábbi szintaxis alapján, ún. *media query*vel tudjuk implementálni:
 
 ```css
 .medium-only {
@@ -289,31 +289,31 @@ A reszponzív elrendezés során a legfontosabb koncepciók közé tartozik a sz
 }
 ```
 
-A fenti szabály 768 és 991 pixel közötti szélességű viewport-on jelenik meg, tehát nem a képernyő mérete, hanem a rendelkezésre álló hely függvényében változik (pl. ablak átméretezésekor is). A `medium-only` osztállyal ellátott elemek csak ilyen képernyőméreten jelennek meg, ugyanis a media query szabály specifikusabb, mint az azon kívül definiált.
+A fenti szabály 768 és 991 pixel közötti szélességű viewporton jelenik meg, tehát nem a képernyő mérete, hanem a rendelkezésre álló hely függvényében változik (pl. ablak átméretezésekor is). A `medium-only` osztállyal ellátott elemek csak ilyen képernyőméreten jelennek meg, ugyanis a media query szabály specifikusabb, mint az azon kívül definiált.
 
 Próbáljuk ki, mi történik, hogyha a két szabály sorrendjét felcseréljük!
 
-### Beadandó - 1 pont
+### Beadandó
 
-!!! example "3. feladat beadandó (1 pont)"
-    * Commitolja a módosított HTML fájlt és a létrehozott CSS fájlt a repositoryba!
+!!! example "3. feladat beadandó (0.2 pont)"
+    * Commitolja a módosított HTML-fájlt és a létrehozott CSS-fájlt a repositoryba!
     
-    * Készítsen képernyőképet **`f3-1.png`** névvel és másolja a repository gyökerébe, amin az egyik listaelem kijelölt állapotban van. A képernyőképen az érvényre jutott CSS szabály is legyen látható. (Styles a dev toolbarban).
+    * Készítsen képernyőképet **`f3-1.png`** névvel és másolja a repository gyökerébe, amin az egyik listaelem kijelölt állapotban van. A képernyőképen az érvényre jutott CSS-szabály is legyen látható. (*Styles* a dev toolbarban).
 
-    * Képernyőképekkel demonstrálja, hogy a fenti szabályt a table elemre alkalmazva a táblázat az ablak méretének függvényében látható vagy el van rejtve! **`f3-2.png`**, **`f3-3.png`**
+    * Képernyőképekkel demonstrálja, hogy a fenti szabályt a `table` elemre alkalmazva a táblázat az ablak méretének függvényében látható vagy el van rejtve! **`f3-2.png`**, **`f3-3.png`**
 
-## 4. Feleadat - Bootstrap
+## 4. feladat – Bootstrap
 
-### UI/UX tervek
+### UI- / UX-tervek
 
-A webfejlesztésben általános jelenség, hogy a dizájnerek "csak" UI / UX terveket állítanak össze HTML és CSS kódot nem írnak, így a fejlesztők kapják azt a feladatot, hogy a megtervezett kinézetűre varázsolják az alkalmazást.
+A webfejlesztésben általános jelenség, hogy a dizájnerek "csak" UI- / UX-terveket állítanak össze, HTML- és CSS-kódot nem írnak, így a fejlesztők kapják azt a feladatot, hogy a megtervezett kinézetűre varázsolják az alkalmazást.
 
-A UI/UX tervek különböző szoftverekkel készülnek attól függően, hogy mi a célja. Azonban egy dolog mindegyikben közös. Gyorsan lehet prototipizálni vele, ami könnyen demózható a megrendelőnek.
+A UI- / UX-tervek különböző szoftverekkel készülnek attól függően, hogy mi a célja. Azonban egy dolog mindegyikben közös. Gyorsan lehet prototipizálni vele, ami könnyen demózható a megrendelőnek.
 
-* A drótváz (wireframe), ahol a hangsúly az elrendezésen és az adatokon van, nem a színeken ott gyakran [Figma](https://www.figma.com/)-ban készül a kinézet.
+* A drótváz (wireframe), ahol a hangsúly az elrendezésen és az adatokon van, nem a színeken, ott gyakran [Figmá](https://www.figma.com/)ban készül a kinézet.
     <figure markdown>
       ![Figma](./assets/bootstrap/figma.png)
-      <figcaption>Elkészített oldalváz figma segítségével</figcaption>
+      <figcaption>Elkészített oldalváz Figma segítségével</figcaption>
     </figure>
 * Ha a hangsúly inkább a színvilágon és a designon van, akkor pedig a [Zeplin](https://app.zeplin.io/) egy gyakori választás.
     <figure markdown>
@@ -321,9 +321,9 @@ A UI/UX tervek különböző szoftverekkel készülnek attól függően, hogy mi
       <figcaption>Zeplin</figcaption>
     </figure>
 
-A fejlesztés céljából mindegy is, hogy melyik alkalmazásban készül el az oldal designja, a rajzokból CSS és HTML kódot a fejlesztőnek kell készítenie.
+A fejlesztés céljából mindegy is, hogy melyik alkalmazásban készül el az oldal designja, a rajzokból CSS- és HTML-kódot a fejlesztőnek kell készítenie.
 
-A követkeő feladat alkalmával az alábbi képből (és egy kicsi HTML váz segítségével) kell az oldalt elkészíteni.
+A követkeő feladat alkalmával az alábbi képből (és egy kicsi HTML-váz segítségével) kell az oldalt elkészíteni.
 
 <figure markdown>
   ![Elkészítendő oldal design](./assets/bootstrap/4.0-design.png)
@@ -332,14 +332,14 @@ A követkeő feladat alkalmával az alábbi képből (és egy kicsi HTML váz se
 
 ### Kiinduló projekt
 
-Live Server segítségével indítsuk el a **feladat4** mappában található **index.html** oldalt és ellenőrizzük, hogy megfelelően betöltődik-e az alkalmazás!
+Live Server segítségével indítsuk el a `feladat4` mappában található `index.html` oldalt, és ellenőrizzük, hogy megfelelően betöltődik-e az alkalmazás!
 
 A dizájnolás folyamán általában valamilyen keretrendszerből indulunk ki, mely kész megoldásokat ad a leggyakoribb feladatokra, így csökkentve az egyedi CSS mennyiségét. A [Bootstrap](http://getbootstrap.com) két alapvető funkciót nyújt:
 
 * Layout rendszer 
     * Reszponzív megjelenés.
     * Bootstrap Gridre épül, ami flexbox alapú
-    * 5.1-től lehetőséged az, hogy a SASS forráskóban lecseréljük a BootStrap Grid-et **CSS Grid**-re, ez még egyelőre *exparimental* státuszban van. (Részletek [itt](https://getbootstrap.com/docs/5.2/layout/css-grid/) találhatók.)
+    * 5.1-től lehetőséged az, hogy a SASS forráskóban lecseréljük a Bootstrap Gridet **CSS Grid**re, ez még egyelőre *experimental* státuszban van. (Részletek [itt](https://getbootstrap.com/docs/5.2/layout/css-grid/) találhatók.)
 * Egységes színek és formázás az alapvető elemekre.
 * Gyakori komponensek (felugró ablakok, kártyák, nyitható-zárható blokkok, kiemelések, panelek) CSS és JS segítségével.
 
@@ -368,10 +368,10 @@ A laboron ezekből a kész komponensekből fogunk megismerni egy párat közeleb
     <link rel="stylesheet" href="assets/css/site.css">
   </head>
   ```
-* Figyeljük meg, hogy négy különböző CSS állományt töltünk be, egy kivételével CDN-ről:
-    * Az első magát a Bootstrap-et tölti be.
+* Figyeljük meg, hogy négy különböző CSS-állományt töltünk be, egy kivételével, a CDN-ről:
+    * Az első magát a Bootstrapet tölti be.
     * Ezt követően egy gyakran használt ikongyűjteményt, a Font Awesome-ot töltjük le.
-    * Ezen felül, mivel egyedi betűtípust használunk, azt a Google fonts oldaláról töltjük le.
+    * Ezen felül, mivel egyedi betűtípust használunk, azt a Google Fonts oldaláról töltjük le.
     * A legutolsó hivatkozás pedig az általunk készített CSS fájlt hivatkozza be.
 
 !!! note "Betöltési lehetőségek"
@@ -389,7 +389,7 @@ A megvalósítandó oldal az alábbi főbb részekből áll:
 * oldal központi eleme, ami blogbejegyzések listáját tartalmazza,
 * lábléc.
 
-### 4.1. Reszponzív navigáció
+### 4.1. feladat – Reszponzív navigáció
 
 Első lépésként az oldal navigációs sávját készítjük el.
 
@@ -417,7 +417,7 @@ A HTML váz szerepel a kiinduló `index.html`-ben, de ebben is kell majd módos�
     <figcaption>Fejléc alacsony felbontáson nyitva</figcaption>
     </figure>
 
-A navigációs sáv formázása gyakori feladat, így a Bootstrap ad rá kész komponenst, a **navbar** -t. 
+A navigációs sáv formázása gyakori feladat, így a Bootstrap ad rá kész komponenst, a *navbar*t. 
 
 A navigációt is reszponzívan kell megvalósítani, tehát ha átméretezzük az oldalt, akkor a navigációs menüpontokat el kell rejteni és egy úgynevezett hamburger menüt kell megjeleníteni helyette, amire kattintva megjelennek a menüpontok.
 
@@ -516,13 +516,13 @@ Alapvetően két irányba indulhatunk el
     * A link a https://www.aut.bme.hu oldalra navigáljon.
     * A linken belül tanszéki logó képe szerepeljen ami a `./assets/img/logo-bme-aut.png` URL-en érhető el.
     * *Részletek: [Kép használata a brandben](https://getbootstrap.com/docs/5.2/components/navbar/#image).*
-* Ezt egy `button` tag követi, ami a hamburger menü.
+* Ezt egy `button` tag követi, ami a hamburgermenü.
     * A `navbar-toggler` osztály már szerepel is rajta
     * Be van állítva, a `data-bs-target` tagben hogy melyik elemet kell megjelenítenie / elrejtenie és az is
     * És láthatjuk, hogy a `data-bs-toggle` tagben meg van adva, hogy a kattintásra minek kell történnie. 
     * A gombban pedig egy `span` található ami pedig maga a hamburger menü képe.
     * *Részletek: [Collapse használata](https://getbootstrap.com/docs/5.2/components/collapse/)*
-* A következő részben az egyes navigációs linkek szerepelnek itt kell a legnagyobb változtatás.
+* A következő részben az egyes navigációs linkek szerepelnek – itt kell a legnagyobb változtatás.
     * Az első `li` tagben lévő link legyen a *Home* link ami az **index.html** oldara navigáljon.
     * A második `li` tagben lévő link pedig a *Registration* ami a **register.html** oldalra navigáljon.
     * A többi elemre nincs szükség, töröljük ki.
@@ -531,33 +531,33 @@ Alapvetően két irányba indulhatunk el
     * Állítsuk be, hogy a `form` alsó margóra 0 legyen. Tipp: `mb-0`.
     * *Részletek [Kereső form](https://getbootstrap.com/docs/5.2/components/navbar/#forms).*
 
-#### Beadandó - 1 pont
+#### Beadandó
 
-!!! example "4.1. feladat beadandó (1 pont)"
+!!! example "4.1. feladat beadandó (0.2 pont)"
     Készítsd el a fent ismertetett navigációs sávot Bootstrap segítségével. Ügyelj a reszpozív megjelenítésre.
 
     Készítsd el az alábbi képernyőképeket az elkészült navigációs sávról és másold be őket a repository gyökerébe!
 
-    * Magas felbontáson, ahol a kereső szövegdobozban a neptunkódod szerepel **`f4-1-high.png`**
-    * Kis felbontás zárt hamburger menü **`f4-1-low.png`**
-    * Kis felbontás lenyitott hamburger menü, ahol a kereső szövegdobozban a neptunkódod szerepel **`f4-1-low-open.png`**
+    * Magas felbontáson, ahol a kereső szövegdobozban a Neptun-kódod szerepel **`f4-1-high.png`**
+    * Kis felbontás, zárt hamburgermenü **`f4-1-low.png`**
+    * Kis felbontás, lenyitott hamburgermenü, ahol a kereső szövegdobozban a Neptun-kódod szerepel **`f4-1-low-open.png`**
 
-    Commitold a módosított HTML fájlt a repositoryba!
+    Commitold a módosított HTML-fájlt a repositoryba!
 
-### 4.2. Feladat - Blog bejegyzés
+### 4.2. feladat – Blogbejegyzés
 
-A navigációs sáv elkészítése után térjünk át a fő tartalmi elemre, a blog bejegyzések formázására. Először csak egy bejegyzést formázzunk meg úgy, hogy az alábbi designt kapjuk.
+A navigációs sáv elkészítése után térjünk át a fő tartalmi elemre, a blogbejegyzések formázására. Először csak egy bejegyzést formázzunk meg úgy, hogy az alábbi designt kapjuk.
 
 <figure markdown>
   ![Egy blogbejegyzés megjelenése card használatával](./assets/bootstrap/4.2-card-component.png)
   <figcaption>Egy blogbejegyzés megjelenése card használatával</figcaption>
 </figure>
 
-A blog post HTML váza már szerepel az index oldalon, ezt kell kiegészíteni a megfelelő Bootstrap osztályokkal és helyenként készíteni egy-egy egyedi CSS szabályt, amivel kiegészítjük a Bootstrap-es osztályokat.
+A blogposzt HTML-váza már szerepel az indexoldalon, ezt kell kiegészíteni a megfelelő Bootstrap-osztályokkal, és helyenként készíteni egy-egy egyedi CSS-szabályt, amivel kiegészítjük a bootstrapes osztályokat.
 
 A feladat megoldása előtt vizsgáljuk meg a [Bootstrap card](https://getbootstrap.com/docs/5.2/components/card/) komponenst!
 
-A card komponens legfontosabb CSS osztályai az alábbiak:
+A card komponens legfontosabb CSS-osztályai az alábbiak:
 
 * `card`: Maga a kártya
 * `card-body`: A kártya tartalmi része
@@ -582,36 +582,36 @@ Az alábbi kódrészlet egy kártya felépítését mutatja, melyben kép és l�
 </div>
 ```
 
-#### Megvalósítás lépései
+#### A megvalósítás lépései
 
-Először az oldal címsorát és az alatta lévő bekezést formázzuk
+Először az oldal címsorát és az alatta lévő bekezést formázzuk:
 
 * Állítsd be, hogy a cím alatt és fölött legyen margó. Tipp: `my-3`
 * A címsor alatti bekezdés legyen középre igazítva. Tipp: `text-center`
 
-A fenti kártya template alapján kell kiegészíteni az előre elkészített kódvázat.
+A fenti kártyatemplate alapján ki kell egészíteni az előre elkészített kódvázat:
 
 * A kép legyen a kártya tetején egy linkbe ágyazva. A kép igazításához használd a `card-img-top` osztályt.
-* A kép után kezdődik kártya törzse `card-body`.
-* A címhez a `card-title` osztályt használd, ami szintén link is egyben. Itt készíteni kell egy külön CSS szabályt, hogy a link szövege szürke legyen `#666`. Ha fölé viszik az egeret, akkor pedig sötétzöld. Ha jó helyre illeszted a CSS-ben az új szabályt, akkor csak egyet kell létrehozni.
+* A kép után kezdődik kártya törzse: `card-body`.
+* A címhez a `card-title` osztályt használd, ami link is egyben. Itt készíteni kell egy külön CSS-szabályt, hogy a link szövege szürke legyen (`#666666`), ha fölé viszik az egeret, akkor pedig sötétzöld (`#44AA44`). Ha jó helyre illeszted a CSS-ben az új szabályt, akkor csak egyet kell létrehozni.
 * A szöveges részhez a `card-text` osztályt használd.
-* Az egyéb adatok pedig a kártya láblécében `card-footer` jelenjenek meg. Tipp: A lábléchez érdemes egyedi CSS osztály(oka)t is definiálni, melyben az alábbiakat kell beállítani:
+* Az egyéb adatok pedig a kártya láblécében `card-footer` jelenjenek meg. Tipp: A lábléchez érdemes egyedi CSS-osztály(oka)t is definiálni, melyben az alábbiakat kell beállítani:
     * a lábléc fölötti vonal legyen szaggatott,
     * a betűméret 0.75rem,
     * a háttérszín átlátszó,
     * a láblécben szereplő linkek legyenek szürkék és ha fölé visszük az egeret akkor zöldek. Az ikonok mindig legyenek zöldek.
-    * a láblécben lévő szöveg elrendezésére is figyelj! Tip: használj flexboxot `d-flex` úgy hogy az elemek közötti távolság nőjön csak. `justify-content-between`.
+    * a láblécben lévő szöveg elrendezésére is figyelj! Tipp: használj flexboxot `d-flex` úgy hogy az elemek közötti távolság nőjön csak. `justify-content-between`.
 
-#### Beadandó - 1 pont
+#### Beadandó
 
-!!! example "4.2. feladat beadandó (1 pont)"
-    Készíts egy képernyőképet a teljes oldalról, amin látható az elkészített blogpost - csak ez az egy - megformázva és másold a képernyőképet **`f4-2.png`** néven a repository gyökerébe!
+!!! example "4.2. feladat beadandó (0.2 pont)"
+    Készíts egy képernyőképet a teljes oldalról, amin látható az elkészített blogposzt – csak ez az egy – megformázva, és másold a képernyőképet **`f4-2.png`** néven a repository gyökerébe!
 
-### 4.3. Feladat - Reszponzív blog
+### 4.3. feladat - Reszponzív blog
 
-Egészítsd ki a HTML kódot úgy, hogy az oldalon összesen 6 blogbejegyzés jelenjen meg. Az egyes bejegyzések minden adata lehet azonos, csak a képeket cseréld le. A képeket az `assets/img` könyvtárban találod. 
+Egészítsd ki a HTML-kódot úgy, hogy az oldalon összesen 6 blogbejegyzés jelenjen meg. Az egyes bejegyzések minden adata lehet azonos, csak a képeket cseréld le. A képeket az `assets/img` könyvtárban találod. 
 
-Mivel több kártya kerül egymás mellé egy layout megoldást kell készíteni. Az alábbi két lehetőség közül válaszd ki a szimpatikusat és az alapján készítsd el az oldal elrendezését úgy, hogy magas felbontáson 3, közepesen 2, kicsin pedig 1 bejegyzés kerüljön egy sorba.
+Mivel több kártya kerül egymás mellé, egy layoutmegoldást kell készíteni. Az alábbi két lehetőség közül válaszd ki a szimpatikusat, és az alapján készítsd el az oldal elrendezését úgy, hogy magas felbontáson 3, közepesen 2, kicsin pedig 1 bejegyzés kerüljön egy sorba.
 
 * Az egyik megoldás a [Card groups](https://getbootstrap.com/docs/5.2/components/card/#card-groups) használata. Itt nincs padding az egyes kártyák között.
 * A másik megoldás a [Grid cards](https://getbootstrap.com/docs/5.2/components/card/#grid-cards) használata, ami a bootstrap grid rendszerén alapszik.
@@ -634,18 +634,18 @@ Mivel több kártya kerül egymás mellé egy layout megoldást kell készíteni
     <figcaption>Kicsi képernyőméret</figcaption>
     </figure>
 
-#### Beadandó - 0.5 pont
+#### Beadandó
 
-!!! example "4.3. feladat beadandó (0.5 pont)"
+!!! example "4.3. feladat beadandó (0.1 pont)"
     Készíts egy képernyőképet, közepes felbontáson, ahol két hasábban jelennek meg a képek. A képernyőn legyen látható a böngésző DevToolbarja, ahol ki van jelölve az első `div` amin a `col` osztály szerepel és látható a rajta beállított CSS szabályok is. 
 
     A képernyőképet **`f4-3.png`** névvel másold a repository gyökerébe!
 
-### 4.4. Feladat - Regisztráció
+### 4.4. feladat - Regisztráció
 
 Az elkészített oldal tetején található egy Register feliratú link, ami a register.html oldalra irányít. A feladat ennek az oldalnak az elkészítése.
 
-Mielőtt nekikezdesz a feladatnak érdemes átnézni a [Bootstrap form kezelését](https://getbootstrap.com/docs/5.2/forms/overview/).
+Mielőtt nekikezdesz a feladatnak, érdemes átnézni a [Bootstrap form kezelését](https://getbootstrap.com/docs/5.2/forms/overview/).
 
 A legfontosabb CSS osztályok az űrlapok formázásához az alábbiak:
 
@@ -664,10 +664,10 @@ A legfontosabb CSS osztályok az űrlapok formázásához az alábbiak:
 </div>
 ```
 
-#### Megvalósítás lépései
+#### A megvalósítás lépései
 
-* Hozd létre a **register.html**-t a repository gyökerében.
-* Az oldal fejléc és lábléc része változatlan, tehát azt másold át a meglévő index.html oldalról. Csak az oldal középső `section` tagen belüli része fog változni.
+* Hozd létre a `register.html`-t a repository gyökerében.
+* Az oldal fejléc és lábléc része változatlan, tehát azt másold át a meglévő `index.html` oldalról. Csak az oldal középső `section` tagen belüli része fog változni.
 * Adj az oldalhoz egy headinget a *Regisztráció* szöveggel. A headingek megjeléséhez is vannak előre definiált (és felüldefiniálható) CSS osztályok: [Bootstrap heading](https://getbootstrap.com/docs/5.2/content/typography/#display-headings)
 * A címsor alatt egy regisztrációs űrlapot kell készíteni, ahol a felhasználótó bekérjük a következő alábbi adatokat: 
     * **Email**: A felhasználó email címe.
@@ -681,23 +681,21 @@ A legfontosabb CSS osztályok az űrlapok formázásához az alábbiak:
 
 * Az inputok létrehozásánál ügyelj mindig a megfelelő típus használatára és mindenhol adj meg name attribútumot, hogy az adatokat el lehessen küldeni a szerverre.
 * A szövegdobozokba tegyél placeholder szöveget is.
-* Az alábbi képen látható elrendezést valósítsd meg.
-
-A layout kialakításához vizsgáld meg a [Bootstrap form layout](https://getbootstrap.com/docs/5.2/forms/layout/) megoldásokat.
+* Az alábbi képen látható elrendezést valósítsd meg. A layout kialakításához vizsgáld meg a [Bootstrap form layout](https://getbootstrap.com/docs/5.2/forms/layout/) megoldásokat.
 
 <figure markdown>
   ![register-magas](./assets/bootstrap/4.5-high.png)
   <figcaption>Regisztrációs űrlap asztali nézetben</figcaption>
 </figure>
 
-* Ellenőrizd, hogy az oldal kis képernyő méreten az alábbi elrendezésben jelenik-e meg. Ha nem, akkor javítsd a kódot, hogy az alábbi kinézetet kell kapnod.
+* Ellenőrizd, hogy az oldal kis képernyőméreten az alábbi elrendezésben jelenik-e meg. Ha nem, akkor javítsd a kódot, hogy az alábbi kinézetet kell kapnod.
 
 <figure markdown>
   ![register-small](./assets/bootstrap/4.5-small.png)
-  <figcaption>Regisztrációs űrlap mobil nézetben</figcaption>
+  <figcaption>Regisztrációs űrlap mobilnézetben</figcaption>
 </figure>
 
-#### Beadandó - 1 pont
+#### Beadandó
 
-!!! example "4.4. feladat beadandó (1 pont)"
-    Az elkészített űrlapot töltsd ki és a Address mezőbe a **neptun kódodat** írd be, majd kattints a Sing in gombra. Ekkor az URL-ben láthatóak lesznek a formban megadott adatok is. Erről készíts egy képernyőképet, amit **`f4-5.png`** néven másolj be a repository gyökerébe.
+!!! example "4.4. feladat beadandó (0.2 pont)"
+    Az elkészített űrlapot töltsd ki, és a *Address* mezőbe a **Neptun-kódodat** írd be, majd kattints a *Sign in* gombra. Ekkor az URL-ben láthatóak lesznek a formban megadott adatok is. Erről készíts egy képernyőképet, amit **`f4-5.png`** néven másolj be a repository gyökerébe.
