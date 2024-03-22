@@ -420,7 +420,7 @@ Tehát az eredeti `todos` tömböt a `filter` segítségével szűrjük úgy, ho
 
 ### Beadandó
 
-!!! example "BEADANDÓ (0.2 pont)"
+!!! example "Beadandó (0.2 pont)"
     Illesszen be egy-egy képernyőképet (`f2-1.png`, `f2-2.png`, `f2-3.png`) a tennivalók állapotainak változtatásáról, a különböző oldalakon történő megjelenésükről!
 
 ## 3. feladat (önálló) – Sorrendezés
@@ -433,7 +433,7 @@ Legyenek fel-le mozgathatók a to-do elemek az `all` listában!
 
 ### Beadandó
 
-!!! example "BEADANDÓ (0.3 pont)"
+!!! example "Beadandó (0.3 pont)"
     Illessz be egy-egy képernyőképet néhány tennivalóról sorrendezés előtt és után! (`f3-1.png`, `f3-2.png`)
 
 ## 4. feladat (önálló) – Perzisztálás
@@ -466,5 +466,5 @@ A részfeladatok tehát:
 
 ### Beadandó
 
-!!! example "BEADANDÓ (0.3 pont)"
+!!! example "Beadandó (0.3 pont)"
     Illessz be egy képernyőképet a lokális tárolóban (localStorage) található perzisztált to-do elemekről! (`f4.png`)
