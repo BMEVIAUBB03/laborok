@@ -145,7 +145,7 @@ Ezen a laboron nem új projektet fogunk létrehozni, hanem egy már létezőből
 	android {
 		...
 		buildFeatures {
-			viewBinding true
+			viewBinding = true
 		}
 	}
 	```
@@ -157,10 +157,11 @@ Ezen a laboron nem új projektet fogunk létrehozni, hanem egy már létezőből
 	settings.gradle:
 	```groovy
 	dependencyResolutionManagement {
-	    repositories {
-	        ...
-	        maven { url "https://jitpack.io" }
-	    }
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        ...
+        maven(url = "https://jitpack.io")
+   		}
 	}
 	```
 	
@@ -168,8 +169,9 @@ Ezen a laboron nem új projektet fogunk létrehozni, hanem egy már létezőből
 	```groovy
 	dependencies {
 	    ...
-	    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+	    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
 	}
+	```
 
 	
 	A [`Navigation Component`](https://developer.android.com/guide/navigation/navigation-getting-started) függőségei:
@@ -180,7 +182,7 @@ Ezen a laboron nem új projektet fogunk létrehozni, hanem egy már létezőből
 	```groovy
 	plugins {
 		...
-		id 'androidx.navigation.safeargs' version '2.5.3' apply false
+    	id("androidx.navigation.safeargs") version "2.7.7" apply false
 	}
 	```
 
@@ -189,26 +191,26 @@ Ezen a laboron nem új projektet fogunk létrehozni, hanem egy már létezőből
 	```groovy
 	plugins {
 	    ...
-	    id 'androidx.navigation.safeargs.kotlin'
+    	id("androidx.navigation.safeargs.kotlin")
 	}
 	
 	android { ... }
 	
 	dependencies {
 		...
-		def nav_version = '2.5.3'
-		implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
-		implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+		val nav_version = "2.7.7"
+    	implementation ("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    	implementation ("androidx.navigation:navigation-ui-ktx:$nav_version")
 	}
 	```
 	
 	[`Room`](https://developer.android.com/topic/libraries/architecture/room) hozzáadása a projekthez
 	
-	Az app modulhoz tartozó build.gradle fájlban a pluginokhoz hozzáírtunk egy sort (bekapcsoljuk a Kotlin Annotation Processort - KAPT):
-	```gradle
+	Az app modulhoz tartozó build.gradle fájlban a pluginokhoz hozzáírtunk egy sort (bekapcsoljuk a `Kotlin Symbol Procesing`-et - KSP):
+	```groovy
 	plugins {
 		//...
-	    id 'kotlin-kapt'
+    	id("com.google.devtools.ksp")
 		//...
 	}
 	
@@ -216,13 +218,14 @@ Ezen a laboron nem új projektet fogunk létrehozni, hanem egy már létezőből
 	```
 	
 	Ezt követően, szintén ebben a `build.gradle` fájlban a `dependencies` blokkhoz van hozzáadva `Room` library:
-	```gradle
+	```groovy
 	dependencies {
 	    //...
-	    def room_version = "2.3.0"
-	    implementation "androidx.room:room-runtime:$room_version"
-	    implementation "androidx.room:room-ktx:$room_version"
-	    kapt "androidx.room:room-compiler:$room_version"
+	    //Room
+	    val room_version = "2.6.1"
+	    implementation ("androidx.room:room-runtime:$room_version")
+	    implementation ("androidx.room:room-ktx:$room_version")
+	    ksp("androidx.room:room-compiler:$room_version")
 	}
 	```
 
@@ -304,7 +307,7 @@ Nyissuk meg a `nav_graph.xml` fájlt, és kattintsunk a *New Destination* gombra
 <p align="center"> 
 <img src="./assets/new_destination.png" width="640">
 </p>
-Válasszuk ki a *Fragment (Blank)* gombot, és legyen az oldal neve *ListFragment*. Ezzel létrehoztunk az első oldalunkat, ami automatikusan megkapta a *Home Destination* jelölőt, ezzel mutatva, hogy az alkalmazás indulásakor ez lesz az első oldalunk.
+Válasszuk ki a *Fragment (Blank)* gombot, és legyen az oldal neve *ShoppingListFragment*. Ezzel létrehoztunk az első oldalunkat, ami automatikusan megkapta a *Home Destination* jelölőt, ezzel mutatva, hogy az alkalmazás indulásakor ez lesz az első oldalunk.
 A létrejött `fragment_shopping_list.xml` tartalmát cseréljük ki az alábbira:
 
 ```xml
@@ -419,15 +422,27 @@ A `tools:listitem` paraméter segítségével az Android Studio layout megjelen�
 </LinearLayout>
 ```
 
-Valósítsuk meg a navigációt a másik két oldalra. Hozzunk létre két új *Fragment (Blank)* képernyőt (`CreateNewShoppingItemFragment` és `ChartFragment`). A navigációs gráfban az oldalak közötti navigációt akciókkal tudjuk meghatározni. Egy új akcióhoz fogjuk meg a kiindulási képernyő jobb oldalán lévő kis pöttyöt, és húzzuk a cél oldalra. A `ShoppingListFragment`-ből induló két akció mellett egy harmadikra is szükségünk van: az új elem létrehozás után vissza kell navigálnunk a lista képernyőre. A három akció létrehozása után tehát így fog kinézni a navigációs gráf:
+Valósítsuk meg a navigációt a másik két oldalra. Hozzunk létre két új *Fragment (Blank)* képernyőt (`CreateNewShoppingItemFragment` és `ChartFragment`). A navigációs gráfban az oldalak közötti navigációt akciókkal tudjuk meghatározni. Egy új akcióhoz fogjuk meg a kiindulási képernyő jobb oldalán lévő kis pöttyöt, és húzzuk a cél oldalra. A két akció létrehozása után tehát így fog kinézni a navigációs gráf:
 
 <p align="center"> 
 <img src="./assets/actions.png" width="640">
 </p>
 
+Az újonnan létrejött *fragmenteket* mozgassuk át egy *fragment* nevű *package*-be.
+
 Az akciók meghívásához használjuk a view binding-ot a `ShoppingListFragment`-ben:
 
 ```kotlin
+package hu.bme.aut.kliensalkalmazasok.shoppinglist.fragment
+
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import hu.bme.aut.kliensalkalmazasok.shoppinglist.databinding.FragmentShoppingListBinding
+
 class ShoppingListFragment : Fragment() {
 
     private var _binding: FragmentShoppingListBinding? = null
@@ -594,14 +609,21 @@ Az adatok perzisztens tárolásához a [`Room`](https://developer.android.com/to
 A `hu.bme.aut.kliensalkalmazasok.shoppinglist` *package*-ben hozzunk létre egy új *package*-et `data` néven. A `data` *package*-ben hozzunk létre egy új Kotlin osztályt, aminek a neve legyen  `ShoppingItem`:
 
 ```kotlin
+package hu.bme.aut.kliensalkalmazasok.shoppinglist.data;
+
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import androidx.room.TypeConverter
+
 @Entity(tableName = "shoppingitem")
 data class ShoppingItem(
-    @ColumnInfo(name = "id") @PrimaryKey(autoGenerate = true) var id: Long? = null,
-    @ColumnInfo(name = "name") var name: String,
-    @ColumnInfo(name = "description") var description: String,
-    @ColumnInfo(name = "category") var category: Category,
-    @ColumnInfo(name = "estimated_price") var estimatedPrice: Int,
-    @ColumnInfo(name = "is_bought") var isBought: Boolean
+        @ColumnInfo(name = "id") @PrimaryKey(autoGenerate = true) var id: Long? = null,
+        @ColumnInfo(name = "name") var name: String,
+        @ColumnInfo(name = "description") var description: String,
+        @ColumnInfo(name = "category") var category: Category,
+        @ColumnInfo(name = "estimated_price") var estimatedPrice: Int,
+        @ColumnInfo(name = "is_bought") var isBought: Boolean
 ) {
     enum class Category {
         FOOD, ELECTRONIC, BOOK;
@@ -619,7 +641,7 @@ data class ShoppingItem(
                 }
                 return ret
             }
-            
+
             @JvmStatic
             @TypeConverter
             fun toInt(category: Category): Int {
@@ -646,6 +668,14 @@ Megfigyelhető továbbá, hogy ezen függvények el vannak látva a `@JvmStatic`
 A `data` package-ben hozzunk létre egy új Kotlin interfészt, aminek a neve legyen  `ShoppingItemDao`:
 
 ```kotlin
+package hu.bme.aut.kliensalkalmazasok.shoppinglist.data
+
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.Query
+import androidx.room.Update
+
 @Dao
 interface ShoppingItemDao {
     @Query("SELECT * FROM shoppingitem")
@@ -674,6 +704,14 @@ Figyeljük meg, hogy az Android Studio a `@Query` *annotáció* paramétereként
 A `data` package-ben hozzunk létre egy új Kotlin osztályt, aminek a neve legyen  `ShoppingListDatabase`:
 
 ```kotlin
+package hu.bme.aut.kliensalkalmazasok.shoppinglist.data
+
+import android.content.Context
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+
 @Database(entities = [ShoppingItem::class], version = 1)
 @TypeConverters(value = [ShoppingItem.Category::class])
 abstract class ShoppingListDatabase : RoomDatabase() {
@@ -705,6 +743,14 @@ A `hu.bme.aut.kliensalkalmazasok.shoppinglist` package-ben hozzunk létre egy ú
 Az `adapter` package-ben hozzunk létre egy új Kotlin osztályt `ShoppingAdapter` néven:
 
 ```kotlin
+package hu.bme.aut.kliensalkalmazasok.shoppinglist.adapter
+
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import hu.bme.aut.kliensalkalmazasok.shoppinglist.data.ShoppingItem
+import hu.bme.aut.kliensalkalmazasok.shoppinglist.databinding.ItemShoppingListBinding
+
 class ShoppingAdapter(private val listener: ShoppingItemClickListener) :
     RecyclerView.Adapter<ShoppingAdapter.ShoppingViewHolder>() {
 
@@ -783,7 +829,7 @@ fun update(shoppingItems: List<ShoppingItem>) {
 
 #### A `RecyclerView` és az adatok megjelenítése
 
-Adjuk hozzá az alábbi változókat a `ShoppingListFragment`-hez és cseréljük le a projekt létrehozásakor generált `onCreate()` függvényt:
+Adjuk hozzá az alábbi változókat a `ShoppingListFragment`-hez és cseréljük le a projekt létrehozásakor generált `onCreateView()` függvényt:
 
 ```kotlin
 private var _binding: FragmentShoppingListBinding? = null
@@ -877,6 +923,17 @@ A `fragment_create_new_shopping_item.xml` felület már létezik, már csak azt 
 Ehhez írjuk felüle a `CreateNewShoppingItem` osztályt az alábbi kóddal:
 
 ```Kotlin
+package hu.bme.aut.kliensalkalmazasok.shoppinglist.fragment
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import androidx.fragment.app.Fragment
+import hu.bme.aut.kliensalkalmazasok.shoppinglist.R
+import hu.bme.aut.kliensalkalmazasok.shoppinglist.databinding.FragmentCreateNewShoppingItemBinding
+
 class CreateNewShoppingItemFragment : Fragment() {
 
     private lateinit var binding: FragmentCreateNewShoppingItemBinding
@@ -895,7 +952,7 @@ class CreateNewShoppingItemFragment : Fragment() {
         )
 
         binding.btnCreate.setOnClickListener {
-           ///TODO: create new item
+            ///TODO: create new item
         }
         return binding.root
     }
@@ -926,33 +983,7 @@ A fenti kódrészletben két dolgot érdemes megfigyelni. Egyrészt, a konstrukt
 
 #### Fragmentek közötti kommunikáció a Navigation Component segítségével
 
-Ahhoz, hogy a felületen összeállított új `ShoppingItem` visszakerüljön a `ShoppingListFragment`-hez, kihasználjuk, hogy a *Fragment*-ek közötti kommunikációban az akciókhoz argumentumok is kapcsolhatók.
-
-Térjünk vissza a `nav_graph.xml`-hez, és adjuk meg, hogy a `ShoppingListFragment`-hez argumentum is tartozhat. Ezt a grafikus felületen is megtehetjük, de kódból talán egyszerűbb:
-
-```xml
-<fragment
-    android:id="@+id/shoppingListFragment"
-    android:name="hu.bme.aut.kliensalkalmazasok.shoppinglist.ShoppingListFragment"
-    android:label="fragment_shopping_list"
-    tools:layout="@layout/fragment_shopping_list">
-    <action
-        android:id="@+id/action_shoppingListFragment_to_createNewShoppingItemFragment"
-        app:destination="@id/createNewShoppingItemFragment"
-        app:launchSingleTop="true" />
-    <action
-        android:id="@+id/action_shoppingListFragment_to_chartFragment"
-        app:destination="@id/chartFragment"
-        app:launchSingleTop="true" />
-    <argument
-        android:name="newShoppingItem"
-        android:defaultValue="@null"
-        app:argType="hu.bme.aut.kliensalkalmazasok.shoppinglist.data.ShoppingItem"
-        app:nullable="true" />
-</fragment>
-```
-
-Ilyen argumentumok vagy egyszerű típusok lehetnek, vagy *Serializable*-nek vagy *Parcelable*-nek kell lenniük. A `ShoppingItem` egyik sem, de ezen könnyen segíthetünk. Implementálja az osztály a *Serializable* interfészt:
+Ahhoz, hogy a felületen összeállított új `ShoppingItem` visszakerüljön a `ShoppingListFragment`-hez, kihasználjuk, hogy a *Fragment*-ek közötti navigációban az egyes akciók mellett adatok is átküldhetők, amennyiben azok serializálhatóak. Alakítsuk át a `ShoppingItem`-ünket! Szerencsére ezt egyszerűen megtehetjük, implementálja az osztály a *Serializable* interfészt:
 
 ```Kotlin
 @Entity(tableName = "shoppingitem")
@@ -965,35 +996,47 @@ data class ShoppingItem(
     @ColumnInfo(name = "is_bought") var isBought: Boolean
 ) : java.io.Serializable {
 // ...
-```
+``` 
 
-Ezek után már át tudjuk adni az akció paramétereként az új `ShoppingItem`-et az `OnClickListener`-ben:
+Ezek után a feladatunk tehát, hogy amennyiben összeraktuk az új `ShoppingItem`-et, azt visszajuttasuk a *Fragment Back Stack* előző tagjához, miközben bezárjuk a `CreateNewShoppingUtemFragment`-et.
+
+
+Legyen tehát a *Létrehozás* gomb eseménykezelője:
 
 ```Kotlin
 binding.btnCreate.setOnClickListener {
-    binding.btnCreate.setOnClickListener {
-        if (isValid())
-            findNavController().navigate(
-                CreateNewShoppingItemFragmentDirections
-                    .actionCreateNewShoppingItemFragmentToShoppingListFragment(
-                        getShoppingItem()
-                    )
+    if (isValid())
+        findNavController().run {
+            previousBackStackEntry?.savedStateHandle?.set(
+                KEY_NEW_SHOPPING_ITEM,
+                getShoppingItem()
             )
-        else
-            binding.etName.error = getString(R.string.name_required)
-    }
+            navigateUp()
+        }
+    else
+        binding.etName.error = getString(R.string.name_required)
+}
+```
+
+A `KEY_NEW_SHOPPING_ITEM` kulcsot szervezzük ki egy *companion object*-be:
+
+```Kotlin
+companion object {
+    const val KEY_NEW_SHOPPING_ITEM = "KEY_NEW_SHOPPING_ITEM"
 }
 ```
 
 Innen már nincs is más dolgunk hátra, minthogy fogadó oldalon, azaz a `ShoppingListFragment` osztályban az `onViewCreated`-ben kiolvassuk az értéket:
 
 ```Kotlin
-if (ShoppingListFragmentArgs.fromBundle(requireArguments()).newShoppingItem != null) {
-    createShoppingItem(ShoppingListFragmentArgs.fromBundle(requireArguments()).newShoppingItem as ShoppingItem)
-    requireArguments().clear()
-} 
+ findNavController().currentBackStackEntry?.savedStateHandle?.run {
+    getLiveData<ShoppingItem>(KEY_NEW_SHOPPING_ITEM).observe(viewLifecycleOwner) {
+        createShoppingItem(it)
+        remove<ShoppingItem>(KEY_NEW_SHOPPING_ITEM)
+    }
+}
 ```
-A kiolvasás után a törlés is fontos, mert ha az érték benn marad az argumentumok között, egy következő navigációnál újra feldolgozhatjuk.
+A kiolvasás után a törlés is fontos, mert ha az érték benn marad a *saved state*-ben, egy következő navigációnál újra feldolgozhatjuk.
 
 Végül az új elem mentésének kódja a `ShoppingListFragment`-ben:
 
@@ -1024,8 +1067,25 @@ A PieChart kirajzolásához az [MPAndroidChart](https://github.com/PhilJay/MPAnd
 Írjuk meg a Fragment kódját (`ChartFragment.kt`):
 
 ```kotlin
+package hu.bme.aut.kliensalkalmazasok.shoppinglist.fragment
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.utils.ColorTemplate
+import hu.bme.aut.kliensalkalmazasok.shoppinglist.R
+import hu.bme.aut.kliensalkalmazasok.shoppinglist.data.ShoppingItem
+import hu.bme.aut.kliensalkalmazasok.shoppinglist.data.ShoppingListDatabase
+import hu.bme.aut.kliensalkalmazasok.shoppinglist.databinding.FragmentChartBinding
+import kotlin.concurrent.thread
+
 class ChartFragment : Fragment() {
-    
+
     private var _binding: FragmentChartBinding? = null
     private val binding get() = _binding!!
 
