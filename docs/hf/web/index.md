@@ -5,7 +5,7 @@ A házi feladat során egy olyan, Angular alapú webalkalmazást kell készíten
 ## Kötelező elemek részletes leírása
 Az alkalmazásban az alábbi funkcióknak kell elérhetőnek lenniük:
 
-- **Listázás:** az elemek listázása egy áttekintő nézetben. A listanézetben lehet váltani listás és kártyás megjelenítés között. Egy elem részleteit az elemre kattintva lehet megtekinteni.
+- **Listázás:** az elemek listázása egy áttekintő nézetben. A nézetben lehet váltani listás és kártyás megjelenítés között. Kártyás nézetben az elem képe is jelenjen meg, illetve rácsos (sorok és oszlopok) elrendezésben jelenjenek meg az elemek. Listás nézetben függőlegesen, egymás után jelenjenek meg az elemek, csak fejléc adatokkal (pl. kép, leírás, stb. nélkül). Egy elem részleteit az elemre kattintva lehet megtekinteni.
 - **Részletezés:** a listanézetben egy elemet kiválasztva megtekinthetők annak részletes tulajdonságai (legalább 3 különböző, egyedi tulajdonság, pl.: szerző, kiadás éve, műfaj vagy HTTP státuszkód száma, leírása, link egy tetszőleges forrásra). A részletező oldalon látható az elemről annak képe.
 - **Létrehozás/szerkesztés:** egy elem létrehozása és szerkesztése ugyanazon a felületen történik. A különbség annyi, hogy létrehozáskor a lehetséges mezők üresek, szerkesztéskor pedig a mezők az elem adataival vannak feltöltve.
 - **Törlés:** az elem részletes oldalán van lehetőség az elem törlésére. Törlés előtt felugró üzenet (modális ablak) kér megerősítést a törlés előtt. Törlés után a listázás oldalra kerülünk.
