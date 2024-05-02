@@ -1,4 +1,4 @@
-# Mobilos házi feladat információk - 2023 tavasz
+# Mobilos házi feladat információk - 2024 tavasz
 
 A házi feladat célja, hogy az előadáson és laborokon bemutatott technológiák segítségével egy komplex alkalmazást készítsen a hallgató, önálló funkcionalitással.
 
