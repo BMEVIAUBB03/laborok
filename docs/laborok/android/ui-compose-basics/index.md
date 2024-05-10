@@ -98,6 +98,7 @@ Ez egy egyszerű gomb, amin képeket és szövekeget is egyszerűen tudunk elhel
 Ugyan még nincs Activity-nk, amin megjelenhetne, de az általunk összerakott felületi elemet már meg tudjuk nézni egy *Preview*-ban. Ehhez adjuk hozzá az iménti fájlhoz az alábbi függvényt:
 
 ```kotlin
+@Composable
 @Preview
 fun ImageButtonPreview() {
     ImageButton(
@@ -728,11 +729,12 @@ Ezek után már elkészíthetjük  a `ProfileScreen`-t:
 fun ProfileScreen(
     viewModel: ProfileViewModel
 ) {
+    val pagerState = rememberPagerState(pageCount = { pages.size })
     HorizontalPager(
-        pageCount = pages.size,
         modifier = Modifier
             .fillMaxSize(),
-        contentPadding = PaddingValues(horizontal = 32.dp)
+        contentPadding = PaddingValues(horizontal = 32.dp),
+        state = pagerState
     ) { pageIndex ->
         when (pages[pageIndex]) {
             ProfilePage.Main -> MainProfilePage(viewModel)
@@ -819,7 +821,7 @@ Próbáljuk ki az alkalmazást!
 
 ## Önálló feladat (0,5 pont)
 
-Valósítsuk meg a regosztrációs képernyőt! A LoginScreenen a **Registration** gomb megnyomására navigáljunk át egy őj felületre, ahol a felhasználó megadhatja az e-mail címét, a jelszavát, és a jelszavának megerősítését. Ott gombnyomás hatására szintén tovább mehetünk a *MenuScreenre*.
+Valósítsuk meg a regisztrációs képernyőt! A LoginScreenen a **Registration** gomb megnyomására navigáljunk át egy új felületre, ahol a felhasználó megadhatja az e-mail címét, a jelszavát, és a jelszavának megerősítését. Ott gombnyomás hatására szintén tovább mehetünk a *MenuScreenre*.
 
 !!!example "BEADANDÓ"
 	Készíts egy **képernyőképet**, amelyen látszik a **regisztrációs képernyő** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod az e-mail mezőben**. A képet a megoldásban a repository-ba f4.png néven töltsd föl. 
