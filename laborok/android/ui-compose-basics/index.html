@@ -1080,7 +1080,8 @@
 </code></pre></div>
 <p>Ez egy egyszerű gomb, amin képeket és szövekeget is egyszerűen tudunk elhelyezni. A lényeges attribútumok kivezetésre kerültek paraméterekként.</p>
 <p>Ugyan még nincs Activity-nk, amin megjelenhetne, de az általunk összerakott felületi elemet már meg tudjuk nézni egy <em>Preview</em>-ban. Ehhez adjuk hozzá az iménti fájlhoz az alábbi függvényt:</p>
-<div class="highlight"><pre><span></span><code><span class="nd">@Preview</span>
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
+<span class="nd">@Preview</span>
 <span class="kd">fun</span><span class="w"> </span><span class="nf">ImageButtonPreview</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">ImageButton</span><span class="p">(</span>
 <span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">,</span>
@@ -1655,11 +1656,12 @@ paraméterezések esetén. Vizsgáljuk meg a hibajelzéssel ellátott megjelené
 <span class="kd">fun</span><span class="w"> </span><span class="nf">ProfileScreen</span><span class="p">(</span>
 <span class="w">    </span><span class="n">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">ProfileViewModel</span>
 <span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">pagerState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rememberPagerState</span><span class="p">(</span><span class="n">pageCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">pages</span><span class="p">.</span><span class="na">size</span><span class="w"> </span><span class="p">})</span>
 <span class="w">    </span><span class="n">HorizontalPager</span><span class="p">(</span>
-<span class="w">        </span><span class="n">pageCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pages</span><span class="p">.</span><span class="na">size</span><span class="p">,</span>
 <span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
 <span class="w">            </span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">(),</span>
-<span class="w">        </span><span class="n">contentPadding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PaddingValues</span><span class="p">(</span><span class="n">horizontal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">32.</span><span class="n">dp</span><span class="p">)</span>
+<span class="w">        </span><span class="n">contentPadding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PaddingValues</span><span class="p">(</span><span class="n">horizontal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">32.</span><span class="n">dp</span><span class="p">),</span>
+<span class="w">        </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pagerState</span>
 <span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">pageIndex</span><span class="w"> </span><span class="o">-&gt;</span>
 <span class="w">        </span><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="n">pages</span><span class="o">[</span><span class="n">pageIndex</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">ProfilePage</span><span class="p">.</span><span class="na">Main</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">MainProfilePage</span><span class="p">(</span><span class="n">viewModel</span><span class="p">)</span>
@@ -1740,7 +1742,7 @@ paraméterezések esetén. Vizsgáljuk meg a hibajelzéssel ellátott megjelené
 <p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik a <strong>profil képernyő</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy <strong>ahhoz tartozó kódrészlet</strong>, valamint a <strong>neptun kódod valahol a kódban kommentként</strong>. A képet a megoldásban a repository-ba f3.png néven töltsd föl. </p>
 </div>
 <h2 id="onallo-feladat-05-pont">Önálló feladat (0,5 pont)<a class="headerlink" href="#onallo-feladat-05-pont" title="Permanent link">&para;</a></h2>
-<p>Valósítsuk meg a regosztrációs képernyőt! A LoginScreenen a <strong>Registration</strong> gomb megnyomására navigáljunk át egy őj felületre, ahol a felhasználó megadhatja az e-mail címét, a jelszavát, és a jelszavának megerősítését. Ott gombnyomás hatására szintén tovább mehetünk a <em>MenuScreenre</em>.</p>
+<p>Valósítsuk meg a regisztrációs képernyőt! A LoginScreenen a <strong>Registration</strong> gomb megnyomására navigáljunk át egy új felületre, ahol a felhasználó megadhatja az e-mail címét, a jelszavát, és a jelszavának megerősítését. Ott gombnyomás hatására szintén tovább mehetünk a <em>MenuScreenre</em>.</p>
 <div class="admonition example">
 <p class="admonition-title">BEADANDÓ</p>
 <p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik a <strong>regisztrációs képernyő</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy <strong>ahhoz tartozó kódrészlet</strong>, valamint a <strong>neptun kódod az e-mail mezőben</strong>. A képet a megoldásban a repository-ba f4.png néven töltsd föl. </p>
@@ -1755,8 +1757,8 @@ paraméterezések esetén. Vizsgáljuk meg a hibajelzéssel ellátott megjelené
           </path>
         </svg>
       </span>
-      <span title="2023. május 19. 14:14:26">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-05-19T14:14:26+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-05-19</span>
+      <span title="2024. május 10. 14:23:01">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-05-10T14:23:01+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-05-10</span>
       </span>
     </span>
 
@@ -1827,5 +1829,7 @@ paraméterezések esetén. Vizsgáljuk meg a hibajelzéssel ellátott megjelené
         <script src="../../../js/timeago_mkdocs_material.js"></script>
       
     
-  <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>
