@@ -1063,7 +1063,7 @@
 <p>Ezen a laboron nem új projektet fogunk létrehozni, hanem egy már létezőből indulunk ki, ez megtalálható a kicheckoutolt repositoryban <code>WorkplaceApp</code> néven. Nyissuk meg a projektet és a laborvezetővel nézzük át a felépítését.</p>
 <div class="admonition info">
 <p class="admonition-title">A kezőprojekt</p>
-<p>A megnyitott projekt egy már kellően komlex alkalmazás, ami képes a felvett városok adataim Room adatbázisban eltárolni. A laborvezető segítségével tekintsük át a kezdőporjektet, de annak mérete és komplexitása miatt otthon is érdemes még rá időt szánni.</p>
+<p>A megnyitott projekt egy már kellően komlex alkalmazás, ami képes a felvett városok adatait Room adatbázisban eltárolni. A laborvezető segítségével tekintsük át a kezdőporjektet, de annak mérete és komplexitása miatt otthon is érdemes még rá időt szánni.</p>
 </div>
 <h4 id="openweathermap-api-kulcs">OpenWeatherMap API kulcs<a class="headerlink" href="#openweathermap-api-kulcs" title="Permanent link">&para;</a></h4>
 <p>Regisztráljunk saját felhasználót az <a href="https://openweathermap.org/">OpenWeatherMap</a> oldalon, és hozzunk létre egy API kulcsot, aminek a segítségével használhatjuk majd a szolgáltatást az alkalmazásunkban! </p>
@@ -1137,7 +1137,7 @@ Majd ennek egy konkrét implementációját is:</p>
 
 <span class="w">    </span><span class="kd">companion</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="err">{</span>
 <span class="w">        </span><span class="kd">private</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">SERVICE_URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;https://api.openweathermap.org&quot;</span>
-<span class="w">        </span><span class="kd">private</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">APP_ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;310b7a8053e8224177e0847644f726ef&quot;</span>
+<span class="w">        </span><span class="kd">private</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">APP_ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;sajat_APP_ID&quot;</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="k">init</span><span class="w"> </span><span class="p">{</span>
@@ -1513,7 +1513,7 @@ Majd ennek egy konkrét implementációját is:</p>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.navigation.compose.composable</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.navigation.compose.rememberNavController</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.navigation.navArgument</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.feature.CityListScreen</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.feature.city.CityListScreen</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.feature.weather.WeatherScreen</span>
 
 <span class="nd">@ExperimentalFoundationApi</span>
@@ -1575,8 +1575,8 @@ Majd ennek egy konkrét implementációját is:</p>
           </path>
         </svg>
       </span>
-      <span title="2023. május 26. 10:03:56">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-05-26T10:03:56+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-05-26</span>
+      <span title="2024. május 17. 11:27:19">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-05-17T11:27:19+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-05-17</span>
       </span>
     </span>
 
