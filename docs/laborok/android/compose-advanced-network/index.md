@@ -49,7 +49,7 @@ A feladatok megoldása során ne felejtsd el követni a [feladat beadás folyama
 Ezen a laboron nem új projektet fogunk létrehozni, hanem egy már létezőből indulunk ki, ez megtalálható a kicheckoutolt repositoryban `WorkplaceApp` néven. Nyissuk meg a projektet és a laborvezetővel nézzük át a felépítését.
 
 !!!info "A kezőprojekt"
-	A megnyitott projekt egy már kellően komlex alkalmazás, ami képes a felvett városok adataim Room adatbázisban eltárolni. A laborvezető segítségével tekintsük át a kezdőporjektet, de annak mérete és komplexitása miatt otthon is érdemes még rá időt szánni.
+	A megnyitott projekt egy már kellően komlex alkalmazás, ami képes a felvett városok adatait Room adatbázisban eltárolni. A laborvezető segítségével tekintsük át a kezdőporjektet, de annak mérete és komplexitása miatt otthon is érdemes még rá időt szánni.
 
 
 
@@ -141,7 +141,7 @@ class WeatherRepositoryImpl : WeatherRepository {
 
     companion object {
         private const val SERVICE_URL = "https://api.openweathermap.org"
-        private const val APP_ID = "310b7a8053e8224177e0847644f726ef"
+        private const val APP_ID = "sajat_APP_ID"
     }
 
     init {
@@ -553,7 +553,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import hu.bme.aut.kliensalkalmazasok.weatherinfo.feature.CityListScreen
+import hu.bme.aut.kliensalkalmazasok.weatherinfo.feature.city.CityListScreen
 import hu.bme.aut.kliensalkalmazasok.weatherinfo.feature.weather.WeatherScreen
 
 @ExperimentalFoundationApi
