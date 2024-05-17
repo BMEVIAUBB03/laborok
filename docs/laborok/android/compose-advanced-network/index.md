@@ -257,7 +257,7 @@ Figyeljük meg, hogy hogy használjuk a kódban a `Coin` library `AsyncImage` f�
 El is készültünk a hálózati kommunikáció beállításával, próbáljuk ki az alkalmazást!
 
 !!!example "BEADANDÓ"
-	Készíts egy **képernyőképet**, amelyen látszik a **város lista nézet az ikonokkal** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), a **WeatherApiImpl osztály kódja**, valamint a **neptun kódod a kódban valahol kommentként**. 
+	Készíts egy **képernyőképet**, amelyen látszik a **város lista nézet az ikonokkal** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), a **WeatherRepositoryImpl osztály kódja**, valamint a **neptun kódod a kódban valahol kommentként**. 
 
 	A képet a megoldásban a repository-ba f1.png néven töltsd föl. 
 
@@ -553,7 +553,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import hu.bme.aut.kliensalkalmazasok.weatherinfo.feature.city.CityListScreen
+import hu.bme.aut.kliensalkalmazasok.weatherinfo.feature.citylist.CityListScreen
 import hu.bme.aut.kliensalkalmazasok.weatherinfo.feature.weather.WeatherScreen
 
 @ExperimentalFoundationApi
@@ -599,7 +599,7 @@ Ezzel készen is vagyunk, már megjelennek a részletes nézeten az adatok. Pró
 
 ## Önálló feladat: város lista törlés megvalósítása (0,5 pont)
 
-Valósítsuk meg a városok törlését egy újonnan felvett *Floating Action Button* megnyomásának hatására.
+Valósítsuk meg az összes város törlését egy újonnan felvett *Floating Action Button* megnyomásának hatására.
 
 !!!example "BEADANDÓ"
 	Készíts egy **képernyőképet**, amelyen látszik az **üres lista nézet** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), a **törléshez tartozó kód**, valamint a **neptun kódod a kódban valahol kommentként**. 
