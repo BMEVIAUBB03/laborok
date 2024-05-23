@@ -62,17 +62,17 @@ Ahol nincs külön kifejezetten jelölve, a szoftverek legfrissebb stabil verzi�
 
 ### Git repository létrehozása és letöltése
 
-A feladatok megoldása során ne felejtsd el követni a feladat beadás folyamatát [Github](../../tudnivalok/github/GitHub.md).
+A feladatok megoldása során ne felejtsd el követni a feladat beadás folyamatát ([GitHub](../../tudnivalok/github/GitHub.md)).
 
-1. Moodle-ben keresd meg a laborhoz tartozó meghívó URL-jét és annak segítségével hozd létre a saját repository-dat.
+1. A Moodle-ben keresd meg a laborhoz tartozó meghívó URL-jét és annak segítségével hozd létre a saját repository-dat.
 2. Várd meg, míg elkészül a repository, majd checkout-old ki.
     * Egyetemi laborokban, ha a checkout során nem kér a rendszer felhasználónevet és jelszót, és nem sikerül a checkout, akkor valószínűleg a gépen korábban megjegyzett felhasználónévvel próbálkozott a rendszer. Először töröld ki a mentett belépési adatokat (lásd [itt](../../tudnivalok/github/GitHub-credentials.md)), és próbáld újra.
 3. Hozz létre egy új ágat `megoldas` néven, és ezen az ágon dolgozz.
-4. A neptun.txt fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.
+4. A `neptun.txt` fájlba írd bele a Neptun-kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun-kód 6 karaktere.
 
 ### A feladat
 
-A feladat a klasszikus [MasterMind](https://en.wikipedia.org/wiki/Mastermind_(board_game)) táblajáték kliensalkalmazás elkészítése lesz. Ennek sok variánsa létezik, a játék szabályai nálunk az alábbiak lesznek:
+A feladat a klasszikus [Mastermind](https://en.wikipedia.org/wiki/Mastermind_(board_game)) táblajáték kliensalkalmazás elkészítése lesz. Ennek sok variánsa létezik, a játék szabályai nálunk az alábbiak lesznek:
 
 - A "gép" (a kódmester) sorsol egy véletlenszerű, 4 hosszúságú sorozatot az alábbi 6 színű golyóból: piros, lila, kék, zöld, sárga, narancs.
     - Ugyanaz a szín többször is szerepelhet a sorrendben, pl.: kék, sárga, sárga, kék, zöld, lila.
@@ -84,7 +84,7 @@ A feladat a klasszikus [MasterMind](https://en.wikipedia.org/wiki/Mastermind_(bo
 Ezen labor során a játék kezdőképernyőjét készítjük el, a következő alkalommal innen folytatjuk!
 
 ???+ info "Specifikáció"
-    A kezdőoldalon maga a játék jelenjen meg. A játéktéren egy rács elrendezésben jelenik meg 10 sor, minden sorban 4 üres kör, ezek jelzik majd a tippelt színeket, ezek mellett pedig 4 kisebb üres kör, ahol a fekete/fehér jelzők fognak szerepelni.
+    A kezdőoldalon maga a játék jelenjen meg. A játéktéren rácselrendezésben jelenik meg 10 sor, minden sorban 4 üres kör, ezek jelzik majd a tippelt színeket, ezek mellett pedig 4 kisebb üres kör, ahol a fekete/fehér jelzők fognak szerepelni.
 
     A sorok fölött az aktuális tippünket fogjuk összeállítani, így megjelenik ott is 4 üres kör. Ez alatt megjelenik a 6 különböző színű golyó: piros, lila, kék, zöld, sárga, narancs. Az egyes golyókra kattintva az bekerül a balról következő üres helyre (ha van még). Ha a tippünkben egy golyóra kattintunk, akkor az kikerül a sorból, az utána következő elemek pedig balra csúsznak eggyel. Ha minden hely megtelt, aktiválódik egy gomb, amivel el tudjuk küldeni a tippünket.
 
@@ -93,20 +93,27 @@ Ezen labor során a játék kezdőképernyőjét készítjük el, a következő 
     Ha a tippünk talált (4 fekete jelző), a játék jelzi, hogy nyertünk, és új játékot kezdhetünk. Ha a 10. próbálkozás sem talál, akkor veszítettünk, és új játékot kezdhetünk. Amikor a játéknak vége van, felfedésre kerül, hogy mi volt az eredetileg sorsolt sorrend.
 
 
-## 1. feladat - Kiinduló projekt
+## 1. feladat – Kiindulóprojekt
 
-A gépre telepítve kell lennie az Angular CLI eszköznek. Az Angular CLI egy npm parancssori parancs, a NodeJS telepítésekor a globálisan telepített eszközök így bekerülnek a PATH változóba, így parancssorból egyszerűen az `ng` parancs futtatásával érhető el, ezért javasolt globálisan telepíteni az eszközt. Nyissunk meg a kiinduló repository `feladat` mappáját VS Code-ban, majd a Terminalban (`Ctrl+ö`) adjuk ki az alábbi parancsot:
+A gépre telepítve kell lennie az Angular CLI eszköznek. Az Angular CLI egy npm parancssori parancs, a NodeJS telepítésekor a globálisan telepített eszközök így bekerülnek a PATH változóba, így parancssorból egyszerűen az `ng` parancs futtatásával érhető el, ezért javasolt globálisan telepíteni az eszközt. Nyissunk meg a kiinduló repository `feladat` mappáját VS Code-ban, majd a Terminalban (`Ctrl+Ö`) adjuk ki az alábbi parancsot:
 
 > `npm install -g @angular/cli`
 
-Az esetleges warningokat (WARN) figyelmen kívül hagyhatjuk, csak az error jelzésű sorok jeleznek hibát.
-
-A telepítő felteheti az alábbi kérdést, erre válaszoljunk `n`-nel:
-> Would you like to share anonymous usage data with the Angular Team at Google under Google’s Privacy Policy at https://policies.google.com/privacy? For more details and how to change this setting, see http://angular.io/analytics.
+Az esetleges warningokat (`WARN`) figyelmen kívül hagyhatjuk, csak az error jelzésű sorok jeleznek hibát.
 
 Ezután adjuk ki az alábbi parancsot, ami egy új, üres projektet hoz nekünk létre a jelenlegi útvonalon:
 
 > `ng new mastermind --prefix=mm --style=scss --skip-tests=true --routing=false --no-standalone --directory=.`
+
+
+Az Angular felteheti az alábbi kérdést, amire válaszoljunk a preferenciánknak megfelelően:
+> Would you like to enable autocompletion? This will set up your terminal so pressing TAB while typing Angular CLI commands will show possible options and autocomplete arguments. (Enabling autocompletion will modify configuration files in your home directory.)
+
+Az alábbi kérdést is felteheti, amire válaszoljunk `n`-nel:
+> Would you like to share anonymous usage data with the Angular Team at Google under Google’s Privacy Policy at https://policies.google.com/privacy? For more details and how to change this setting, see http://angular.io/analytics.
+
+Az alábbi kérdést is felteheti, amire válaszoljunk `y`-nal:
+> Do you want to enable Server-Side Rendering (SSR) and Static Site Generation (SSG/Prerendering)?
 
 ???+ tip "ng parancs különböző környezetekben"
     Ha valaki járatos a PowerShell világában, akkor érdemes tisztában lenni vele, hogy a globális `ng` parancs futtatása PowerShellből a PATH-ban található `ng.ps1` PowerShell scriptet preferálja az `ng.cmd` helyett. Mivel a PS1 szkript nem digitálisan aláírt, ezért nem futtatható anélkül, hogy a felhasználó ehhez kifejezetten hozzá ne járulna. Az aláíratlan PowerShell szkriptek futtatása veszélyes lehet, ezért csak akkor engedélyezzük az aláíratlan szkript futtatását, ha tudjuk, mit csinálunk (vagy kontrollált környezetben, pl. konténerben vagy virtuális gépen futunk, amit nem zavar, ha tönkretesztünk). Az aláíratlan szkriptek engedélyezéséhez lásd a [hivatalos leírást](https://go.microsoft.com/fwlink/?LinkID=135170). Más operációs rendszereken vagy más shell használatával (pl. bash) az ng parancs meghívásának szintaxisa változhat (pl. `ng`, `ng.cmd` vagy `ng.ps1`)
@@ -156,7 +163,7 @@ Watch mode enabled. Watching for file changes...
 
 Nyissuk meg tehát a böngészőt a <a href="http://localhost:4200" target="_blank">`http://localhost:4200`</a>-on (ha magától nem nyílna meg)!
 
-Az `ng serve` parancsot hagyjuk a háttérben futni. Ha új parancsokat kell végrehajtanunk, nyissunk egy új terminált a `Ctrl+Shift+ö` billentyűkombinációval! **FONTOS!** Ha a fordítás hibát jelez, és úgy gondoljuk, hogy mégsincs hiba, akkor állítsuk le az `ng serve` parancsot (pl. `Ctrl+C`), és indítsuk újra. Ez akkor fordulhat elő esetenként, ha például fájlt törlünk vagy új függőségi csomagot hivatkozunk be.
+Az `ng serve` parancsot hagyjuk a háttérben futni. Ha új parancsokat kell végrehajtanunk, nyissunk egy új terminált a `Ctrl+Shift+Ö` billentyűkombinációval! **FONTOS!** Ha a fordítás hibát jelez, és úgy gondoljuk, hogy mégsincs hiba, akkor állítsuk le az `ng serve` parancsot (pl. `Ctrl+C`), és indítsuk újra. Ez akkor fordulhat elő esetenként, ha például fájlt törlünk vagy új függőségi csomagot hivatkozunk be.
 
 ???+ tip "Debugolás"
     Debugoláshoz (a megfelelő bővítmények telepítése után) nyomjuk meg az `F5` billentyűt VS Code-ban, válasszuk ki a lenyíló menüben a megfelelő debuggert (Edge/Chrome, amit az imént telepítettünk), és a létrejövő `launch.json` fájlban változtassuk meg az URL-t, hogy az a 4200-as portra mutasson. Ezután az `F5` billenyűvel indíthatjuk bármikor a debugolást (ehhez természetesen az `ng serve`-nek futnia kell). Ekkor a VS Code-ban elhelyezett töréspontokat (`F9`) meg fogjuk ütni, és megvizsgálhatjuk pl. a változók értékét a Debug fülön vagy az egérrel a változó nevére mutatva a kódban, vagy használhatjuk a Watch lehetőségeket, átléphetünk parancsokon stb.
@@ -195,7 +202,7 @@ Vizsgáljuk meg a létrejött projekt tartalmát (a számunkra jelenleg releván
 !!! example "1. feladat beadandó"
     Illessz be egy képernyőképet, ahol bal oldalon a böngészőben futó Angular kezdőprojekt, jobb oldalon a VS Code-ban futó terminál látható! (`f1.png`)
 
-## 2. feladat - Peg komponens
+## 2. feladat – Peg komponens
 
 ### Bootstrap
 
@@ -204,7 +211,7 @@ Elsőként adjuk hozzá a Bootstrap-et az alkalmazásunkhoz, hogy könnyen stíl
 
 Ez a parancs néhány dolgot megcsinál helyettünk, pl. letölti és behivatkozza a `bootstrap` és `ng-bootstrap` csomagokat függőségként, importálja a modult az alkalmazásunkba (az `src\app\app.module.ts`-t érdemes megvizsgálni), alkalmazza a lokalizációs polyfillt stb. Ezzel meg is volnánk, az alkalmazásunkban használhatjuk a szokásos Bootstrap elemeket, de fontos megjegyezni, hogy ez nem feltétlenül (/kizárólag) a szokásos Bootstrap osztályok elemekre aggatásával történik. A [hivatalos dokumentáció](https://ng-bootstrap.github.io/#/getting-started) az irányadó.
 
-Abban a ritka esetben, amennyiben nem sikerülne hozzáadni a Bootstrapet, próbáljuk meg a `package.json` fájlban az összes "~X.Y.Z" stílusú verziószámot "^X.Y.Z" stílusúra lecserélni. Ezután futtassuk az `npm update` parancsot, majd próbáljuk megint hozzáadni a Bootstrapet.
+Abban a ritka esetben, amennyiben nem sikerülne hozzáadni a Bootstrapet, próbáljuk meg a `package.json` fájlban az összes `~X.Y.Z` stílusú verziószámot `^X.Y.Z` stílusúra lecserélni. Ezután futtassuk az `npm update` parancsot, majd próbáljuk megint hozzáadni a Bootstrapet.
 
 ### Peg komponens
 
@@ -217,14 +224,14 @@ A fentinek a rövidebb formája: [`ng g c peg`](https://angular.io/cli).
 
 A parancs 3 fájlt hoz nekünk létre a `mastermind\src\app\peg` mappában: 
 
-- a komponens stíluslapját (.scss) - ez jelenleg üres,
-- a komponens template-jét, vagyis a DOM szerkezetét (.html):
+- a komponens stíluslapját (`.scss`) - ez jelenleg üres,
+- a komponens template-jét, vagyis a DOM-szerkezetét (`.html`):
 
 ```HTML
 <p>peg works!</p>
 ```
 
-- a komponens mögöttes kódját, vagyis a logikáját (.ts):
+- a komponens mögöttes kódját, vagyis a logikáját (`.ts`):
 
 ```TS
 import { Component } from '@angular/core';
@@ -240,7 +247,7 @@ export class PegComponent {
 
 ```
 
-Az `app.component.html` kódját cseréljük le úgy, hogy az példányosítson 4 db PegComponentet!
+Az `app.component.html` kódját cseréljük le úgy, hogy az példányosítson 4 db `PegComponent`et!
 
 ```HTML
 <mm-peg></mm-peg>
@@ -258,27 +265,26 @@ Vegyük észre, hogy a kód írása közben kapunk IntelliSense-t a komponens ne
 
 A komponensünket tehát úgy példányosítottuk, hogy a komponenshez tartozó CSS selector-nak megfelelő elemet elhelyeztük a HTML-ben. Jellemzően elemszintű selectorokat alkalmazunk, mint most a példában is, de van lehetőség más szabályszerűség (pl. class) alapján is példányosítani.
 
-A komponensünk akár megvalósíthatja az ún. `OnInit` interfészt, ez később az [Angular komponens/direktíva életciklus](https://angular.io/guide/lifecycle-hooks) során lehet még hasznos, de alapesetben nem generálódott bele a komponens TypeScript kódjába.
+A komponensünk akár megvalósíthatja az ún. `OnInit` interfészt is, ez később az [Angular komponens/direktíva életciklus](https://angular.io/guide/lifecycle-hooks) során lehet még hasznos, de alapesetben nem generálódott bele a komponens TypeScript-kódjába.
 
-Hozzuk létre a színeket reprezentáló típust az `src\app\models\peg-color.ts` fájlba (a mappát és fájlt is hozzuk létre). A típus egy TypeScript uniótípus legyen a 'red', 'purple', 'blue', 'green', 'yellow', 'orange', 'black', 'white', és 'unset' string értékekkel!</summary>
+Hozzuk létre a színeket reprezentáló típust az `src\app\models\peg-color.ts` fájlba (a mappát és fájlt is hozzuk létre). A típus egy TypeScript-uniótípus legyen a `red`, `purple`, `blue`, `green`, `yellow`, `orange`, `black`, `white` és `unset` stringértékekkel!</summary>
 
 ```TS
 export type PegColor = 'red' | 'purple' | 'blue' | 'green' | 'yellow' | 'orange' | 'black' | 'white' | 'unset';
 ```
 
-A Peg kétféle lehet: 'code' vagy 'key', ennek is hozzunk létre egy típust az `src\app\models\peg-type.ts` fájlba PegType néven!
+A Peg kétféle lehet: `code` vagy `key`, ennek is hozzunk létre egy típust az `src\app\models\peg-type.ts` fájlba `PegType` néven!
 
 ```TS
 export type PegType = 'code' | 'key';
 ```
 
-A PegComponent-be vegyünk fel egy adatkötött 'color' és 'type' tulajdonságot (komponens paraméter)! Vegyünk fel két számított, csak lekérdezhető értéket (getter): colorChar (a szín első karakterét adja vissza nagybetűsítve, vagy az "X" értéket, ha nincs szín) és colorLower (a szín nevét adja vissza, vagy az "unset" értéket, ha nincs szín).
+A `PegComponent`be vegyünk fel egy adatkötött `color` és `type` tulajdonságot (komponens paraméter)! Vegyünk fel két számított, csak lekérdezhető értéket (getter): `colorChar` (a szín első karakterét adja vissza nagybetűsítve, vagy az "X" értéket, ha nincs szín) és `colorLower` (a szín nevét adja vissza, vagy az `unset` értéket, ha nincs szín).
 
-??? tip "Megvalósítás: PegComponent"
+??? tip "Megvalósítás: `PegComponent`"
     ```TS
     export class PegComponent {
-
-      @Input() // Az Input dekorátort importálnunk kell a jelenlegi scope-ba. Ehhez használhatjuk a VS Code segítségét (Ctrl+. a kurzort a hibára helyezve) vagy fentre beírhatjuk: import { Input } from '@angular/core';
+      @Input() // Az Input dekorátort importálnunk kell a jelenlegi scope-ba. Ehhez használhatjuk a VS Code segítségét (Ctrl+. a kurzort a hibára helyezve), vagy fentre beírhatjuk: import { Input } from '@angular/core';
       color?: PegColor; // Hasonlóképp a PegColor-ra is, csak itt a lokális '../models/peg-color'-ból importálunk.
 
       @Input()
@@ -327,7 +333,7 @@ Stílusozzuk meg az elemet! A komponenshez tartozó stíluslap csak a komponens 
 ??? tip "Megvalósítás: Peg SCSS"
     ```SCSS
     .peg {
-        border: 1 px solid grey;
+        border: 1px solid grey;
         margin: 8px;
         box-shadow: 2px 2px;
     }
@@ -359,7 +365,7 @@ Stílusozzuk meg az elemet! A komponenshez tartozó stíluslap csak a komponens 
     }
     ```
 
-Cseréljük le az `app-component.html` tartalmát (ez az oldalunk fő komponense): adjuk át adatkötéssel rendre a piros, zöld, kék és narancs színeket a PegComponent példányoknak!
+Cseréljük le az `app.component.html` tartalmát (ez az oldalunk fő komponense): adjuk át adatkötéssel rendre a piros, zöld, kék és narancs színeket a `PegComponent` példányoknak!
 
 ```HTML
 <mm-peg [color]="'red'"></mm-peg>
@@ -375,9 +381,9 @@ Ha most megnézzük az oldalt, a következőt láthatjuk:
   <figcaption>Színek az oldalon #1</figcaption>
 </figure>
 
-A DOM Explorerben (F12 böngészőben) láthatjuk, hogy nem jutott érvényre sem a `.peg-key`, sem a `.peg-code`, ugyanis ennek nem adtunk értéket, így egy `.peg-` osztály kerül az elemre.
+A DOM Explorerben (`F12` a böngészőben) láthatjuk, hogy nem jutott érvényre sem a `.peg-key`, sem a `.peg-code`, ugyanis ennek nem adtunk értéket, így egy `.peg-` osztály kerül az elemre.
 
-Észrevehetjük még, hogy az elem egy fura attribútumot kapott (pl. `_ngcontent-dca-c97`). Ennek oka, hogy a CSS szabályunk valójában módosításra került úgy, hogy magába foglalja ezt a generált attribútumot. Ezért nem fut le tehát ez a selector más elemekre. Az F12 CSS eszközei között (pl. Elements/Styles fülön) ezt láthatjuk is.
+Észrevehetjük még, hogy az elem egy fura attribútumot kapott (pl. `_ngcontent-dca-c97`). Ennek oka, hogy a CSS szabályunk valójában módosításra került úgy, hogy magába foglalja ezt a generált attribútumot. Ezért nem fut le tehát ez a selector más elemekre. Az `F12` CSS-eszközei között (pl. az Elements/Styles fülön) ezt láthatjuk is.
 
 Módosítsuk az `app.component.html`-t, hogy legyen egy piros és egy zöld kódjelző, majd két fekete és két fehér kulcsjelző!
 
@@ -411,7 +417,7 @@ Alakul, most már látjuk, mit szeretnénk elérni. Néhány apróságot tegyün
 // ...
 ```
 
-A `peg.component.ts`-ből törölhetjük a `getColorChar()` függvényt, nem lesz rá szükség.
+A `peg.component.ts`-ből törölhetjük a `get ColorChar()` függvényt, nem lesz rá szükség.
 
 
 <figure markdown>
@@ -419,15 +425,15 @@ A `peg.component.ts`-ből törölhetjük a `getColorChar()` függvényt, nem les
   <figcaption>Színek az oldalon #3</figcaption>
 </figure>
 
-### Beadandó (0.2 pont)
-!!! example "2. feladat beadandó"
+### Beadandó
+!!! example "2. feladat beadandó (0.2 pont)"
     Illessz be egy képernyőképet, ahol bal oldalon a színes golyók, jobb oldalon a VS Code-ban futó terminál látható! (`f2.png`)
 
-## 3. feladat - Sor definiálása
+## 3. feladat – Sor definiálása
 
 Egy sorban meg kell jelennie 4 színes golyónak (vagy helyőrzőnek), mellette 4 jelzőnek. Tíz sornak kell összesen megjelennie.
 
-Vegyünk fel egy osztályt, ami az egyes tippeket fogja reprezentálni az `src\app\models\guess.ts` fájlba! A modell osztály konstruktor tulajdonságokat tartalmaz: két 'PegColor' tömböt 'colors' és 'keys' néven.
+Vegyünk fel egy osztályt, ami az egyes tippeket fogja reprezentálni az `src\app\models\guess.ts` fájlban! A modell osztály konstruktor tulajdonságokat tartalmaz: két 'PegColor' tömböt 'colors' és 'keys' néven.
 
 ??? tip "Megvalósítás: Guess"
     ```TS
@@ -435,18 +441,17 @@ Vegyünk fel egy osztályt, ami az egyes tippeket fogja reprezentálni az `src\a
 
     export class Guess {
         constructor(
-            public colors: PegColor[], // A tippelt színeket jelző tömb, benne pontosan 4 elemmel.
-            public keys: PegColor[]) { // A tippek helyességét jelző tömb, benne pontosan 4 elemmel.
+            public colors: PegColor[],  // A tippelt színeket jelző tömb, benne pontosan 4 elemmel.
+            public keys: PegColor[]) {  // A tippek helyességét jelző tömb, benne pontosan 4 elemmel.
         }
     }
-
     ```
 
 Az osztályunk 4-4 színt fog tehát tárolni: ami tipp érkezett, illetve ami a visszajelzéseket mutatja majd.
 
-Az `src\app\app.component.ts` funkcionalitását egészítsük ki! Legyen egy 'guesses' tömb, ami tárolja a leadott tippeket! Legyen egy 'initGame' függvény, ami feltölti a tippeket 10 db üres tipp ('Guess') példánnyal! A konstruktor hívja meg az 'initGame' függvényt!
+Az `src\app\app.component.ts` funkcionalitását egészítsük ki! Legyen egy `guesses` tömb, ami tárolja a leadott tippeket! Legyen egy `initGame()` függvény, ami feltölti a tippeket 10 db üres tipp (`Guess`) példánnyal! A konstruktor hívja meg az `initGame()` függvényt!
 
-??? tip "Megvalósítás: AppComponent logika"
+??? tip "Megvalósítás: AppComponent-logika"
     ```TS
     import { Component } from '@angular/core';
     import { Guess } from './models/guess';
@@ -474,9 +479,9 @@ Az `src\app\app.component.ts` funkcionalitását egészítsük ki! Legyen egy 'g
     }
     ```
 
-Jelenítsük meg az AppComponent template-jében (`src\app\app.component.html`) a "leadott" (jelenleg üres) tippeket! Járjuk be az összes tippet (*ngFor), hozzuk létre a tipp színeinek megfelelő kód és kulcs típusú 'PegComponent' példányokat!
+Jelenítsük meg az AppComponent template-jében (`src\app\app.component.html`) a "leadott" (jelenleg üres) tippeket! Járjuk be az összes tippet (`*ngFor`), hozzuk létre a tipp színeinek megfelelő kód és kulcs típusú `PegComponent` példányokat!
 
-??? tip "Megvalósítás: AppComponent sablon"
+??? tip "Megvalósítás: AppComponent-sablon"
     ```HTML
     <main class="container-fluid">
         <section class="guesses-container">
@@ -519,17 +524,17 @@ Stílusozzuk a komponenst (`src\app\app.component.scss`) az alábbiak szerint.
   <figcaption>Leadott tippek megjelenítése</figcaption>
 </figure>
 
-### Beadandó (0.2 pont)
-!!! example "3. feladat beadandó"
+### Beadandó
+!!! example "3. feladat beadandó (0.2 pont)"
     Illessz be egy képernyőképet, ahol bal oldalon a tippek megjelenítése, jobb oldalon a VS Code-ban futó terminál látható! (`f3.png`)
 
-## 4. feladat - Tipp összeállítása
+## 4. feladat – Tipp összeállítása
 
 A sorok fölött a jelenlegi tippünk összeállítása fog látszani. Ez alatt a 6 lehetséges szín fog megjelenni, amire kattintva össze tudjuk állítani a tippet, valamint egy gomb, amivel el tudjuk küldeni a tippünket. Ezt a funkcionalitást a következő laboron fogjuk megvalósítani, most csak a megjelenítést csináljuk meg.
 
 Egészítsük ki az `src\app\app.component.ts` funkcionalitását és megjelenítését az elvárt funkcionalitásnak megfelelően!
 
-??? tip "Megvalósítás: AppComponent logika"
+??? tip "Megvalósítás: AppComponent-logika"
     ```TS
     export class AppComponent {
       guesses: Guess[] = [];
@@ -556,7 +561,7 @@ Az inicializáláskor kitöltjük a jelenlegi tippünket reprezentáló 4 színb
 
 Egészítsük ki az `src\app\app.component.html` fájlt, hogy megjelenítse az elemeket:
 
-??? tip "Megvalósítás: AppComponent sablon"
+??? tip "Megvalósítás: AppComponent-sablon"
     ```HTML
     <main class="container-fluid">
         <section class="current-guess-container text-center mb-3">
@@ -595,17 +600,17 @@ Igazítsuk hozzá a stílust (`src\app\app.component.scss`):
 
  Az adatkötést egy irányban gyakoroltuk, a modell (komponens) felől a nézet (template) irányába. A következő alkalommal bekötjük az eseménykezelőket, és megírjuk a szükséges logikákat, hogy a játék játszható legyen.
 
-### Beadandó (0.2 pont)
-!!! example "4. feladat beadandó"
+### Beadandó
+!!! example "4. feladat beadandó (0.2 pont)"
     Illessz be egy képernyőképet, ahol bal oldalon a kész kezdőoldal, jobb oldalon a VS Code-ban futó terminál látható! (`f4.png`)
 
-## 5. feladat - NEPTUN kód
+## 5. feladat (önálló) – Neptun-kód
 
-A currentGuess mezőben tároljuk a felhasználó által aktuálisan szerkesztett tipp példányt, aminek 4 elemet kell tartalmaznia, de semmi nem akadályozza meg, hogy több vagy kevesebb elem kerüljön bele.
+A `currentGuess` mezőben tároljuk a felhasználó által aktuálisan szerkesztett tipp-példányt, aminek 4 elemet kell tartalmaznia, de semmi nem akadályozza meg, hogy több vagy kevesebb elem kerüljön bele.
 
-Alkalmazd az alábbi logikát, hogy megjelenítsd **a saját Neptun kódodnak megfelelő**, 6-jegyű színkombinációt az első sorban (`AppComponent.currentGuess`), a színpaletta (`AppComponent.possibleValues`) felett!
+Alkalmazd az alábbi logikát, hogy megjelenítsd **a saját Neptun-kódodnak megfelelő**, 6-jegyű színkombinációt az első sorban (`AppComponent.currentGuess`), a színpaletta (`AppComponent.possibleValues`) felett!
 
-A Neptun kódod minden karakterének vedd a karakterkódjának számértékét a `string.charCodeAt()` függvénnyel! Pl: 
+A Neptun-kódod minden karakterének vedd a karakterkódjának számértékét a `string.charCodeAt()` függvénnyel! Pl: 
 
 ```JS
 let x = `XYZ012`.charCodeAt(0); // == 88
@@ -614,18 +619,18 @@ let x = `XYZ012`.charCodeAt(0); // == 88
 Vedd az így keletkező karakter 6-os modulusát!
 
 ```JS
-> let m = x % 6; // == 4
+let m = x % 6; // == 4
 ```
 
 Vedd a `possibleValues` ennek az indexnek megfelelő elemeit minden karakterre!
 
-Ennek eredményeképp a példa `XYZ012` Neptun kód esetén a `[88, 89, 90, 48, 49, 50]` értékek, ebből a `[4, 5, 0, 0, 1, 2]` maradékok tömbje, ebből pedig a `['yellow', 'orange', 'red', 'red', 'purple', 'blue']` tömb áll elő, amely a felületen az alábbi módon jelenik meg:
+Ennek eredményeképp a példa `XYZ012` Neptun-kód esetén a `[88, 89, 90, 48, 49, 50]` értékek, ebből a `[4, 5, 0, 0, 1, 2]` maradékok tömbje, ebből pedig a `['yellow', 'orange', 'red', 'red', 'purple', 'blue']` tömb áll elő, amely a felületen az alábbi módon jelenik meg:
 
 <figure markdown>
   ![Az 'XYZ012' Neptun kódhoz tartozó színkód vizualizációja](./assets/colorful-code.png)
   <figcaption>Az 'XYZ012' Neptun kódhoz tartozó színkód vizualizációja</figcaption>
 </figure>
 
-### Beadandó (0.2 pont)
-!!! example "5. feladat beadandó"
-    Illessz be egy képernyőképet, ahol bal oldalon a NEPTUN kódod vizualizációja, jobb oldalon a VS Code-ban futó terminál látható! (`f5.png`)
+### Beadandó
+!!! example "5. feladat beadandó (0.2 pont)"
+    Illessz be egy képernyőképet, ahol bal oldalon a Neptun-kódod vizualizációja, jobb oldalon a VS Code-ban futó terminál látható! (`f5.png`)
