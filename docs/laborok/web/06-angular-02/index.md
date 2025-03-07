@@ -1,4 +1,4 @@
-# Labor 06 – Angular haladó
+# Régi Labor 06 – Angular haladó
 
 ## Bevezetés
 
