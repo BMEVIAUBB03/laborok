@@ -85,7 +85,7 @@ Nyissuk meg tehát a böngészőt a <a href="http://localhost:5173" target="_bla
 Az `npm run dev` (vagy ha átírtuk, akkor `npm start`) parancsot hagyjuk a háttérben futni. Ha új parancsokat kell végrehajtanunk, nyissunk egy új terminált a `Ctrl+Shift+Ö` billentyűkombinációval! **FONTOS!** Ha a fordítás hibát jelez, és úgy gondoljuk, hogy mégsincs hiba, akkor állítsuk le a parancsot (pl. `Ctrl+C`), és indítsuk újra. Ez akkor fordulhat elő esetenként, ha például fájlt törlünk vagy új függőségi csomagot hivatkozunk be.
 
 <figure markdown>
-  ![A kiinduló Preact projekt böngészőben](./assets/start.png)
+  ![A kiinduló Preact projekt böngészőben](./assets/react-01.png)
   <figcaption>A kiinduló Preact projekt böngészőben</figcaption>
 </figure>
 
@@ -196,7 +196,7 @@ render(<App />, document.getElementById('app'));
 A `<Header />` tag segítségével tudjuk beágyazni a Header komponenst. A `Bootstrap` import a későbbi feladatokhoz fog kelleni. A `render` függvényhívás illeszti be a dinamikus tartalmat a főoldal megfelelő helyére (`div` tag `app` classal). A fejlécnél erre még nem feltétlenül van szükségünk, de később mindenképpen kelleni fog. Nézzük meg, hogy megjelenik-e az oldalon a komponens!
 
 <figure markdown>
-  ![Header komponens az oldalon](./assets/header.png)
+  ![Header komponens az oldalon](./assets/react-02.png)
   <figcaption>Header komponens az oldalon</figcaption>
 </figure>
 
@@ -262,7 +262,7 @@ Végezetül adjuk hozzá az `App` függvényhez a `<Header />` tag után a köve
 ```
 
 <figure markdown>
-  ![Ételek az oldalon](./assets/menuitems.png)
+  ![Ételek az oldalon](./assets/react-03.png)
   <figcaption>Ételek az oldalon</figcaption>
 </figure>
 
@@ -319,7 +319,7 @@ export default function App() {
 A gomb `onClick` eseménykezelője invertálja a `showVegetarianOnly` aktuális értékét. Ehhez a `setShowVegetarianOnly` set függvényt kell használnia. Állapotkezeléssel a következő laboron is fogunk még foglalkozni.
 
 <figure markdown>
-  ![Csak vegetáriánus ételek megjelenítése](./assets/menuitems_filtered.png)
+  ![Csak vegetáriánus ételek megjelenítése](./assets/react-04.png)
   <figcaption>Csak vegetáriánus ételek megjelenítése</figcaption>
 </figure>
 
@@ -334,7 +334,7 @@ Hozz létre egy új komponenst `SpecialOffer` néven, amely egy speciális aján
 A vezetett feladatokhoz hasonlóan itt is dolgozz beégetett adatokkal.
 
 <figure markdown>
-  ![Speciális ajánlat megjelenítése](./assets/specialoffer.png)
+  ![Speciális ajánlat megjelenítése](./assets/react-05.png)
   <figcaption>Speciális ajánlat megjelenítése</figcaption>
 </figure>
 
@@ -354,7 +354,7 @@ A vezetett feladatokhoz hasonlóan itt is dolgozz beégetett adatokkal.
     A vásárlói vélemények blokkot feltételes megjelenítéssel kell csinálni, a vegetáriánus badge-hez hasonló módon. Lehet például a tömb hosszára szűrni.
 
 <figure markdown>
-  ![Vásárlói vélemények megjelenítése](./assets/customerreview.png)
+  ![Vásárlói vélemények megjelenítése](./assets/react-06.png)
   <figcaption>Vásárlói vélemények megjelenítése</figcaption>
 </figure>
 
