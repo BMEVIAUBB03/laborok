@@ -84,9 +84,6 @@ Nyissuk meg tehát a böngészőt a <a href="http://localhost:5173" target="_bla
 
 Az `npm run dev` (vagy ha átírtuk, akkor `npm start`) parancsot hagyjuk a háttérben futni. Ha új parancsokat kell végrehajtanunk, nyissunk egy új terminált a `Ctrl+Shift+Ö` billentyűkombinációval! **FONTOS!** Ha a fordítás hibát jelez, és úgy gondoljuk, hogy mégsincs hiba, akkor állítsuk le a parancsot (pl. `Ctrl+C`), és indítsuk újra. Ez akkor fordulhat elő esetenként, ha például fájlt törlünk vagy új függőségi csomagot hivatkozunk be.
 
-???+ tip "Formázás"
-    A kódot formázni az `Alt+Shift+F` billentyűkombinációval tudjuk.
-
 <figure markdown>
   ![A kiinduló Preact projekt böngészőben](./assets/start.png)
   <figcaption>A kiinduló Preact projekt böngészőben</figcaption>
@@ -111,6 +108,9 @@ Vizsgáljuk meg a létrejött projekt tartalmát (csak a releváns mappák és f
 <title>Webes labor 05 - Preact bevezető</title>
 ```
 
+???+ tip "Formázás"
+    A kódot formázni az `Alt+Shift+F` billentyűkombinációval tudjuk.
+
 ### Beadandó (0.1 pont)
 !!! example "1. feladat beadandó"
     Illessz be egy képernyőképet, ahol bal oldalon a böngészőben futó Preact kezdőprojekt, jobb oldalon a VS Code-ban futó terminál látható! (`f1.png`)
@@ -125,7 +125,7 @@ A Header komponens egy díszítő fejlécként funkcionál az alkalmazásban. Di
 
 Elsőként hozzuk létre a `Header.tsx` fájlt, majd töltsük fel az alábbi tartalommal:
 
-```TSX
+```javascript
 export default function Header() {
   return (
     <header className="header">
@@ -167,13 +167,13 @@ Hozzuk létre a `Header.css` fájlt a `Header.tsx` fájl mellé a következő ta
 
 A CSS szabályai csak arra a komponensre fognak vonatkozni, amelyik beimportálja a CSS-t, esetünkben ez a Header komponens lesz. Importáljuk a CSS fájlt a `Header.tsx` fájl elején:
 
-```TSX
+```javascript
 import './Header.css';
 ```
 
 Annak érdekében, hogy a komponensünk megjelenjen az oldalon, írjuk felül az index komponens (`index.tsx`) teljes tartalmát az alábbival:
 
-```TSX
+```javascript
 import "bootstrap/dist/css/bootstrap.min.css";
 import { render } from "preact";
 import Header from './components/Header';
@@ -202,7 +202,7 @@ A `<Header />` tag segítségével tudjuk beágyazni a Header komponenst. A `Boo
 
 Folytassuk az ételek elkészítésével! Hozzuk létre a MenuItem komponenst (`MenuItem.tsx`) az alábbi tartalommal:
 
-```TSX
+```javascript
 export type MenuItemProps = {
     name: string;
     price: number;
@@ -224,17 +224,17 @@ export default function MenuItem({ name, price, description, isVegetarian }: Men
 }
 ```
 
-Ehhez a komponenshez nem készítünk saját CSS-t, helyette a `Bootstrap` osztályaira támaszkodunk (`card`, `mb-3` stb.). A `MenuItemProps` tárolja egy étel adatait, a props segítségével tudunk dinamikus tartalmat (adatokat) vinni az alkalmazásba. A `MenuItem` függvény paraméterül megkapja a szükséges adatokat és egy `MenuItemProps`-ot készít belőlük. Az `isVegetarian` tagváltozó a megjelenítési logikában szerepel, a többi tagváltozót adatként jelenítjük meg.
+Ehhez a komponenshez nem készítünk saját CSS-t, helyette a `Bootstrap` osztályaira támaszkodunk (`card`, `mb-3` stb.). A `MenuItemProps` tárolja egy étel adatait, a props segítségével tudunk dinamikus tartalmat (adatokat) vinni az alkalmazásba. A `MenuItem` függvény paraméterül megkapja a szükséges adatokat és egy `MenuItemProps`-ot készít belőlük. Az `isVegetarian` tagváltozó a megjelenítési logikában szerepel (az értékétől függően jelenik meg a badge), a többi tagváltozót adatként jelenítjük meg.
 
 Importáljuk be az új komponenst az `index.tsx` fájlban:
 
-```TSX
+```javascript
 import MenuItem from "./components/MenuItem";
 ```
 
-Mivel többféle ételünk lesz és minden `MenuItem` komponenst fel kell paramétereznünk, valahonnan adatokat kell szolgáltatnunk az oldalnak. Egy éles alkalmazásban az adatok tipikusan a szerverről vagy valamilyen külső API-ról érkeznének, de itt (és a házi feladatnál is!) megelégszünk a memóriában tárolt adatokkal. Vegyük fel a következő listát az `index.tsx` fájlba, az importok után:
+Mivel többféle ételünk lesz és minden `MenuItem` komponenst fel kell paramétereznünk, valahonnan adatokat kell szolgáltatnunk az oldalnak. Egy éles alkalmazásban az adatok tipikusan a szerverről vagy valamilyen külső API-ról érkeznének, de most (és a házi feladatnál is!) megelégszünk a memóriában tárolt adatokkal. Vegyük fel a következő listát az `index.tsx` fájlba, az importok után:
 
-```TSX
+```javascript
 const menuItems = [
 	{ id: 1, name: "Gombapörkölt", price: 1500, description: "A magyaros ízek kedvelőinek.", isVegetarian: true },
 	{ id: 2, name: "Töltött káposzta", price: 2000, description: "A magyaros ízek kedvelőinek.", isVegetarian: false },
@@ -246,7 +246,7 @@ const menuItems = [
 
 Végezetül adjuk hozzá az `App` függvényhez a `<Header />` tag után a következő kódrészletet, hogy meg is jelenjenek az ételek:
 
-```TSX
+```javascript
 <div className="container mt-4">
   {menuItems
     .map((item) => (
@@ -266,15 +266,15 @@ Végezetül adjuk hozzá az `App` függvényhez a `<Header />` tag után a köve
   <figcaption>Ételek az oldalon</figcaption>
 </figure>
 
-### Beadandó
+### Beadandó (0.3 pont)
 !!! example "2. feladat beadandó (0.3 pont)"
     Illessz be egy képernyőképet, ahol bal oldalon az oldal, jobb oldalon a VS Code-ban futó terminál látható! (`f2.png`)
 
 ## 3. feladat – Vegetáriánus ételek megjelenítése
 
-Szeretnénk mind, vagy pedig csak a vegetáriánus ételeket megjeleníteni. Ehhez egy gombot fogunk felvenni, ami állapotkezelés (`useState`) segítségével szabályozza, hogy melyik megjelenítési módban vagyunk. Importáljuk a `useState` hook-ot és vegyük fel a következő állapotváltozót az `index.tsx` `App` függvényébe:
+Szeretnénk az összes, vagy pedig csak a vegetáriánus ételeket megjeleníteni. Ezért egy gombot fogunk felvenni, ami állapotkezelés (`useState`) segítségével szabályozza, hogy melyik megjelenítési módban vagyunk. Importáljuk a `useState` hook-ot és vegyük fel a következő állapotváltozót az `index.tsx` `App` függvényébe:
 
-```TSX
+```javascript
 import { useState } from "preact/hooks";
 // ...
 export default function App() {
@@ -283,9 +283,9 @@ export default function App() {
 }
 ```
 
-Az állapotváltozó kezdetben `false` értéket vesz fel. Ezután vegyük fel a gombot is az `App` függvényen belül és módosítjuk az ételek kiírását, hogy mindig csak a megfelelő ételek jelenjenek meg (filter függvény használatával):
+Az állapotváltozó kezdetben `false` értéket vesz fel. Ezután vegyük fel a gombot is az `App` függvényen belül és módosítjuk az ételek kiírását, hogy mindig csak a megfelelő ételek jelenjenek meg (a `filter` függvény használatával):
 
-```TSX
+```javascript
 export default function App() {
   // ...
 }
@@ -316,14 +316,14 @@ export default function App() {
 </div>
 ```
 
-A gomb onClick eseménykezelője invertálja a `showVegetarianOnly` aktuális értékét. Ehhez a `setShowVegetarianOnly` set függvényt kell használnia. Állapotkezeléssel a következő laboron is fogunk még foglalkozni.
+A gomb `onClick` eseménykezelője invertálja a `showVegetarianOnly` aktuális értékét. Ehhez a `setShowVegetarianOnly` set függvényt kell használnia. Állapotkezeléssel a következő laboron is fogunk még foglalkozni.
 
 <figure markdown>
   ![Csak vegetáriánus ételek megjelenítése](./assets/menuitems_filtered.png)
   <figcaption>Csak vegetáriánus ételek megjelenítése</figcaption>
 </figure>
 
-### Beadandó
+### Beadandó (0.1 pont)
 !!! example "3. feladat beadandó (0.1 pont)"
     Illessz be egy képernyőképet, ahol bal oldalon az oldal, jobb oldalon a VS Code-ban futó terminál látható! (`f3.png`)
 
@@ -338,7 +338,7 @@ A vezetett feladatokhoz hasonlóan itt is dolgozz beégetett adatokkal.
   <figcaption>Speciális ajánlat megjelenítése</figcaption>
 </figure>
 
-### Beadandó
+### Beadandó (0.2 pont)
 !!! example "4. feladat beadandó (0.2 pont)"
     Illessz be egy képernyőképet, ahol bal oldalon az oldal, jobb oldalon a VS Code-ban futó terminál látható! (`f4.png`)
 
@@ -358,6 +358,6 @@ A vezetett feladatokhoz hasonlóan itt is dolgozz beégetett adatokkal.
   <figcaption>Vásárlói vélemények megjelenítése</figcaption>
 </figure>
 
-### Beadandó
+### Beadandó (0.3 pont)
 !!! example "5. feladat beadandó (0.3 pont)"
     Illessz be egy képernyőképet, ahol bal oldalon az oldal, amin legalább 2 ételnél összesen legalább 3 vásárlói vélemény van, jobb oldalon a VS Code-ban futó terminál látható! (`f5.png`)
