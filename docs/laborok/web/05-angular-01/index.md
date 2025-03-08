@@ -1,4 +1,4 @@
-# Régi Labor 05 – Angular bevezető
+# *** Régi tematika *** - Labor 05 – Angular bevezető
 
 ## Bevezetés
 

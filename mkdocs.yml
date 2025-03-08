@@ -91,6 +91,8 @@ nav:
       - laborok/web/03-js/index.md
       - laborok/web/04-ts/index.md
       - laborok/web/05-react-01/index.md
+      - laborok/web/05-angular-01/index.md
+      - laborok/web/06-angular-02/index.md
   - "Mobilos laborok":
       - laborok/android/basics/index.md
       - laborok/android/ui-basics/index.md
