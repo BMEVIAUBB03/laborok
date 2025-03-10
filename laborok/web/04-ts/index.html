@@ -540,7 +540,14 @@
     Bevezetés
   </a>
   
-    <nav class="md-nav" aria-label="Bevezetés">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elokeszulet" class="md-nav__link">
+    Előkészület
+  </a>
+  
+    <nav class="md-nav" aria-label="Előkészület">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -878,7 +885,14 @@
     Bevezetés
   </a>
   
-    <nav class="md-nav" aria-label="Bevezetés">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elokeszulet" class="md-nav__link">
+    Előkészület
+  </a>
+  
+    <nav class="md-nav" aria-label="Előkészület">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1000,16 +1014,17 @@
 <p>A TypeScript kulcsfontosságú eleme a <code>tsc</code>, azaz a TypeScript compiler, aminek segítségével a TypeScript forráskódunkat fordíthatjuk le JavaScript forráskóddá (tehát ez egy <em>source-to-source compiler</em>, vagy más néven <em>transpiler</em>).</p>
 <p><strong>A TypeScript a JavaScriptre épít, így minden JavaScript fájl egyben értelmezhető TypeScript kód is.</strong> A VS Code alapértelmezetten IntelliSense segítséget ad nekünk a JavaScript forrásokban is, ezt a TypeScript compiler segítségével teszi a háttérben.</p>
 </details>
+<h2 id="elokeszulet">Előkészület<a class="headerlink" href="#elokeszulet" title="Permanent link">&para;</a></h2>
+<p>A feladatok megoldása során ne felejtsd el követni a <a href="../../../tudnivalok/github/GitHub/">feladatbeadás folyamatát</a>.</p>
 <h3 id="git-repository-letrehozasa-es-letoltese">Git repository létrehozása és letöltése<a class="headerlink" href="#git-repository-letrehozasa-es-letoltese" title="Permanent link">&para;</a></h3>
-<p>A feladatok megoldása során ne felejtsd el követni a feladat beadás folyamatát <a href="../../tudnivalok/github/GitHub.md">Github</a>.</p>
 <ol>
-<li>Moodle-ben keresd meg a laborhoz tartozó meghívó URL-jét és annak segítségével hozd létre a saját repository-dat.</li>
-<li>Várd meg, míg elkészül a repository, majd checkout-old ki.<ul>
-<li>Egyetemi laborokban, ha a checkout során nem kér a rendszer felhasználónevet és jelszót, és nem sikerül a checkout, akkor valószínűleg a gépen korábban megjegyzett felhasználónévvel próbálkozott a rendszer. Először töröld ki a mentett belépési adatokat (lásd <a href="../../tudnivalok/github/GitHub-credentials.md">itt</a>), és próbáld újra.</li>
+<li>A Moodle-ben keresd meg a laborhoz tartozó meghívó URL-jét, és annak segítségével hozd létre a saját repositorydat.</li>
+<li>Várd meg, míg elkészül a repository, majd checkoutold ki.<ul>
+<li>Egyetemi laborokban, ha a checkout során nem kér a rendszer felhasználónevet és jelszót, és nem sikerül a checkout, akkor valószínűleg a gépen korábban megjegyzett felhasználónévvel próbálkozott a rendszer. Először töröld ki a mentett belépési adatokat (lásd <a href="../../../tudnivalok/github/GitHub-credentials/">itt</a>), és próbáld újra.</li>
 </ul>
 </li>
 <li>Hozz létre egy új ágat <code>megoldas</code> néven, és ezen az ágon dolgozz.</li>
-<li>A neptun.txt fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.</li>
+<li>A <code>neptun.txt</code> fájlba írd bele a Neptun-kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun-kód 6 karaktere.</li>
 </ol>
 <h2 id="1-feladat-blackjack-kiindulo-projekt-megismerese">1. feladat – BlackJack kiinduló projekt megismerése<a class="headerlink" href="#1-feladat-blackjack-kiindulo-projekt-megismerese" title="Permanent link">&para;</a></h2>
 <p>Vizsgáljuk meg a kiinduló projektet! A kiinduló index.html a <code>&lt;head&gt;</code> részben hivatkozza a függőségeket, és később a HTML-állomány végén a saját <code>blackjack.js</code> fájlunkat. Vegyük észre, hogy ilyen fájl nem található, mi magunk kézzel nem is fogjuk létrehozni; ezt a TypeScript compiler fogja nekünk generálni az összes <code>.ts</code> fájlból kiindulva. Vizsgáljuk meg a <code>tsconfig.json</code> nevű fájlt, ami a TypeScript compiler konfigurációját tartalmazza!</p>
@@ -1262,7 +1277,7 @@
 <span class="w">    </span><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#player-container .cards-value&quot;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">game</span><span class="p">.</span><span class="nx">playersHand</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>A függvények az alábbi funkciókkal rendelkeznek:</p>
+<p>A függvények az alábbi funkcionalitással rendelkeznek:</p>
 <ul>
 <li><code>renderHands</code>: a paraméterül kapott játék állapotának megfelelően:<ul>
 <li>megjeleníti a címsor mezőket,</li>
@@ -1311,7 +1326,7 @@
 </ol>
 <h3 id="beadando_2">Beadandó<a class="headerlink" href="#beadando_2" title="Permanent link">&para;</a></h3>
 <div class="admonition example">
-<p class="admonition-title">3. feladat beadandó (⅙-⅙ pont, max. 0.5 pont)</p>
+<p class="admonition-title">3. feladat beadandó (⅙-⅙ pont feladatonként, max. 0.5 pont)</p>
 <p>Illessz be minden elkészített feladatról 1-1 képernyőképet! A pull request szövegébe írd bele azt is, hogy hanyadik feladatokat oldottad meg! (<code>f3.png</code>–<code>f9.png</code>)</p>
 </div>
 
@@ -1324,8 +1339,8 @@
           </path>
         </svg>
       </span>
-      <span title="2024. március 22. 17:38:10">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2024. március 22. 17:38:10"><span class="timeago" datetime="2024-03-22T17:38:10+01:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2024. március 22. 17:38:10">2024-03-22</span>
+      <span title="2025. március 10. 10:36:42">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. március 10. 10:36:42"><span class="timeago" datetime="2025-03-10T10:36:42+01:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. március 10. 10:36:42">2025-03-10</span>
       </span>
     </span>
 
@@ -1340,12 +1355,12 @@
         </svg>
       </span>
       <span>Szerzők</span>
-      <nav><a href="https://github.com/gy-mate" target="_blank" rel="noopener noreferrer" class="md-author" title="@gy-mate">
+      <nav><a href="https://github.com/Fsomogyi" target="_blank" rel="noopener noreferrer" class="md-author" title="@Fsomogyi">
+          <img src="https://avatars.githubusercontent.com/u/5766384?v=4?size=72" alt="@Fsomogyi">
+        </a><a href="https://github.com/gy-mate" target="_blank" rel="noopener noreferrer" class="md-author" title="@gy-mate">
           <img src="https://avatars.githubusercontent.com/u/13014176?v=4?size=72" alt="@gy-mate">
         </a><a href="https://github.com/web-flow" target="_blank" rel="noopener noreferrer" class="md-author" title="@web-flow">
           <img src="https://avatars.githubusercontent.com/u/19864447?v=4?size=72" alt="@web-flow">
-        </a><a href="https://github.com/Fsomogyi" target="_blank" rel="noopener noreferrer" class="md-author" title="@Fsomogyi">
-          <img src="https://avatars.githubusercontent.com/u/5766384?v=4?size=72" alt="@Fsomogyi">
         </a></nav>      
     </span>
   </div>
