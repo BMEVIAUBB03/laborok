@@ -20,15 +20,17 @@ Felhasznált technológiák és eszközök:
 
     **A TypeScript a JavaScriptre épít, így minden JavaScript fájl egyben értelmezhető TypeScript kód is.** A VS Code alapértelmezetten IntelliSense segítséget ad nekünk a JavaScript forrásokban is, ezt a TypeScript compiler segítségével teszi a háttérben.
 
+## Előkészület
+
+A feladatok megoldása során ne felejtsd el követni a [feladatbeadás folyamatát](../../../tudnivalok/github/GitHub.md).
+
 ### Git repository létrehozása és letöltése
 
-A feladatok megoldása során ne felejtsd el követni a feladat beadás folyamatát [Github](../../tudnivalok/github/GitHub.md).
-
-1. Moodle-ben keresd meg a laborhoz tartozó meghívó URL-jét és annak segítségével hozd létre a saját repository-dat.
-2. Várd meg, míg elkészül a repository, majd checkout-old ki.
-    * Egyetemi laborokban, ha a checkout során nem kér a rendszer felhasználónevet és jelszót, és nem sikerül a checkout, akkor valószínűleg a gépen korábban megjegyzett felhasználónévvel próbálkozott a rendszer. Először töröld ki a mentett belépési adatokat (lásd [itt](../../tudnivalok/github/GitHub-credentials.md)), és próbáld újra.
+1. A Moodle-ben keresd meg a laborhoz tartozó meghívó URL-jét, és annak segítségével hozd létre a saját repositorydat.
+2. Várd meg, míg elkészül a repository, majd checkoutold ki.
+    * Egyetemi laborokban, ha a checkout során nem kér a rendszer felhasználónevet és jelszót, és nem sikerül a checkout, akkor valószínűleg a gépen korábban megjegyzett felhasználónévvel próbálkozott a rendszer. Először töröld ki a mentett belépési adatokat (lásd [itt](../../../tudnivalok/github/GitHub-credentials.md)), és próbáld újra.
 3. Hozz létre egy új ágat `megoldas` néven, és ezen az ágon dolgozz.
-4. A neptun.txt fájlba írd bele a Neptun kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun kód 6 karaktere.
+4. A `neptun.txt` fájlba írd bele a Neptun-kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun-kód 6 karaktere.
 
 ## 1. feladat – BlackJack kiinduló projekt megismerése
 
@@ -305,7 +307,7 @@ function renderCardValues(game: Game) {
 }
 ```
 
-A függvények az alábbi funkciókkal rendelkeznek:
+A függvények az alábbi funkcionalitással rendelkeznek:
 
 - `renderHands`: a paraméterül kapott játék állapotának megfelelően:
     - megjeleníti a címsor mezőket,
@@ -361,5 +363,5 @@ A következő feladatok közül legfeljebb 3 feladat teljesítése ér pontot! T
 
 ### Beadandó
 
-!!! example "3. feladat beadandó (⅙-⅙ pont, max. 0.5 pont)"
+!!! example "3. feladat beadandó (⅙-⅙ pont feladatonként, max. 0.5 pont)"
     Illessz be minden elkészített feladatról 1-1 képernyőképet! A pull request szövegébe írd bele azt is, hogy hanyadik feladatokat oldottad meg! (`f3.png`–`f9.png`)
