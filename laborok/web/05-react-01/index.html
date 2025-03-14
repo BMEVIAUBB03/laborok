@@ -1152,7 +1152,7 @@
 </blockquote>
 <p>A stílusozáshoz a <code>Bootstrap</code>-re is szükségünk lesz, telepítsük ezt is:</p>
 <blockquote>
-<p><code>npm install Bootstrap</code></p>
+<p><code>npm install bootstrap</code></p>
 </blockquote>
 <p>Nézzük meg, hogy elindul-e az alkalmazás:</p>
 <blockquote>
@@ -1350,11 +1350,6 @@
 <span class="w">      </span><span class="nx">onClick</span><span class="o">=</span><span class="p">{()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">setShowVegetarianOnly</span><span class="p">(</span><span class="o">!</span><span class="nx">showVegetarianOnly</span><span class="p">)}</span><span class="o">&gt;</span>
 <span class="w">      </span><span class="p">{</span><span class="nx">showVegetarianOnly</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s2">&quot;Minden Étel&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Csak Vegetáriánus Ételek&quot;</span><span class="p">}</span>
 <span class="w">    </span><span class="o">&lt;</span><span class="err">/button&gt;</span>
-<span class="w">    </span><span class="o">&lt;</span><span class="nx">SpecialOffer</span>
-<span class="w">      </span><span class="nx">name</span><span class="o">=</span><span class="p">{</span><span class="nx">specialOffer</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span>
-<span class="w">      </span><span class="nx">price</span><span class="o">=</span><span class="p">{</span><span class="nx">specialOffer</span><span class="p">.</span><span class="nx">price</span><span class="p">}</span>
-<span class="w">      </span><span class="nx">description</span><span class="o">=</span><span class="p">{</span><span class="nx">specialOffer</span><span class="p">.</span><span class="nx">description</span><span class="p">}</span>
-<span class="w">    </span><span class="o">/&gt;</span>
 <span class="w">  </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
 <span class="w">  </span><span class="p">{</span><span class="nx">menuItems</span>
 <span class="w">    </span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">item</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="o">!</span><span class="nx">showVegetarianOnly</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">item</span><span class="p">.</span><span class="nx">isVegetarian</span><span class="p">)</span>
@@ -1383,6 +1378,10 @@
 <h2 id="4-feladat-onallo-specialis-ajanlat">4. feladat (önálló) – Speciális ajánlat<a class="headerlink" href="#4-feladat-onallo-specialis-ajanlat" title="Permanent link">&para;</a></h2>
 <p>Hozz létre egy új komponenst <code>SpecialOffer</code> néven, amely egy speciális ajánlatot jelenít meg. Egy speciális ajánlatnak van neve, ára, és leírása. Adj hozzá egy új szekciót az ételek listája és a vegetáriánus megjelenítő gomb közé. Az ajánlat az alábbi ábrához hasonló módon nézzen ki! Használj props-okat az ajánlat tulajdonságainak átadására!</p>
 <p>A vezetett feladatokhoz hasonlóan itt is dolgozz beégetett adatokkal.</p>
+<details class="tip" open="open">
+<summary>CSS</summary>
+<p>A feladat során arra törekedjünk, hogy az alábbi ábrához hasonló elrendezést érjünk el, de nem baj, ha nem 100%-os az egyezés. A következő CSS szabályokat érdemes használni a megoldás során: <code>background-color</code>, <code>border-radius</code>, <code>padding</code>, <code>margin</code>, <code>font-size</code>, <code>color</code>.</p>
+</details>
 <figure>
 <p><a class="glightbox" href="assets/react-05.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Speciális ajánlat megjelenítése" src="assets/react-05.png" /></a>
   </p>
@@ -1394,12 +1393,16 @@
 <p>Illessz be egy képernyőképet, ahol bal oldalon az oldal, jobb oldalon a VS Code-ban futó terminál látható! (<code>f4.png</code>)</p>
 </div>
 <h2 id="5-feladat-onallo-vasarloi-velemenyek">5. feladat (önálló) – Vásárlói vélemények<a class="headerlink" href="#5-feladat-onallo-vasarloi-velemenyek" title="Permanent link">&para;</a></h2>
-<p>Hozz létre egy új komponenst <code>CustomerReview</code> néven, amely egy vásárlói véleményt jelenít meg egy adott ételről. Egy vásárlói véleménynek van neve, ára, és hozzá tartozó megjegyzése. Minden étel saját maga jelenítse meg a hozzá tartozó véleményeket az alábbi ábrához hasonló módon! Használj props-okat a vásárlói vélemény tulajdonságainak átadására! Ügyelj arra, hogy akkor ne jelenjen meg a vásárlói vélemények blokk, ha nincs egy vélemény sem!</p>
+<p>Hozz létre egy új komponenst <code>CustomerReview</code> néven, amely egy vásárlói véleményt jelenít meg egy adott ételről. Egy vásárlói véleménynek van neve, értékelése (1-5-ös skálán, de nem kell kezelni azt, hogyha a szélső értékeken kívül esne), és hozzá tartozó megjegyzése. Minden étel saját maga jelenítse meg a hozzá tartozó véleményeket az alábbi ábrához hasonló módon! Használj props-okat a vásárlói vélemény tulajdonságainak átadására! Ügyelj arra, hogy akkor ne jelenjen meg a vásárlói vélemények blokk, ha nincs egy vélemény sem!</p>
 <p>A vezetett feladatokhoz hasonlóan itt is dolgozz beégetett adatokkal.</p>
 <details class="tip" open="open">
 <summary>Tippek a feladathoz</summary>
-<p>A vásárlói véleményeket (egészen pontosan azok tulajdonságait - <code>CustomerReviewProps</code>) a <code>MenuItemProps</code>-on belül, egy tömbben érdemes tárolni. Az index komponensben fel lehet venni beégetett listákat, melyeket a beégetett <code>menuItems</code> lista elemeinek értékül lehet adni. Importálni a <code>MenuItem</code> komponensben a következő utasítással érdemes: <code>import CustomerReview, { CustomerReviewProps } from "./CustomerReview";</code>.</p>
+<p>A vásárlói véleményeket (egészen pontosan azok tulajdonságait - <code>CustomerReviewProps</code>) a <code>MenuItemProps</code>-on belül, egy tömbben érdemes tárolni. Az index komponensben felvehetünk beégetett listákat, maelyeket a szintén beégetett <code>menuItems</code> lista elemeinek értékül lehet adni. Importálni a <code>MenuItem</code> komponensben a következő utasítással érdemes: <code>import CustomerReview, { CustomerReviewProps } from "./CustomerReview";</code>.</p>
 <p>A vásárlói vélemények blokkot feltételes megjelenítéssel kell csinálni, a vegetáriánus badge-hez hasonló módon. Lehet például a tömb hosszára szűrni.</p>
+</details>
+<details class="tip" open="open">
+<summary>CSS</summary>
+<p>A feladat során arra törekedjünk, hogy az alábbi ábrához hasonló elrendezést érjünk el, de nem baj, ha nem 100%-os az egyezés. A következő CSS szabályokat érdemes használni a megoldás során: <code>background-color</code>, <code>border-radius</code>, <code>padding</code>, <code>margin</code>, <code>font-size</code>, <code>color</code>.</p>
 </details>
 <figure>
 <p><a class="glightbox" href="assets/react-06.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Vásárlói vélemények megjelenítése" src="assets/react-06.png" /></a>
@@ -1421,8 +1424,8 @@
           </path>
         </svg>
       </span>
-      <span title="2025. március 7. 22:25:48">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. március 7. 22:25:48"><span class="timeago" datetime="2025-03-07T22:25:48+01:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. március 7. 22:25:48">2025-03-07</span>
+      <span title="2025. március 14. 18:28:05">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. március 14. 18:28:05"><span class="timeago" datetime="2025-03-14T18:28:05+01:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. március 14. 18:28:05">2025-03-14</span>
       </span>
     </span>
 
