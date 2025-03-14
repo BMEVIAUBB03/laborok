@@ -61,7 +61,7 @@ Ezután telepítsük a függőségeket a következő parancs kiadásával:
 
 A stílusozáshoz a `Bootstrap`-re is szükségünk lesz, telepítsük ezt is:
 
-> `npm install Bootstrap`
+> `npm install bootstrap`
 
 Nézzük meg, hogy elindul-e az alkalmazás:
 
@@ -296,11 +296,6 @@ export default function App() {
       onClick={() => setShowVegetarianOnly(!showVegetarianOnly)}>
       {showVegetarianOnly ? "Minden Étel" : "Csak Vegetáriánus Ételek"}
     </button>
-    <SpecialOffer
-      name={specialOffer.name}
-      price={specialOffer.price}
-      description={specialOffer.description}
-    />
   </div>
   {menuItems
     .filter((item) => !showVegetarianOnly || item.isVegetarian)
@@ -333,6 +328,9 @@ Hozz létre egy új komponenst `SpecialOffer` néven, amely egy speciális aján
 
 A vezetett feladatokhoz hasonlóan itt is dolgozz beégetett adatokkal.
 
+???+ tip "CSS"
+    A feladat során arra törekedjünk, hogy az alábbi ábrához hasonló elrendezést érjünk el, de nem baj, ha nem 100%-os az egyezés. A következő CSS szabályokat érdemes használni a megoldás során: `background-color`, `border-radius`, `padding`, `margin`, `font-size`, `color`.
+
 <figure markdown>
   ![Speciális ajánlat megjelenítése](./assets/react-05.png)
   <figcaption>Speciális ajánlat megjelenítése</figcaption>
@@ -344,14 +342,17 @@ A vezetett feladatokhoz hasonlóan itt is dolgozz beégetett adatokkal.
 
 ## 5. feladat (önálló) – Vásárlói vélemények
 
-Hozz létre egy új komponenst `CustomerReview` néven, amely egy vásárlói véleményt jelenít meg egy adott ételről. Egy vásárlói véleménynek van neve, ára, és hozzá tartozó megjegyzése. Minden étel saját maga jelenítse meg a hozzá tartozó véleményeket az alábbi ábrához hasonló módon! Használj props-okat a vásárlói vélemény tulajdonságainak átadására! Ügyelj arra, hogy akkor ne jelenjen meg a vásárlói vélemények blokk, ha nincs egy vélemény sem!
+Hozz létre egy új komponenst `CustomerReview` néven, amely egy vásárlói véleményt jelenít meg egy adott ételről. Egy vásárlói véleménynek van neve, értékelése (1-5-ös skálán, de nem kell kezelni azt, hogyha a szélső értékeken kívül esne), és hozzá tartozó megjegyzése. Minden étel saját maga jelenítse meg a hozzá tartozó véleményeket az alábbi ábrához hasonló módon! Használj props-okat a vásárlói vélemény tulajdonságainak átadására! Ügyelj arra, hogy akkor ne jelenjen meg a vásárlói vélemények blokk, ha nincs egy vélemény sem!
 
 A vezetett feladatokhoz hasonlóan itt is dolgozz beégetett adatokkal.
 
 ???+ tip "Tippek a feladathoz"
-    A vásárlói véleményeket (egészen pontosan azok tulajdonságait - `CustomerReviewProps`) a `MenuItemProps`-on belül, egy tömbben érdemes tárolni. Az index komponensben fel lehet venni beégetett listákat, melyeket a beégetett `menuItems` lista elemeinek értékül lehet adni. Importálni a `MenuItem` komponensben a következő utasítással érdemes: `import CustomerReview, { CustomerReviewProps } from "./CustomerReview";`.
+    A vásárlói véleményeket (egészen pontosan azok tulajdonságait - `CustomerReviewProps`) a `MenuItemProps`-on belül, egy tömbben érdemes tárolni. Az index komponensben felvehetünk beégetett listákat, maelyeket a szintén beégetett `menuItems` lista elemeinek értékül lehet adni. Importálni a `MenuItem` komponensben a következő utasítással érdemes: `import CustomerReview, { CustomerReviewProps } from "./CustomerReview";`.
 
     A vásárlói vélemények blokkot feltételes megjelenítéssel kell csinálni, a vegetáriánus badge-hez hasonló módon. Lehet például a tömb hosszára szűrni.
+
+???+ tip "CSS"
+    A feladat során arra törekedjünk, hogy az alábbi ábrához hasonló elrendezést érjünk el, de nem baj, ha nem 100%-os az egyezés. A következő CSS szabályokat érdemes használni a megoldás során: `background-color`, `border-radius`, `padding`, `margin`, `font-size`, `color`.
 
 <figure markdown>
   ![Vásárlói vélemények megjelenítése](./assets/react-06.png)
