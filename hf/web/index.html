@@ -21,7 +21,7 @@
     
     
       
-        <title>Webes házi feladat információk - 2024 tavasz - BMEVIAUBB03 - Kliensalkalmazások laborfeladatok</title>
+        <title>Webes házi feladat információk - 2025 tavasz - BMEVIAUBB03 - Kliensalkalmazások laborfeladatok</title>
       
     
     
@@ -86,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#webes-hazi-feladat-informaciok-2024-tavasz" class="md-skip">
+        <a href="#webes-hazi-feladat-informaciok-2025-tavasz" class="md-skip">
           Kihagyás
         </a>
       
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Webes házi feladat információk - 2024 tavasz
+              Webes házi feladat információk - 2025 tavasz
             
           </span>
         </div>
@@ -708,12 +708,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Webes házi feladat információk - 2024 tavasz
+          Webes házi feladat információk - 2025 tavasz
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Webes házi feladat információk - 2024 tavasz
+        Webes házi feladat információk - 2025 tavasz
       </a>
       
         
@@ -846,15 +846,15 @@
   
 
 
-<h1 id="webes-hazi-feladat-informaciok-2024-tavasz">Webes házi feladat információk - 2024 tavasz<a class="headerlink" href="#webes-hazi-feladat-informaciok-2024-tavasz" title="Permanent link">&para;</a></h1>
-<p>A házi feladat során egy olyan, Angular alapú webalkalmazást kell készíteni, ami tetszőleges elemeket (pl. könyvek, videojátékok, filmek, autók, focista-kártyák, kitűzők, kutyafajok, HTTP státuszkódok stb.) tud nyilvántartani.</p>
+<h1 id="webes-hazi-feladat-informaciok-2025-tavasz">Webes házi feladat információk - 2025 tavasz<a class="headerlink" href="#webes-hazi-feladat-informaciok-2025-tavasz" title="Permanent link">&para;</a></h1>
+<p>A házi feladat során egy olyan, Preact alapú webalkalmazást kell készíteni, ami tetszőleges elemeket (pl. könyvek, videojátékok, filmek, autók, focista-kártyák, kitűzők, kutyafajok, HTTP státuszkódok stb.) tud nyilvántartani.</p>
 <h2 id="kotelezo-elemek-reszletes-leirasa">Kötelező elemek részletes leírása<a class="headerlink" href="#kotelezo-elemek-reszletes-leirasa" title="Permanent link">&para;</a></h2>
 <p>Az alkalmazásban az alábbi funkcióknak kell elérhetőnek lenniük:</p>
 <ul>
-<li><strong>Listázás:</strong> az elemek listázása egy áttekintő nézetben. A nézetben lehet váltani listás és kártyás megjelenítés között. Kártyás nézetben az elem képe is jelenjen meg, illetve rácsos (sorok és oszlopok) elrendezésben jelenjenek meg az elemek. Listás nézetben függőlegesen, egymás után jelenjenek meg az elemek, csak fejléc adatokkal (pl. kép, leírás, stb. nélkül). Egy elem részleteit az elemre kattintva lehet megtekinteni.</li>
-<li><strong>Részletezés:</strong> a listanézetben egy elemet kiválasztva megtekinthetők annak részletes tulajdonságai (legalább 3 különböző, egyedi tulajdonság, pl.: szerző, kiadás éve, műfaj vagy HTTP státuszkód száma, leírása, link egy tetszőleges forrásra). A részletező oldalon látható az elemről annak képe.</li>
+<li><strong>Listázás:</strong> az elemek listázása egy áttekintő nézetben. A nézetben lehet váltani listás és kártyás megjelenítés között. Kártyás nézetben az elem képe is jelenjen meg - tehát fontos, hogy az elemekhez valamilyen módon kép is tartozzon -, illetve rácsos (sorok és oszlopok) elrendezésben jelenjenek meg az elemek. Listás nézetben függőlegesen, egymás után jelenjenek meg az elemek, csak fejléc adatokkal (pl. kép, leírás, stb. nélkül). Egy elem részleteit az elemre kattintva lehet megtekinteni.</li>
+<li><strong>Részletezés:</strong> a listanézetben egy elemet kiválasztva megtekinthetők annak részletes tulajdonságai (legalább 3 különböző, egyedi tulajdonság, pl.: szerző, kiadás éve, műfaj vagy HTTP státuszkód száma, leírása, link egy tetszőleges forrásra). A részletező oldalon látható az elemről annak képe is.</li>
 <li><strong>Létrehozás/szerkesztés:</strong> egy elem létrehozása és szerkesztése ugyanazon a felületen történik. A különbség annyi, hogy létrehozáskor a lehetséges mezők üresek, szerkesztéskor pedig a mezők az elem adataival vannak feltöltve.</li>
-<li><strong>Törlés:</strong> az elem részletes oldalán van lehetőség az elem törlésére. Törlés előtt felugró üzenet (modális ablak) kér megerősítést a törlés előtt. Törlés után a listázás oldalra kerülünk.</li>
+<li><strong>Törlés:</strong> a részletezés oldalon legyen lehetőség az elem törlésére. Törlés előtt egy felugró üzenet (modális ablak) kér megerősítést a törlés előtt. Törlés után a listázás oldalra kerülünk.</li>
 </ul>
 <p>Az oldalnak megfelelően strukturált URL-eket kell definiálnia (routing segítségével):</p>
 <ul>
@@ -865,12 +865,12 @@
 <li>a törlésnek nincs külön oldala (felugró ablak jelenik meg, így lehet törölni)</li>
 </ul>
 <details class="warning">
-<summary>FONTOS: Adatok tárolása és routing</summary>
-<p>A két Angular labor során előkerültek az Angular alapvetői funkciói és készítünk egy egyszerűbb alkalmazást. Nem foglalkoztunk viszont azzal, hogy hogyan kommunikálunk egy szerverrel (minden logika a kliensben van jelenleg), illetve <a href="https://angular.io/guide/router"><code>routing</code></a>-ot sem valósítottunk meg. A szerverrel való kommunikáció a tárgy szempontjából nem olyan fontos (házi feladatnál kiváltható adatok memóriában tárolásával, vagy akár nyers mock adatok használatával is), viszont a routing-ot érdemes részletesebben megnézni! Ezek a fogalmak egy harmadik Angular labor keretein belül pár éve szóba kerültek, viszont az elmaradó laborok miatt erre idén nincs lehetőség. A régi laboranyag még <a href="https://github.com/bmeaut/VIAUBB03/tree/master/Web/07%20-%20Angular%203">elérhető</a>, itt is találhatunk információkat a fenti kimaradt problémákról, amik a házi feladat készítése során jól jöhetnek - de ez nem kötelező, bőven elegendő a hivatalos Angular dokumentáció használata is.</p>
-<p>Az alkalmazásnak tehát nem kötelező szervert használnia, helyette például <a href="https://angular.io/tutorial/toh-pt6#simulate-a-data-server">ezen megoldást</a> lehet használni az adatok memóriában (vagy localStorage-ban) történő tárolására. Használható tetszőleges publikus API is. Ezeken kívül legegyszerűbb módszerként akár nyers mock adatok is használhatók. A követelmények minden esetben ugyanazok maradnak, pontlevonás nem jár egyik megoldás használatáért sem.</p>
+<summary>FONTOS: Adatok tárolása</summary>
+<p>A két React labor során előkerültek a Preact alapvetői funkciói és készítettünk egy egyszerűbb alkalmazást. Nem foglalkoztunk viszont azzal, hogy hogyan kommunikálunk egy szerverrel. A szerverrel való kommunikáció a tárgy szempontjából nem fontos (házi feladatnál kiváltható adatok memóriában tárolásával, vagy akár nyers mock adatok használatával is).</p>
+<p>Az alkalmazásnak tehát nem kötelező szervert használnia, helyette beégetett adatokkal (memóriában, local storage-ben) vagy - a TypeScript laborhoz hasonló módon - publikus API-val is lehet dolgozni. Pontlevonás nem jár egyik megoldás használatáért sem.</p>
 </details>
-<p>Stílusozásra a <a href="https://getbootstrap.com">Bootstrap</a> és <a href="https://ng-bootstrap.github.io/">NgBootstrap</a> könyvtárakat kell használni.</p>
-<p>A DOM manipuláció közvetlenül kódból (a document objektumon keresztül vagy pl. jQuery-ből) <strong>tilos</strong>, kizárólag Angular adatkötéseket szabad használni a felületi adatok megjelenítésére.</p>
+<p>Stílusozásra a gyakorlatokhoz hasonlóan a <a href="https://getbootstrap.com">Bootstrap</a> könyvtárat kell használni.</p>
+<p>A DOM manipuláció közvetlenül kódból (a document objektumon keresztül vagy pl. jQuery-ből) <strong>tilos</strong>, kizárólag Preact adatkötéseket szabad használni a felületi adatok megjelenítésére a laborokhoz hasonló módon.</p>
 <h2 id="pontozas">Pontozás<a class="headerlink" href="#pontozas" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Funkciók (0-15 pont):<ul>
@@ -885,18 +885,18 @@
 <li>karbantartható, strukturált kód: 1 pont</li>
 </ul>
 </li>
-<li>Ergonómia (0-5 pont):<ul>
+<li>Ergonómia (0-3 pont):<ul>
 <li>0 pont: az oldal dizájnnal gyakorlatilag nem rendelkezik</li>
-<li>1-2 pont: az oldal nehezen áttekinthető, vagy pedig sok szembetűnő ergonómiai hiba látható</li>
-<li>3-4 pont: az oldal áttekinthető, de kisebb felületi hibák, elcsúszások akadnak, vagy natív alert/prompt/confirm ablakok vannak stílusozott modális ablakok helyett törlésnél</li>
-<li>5 pont: az oldal áttekinthető, a felületi elemek nincsenek szétcsúszva</li>
+<li>1 pont: az oldal nehezen áttekinthető, vagy pedig sok szembetűnő ergonómiai hiba látható</li>
+<li>2 pont: az oldal áttekinthető, de kisebb felületi hibák, elcsúszások akadnak, vagy natív alert/prompt/confirm ablakok vannak stílusozott modális ablakok helyett törlésnél</li>
+<li>3 pont: az oldal áttekinthető, a felületi elemek nincsenek szétcsúszva</li>
 </ul>
 </li>
 <li>Funkcionális hiba, infrastrukturális hiányosság esetén 1 – 10 pont levonás járhat (darabonként)</li>
 </ul>
 <h2 id="beadasi-hatarido-es-bemutatas">Beadási határidő és bemutatás<a class="headerlink" href="#beadasi-hatarido-es-bemutatas" title="Permanent link">&para;</a></h2>
-<p>A házi feladatot <strong>május 1. 23:59-ig</strong> kell beadni, pull request formájában, a kiadott <a href="https://classroom.github.com/a/0I2F4uAi"><strong>github classroom repository</strong></a> alatt. A repository-ban a "feladat" mappa alá dolgozz! Commit-nál a felesleges fájlok (különösen az .angular mappa és a node_modules mappa) ne kerüljenek fel, csak a forráskód! A kiadott .gitignore ezeket kiszűri, viszont push előtt ellenőrizd, hogy valóban így van-e! A repository tartalma alapján elő kell tudni állítani a működő alkalmazást, tehát fontos fájlok ne maradjanak ki! Ha mindent jól csináltál, akkor a repository mérete (leklónozva) nem nagyobb, mint 5MB (az esetlegesen mellékelt képek méretétől függően), valamint <code>npm install</code>-t és <code>ng serve</code>-t futtatva a HF hibátlanul fordul és az alkalmazás működik. Ha az alkalmazás ennek megfelelően nem indul el, úgy pontlevonás vagy 0 pont adható.</p>
-<p>A házi feladatot <strong>május 2-án kell bemutatni</strong> a laborvezetőnek, online, Teams-en, kb. 10 percben. Beosztás (vagyis hogy ezen a napon belül pontosan mely időpontokban lehet majd bemutatni) később várható. A laborvezető tetszőleges kérdést feltehet a kóddal, az alkalmazással kapcsolatban, akár megkérhet, hogy módosíts vagy magyarázz el valamit. A webes házi feladatra maximum 20 pont kapható, ami beleszámít a félévvégi jegybe. A házi feladatot kötelező sikeresen teljesíteni, ez 10 ponttól (50%) van meg.</p>
+<p>A házi feladatot <strong>április 9. 23:59-ig</strong> kell beadni, pull request formájában, a kiadott <a href="https://classroom.github.com/a/0I2F4uAi"><strong>github classroom repository</strong></a> alatt. A repository-ban a "feladat" mappa alá dolgozz! Commit-nál a felesleges fájlok (különösen a node_modules mappa) ne kerüljenek fel, csak a forráskód! A kiadott .gitignore ezeket kiszűri, viszont push előtt ellenőrizd, hogy valóban így van-e! A repository tartalma alapján elő kell tudni állítani a működő alkalmazást, tehát fontos fájlok ne maradjanak ki! Ha mindent jól csináltál, akkor a repository mérete (leklónozva) nem nagyobb, mint 5MB (az esetlegesen mellékelt képek méretétől függően), valamint <code>npm install</code> és <code>npm run dev</code> (vagy hasonló) parancsot futtatva a HF hibátlanul fordul és az alkalmazás működik. Ha az alkalmazás ennek megfelelően nem indul el, úgy pontlevonás vagy 0 pont adható.</p>
+<p>A házi feladatot <strong>április 10-én kell bemutatni</strong> a laborvezetőnek, online, Teams-en, kb. 10 percben. Beosztás (vagyis hogy ezen a napon belül pontosan mely időpontokban lehet majd bemutatni) később várható. A laborvezető tetszőleges kérdést feltehet a kóddal vagy alkalmazással kapcsolatban, akár megkérhet, hogy módosíts vagy magyarázz el valamit. A webes házi feladatra maximum 18 pont kapható, ami beleszámít a félévvégi jegybe. A házi feladatot kötelező sikeresen teljesíteni, ez 9 ponttól (50%) van meg.</p>
 <p>A bemutatás menete a következő:</p>
 <ul>
 <li>Az alkalmazás funkcióinak bemutatása<ul>
@@ -922,8 +922,8 @@
           </path>
         </svg>
       </span>
-      <span title="2024. május 2. 13:24:42">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2024. május 2. 13:24:42"><span class="timeago" datetime="2024-05-02T13:24:42+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2024. május 2. 13:24:42">2024-05-02</span>
+      <span title="2025. március 18. 13:44:29">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. március 18. 13:44:29"><span class="timeago" datetime="2025-03-18T13:44:29+01:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. március 18. 13:44:29">2025-03-18</span>
       </span>
     </span>
 
