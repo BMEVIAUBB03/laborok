@@ -133,13 +133,13 @@ export default function Header() {
   return (
     <header>
       <h1>Webes labor 05 - Preact bevezető</h1>
-      <div class="subtitle">Étterem PReact alapokon</div>
+      <div className="subtitle">Étterem PReact alapokon</div>
     </header>
   );
 }
 ```
 
-Láthatjuk, hogy a `.tsx` fájlokban keveredik a HTML és TypeScript szintaxisa. Az `export default` lehetővé teszi, hogy egyszerűbben (kapcsos zárójelek nélkül) beimportáljuk a függvényt más fájlban. Ehelyett nyugodtan használhatnánk a az `export` kulcsszót önmagában is (`default` nélkül), ahogy azt előző laboron láttuk. A Header függvény a szemantikus `header` HTML tag-el tér vissza vissza, ezt tudjuk más komponensben, például az `index.tsx` fájlban felhasználni. A `class="subtitle"`-vel a CSS stílusozásra készülünk fel.
+Láthatjuk, hogy a `.tsx` fájlokban keveredik a HTML és TypeScript szintaxisa. Az `export default` lehetővé teszi, hogy egyszerűbben (kapcsos zárójelek nélkül) beimportáljuk a függvényt más fájlban. Ehelyett nyugodtan használhatnánk a az `export` kulcsszót önmagában is (`default` nélkül), ahogy azt előző laboron láttuk. A Header függvény a szemantikus `header` HTML tag-el tér vissza vissza, ezt tudjuk más komponensben, például az `index.tsx` fájlban felhasználni. A `className="subtitle"`-vel a CSS stílusozásra készülünk fel.
 
 ??? note "Komponensek létrehozásának automatizálása"
     Bár kényelmes lenne valamilyen szkript vagy CLI parancs segítségével komponenseket létrehozni (mint pl. az Angular keretrendszerben), a Preact sajnos erre nem ad beépített támogatást. Szerencsére viszont egy komponens létrehozása nem egy bonyolult folyamat, általában egy `.tsx` és egy `.css` fájl létrehozása elég. Ezen kívül ha nagyon szeretnénk, saját Node.js szkriptet is írhatunk, de a tárgy keretein belül erre nincs szükség.
@@ -217,12 +217,12 @@ export type MenuItemProps = {
 
 export default function MenuItem({ name, price, description, isVegetarian }: MenuItemProps) {
     return (
-        <div class="card mb-3">
-            <div class="card-body">
-                <h5 class="card-title">{name}</h5>
-                <p class="card-text">{price} Ft</p>
-                <p class="card-text">{description}</p>
-                {isVegetarian && <span class="badge bg-success">Vegetáriánus</span>}
+        <div className="card mb-3">
+            <div className="card-body">
+                <h5 className="card-title">{name}</h5>
+                <p className="card-text">{price} Ft</p>
+                <p className="card-text">{description}</p>
+                {isVegetarian && <span className="badge bg-success">Vegetáriánus</span>}
             </div>
         </div>
     );
@@ -252,7 +252,7 @@ const menuItems = [
 Végezetül adjuk hozzá az `App` függvényhez a `<Header />` tag után a következő kódrészletet, hogy meg is jelenjenek az ételek:
 
 ```javascript
-<div class="container mt-4">
+<div className="container mt-4">
   {menuItems
     .map((item) => (
       <MenuItem
@@ -294,10 +294,10 @@ Az állapotváltozó kezdetben `false` értéket vesz fel. Ezután vegyük fel a
 export default function App() {
   // ...
 
-  <div class="container mt-4">
-    <div class="text-center">
+  <div className="container mt-4">
+    <div className="text-center">
       <button
-        class="btn btn-primary mb-3"
+        className="btn btn-primary mb-3"
         onClick={() => setShowVegetarianOnly(!showVegetarianOnly)}>
         {showVegetarianOnly ? "Minden Étel" : "Csak Vegetáriánus Ételek"}
       </button>
