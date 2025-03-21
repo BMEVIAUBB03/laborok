@@ -115,7 +115,7 @@ Vizsgáljuk meg a létrejött projekt tartalmát (csak a releváns mappák és f
     A kódot formázni az `Alt+Shift+F` billentyűkombinációval tudjuk.
 
 ### Beadandó (0.1 pont)
-!!! example "1. feladat beadandó"
+!!! example "1. feladat beadandó (0.1 pont)"
     Illessz be egy képernyőképet, ahol bal oldalon a böngészőben futó Preact kezdőprojekt, jobb oldalon a VS Code-ban futó terminál látható! (`f1.png`)
 
 ## 2. feladat – Fejléc és ételek listázása

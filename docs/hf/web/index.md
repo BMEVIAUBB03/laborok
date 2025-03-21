@@ -7,7 +7,8 @@ Az alkalmazásban az alábbi funkcióknak kell elérhetőnek lenniük:
 
 - **Listázás:** az elemek listázása egy áttekintő nézetben. A nézetben lehet váltani listás és kártyás megjelenítés között. Kártyás nézetben az elem képe is jelenjen meg - tehát fontos, hogy az elemekhez valamilyen módon kép is tartozzon -, illetve rácsos (sorok és oszlopok) elrendezésben jelenjenek meg az elemek. Listás nézetben függőlegesen, egymás után jelenjenek meg az elemek, csak fejléc adatokkal (pl. kép, leírás, stb. nélkül). Egy elem részleteit az elemre kattintva lehet megtekinteni.
 - **Részletezés:** a listanézetben egy elemet kiválasztva megtekinthetők annak részletes tulajdonságai (legalább 3 különböző, egyedi tulajdonság, pl.: szerző, kiadás éve, műfaj vagy HTTP státuszkód száma, leírása, link egy tetszőleges forrásra). A részletező oldalon látható az elemről annak képe is.
-- **Létrehozás/szerkesztés:** egy elem létrehozása és szerkesztése ugyanazon a felületen történik. A különbség annyi, hogy létrehozáskor a lehetséges mezők üresek, szerkesztéskor pedig a mezők az elem adataival vannak feltöltve.
+- **Létrehozás:** új elem létrehozásánál meg kell adnunk annak minden adatát.
+- **Szerkesztés:** egy meglévő elem minden adatát lehessen szerkeszteni (az ID kivételével). A szerkesztés felület lehet a létrehozással egy komponensben, vagy külön is megvalósítva.
 - **Törlés:** a részletezés oldalon legyen lehetőség az elem törlésére. Törlés előtt egy felugró üzenet (modális ablak) kér megerősítést a törlés előtt. Törlés után a listázás oldalra kerülünk.
 
 Az oldalnak megfelelően strukturált URL-eket kell definiálnia (routing segítségével):
