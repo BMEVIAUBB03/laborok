@@ -67,7 +67,10 @@ Nézzük meg, hogy elindul-e az alkalmazás:
 
 > `npm run dev`
 
-Az alkalmazás alapértelmezetten (ahogy a konzolon is olvashatjuk) a <a href="http://localhost:5173" target="_blank">`http://localhost:5173`</a> címen fut. Hasonlóan a korábbiakhoz, a legtöbb esetben itt sem kell újraindítanunk a futást ha változtatunk a forráskódon. A háttérben a fordító automatikusan figyeli ezeket a változásokat. Indítás után az alábbihoz hasonlót kell, hogy lássunk:
+??? warning "node.js frissítése"
+    Ha valamilyen hibába futunk a fenti parancsok lefutása során, győződjünk meg róla, hogy friss node.js-t (és npm-et) használunk a `node -v` és `npm --version` parancsok kiadásával. Amennyiben nem frissek, próbáljuk meg a [node.js-t](https://nodejs.org/en) és / vagy az npm-et (`npm install -g npm@latest` parancs) frissíteni.
+
+Az alkalmazás alapértelmezetten (ahogy azt a konzolon is olvashatjuk) a <a href="http://localhost:5173" target="_blank">`http://localhost:5173`</a> címen fut. Hasonlóan a korábbiakhoz, a legtöbb esetben itt sem kell újraindítanunk a futást ha változtatunk a forráskódon. A háttérben a fordító automatikusan figyeli ezeket a változásokat. Indítás után az alábbihoz hasonlót kell, hogy lássunk:
 
 ```
 VITE v6.2.1  ready in 555 ms
