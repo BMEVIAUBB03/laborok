@@ -26,9 +26,11 @@ Az oldalnak megfelelően strukturált URL-eket kell definiálnia (routing segít
 
 Stílusozásra a gyakorlatokhoz hasonlóan a [Bootstrap](https://getbootstrap.com) könyvtárat kell használni.
 
-A DOM manipuláció közvetlenül kódból (a document objektumon keresztül vagy pl. jQuery-ből) **tilos**, kizárólag Preact adatkötéseket szabad használni a felületi adatok megjelenítésére a laborokhoz hasonló módon.
+A DOM manipuláció közvetlenül kódból (a document objektumon keresztül vagy pl. jQuery-ből) **tilos**, kizárólag Preact adatkötéseket szabad használni a felületi adatok megjelenítésére, a laborokhoz hasonló módon.
 
 ## Pontozás
+
+A webes házi feladatra maximum 18 pont kapható, ami beleszámít a félévvégi jegybe. A házi feladatot kötelező sikeresen teljesíteni, ez 9 ponttól (50%) van meg. A pontok a következőképpen oszlanak el:
 
 - Funkciók (0-15 pont):
     - létrehozás: 1 pont
@@ -47,13 +49,24 @@ A DOM manipuláció közvetlenül kódból (a document objektumon keresztül vag
     - 3 pont: az oldal áttekinthető, a felületi elemek nincsenek szétcsúszva
 - Funkcionális hiba, infrastrukturális hiányosság esetén 1 – 10 pont levonás járhat (darabonként)
 
-## Beadási határidő és bemutatás
+## Beadás és bemutatás
 
-A házi feladatot **április 9. 23:59-ig** kell beadni, pull request formájában, a kiadott **github classroom repository**(ld. Moodle) alatt. A repository-ban a "feladat" mappa alá dolgozz! Commit-nál a felesleges fájlok (különösen a node_modules mappa) ne kerüljenek fel, csak a forráskód! A kiadott .gitignore ezeket kiszűri, viszont push előtt ellenőrizd, hogy valóban így van-e! A repository tartalma alapján elő kell tudni állítani a működő alkalmazást, tehát fontos fájlok ne maradjanak ki! Ha mindent jól csináltál, akkor a repository mérete (leklónozva) nem nagyobb, mint 5MB (az esetlegesen mellékelt képek méretétől függően), valamint `npm install` és `npm run dev` (vagy hasonló) parancsot futtatva a HF hibátlanul fordul és az alkalmazás működik. Ha az alkalmazás ennek megfelelően nem indul el, úgy pontlevonás vagy 0 pont adható.
+A házi feladat megoldása során - a laboroknál megszokott módon - ne felejtsd el követni a [feladatbeadás folyamatát](../../tudnivalok/github/GitHub.md).
 
-A házi feladatot **április 10-én kell bemutatni** a laborvezetőnek, online, Teams-en, kb. 10 percben. Beosztás (vagyis hogy ezen a napon belül pontosan mely időpontokban lehet majd bemutatni) később várható. A laborvezető tetszőleges kérdést feltehet a kóddal vagy alkalmazással kapcsolatban, akár megkérhet, hogy módosíts vagy magyarázz el valamit. A webes házi feladatra maximum 18 pont kapható, ami beleszámít a félévvégi jegybe. A házi feladatot kötelező sikeresen teljesíteni, ez 9 ponttól (50%) van meg.
+### Git repository létrehozása és letöltése
 
-A bemutatás menete a következő:
+1. A Moodle-ben keresd meg a laborhoz tartozó meghívó URL-jét, és annak segítségével hozd létre a saját repositorydat.
+2. Várd meg, míg elkészül a repository, majd checkoutold ki.
+3. Hozz létre egy új ágat `megoldas` néven, és ezen az ágon dolgozz.
+4. A `neptun.txt` fájlba írd bele a Neptun-kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun-kód 6 karaktere.
+
+### Beadás
+
+A házi feladatot **április 9. 23:59-ig** kell beadni, pull request formájában, a kiadott **github classroom repository** alatt. A classroom meghívót moodle-n találod, a laborokhoz hasonlóan. A repository-ban a "feladat" mappa alá dolgozz! Commit-nál a felesleges fájlok (különösen a node_modules mappa) ne kerüljenek fel, csak a forráskód! A kiadott .gitignore ezeket kiszűri, viszont push előtt ellenőrizd, hogy valóban így van-e! A repository tartalma alapján elő kell tudni állítani a működő alkalmazást, tehát fontos fájlok ne maradjanak ki! Ha mindent jól csináltál, akkor a repository mérete (leklónozva) nem nagyobb, mint 5MB (az esetlegesen mellékelt képek méretétől függően), valamint `npm install` és `npm run dev` (vagy hasonló) parancsot futtatva a HF hibátlanul fordul és az alkalmazás működik. Ha az alkalmazás ennek megfelelően nem indul el, úgy pontlevonás vagy 0 pont adható.
+
+### Bemutatás
+
+A házi feladatot **április 10-én kell bemutatni** a laborvezetőnek, online, Teams-en, kb. 10 percben. Beosztás (vagyis hogy ezen a napon belül pontosan mely időpontokban lehet majd bemutatni) később várható. Ha hamarabb elkészülnél a házival, igény szerint korábban is megbeszélhető bemutatási időpont a laborvezetővel. A bemutatás során a laborvezető tetszőleges kérdést feltehet a kóddal vagy alkalmazással kapcsolatban, akár megkérhet, hogy módosíts vagy magyarázz el valamit. A bemutatás menete a következő:
 
 - Az alkalmazás funkcióinak bemutatása
     - létrehozás
