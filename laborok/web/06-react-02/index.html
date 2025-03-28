@@ -1112,11 +1112,16 @@
 <li>A <code>neptun.txt</code> fájlba írd bele a Neptun-kódodat. A fájlban semmi más ne szerepeljen, csak egyetlen sorban a Neptun-kód 6 karaktere.</li>
 </ol>
 <h2 id="1-feladat-routing-bevezetese">1. feladat – Routing bevezetése<a class="headerlink" href="#1-feladat-routing-bevezetese" title="Permanent link">&para;</a></h2>
+<p>Mindenekelőtt telepítsük a kiinduló projekt függőségeit:</p>
+<blockquote>
+<p><code>npm install</code></p>
+</blockquote>
 <p>Az alkalmazásunk többoldalassá válik, így szükségünk lesz útvonal választásra is. Ehhez a <code>preact-router</code> könyvtárat fogjuk használni. A <code>preact-router</code> a React <code>react-router</code> könyvtárához hasonlít, de kifejezetten Preact-hez készült, és kisebb méretű.</p>
 <p>Először telepítsük a <code>preact-router</code> csomagot:</p>
 <blockquote>
 <p><code>npm install preact-router</code></p>
 </blockquote>
+<p>Az alkalmazást az <code>npm start</code> parancs kiadásával tudjuk futtatni. Ez azért van így, mert a <code>package.json</code> fájlban a <code>"dev": "vite"</code> sor erre lett átírva: <code>"start": "vite"</code> - részletekért ld. az előző labort.</p>
 <h3 id="uj-komponensek-letrehozasa">Új komponensek létrehozása<a class="headerlink" href="#uj-komponensek-letrehozasa" title="Permanent link">&para;</a></h3>
 <p>Az alkalmazásunkat innentől kezdve három fő oldalra bontjuk:</p>
 <ul>
@@ -1220,7 +1225,7 @@
 <span class="w">            </span><span class="o">&lt;</span><span class="nx">Header</span><span class="w"> </span><span class="o">/&gt;</span>
 <span class="w">            </span><span class="o">&lt;</span><span class="nx">Router</span><span class="o">&gt;</span>
 <span class="w">                </span><span class="o">&lt;</span><span class="nx">Route</span><span class="w"> </span><span class="nx">path</span><span class="o">=</span><span class="s2">&quot;/&quot;</span><span class="w"> </span><span class="nx">component</span><span class="o">=</span><span class="p">{</span><span class="nx">Home</span><span class="p">}</span><span class="w"> </span><span class="o">/&gt;</span>
-<span class="w">        </span><span class="o">&lt;</span><span class="nx">Route</span><span class="w"> </span><span class="nx">path</span><span class="o">=</span><span class="s2">&quot;/home&quot;</span><span class="w"> </span><span class="nx">component</span><span class="o">=</span><span class="p">{</span><span class="nx">Home</span><span class="p">}</span><span class="w"> </span><span class="o">/&gt;</span>
+<span class="w">                </span><span class="o">&lt;</span><span class="nx">Route</span><span class="w"> </span><span class="nx">path</span><span class="o">=</span><span class="s2">&quot;/home&quot;</span><span class="w"> </span><span class="nx">component</span><span class="o">=</span><span class="p">{</span><span class="nx">Home</span><span class="p">}</span><span class="w"> </span><span class="o">/&gt;</span>
 <span class="w">                </span><span class="o">&lt;</span><span class="nx">Route</span><span class="w"> </span><span class="nx">path</span><span class="o">=</span><span class="s2">&quot;/menu&quot;</span><span class="w"> </span><span class="nx">component</span><span class="o">=</span><span class="p">{()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">Menu</span><span class="w"> </span><span class="nx">menuItems</span><span class="o">=</span><span class="p">{</span><span class="nx">menuItems</span><span class="p">}</span><span class="w"> </span><span class="o">/&gt;</span><span class="p">}</span><span class="w"> </span><span class="o">/&gt;</span>
 <span class="w">                </span><span class="o">&lt;</span><span class="nx">Route</span><span class="w"> </span><span class="nx">path</span><span class="o">=</span><span class="s2">&quot;/about&quot;</span><span class="w"> </span><span class="nx">component</span><span class="o">=</span><span class="p">{</span><span class="nx">About</span><span class="p">}</span><span class="w"> </span><span class="o">/&gt;</span>
 <span class="w">            </span><span class="o">&lt;</span><span class="err">/Router&gt;</span>
@@ -1228,8 +1233,8 @@
 <span class="w">    </span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>A routing beállításán kívül még egy fontos változás történt: az ételek tömbjét beraktuk az <code>App</code> függvény elejére és állapotváltozóként kezeljük konstans tömb helyett. A <code>Menu</code> komponens pedig paraméterként megkapja ezt a tömböt. Erre később lesz szükségünk, amikor új ételt fogunk felvenni.</p>
-<p>Ezzel felkészítettük a fő komponensünket a routing-ra, vagyis ha a böngésző URL-be a megadott útvonalat írjuk, akkor a megfelelő komponensek fognak megjelenni. Egy komponenst több útvonalra is beregisztrálhatunk, a <code>Home</code> komponens esetén így is tettünk. Próbáljuk ki böngészőből, hogy tényleg megjelennek a megfelelő oldalak (pl. <a href="http://localhost:5173/menu" target="_blank"><code>http://localhost:5173/menu</code></a> stb.)!</p>
+<p>Az útvonalválasztás beállításán kívül még egy fontos változás történt: az ételek tömbjét beraktuk az <code>App</code> függvény elejére és állapotváltozóként kezeljük konstans tömb helyett. A <code>Menu</code> komponens pedig paraméterként megkapja ezt a tömböt. Erre később lesz szükségünk, amikor új ételt fogunk felvenni.</p>
+<p>Ezzel felkészítettük a fő komponensünket a routing-ra, vagyis ha a böngésző URL-be egy adott útvonalat írunk, akkor a fent beállított komponens fog megjelenni az oldalon. Egy komponenst több útvonalra is beregisztrálhatunk, a <code>Home</code> komponens esetén pl. így tettünk ("/" és "/home"). Próbáljuk ki böngészőből, hogy megjelennek-e a megfelelő oldalak (pl. <a href="http://localhost:5173/menu" target="_blank"><code>http://localhost:5173/menu</code></a> stb.)!</p>
 <p>Ez a megoldás - bár működőképes - nem felhasználóbarát, mivel nem tudunk az oldalak között váltani a felületen. Ennek orvoslására hozzuk létre a <code>Navbar.tsx</code> komponenst. Stílusozásra itt a <code>Bootstrap</code>-et használjuk, de készítsünk egy <code>Navbar.css</code> fájlt is, melynek segítségével a kurzort pointeresre alakítjuk, ha az egeret a linkek fölé visszük:</p>
 <div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="s1">&#39;./NavBar.css&#39;</span><span class="p">;</span>
 <span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">route</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;preact-router&quot;</span><span class="p">;</span>
@@ -1281,7 +1286,7 @@
 <h2 id="2-feladat-uj-etel-letrehozasa">2. feladat – Új étel létrehozása<a class="headerlink" href="#2-feladat-uj-etel-letrehozasa" title="Permanent link">&para;</a></h2>
 <p>Ebben a feladatban egy űrlapot hozunk létre, amelyen keresztül új ételeket adhatunk hozzá az étlaphoz. Az űrlapot egy új komponensben valósítjuk meg, és <code>useState</code> hook segítségével kezeljük az input mezőket.</p>
 <h3 id="addmenuitem-komponens">AddMenuItem komponens<a class="headerlink" href="#addmenuitem-komponens" title="Permanent link">&para;</a></h3>
-<p>Hozzuk létre az <code>AddMenuItem.tsx</code> (az <code>AddMenuItem.css</code> fájlt is) komponenst:</p>
+<p>Hozzuk létre az <code>AddMenuItem.tsx</code> és az <code>AddMenuItem.css</code> fájlokat:</p>
 <div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">useState</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;preact/hooks&#39;</span><span class="p">;</span>
 <span class="k">import</span><span class="w"> </span><span class="s1">&#39;./AddMenuItem.css&#39;</span><span class="p">;</span>
 
@@ -1363,8 +1368,9 @@
 <span class="w">    </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Az <code>AddMenuItem</code> függvény paraméterként megkap egy callback függvényt (<code>addMenuItem</code>), amit majd az <code>index</code> komponens fog átadni neki. A <code>handleSubmit</code> függvényben adjuk át a beírt adatokat az <code>addMenuItem</code> függvény meghívásával. A form a <code>Bootstrap</code> stílusozását használja. A form <code>input</code> mezőihez be van kötve a megfelelő állapotváltozó változtatása (pl. <code>onChange={(e: Event) =&gt; setName((e.target as HTMLInputElement).value)}</code>), így értesülünk a felhasználói input változásáról.</p>
-<p>Vegyük fel az <code>addMenuItem</code> függvényt az <code>index.tsx</code> fájlban az <code>App</code> függvénybe és egy routing-ot is az új komponensnek:</p>
+<p>Az <code>AddMenuItem</code> függvény paraméterként megkap egy callback függvényt (<code>onSave</code>), amit az <code>index</code> komponens fog átadni neki. A <code>handleSubmit</code> függvényben adjuk át a beírt adatokat az <code>onSave</code> függvény meghívásával. Erre azért van szükség, mert az adatok (az ételek tömbje) nem az <code>AddMenuItem</code>, hanem az <code>index</code> komponensben találhatók. A form a <code>Bootstrap</code> stílusozását használja.</p>
+<p>A form <code>input</code> mezőihez be van kötve a megfelelő állapotváltozó változtatása (pl. <code>onChange={(e: Event) =&gt; setName((e.target as HTMLInputElement).value)}</code>), így értesülünk a felhasználói input változásáról.</p>
+<p>Írjuk meg az <code>addMenuItem</code> függvényt az <code>index.tsx</code> fájlban az <code>App</code> függvényben belül. A függvény a <code>menuItems</code> állapotváltozó setterét (<code>setMenuItems</code>) hívja, beillesztve a régi elemek után (<code>...prevItems</code>, spread operátor használatával) az újonnan hozzáadott elemet. Vegyünk fel egy <code>Route</code>-ot is az <code>AddMenuItem</code> komponensnek, paraméterként átadva neki az <code>addMenuitem</code> függvényt:</p>
 <div class="highlight"><pre><span></span><code><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">App</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// ...</span>
 
@@ -1442,8 +1448,8 @@
           </path>
         </svg>
       </span>
-      <span title="2025. március 21. 23:39:42">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. március 21. 23:39:42"><span class="timeago" datetime="2025-03-21T23:39:42+01:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. március 21. 23:39:42">2025-03-21</span>
+      <span title="2025. március 28. 11:22:39">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. március 28. 11:22:39"><span class="timeago" datetime="2025-03-28T11:22:39+01:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. március 28. 11:22:39">2025-03-28</span>
       </span>
     </span>
 
