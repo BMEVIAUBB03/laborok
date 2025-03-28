@@ -31,11 +31,17 @@ A feladatok megoldása során ne felejtsd el követni a [feladatbeadás folyamat
 
 ## 1. feladat – Routing bevezetése
 
+Mindenekelőtt telepítsük a kiinduló projekt függőségeit:
+
+> `npm install`
+
 Az alkalmazásunk többoldalassá válik, így szükségünk lesz útvonal választásra is. Ehhez a `preact-router` könyvtárat fogjuk használni. A `preact-router` a React `react-router` könyvtárához hasonlít, de kifejezetten Preact-hez készült, és kisebb méretű.
 
 Először telepítsük a `preact-router` csomagot:
 
 > `npm install preact-router`
+
+Az alkalmazást az `npm start` parancs kiadásával tudjuk futtatni. Ez azért van így, mert a `package.json` fájlban a `"dev": "vite"` sor erre lett átírva: `"start": "vite"` - részletekért ld. az előző labort.
 
 ### Új komponensek létrehozása
 
@@ -157,7 +163,7 @@ export default function App() {
 			<Header />
 			<Router>
 				<Route path="/" component={Home} />
-        <Route path="/home" component={Home} />
+				<Route path="/home" component={Home} />
 				<Route path="/menu" component={() => <Menu menuItems={menuItems} />} />
 				<Route path="/about" component={About} />
 			</Router>
@@ -166,9 +172,9 @@ export default function App() {
 }
 ```
 
-A routing beállításán kívül még egy fontos változás történt: az ételek tömbjét beraktuk az `App` függvény elejére és állapotváltozóként kezeljük konstans tömb helyett. A `Menu` komponens pedig paraméterként megkapja ezt a tömböt. Erre később lesz szükségünk, amikor új ételt fogunk felvenni.
+Az útvonalválasztás beállításán kívül még egy fontos változás történt: az ételek tömbjét beraktuk az `App` függvény elejére és állapotváltozóként kezeljük konstans tömb helyett. A `Menu` komponens pedig paraméterként megkapja ezt a tömböt. Erre később lesz szükségünk, amikor új ételt fogunk felvenni.
 
-Ezzel felkészítettük a fő komponensünket a routing-ra, vagyis ha a böngésző URL-be a megadott útvonalat írjuk, akkor a megfelelő komponensek fognak megjelenni. Egy komponenst több útvonalra is beregisztrálhatunk, a `Home` komponens esetén így is tettünk. Próbáljuk ki böngészőből, hogy tényleg megjelennek a megfelelő oldalak (pl. <a href="http://localhost:5173/menu" target="_blank">`http://localhost:5173/menu`</a> stb.)!
+Ezzel felkészítettük a fő komponensünket a routing-ra, vagyis ha a böngésző URL-be egy adott útvonalat írunk, akkor a fent beállított komponens fog megjelenni az oldalon. Egy komponenst több útvonalra is beregisztrálhatunk, a `Home` komponens esetén pl. így tettünk ("/" és "/home"). Próbáljuk ki böngészőből, hogy megjelennek-e a megfelelő oldalak (pl. <a href="http://localhost:5173/menu" target="_blank">`http://localhost:5173/menu`</a> stb.)!
 
 Ez a megoldás - bár működőképes - nem felhasználóbarát, mivel nem tudunk az oldalak között váltani a felületen. Ennek orvoslására hozzuk létre a `Navbar.tsx` komponenst. Stílusozásra itt a `Bootstrap`-et használjuk, de készítsünk egy `Navbar.css` fájlt is, melynek segítségével a kurzort pointeresre alakítjuk, ha az egeret a linkek fölé visszük:
 
@@ -232,7 +238,7 @@ Ebben a feladatban egy űrlapot hozunk létre, amelyen keresztül új ételeket 
 
 ### AddMenuItem komponens
 
-Hozzuk létre az `AddMenuItem.tsx` (az `AddMenuItem.css` fájlt is) komponenst:
+Hozzuk létre az `AddMenuItem.tsx` és az `AddMenuItem.css` fájlokat:
 
 ```javascript
 import { useState } from 'preact/hooks';
@@ -319,9 +325,11 @@ export default function AddMenuItem({ onSave }) {
 }
 ```
 
-Az `AddMenuItem` függvény paraméterként megkap egy callback függvényt (`addMenuItem`), amit majd az `index` komponens fog átadni neki. A `handleSubmit` függvényben adjuk át a beírt adatokat az `addMenuItem` függvény meghívásával. A form a `Bootstrap` stílusozását használja. A form `input` mezőihez be van kötve a megfelelő állapotváltozó változtatása (pl. `onChange={(e: Event) => setName((e.target as HTMLInputElement).value)}`), így értesülünk a felhasználói input változásáról.
+Az `AddMenuItem` függvény paraméterként megkap egy callback függvényt (`onSave`), amit az `index` komponens fog átadni neki. A `handleSubmit` függvényben adjuk át a beírt adatokat az `onSave` függvény meghívásával. Erre azért van szükség, mert az adatok (az ételek tömbje) nem az `AddMenuItem`, hanem az `index` komponensben találhatók. A form a `Bootstrap` stílusozását használja.
 
-Vegyük fel az `addMenuItem` függvényt az `index.tsx` fájlban az `App` függvénybe és egy routing-ot is az új komponensnek:
+A form `input` mezőihez be van kötve a megfelelő állapotváltozó változtatása (pl. `onChange={(e: Event) => setName((e.target as HTMLInputElement).value)}`), így értesülünk a felhasználói input változásáról.
+
+Írjuk meg az `addMenuItem` függvényt az `index.tsx` fájlban az `App` függvényben belül. A függvény a `menuItems` állapotváltozó setterét (`setMenuItems`) hívja, beillesztve a régi elemek után (`...prevItems`, spread operátor használatával) az újonnan hozzáadott elemet. Vegyünk fel egy `Route`-ot is az `AddMenuItem` komponensnek, paraméterként átadva neki az `addMenuitem` függvényt:
 
 ```javascript
 export default function App() {
