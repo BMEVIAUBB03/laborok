@@ -44,11 +44,11 @@ A feladatok megoldása során ne felejtsd el követni a [feladat beadás folyama
 
 Első lépésként indítsuk el az Android Studio-t, majd:
 
-1. Hozzunk létre egy új projektet, válasszuk az *Empty Activity* lehetőséget.
+1. Hozzunk létre egy új projektet, válasszuk az *Empty Views Activity* lehetőséget.
 2. A projekt neve legyen `PublicTransport`, a kezdő package `hu.bme.aut.android.publictransport`, a mentési hely pedig a kicheckoutolt repository-n belül a PublicTransport mappa.
 3. Nyelvnek válasszuk a *Kotlin*-t.
 4. A minimum API szint legyen API24: Android 7.0.
-5. Az instant app támogatást, valamint a *Use legacy android.support libraries* pontot **ne** pipáljuk be.
+5. A *Build configuration language* Kotlin DSL legyen.
 
 !!!danger "FILE PATH"
 	A projekt a repository-ban lévő PublicTransport könyvtárba kerüljön, és beadásnál legyen is felpusholva! A kód nélkül nem tudunk maximális pontot adni a laborra!
@@ -111,7 +111,7 @@ Az `activity_login.xml` fájlba kerüljön az alábbi kód. Alapértelmezetten e
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Login" />
@@ -245,19 +245,19 @@ A következő képernyőn a felhasználó a különböző járműtípusok közü
 
 Először töltsük le [az alkalmazáshoz képeit tartalmazó tömörített fájlt](./downloads/res.zip), ami tartalmazza az összes képet, amire szükségünk lesz. A tartalmát másoljuk be az `app/src/main/res` mappába (ehhez segít, ha Android Studio-ban bal fent a szokásos Android nézetről a Project nézetre váltunk, esetleg a mappán jobb klikk > Show in Explorer).
 
-Majd hozzunk létre egy új Activity-t (a package-ünkön jobb klikk > New > Activity > Empty Activity), nevezzük el `ListActivity`-nek. Most, hogy ez már létezik, menjünk vissza a `LoginActivity` kódjában lévő TODO-hoz, és indítsuk ott el ezt az új Activity-t:
+Majd hozzunk létre egy új Activity-t (a package-ünkön jobb klikk > New > Activity > Empty Activity), nevezzük el `VehicleTypeActivity`-nek. Most, hogy ez már létezik, menjünk vissza a `LoginActivity` kódjában lévő TODO-hoz, és indítsuk ott el ezt az új Activity-t:
 
 
 ```kotlin
 binding.btnLogin.setOnClickListener {
     ...
     else {
-        startActivity(Intent(this, ListActivity::class.java))
+        startActivity(Intent(this, VehicleTypeActivity::class.java))
     }
 }
 ```
 
-Folytassuk a layout elkészítésével a munkát, az `activity_list.xml` tartalmát cseréljük ki az alábbira:
+Folytassuk a layout elkészítésével a munkát, az `activity_vehicle_type.xml` tartalmát cseréljük ki az alábbira:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -267,7 +267,7 @@ Folytassuk a layout elkészítésével a munkát, az `activity_list.xml` tartalm
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="3"
-    tools:context=".ListActivity">
+    tools:context=".VehicleTypeActivity">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -499,10 +499,10 @@ class DetailsActivity : AppCompatActivity() {
 }
 ```
 
-Ezután menjünk a `ListActivity` kódjához, és vegyünk fel konstansokat a különböző támogatott járműveknek:
+Ezután menjünk a `VehicleTypeActivity` kódjához, és vegyünk fel konstansokat a különböző támogatott járműveknek:
 
 ```kotlin
-class ListActivity : AppCompatActivity() {
+class VehicleTypeActivity : AppCompatActivity() {
     companion object {
         const val TYPE_BIKE = 1
         const val TYPE_BUS = 2
@@ -549,9 +549,9 @@ Ezt az átadott számot még le kell képeznünk egy stringre, ehhez vegyünk fe
 ```kotlin
 private fun getTypeString(transportType: Int): String {
     return when (transportType) {
-        ListActivity.TYPE_BUS -> "Bus pass"
-        ListActivity.TYPE_TRAIN -> "Train pass"
-        ListActivity.TYPE_BIKE -> "Bike pass"
+        VehicleTypeActivity.TYPE_BUS -> "Bus pass"
+        VehicleTypeActivity.TYPE_TRAIN -> "Train pass"
+        VehicleTypeActivity.TYPE_BIKE -> "Bike pass"
         else -> "Unknown pass type"
     }
 }
@@ -699,7 +699,7 @@ binding.tvDates.text = intent.getStringExtra(KEY_DATE_STRING)
 Vállalatunk terjeszkedésével elindult a hajójáratokat ajánló szolgáltatásunk is. Adjuk hozzá ezt az új bérlet típust az alkalmazásunkhoz!
 
 ???success "Megoldás"
-	A szükséges változtatások nagy része a `ListActivity`-ben lesz. Először frissítsük az Activity layout-ját: itt egy új `FrameLayout`-ot kell hozzáadnunk, amiben a gomb ID-ja legyen `@+id/btnBoat`. A szükséges képet már tartalmazza a projekt, ezt `@drawable/boat` néven találjuk meg.
+	A szükséges változtatások nagy része a `VehicleTypeActivity`-ben lesz. Először frissítsük az Activity layout-ját: itt egy új `FrameLayout`-ot kell hozzáadnunk, amiben a gomb ID-ja legyen `@+id/btnBoat`. A szükséges képet már tartalmazza a projekt, ezt `@drawable/boat` néven találjuk meg.
 
 	Ne felejtsük el a gyökérelemünkként szolgáló `LinearLayout`-ban átállítani a `weightSum` attribútumot `3`-ról `4`-re, hiszen most már ennyi a benne található View-k súlyainak összege. (Kipróbálhatjuk, hogy mi történik, ha például `1`-re, vagy `2.5`-re állítjuk ezt a számot, a hatásának már az előnézetben is látszania kell.)
 	
@@ -714,7 +714,7 @@ Vállalatunk terjeszkedésével elindult a hajójáratokat ajánló szolgáltat�
 	Még egy dolgunk maradt, a `DetailsActivity` kódjában értelmeznünk kell ezt a paramétert. Ehhez a `getTypeString` függvényen belül vegyünk fel egy új ágat a `when`-ben:
 	
 	```kotlin
-	ListActivity.TYPE_BOAT -> "Boat pass"
+	VehicleTypeActivity.TYPE_BOAT -> "Boat pass"
 	```
 
 !!!example "BEADANDÓ (0,5 pont)"
