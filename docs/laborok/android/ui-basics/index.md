@@ -6,13 +6,13 @@
 A labor során egy tömegközlekedési vállalat számára megálmodott alkalmazás vázát készítjük el. Az alkalmazással a felhasználók különböző járművekre vásárolhatnak majd bérleteket. Az üzleti logikát (az authentikációt, a bevitt adatok ellenőrzését, a fizetés lebonyolítását) egyelőre csak szimulálni fogjuk, a labor fókusza a felületek és a köztük való navigáció elkészítése lesz.
 
 <p align="center">
-<img src="./assets/login.png" width="320">
-<img src="./assets/list.png" width="320">
+<img src="./assets/LoginActivity.png" width="320">
+<img src="./assets/VehicleTypeActivity.png" width="320">
 </p>
 
 <p align="center">
-<img src="./assets/details.png" width="320">
-<img src="./assets/pass.png" width="320">
+<img src="./assets/DetailsActivity.png" width="320">
+<img src="./assets/PassActivity.png" width="320">
 </p>
 
 ## Előkészületek
@@ -67,7 +67,7 @@ Láthatjuk, hogy létrejött egy projekt, amiben van egy Activity, `MainActivity
 Most már elkészíthetjük a login képernyőt. A felhasználótól egy email címet, illetve egy számokból álló jelszót fogunk bekérni, és egyelőre csak azt fogjuk ellenőrizni, hogy beírt-e valamit a mezőkbe.
 
 <p align="center"> 
-<img src="./assets/login.png" width="320">
+<img src="./assets/LoginActivity.png" width="320">
 </p>
 
 Az `activity_login.xml` fájlba kerüljön az alábbi kód. Alapértelmezetten egy grafikus szerkesztő nyílik meg, ezt át kell állítani a szöveges szerkesztőre. Ezt az Android Studio verziójától függően a jobb felső, vagy a jobb alsó sarokban lehet megtenni:
@@ -78,8 +78,9 @@ Az `activity_login.xml` fájlba kerüljön az alábbi kód. Alapértelmezetten e
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp"
+    android:gravity="center_vertical"
     android:orientation="vertical"
+    android:padding="16dp"
     tools:context=".LoginActivity">
 
     <TextView
@@ -240,7 +241,7 @@ Amennyiben valamelyik `EditText` üres volt, a `requestFocus` függvény meghív
 A következő képernyőn a felhasználó a különböző járműtípusok közül válaszhat. Egyelőre három szolgáltatás működik a fiktív vállalatunkban: biciklik, buszok illetve vonatok.
 
 <p align="center"> 
-<img src="./assets/list.png" width="320">
+<img src="./assets/VehicleTypeActivity.png" width="320">
 </p>
 
 Először töltsük le [az alkalmazáshoz képeit tartalmazó tömörített fájlt](./downloads/res.zip), ami tartalmazza az összes képet, amire szükségünk lesz. A tartalmát másoljuk be az `app/src/main/res` mappába (ehhez segít, ha Android Studio-ban bal fent a szokásos Android nézetről a Project nézetre váltunk, esetleg a mappán jobb klikk > Show in Explorer).
@@ -348,7 +349,7 @@ Próbáljuk ki az alkalmazásunkat, bejelentkezés után a most elkészített li
 Miután a felhasználó kiválasztotta a kívánt közlekedési eszközt, néhány további opciót fogunk még felajánlani számára. Ezen a képernyőn fogja kiválasztani a bérleten szereplő dátumokat, illetve a rá vonatkozó kedvezményt, amennyiben van ilyen.
 
 <p align="center"> 
-<img src="./assets/details.png" width="320">
+<img src="./assets/DetailsActivity.png" width="320">
 </p>
 
 Hozzuk létre ezt az új Activity-t `DetailsActivity` néven, a layout-ját kezdjük az alábbi kóddal:
@@ -579,7 +580,7 @@ Próbáljuk ki az alkalmazást! A `DetailsActivity`-ben meg kell jelennie a hozz
 Az alkalmazás utolsó képernyője már kifejezetten egyszerű lesz, ez magát a bérletet fogja reprezentálni. Itt a bérlet típusát és érvényességi idejét fogjuk megjeleníteni, illetve egy QR kódot, amivel ellenőrizni lehet a bérletet.
 
 <p align="center"> 
-<img src="./assets/pass.png" width="320">
+<img src="./assets/PassActivity.png" width="320">
 </p>
 
 Hozzuk létre a szükséges Activity-t, `PassActivity` néven. Ennek az Activity-nek szüksége lesz a jegy típusára és a kiválasztott dátumokra - a QR kód az egyszerűség kedvéért egy fix kép lesz.
