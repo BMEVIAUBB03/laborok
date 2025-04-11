@@ -519,14 +519,14 @@ class VehicleTypeActivity : AppCompatActivity() {
 Most már létrehozhatjuk a gombok listener-jeit, amelyek elindítják a `DetailsActivity`-t, extrának beletéve a kiválasztott típust. Az első gomb listenerjének beállítását így tehetjük meg a `ViewBinding`beállítása után:
 
 ```kotlin
-private lateinit var binding: ActivityListBinding
+private lateinit var binding: ActivityVehicleTypeBinding
 
 ...
 
  override fun onCreate(savedInstanceState: Bundle?) {
      super.onCreate(savedInstanceState)
 
-     binding = ActivityListBinding.inflate(layoutInflater)
+     binding = ActivityVehicleTypeBinding.inflate(layoutInflater)
      setContentView(binding.root)
 
      binding.btnBike.setOnClickListener {
