@@ -1476,14 +1476,14 @@ A <code>binding</code> példány működéséhez három dolgot kell tennünk:</p
 <p>A Kotlin egy nagy eltérése az eddig ismert, megszokott OOP nyelvektől, hogy nincs benne <code>static</code> kulcsszó, és így nincsenek statikus változók vagy függvények sem. Ehelyett minden osztályhoz lehet definiálni egy <a href="https://kotlinlang.org/docs/reference/object-declarations.html#companion-objects"><code>companion object</code>-et</a>, ami egy olyan singleton-t definiál, ami az osztály összes példányán keresztül elérhető. Röviden, minden <code>companion object</code>-en belül definiált konstans, változó, függvény úgy viselkedik, mintha statikus lenne.</p>
 </div>
 <p>Most már létrehozhatjuk a gombok listener-jeit, amelyek elindítják a <code>DetailsActivity</code>-t, extrának beletéve a kiválasztott típust. Az első gomb listenerjének beállítását így tehetjük meg a <code>ViewBinding</code>beállítása után:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">private</span><span class="w"> </span><span class="kd">lateinit</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">binding</span><span class="p">:</span><span class="w"> </span><span class="n">ActivityListBinding</span>
+<div class="highlight"><pre><span></span><code><span class="kd">private</span><span class="w"> </span><span class="kd">lateinit</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">binding</span><span class="p">:</span><span class="w"> </span><span class="n">ActivityVehicleTypeBinding</span>
 
 <span class="p">...</span>
 
 <span class="w"> </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">     </span><span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
 
-<span class="w">     </span><span class="n">binding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ActivityListBinding</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">layoutInflater</span><span class="p">)</span>
+<span class="w">     </span><span class="n">binding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ActivityVehicleTypeBinding</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">layoutInflater</span><span class="p">)</span>
 <span class="w">     </span><span class="n">setContentView</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">root</span><span class="p">)</span>
 
 <span class="w">     </span><span class="n">binding</span><span class="p">.</span><span class="na">btnBike</span><span class="p">.</span><span class="na">setOnClickListener</span><span class="w"> </span><span class="p">{</span>
@@ -1715,8 +1715,8 @@ A <code>binding</code> példány működéséhez három dolgot kell tennünk:</p
           </path>
         </svg>
       </span>
-      <span title="2025. április 10. 16:36:17">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. április 10. 16:36:17"><span class="timeago" datetime="2025-04-10T16:36:17+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. április 10. 16:36:17">2025-04-10</span>
+      <span title="2025. április 11. 12:10:58">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. április 11. 12:10:58"><span class="timeago" datetime="2025-04-11T12:10:58+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. április 11. 12:10:58">2025-04-11</span>
       </span>
     </span>
 
@@ -1733,6 +1733,8 @@ A <code>binding</code> példány működéséhez három dolgot kell tennünk:</p
       <span>Szerzők</span>
       <nav><a href="https://github.com/gazdilaci" target="_blank" rel="noopener noreferrer" class="md-author" title="@gazdilaci">
           <img src="https://avatars.githubusercontent.com/u/23335752?v=4?size=72" alt="@gazdilaci">
+        </a><a href="https://github.com/web-flow" target="_blank" rel="noopener noreferrer" class="md-author" title="@web-flow">
+          <img src="https://avatars.githubusercontent.com/u/19864447?v=4?size=72" alt="@web-flow">
         </a></nav>      
     </span>
   </div>
