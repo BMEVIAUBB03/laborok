@@ -1,4 +1,4 @@
-# Mobilos házi feladat információk - 2024 tavasz
+# Mobilos házi feladat információk - 2025 tavasz
 
 A házi feladat célja, hogy az előadáson és laborokon bemutatott technológiák segítségével egy komplex alkalmazást készítsen a hallgató, önálló funkcionalitással.
 
@@ -71,7 +71,7 @@ Az alábbiakban bemutatunk két specifikációt, ami a laborfeladatokat gondolja
 Ha valaki a leírások alapján nem biztos benne, hogy az általa választott feladat megfelel a követelményeknek, egyeztessen a laborvezetőjével!
 
 ## Pontozás
-A feladatra **10 pontot** lehet kapni, amiből legalább **5-öt** kell elérni ahhoz, hogy meglegyen a házi feladat.
+A feladatra **12 pontot** lehet kapni, amiből legalább **6-ot** kell elérni ahhoz, hogy meglegyen a házi feladat.
 
 - Amennyiben az alapkövetelmények, tehát a legalább négy nézet, adatbázis CRUD vagy három webes endpoint feldolgozása nem teljesül, a megoldás automatikusan, mérlegelés nélkül 0 pontot ér!
 - Felhasználói felület (4pont)
@@ -81,7 +81,7 @@ A feladatra **10 pontot** lehet kapni, amiből legalább **5-öt** kell elérni 
 		- 2 pont: az oldal áttekinthető, a felületi elemek nincsenek szétcsúszva.
 	- Erőforrások használata, szövegek erőforrásba szervezése (1 pont)
 	- sűrűségfüggetlen mértékegységek használata (1 pont)
-- Funkciók (4 pont)
+- Funkciók (5 pont)
 	- Hatékony működés, nincsenek felesleges ciklusok, újrarajzolások (2 pont)
 		- Különös tekintettel a RecyclerView-ra, diagramokra
 		- Hosszú hívások aszinkron módon
@@ -90,7 +90,7 @@ A feladatra **10 pontot** lehet kapni, amiből legalább **5-öt** kell elérni 
 	- Mi történik, ha az internet nem elérhető (hibaüzenetek)
 	- Mi történik vissza gomb esetén
 	- Mi történik elforgatás esetén
-- Laborvezetői pontok (-8 – 2pont)
+- Laborvezetői pontok (-9 – 3pont)
 	- Ezeket a laborvezető saját belátása szerint oszthatja az alábbiak alapján
 		- Mennyire logikusan elvárt a működés
 		- Mennyire történt törekvés a jó funkcionalitás megvalósítására, és nem csak a funkció látszat kivitelezése volt-e a cél
