@@ -1269,20 +1269,27 @@ A bal alsó sarokban található <code>FloatingActionButton</code>-re kattintva 
 </code></pre></div>
 <p>Ez be van állítva a <code>MainActivity</code> <code>onCreate</code>-jében:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
-<span class="w">    </span><span class="n">binding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ActivityMainBinding</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">layoutInflater</span><span class="p">)</span>
-<span class="w">    </span><span class="n">setContentView</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">root</span><span class="p">)</span>
+<span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
+<span class="n">enableEdgeToEdge</span><span class="p">()</span>
+<span class="n">binding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ActivityMainBinding</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">layoutInflater</span><span class="p">)</span>
+<span class="n">setContentView</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">root</span><span class="p">)</span>
+<span class="n">ViewCompat</span><span class="p">.</span><span class="na">setOnApplyWindowInsetsListener</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">root</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">insets</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">systemBars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">insets</span><span class="p">.</span><span class="na">getInsets</span><span class="p">(</span><span class="n">WindowInsetsCompat</span><span class="p">.</span><span class="na">Type</span><span class="p">.</span><span class="na">systemBars</span><span class="p">())</span>
+<span class="w">    </span><span class="n">v</span><span class="p">.</span><span class="na">setPadding</span><span class="p">(</span><span class="n">systemBars</span><span class="p">.</span><span class="na">left</span><span class="p">,</span><span class="w"> </span><span class="n">systemBars</span><span class="p">.</span><span class="na">top</span><span class="p">,</span><span class="w"> </span><span class="n">systemBars</span><span class="p">.</span><span class="na">right</span><span class="p">,</span><span class="w"> </span><span class="n">systemBars</span><span class="p">.</span><span class="na">bottom</span><span class="p">)</span>
+<span class="w">    </span><span class="n">insets</span>
+<span class="p">}</span>
 
-<span class="w">    </span><span class="n">setSupportActionBar</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">toolbar</span><span class="p">)</span>
-<span class="p">}</span><span class="w">   </span>
+<span class="n">setSupportActionBar</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">toolbar</span><span class="p">)</span>
+<span class="p">}</span>
 </code></pre></div>
 <p>Valamint le van tiltva az Actionbar az almalmazás témájában (NoActionBar öröklés):</p>
-<p><div class="highlight"><pre><span></span><code><span class="nt">&lt;style</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Theme.ShoppingList&quot;</span><span class="w"> </span><span class="na">parent=</span><span class="s">&quot;Theme.MaterialComponents.DayNight.NoActionBar&quot;</span><span class="nt">&gt;</span>
-<span class="w">    </span><span class="cm">&lt;!-- Customize your theme here. --&gt;</span>
-<span class="w">    </span>...
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;style</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Base.Theme.ShoppingList&quot;</span><span class="w"> </span><span class="na">parent=</span><span class="s">&quot;Theme.Material3.DayNight.NoActionBar&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- Customize your light theme here. --&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- &lt;item name=&quot;colorPrimary&quot;&gt;@color/my_light_primary&lt;/item&gt; --&gt;</span>
 <span class="nt">&lt;/style&gt;</span>
 </code></pre></div>
-Az erőforrások között szerepelnek még a szükséges <em>string</em> -ek és képek valamint ikonok.</p>
+<p>Az <code>onCreate</code>-ben figyeljük meg a <code>WindowInsets</code> beállítását is, amellyel elkerülhető, hogy a rendszer UI eltakarja a felületünket.</p>
+<p>Az erőforrások között szerepelnek még a szükséges <em>string</em> -ek és képek valamint ikonok.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;resources&gt;</span>
 <span class="w">    </span><span class="nt">&lt;string</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;app_name&quot;</span><span class="nt">&gt;</span>ShoppingList<span class="nt">&lt;/string&gt;</span>
 <span class="w">    </span><span class="nt">&lt;string</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>Name<span class="nt">&lt;/string&gt;</span>
@@ -1308,74 +1315,126 @@ Az erőforrások között szerepelnek még a szükséges <em>string</em> -ek és
 <span class="nt">&lt;/resources&gt;</span>
 </code></pre></div>
 <p>Be van kapcsolva a <em>ViewBinding</em> :</p>
-<div class="highlight"><pre><span></span><code><span class="o">...</span>
-<span class="n">android</span><span class="w"> </span><span class="o">{</span>
-<span class="w">    </span><span class="o">...</span>
-<span class="w">    </span><span class="n">buildFeatures</span><span class="w"> </span><span class="o">{</span>
+<div class="highlight"><pre><span></span><code><span class="p">...</span>
+<span class="n">android</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span><span class="n">buildFeatures</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">viewBinding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
-<span class="w">    </span><span class="o">}</span>
-<span class="o">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
 <p>Szintén be vannak állítva a függőségek a megfelelő helyeken:</p>
 <p>A PieChart kirajzolásához az <a href="https://github.com/PhilJay/MPAndroidChart">MPAndroidChart</a> library-t fogjuk használni.</p>
-<p>settings.gradle:
-<div class="highlight"><pre><span></span><code><span class="n">dependencyResolutionManagement</span><span class="w"> </span><span class="o">{</span>
-<span class="n">repositoriesMode</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">RepositoriesMode</span><span class="o">.</span><span class="na">FAIL_ON_PROJECT_REPOS</span><span class="o">)</span>
-<span class="n">repositories</span><span class="w"> </span><span class="o">{</span>
-<span class="w">    </span><span class="o">...</span>
-<span class="w">    </span><span class="n">maven</span><span class="o">(</span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://jitpack.io&quot;</span><span class="o">)</span>
-<span class="w">    </span><span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></p>
-<p>App szintű build.gradle:
-<div class="highlight"><pre><span></span><code><span class="n">dependencies</span><span class="w"> </span><span class="o">{</span>
-<span class="w">    </span><span class="o">...</span>
-<span class="w">    </span><span class="n">implementation</span><span class="w"> </span><span class="o">(</span><span class="s2">&quot;com.github.PhilJay:MPAndroidChart:v3.1.0&quot;</span><span class="o">)</span>
-<span class="o">}</span>
+<p><code>settings.gradle.kts</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">dependencyResolutionManagement</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">repositoriesMode</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">RepositoriesMode</span><span class="p">.</span><span class="na">FAIL_ON_PROJECT_REPOS</span><span class="p">)</span>
+<span class="w">    </span><span class="n">repositories</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">google</span><span class="p">()</span>
+<span class="w">        </span><span class="n">mavenCentral</span><span class="p">()</span>
+<span class="w">        </span><span class="n">maven</span><span class="p">(</span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;https://jitpack.io&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>libs.versions.toml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[versions]</span>
+<span class="p">...</span>
+<span class="n">mpandroidchart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;v3.1.0&quot;</span>
+
+<span class="k">[libraries]</span>
+<span class="p">...</span>
+<span class="n">mpandroidchart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;com.github.PhilJay:MPAndroidChart&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;mpandroidchart&quot;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>Modul szintű build.gradle.kts:
+<div class="highlight"><pre><span></span><code><span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span><span class="c1">//MPAndroidCharts</span>
+<span class="w">    </span><span class="n">implementation</span><span class="w"> </span><span class="p">(</span><span class="n">libs</span><span class="p">.</span><span class="na">mpandroidchart</span><span class="p">)</span>
+<span class="p">}</span>
 </code></pre></div></p>
 <p>A <a href="https://developer.android.com/guide/navigation/navigation-getting-started"><code>Navigation Component</code></a> függőségei:</p>
-<p>Elsőre nézzük a <strong>project</strong> szintű <em>Gradle</em> fájlt:
-A <em>Jetpack Navigation</em> könyvtár használata miatt föl van véve a többi plugin mellé a <code>androidx.navigation.safeargs</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="n">plugins</span><span class="w"> </span><span class="o">{</span>
-<span class="w">    </span><span class="o">...</span>
-<span class="w">    </span><span class="n">id</span><span class="o">(</span><span class="s2">&quot;androidx.navigation.safeargs&quot;</span><span class="o">)</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="s2">&quot;2.7.7&quot;</span><span class="w"> </span><span class="n">apply</span><span class="w"> </span><span class="kc">false</span>
-<span class="o">}</span>
+<p><code>libs.versions.toml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[versions]</span>
+<span class="p">...</span>
+<span class="n">navigation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2.9.0&quot;</span>
+
+<span class="k">[libraries]</span>
+<span class="p">...</span>
+<span class="n">androidx-navigation-fragment-ktx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;androidx.navigation&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;navigation-fragment-ktx&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;navigation&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="n">androidx-navigation-ui-ktx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;androidx.navigation&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;navigation-ui-ktx&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;navigation&quot;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="k">[plugins]</span>
+<span class="p">...</span>
+<span class="n">androidx-navigation-safe-args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;androidx.navigation.safeargs&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;navigation&quot;</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
-<p>A pluginok közé a modul szintű <code>build.gragle</code>-be még fel van véve a `androidx.navigation.safeargs.kotlin:</p>
-<div class="highlight"><pre><span></span><code><span class="n">plugins</span><span class="w"> </span><span class="o">{</span>
-<span class="w">    </span><span class="o">...</span>
-<span class="w">    </span><span class="n">id</span><span class="o">(</span><span class="s2">&quot;androidx.navigation.safeargs.kotlin&quot;</span><span class="o">)</span>
-<span class="o">}</span>
+<p>Ez után nézzük a <strong>project</strong> szintű <em>Gradle</em> fájlt:
+A <em>Jetpack Navigation</em> könyvtár használata miatt föl van véve a többi plugin mellé a <code>libs.plugins.androidx.navigation.safe.args</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">plugins</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span><span class="c1">//Jetpack Navigation with Safe Arguments</span>
+<span class="w">    </span><span class="n">alias</span><span class="p">(</span><span class="n">libs</span><span class="p">.</span><span class="na">plugins</span><span class="p">.</span><span class="na">androidx</span><span class="p">.</span><span class="na">navigation</span><span class="p">.</span><span class="na">safe</span><span class="p">.</span><span class="na">args</span><span class="p">)</span><span class="w"> </span><span class="n">apply</span><span class="w"> </span><span class="kc">false</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>A modul szintű <code>build.gradle.kts</code>-be fel van véve a `libs.plugins.androidx.navigation.safe.args, valamint a függőségek is itt szerepelnek:</p>
+<div class="highlight"><pre><span></span><code><span class="n">plugins</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span><span class="c1">//Jetpack Navigation with Safe Arguments</span>
+<span class="w">    </span><span class="n">alias</span><span class="p">(</span><span class="n">libs</span><span class="p">.</span><span class="na">plugins</span><span class="p">.</span><span class="na">androidx</span><span class="p">.</span><span class="na">navigation</span><span class="p">.</span><span class="na">safe</span><span class="p">.</span><span class="na">args</span><span class="p">)</span>
+<span class="p">}</span>
 
-<span class="n">android</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="o">...</span><span class="w"> </span><span class="o">}</span>
+<span class="n">android</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
 
-<span class="n">dependencies</span><span class="w"> </span><span class="o">{</span>
-<span class="w">    </span><span class="o">...</span>
-<span class="w">    </span><span class="n">val</span><span class="w"> </span><span class="n">nav_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.7.7&quot;</span>
-<span class="w">    </span><span class="n">implementation</span><span class="w"> </span><span class="o">(</span><span class="s2">&quot;androidx.navigation:navigation-fragment-ktx:$nav_version&quot;</span><span class="o">)</span>
-<span class="w">    </span><span class="n">implementation</span><span class="w"> </span><span class="o">(</span><span class="s2">&quot;androidx.navigation:navigation-ui-ktx:$nav_version&quot;</span><span class="o">)</span>
-<span class="o">}</span>
+<span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span><span class="c1">//Jetpack Navigation</span>
+<span class="w">    </span><span class="n">implementation</span><span class="w"> </span><span class="p">(</span><span class="n">libs</span><span class="p">.</span><span class="na">androidx</span><span class="p">.</span><span class="na">navigation</span><span class="p">.</span><span class="na">fragment</span><span class="p">.</span><span class="na">ktx</span><span class="p">)</span>
+<span class="w">    </span><span class="n">implementation</span><span class="w"> </span><span class="p">(</span><span class="n">libs</span><span class="p">.</span><span class="na">androidx</span><span class="p">.</span><span class="na">navigation</span><span class="p">.</span><span class="na">ui</span><span class="p">.</span><span class="na">ktx</span><span class="p">)</span>
+<span class="p">}</span>
 </code></pre></div>
 <p><a href="https://developer.android.com/topic/libraries/architecture/room"><code>Room</code></a> hozzáadása a projekthez</p>
-<p>Az app modulhoz tartozó build.gradle fájlban a pluginokhoz hozzáírtunk egy sort (bekapcsoljuk a <code>Kotlin Symbol Procesing</code>-et - KSP):
-<div class="highlight"><pre><span></span><code><span class="n">plugins</span><span class="w"> </span><span class="o">{</span>
+<p><code>libs.versions.toml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[versions]</span>
+<span class="p">...</span>
+<span class="n">ksp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.9.0-1.0.13&quot;</span>
+<span class="n">room</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2.6.1&quot;</span>
+
+<span class="k">[libraries]</span>
+<span class="p">...</span>
+<span class="n">androidx-room-runtime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;androidx.room&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;room-runtime&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="o">=</span><span class="w"> </span><span class="s">&quot;room&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="n">androidx-room-compiler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;androidx.room&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;room-compiler&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="o">=</span><span class="w"> </span><span class="s">&quot;room&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="n">androidx-room-ktx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;androidx.room&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;room-ktx&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="o">=</span><span class="w"> </span><span class="s">&quot;room&quot;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="k">[plugins]</span>
+<span class="p">...</span>
+<span class="n">google-devtools-ksp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;com.google.devtools.ksp&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">ref</span><span class="o">=</span><span class="s">&quot;ksp&quot;</span><span class="p">}</span>
+</code></pre></div>
+<p>A projekthez tartozó build.gradle.kts fájlban a pluginokhoz hozzáírtunk egy sort (bekapcsoljuk a <code>Kotlin Symbol Procesing</code>-et - KSP):</p>
+<div class="highlight"><pre><span></span><code><span class="n">plugins</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">//...</span>
-<span class="w">    </span><span class="n">id</span><span class="o">(</span><span class="s2">&quot;com.google.devtools.ksp&quot;</span><span class="o">)</span>
+<span class="w">    </span><span class="c1">//Kotlin Symbol Processing</span>
+<span class="w">    </span><span class="n">alias</span><span class="p">(</span><span class="n">libs</span><span class="p">.</span><span class="na">plugins</span><span class="p">.</span><span class="na">google</span><span class="p">.</span><span class="na">devtools</span><span class="p">.</span><span class="na">ksp</span><span class="p">)</span><span class="w"> </span><span class="n">apply</span><span class="w"> </span><span class="kc">false</span>
 <span class="w">    </span><span class="c1">//...</span>
-<span class="o">}</span>
+<span class="p">}</span>
 
 <span class="c1">//...</span>
-</code></pre></div></p>
-<p>Ezt követően, szintén ebben a <code>build.gradle</code> fájlban a <code>dependencies</code> blokkhoz van hozzáadva <code>Room</code> library:
-<div class="highlight"><pre><span></span><code><span class="n">dependencies</span><span class="w"> </span><span class="o">{</span>
+</code></pre></div>
+<p>Az app modulhoz tartozó build.gradle fájlban a pluginokhoz hozzáírtunk egy sort (bekapcsoljuk a <code>Kotlin Symbol Procesing</code>-et - KSP):</p>
+<div class="highlight"><pre><span></span><code><span class="n">plugins</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">//...</span>
-<span class="w">    </span><span class="c1">//Room</span>
-<span class="w">    </span><span class="n">val</span><span class="w"> </span><span class="n">room_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.6.1&quot;</span>
-<span class="w">    </span><span class="n">implementation</span><span class="w"> </span><span class="o">(</span><span class="s2">&quot;androidx.room:room-runtime:$room_version&quot;</span><span class="o">)</span>
-<span class="w">    </span><span class="n">implementation</span><span class="w"> </span><span class="o">(</span><span class="s2">&quot;androidx.room:room-ktx:$room_version&quot;</span><span class="o">)</span>
-<span class="w">    </span><span class="n">ksp</span><span class="o">(</span><span class="s2">&quot;androidx.room:room-compiler:$room_version&quot;</span><span class="o">)</span>
-<span class="o">}</span>
-</code></pre></div></p>
+<span class="w">    </span><span class="n">alias</span><span class="p">(</span><span class="n">libs</span><span class="p">.</span><span class="na">plugins</span><span class="p">.</span><span class="na">google</span><span class="p">.</span><span class="na">devtools</span><span class="p">.</span><span class="na">ksp</span><span class="p">)</span>
+<span class="w">    </span><span class="c1">//...</span>
+<span class="p">}</span>
+
+<span class="c1">//...</span>
+</code></pre></div>
+<p>Ezt követően, szintén ebben a <code>build.gradle.kts</code> fájlban a <code>dependencies</code> blokkhoz van hozzáadva <code>Room</code> library:</p>
+<div class="highlight"><pre><span></span><code><span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">//...</span>
+<span class="w">    </span><span class="c1">//Room ORM Library</span>
+<span class="w">    </span><span class="n">ksp</span><span class="p">(</span><span class="n">libs</span><span class="p">.</span><span class="na">androidx</span><span class="p">.</span><span class="na">room</span><span class="p">.</span><span class="na">compiler</span><span class="p">)</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="n">libs</span><span class="p">.</span><span class="na">androidx</span><span class="p">.</span><span class="na">room</span><span class="p">.</span><span class="na">runtime</span><span class="p">)</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="n">libs</span><span class="p">.</span><span class="na">androidx</span><span class="p">.</span><span class="na">room</span><span class="p">.</span><span class="na">ktx</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
 </details>
 <h3 id="navigation-component-inicializalas">Navigation Component inicializálás<a class="headerlink" href="#navigation-component-inicializalas" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
@@ -1509,13 +1568,13 @@ A létrejött <code>fragment_shopping_list.xml</code> tartalmát cseréljük ki 
 <span class="w">        </span><span class="na">android:id=</span><span class="s">&quot;@+id/ivIcon&quot;</span>
 <span class="w">        </span><span class="na">android:layout_width=</span><span class="s">&quot;64dp&quot;</span>
 <span class="w">        </span><span class="na">android:layout_height=</span><span class="s">&quot;64dp&quot;</span>
-<span class="w">        </span><span class="na">android:layout_marginLeft=</span><span class="s">&quot;8dp&quot;</span>
+<span class="w">        </span><span class="na">android:layout_marginStart=</span><span class="s">&quot;8dp&quot;</span>
 <span class="w">        </span><span class="na">tools:src=</span><span class="s">&quot;@drawable/open_book&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 
 <span class="w">    </span><span class="nt">&lt;LinearLayout</span>
 <span class="w">        </span><span class="na">android:layout_width=</span><span class="s">&quot;0dp&quot;</span>
 <span class="w">        </span><span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
-<span class="w">        </span><span class="na">android:layout_marginLeft=</span><span class="s">&quot;8dp&quot;</span>
+<span class="w">        </span><span class="na">android:layout_marginStart=</span><span class="s">&quot;8dp&quot;</span>
 <span class="w">        </span><span class="na">android:layout_weight=</span><span class="s">&quot;1&quot;</span>
 <span class="w">        </span><span class="na">android:orientation=</span><span class="s">&quot;vertical&quot;</span><span class="nt">&gt;</span>
 
@@ -1724,12 +1783,13 @@ A létrejött <code>fragment_shopping_list.xml</code> tartalmát cseréljük ki 
 </div>
 <h4 id="egy-modell-osztaly-letrehozasa">Egy modell osztály létrehozása<a class="headerlink" href="#egy-modell-osztaly-letrehozasa" title="Permanent link">&para;</a></h4>
 <p>A <code>hu.bme.aut.kliensalkalmazasok.shoppinglist</code> <em>package</em>-ben hozzunk létre egy új <em>package</em>-et <code>data</code> néven. A <code>data</code> <em>package</em>-ben hozzunk létre egy új Kotlin osztályt, aminek a neve legyen  <code>ShoppingItem</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.shoppinglist.data;</span>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.shoppinglist.data</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.room.ColumnInfo</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.room.Entity</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.room.PrimaryKey</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.room.TypeConverter</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">kotlin.jvm.JvmStatic</span>
 
 <span class="nd">@Entity</span><span class="p">(</span><span class="n">tableName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;shoppingitem&quot;</span><span class="p">)</span>
 <span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">ShoppingItem</span><span class="p">(</span>
@@ -1852,6 +1912,7 @@ Megfigyelhető továbbá, hogy ezen függvények el vannak látva a <code>@JvmSt
 <span class="w">    </span><span class="n">RecyclerView</span><span class="p">.</span><span class="na">Adapter</span><span class="o">&lt;</span><span class="n">ShoppingAdapter</span><span class="p">.</span><span class="na">ShoppingViewHolder</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">items</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mutableListOf</span><span class="o">&lt;</span><span class="n">ShoppingItem</span><span class="o">&gt;</span><span class="p">()</span>
+
 <span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreateViewHolder</span><span class="p">(</span><span class="n">parent</span><span class="p">:</span><span class="w"> </span><span class="n">ViewGroup</span><span class="p">,</span><span class="w"> </span><span class="n">viewType</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ShoppingViewHolder</span><span class="p">(</span>
 <span class="w">        </span><span class="n">ItemShoppingListBinding</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">LayoutInflater</span><span class="p">.</span><span class="na">from</span><span class="p">(</span><span class="n">parent</span><span class="p">.</span><span class="na">context</span><span class="p">),</span><span class="w"> </span><span class="n">parent</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span>
 <span class="w">    </span><span class="p">)</span>
@@ -2218,34 +2279,38 @@ A kiolvasás után a törlés is fontos, mert ha az érték benn marad a <em>sav
 <span class="nt">&lt;/menu&gt;</span>
 </code></pre></div>
 <p>A két <em>item</em> ebben az esetben csoportba van foglalva, és természetesen közülük egyszerre csak az egyik lehet kiválasztva.</p>
-<p>Ahhoz, hogy ez a menü felkerüljön a felületre, a <code>ChartFragment</code>-ben kell felülírnunk az <code>onCreateOptionsMenu</code> függvényt:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreateOptionsMenu</span><span class="p">(</span><span class="n">menu</span><span class="p">:</span><span class="w"> </span><span class="n">Menu</span><span class="p">,</span><span class="w"> </span><span class="n">inflater</span><span class="p">:</span><span class="w"> </span><span class="n">MenuInflater</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="na">onCreateOptionsMenu</span><span class="p">(</span><span class="n">menu</span><span class="p">,</span><span class="w"> </span><span class="n">inflater</span><span class="p">)</span>
-<span class="w">    </span><span class="n">inflater</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">menu</span><span class="p">.</span><span class="na">menu_chart</span><span class="p">,</span><span class="w"> </span><span class="n">menu</span><span class="p">)</span>
+<p>Ahhoz, hogy ez a menü felkerüljön a felületre, a <code>ChartFragment</code>-ben létre kell hoznunk egy <code>MenuProvider</code>-t, majd azt beállítani az <code>onViewCreated</code> függvényben:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onViewCreated</span><span class="p">(</span><span class="n">view</span><span class="p">:</span><span class="w"> </span><span class="n">View</span><span class="p">,</span><span class="w"> </span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="na">onViewCreated</span><span class="p">(</span><span class="n">view</span><span class="p">,</span><span class="w"> </span><span class="n">savedInstanceState</span><span class="p">)</span>
+
+<span class="w">    </span><span class="p">(</span><span class="n">activity</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">MenuHost</span><span class="p">).</span><span class="na">addMenuProvider</span><span class="p">(</span>
+<span class="w">        </span><span class="n">myMenuProvider</span><span class="p">,</span>
+<span class="w">        </span><span class="n">viewLifecycleOwner</span><span class="p">,</span>
+<span class="w">        </span><span class="n">Lifecycle</span><span class="p">.</span><span class="na">State</span><span class="p">.</span><span class="na">RESUMED</span>
+<span class="w">    </span><span class="p">)</span>
 <span class="p">}</span>
-</code></pre></div>
-<p>A választás kezeléséhez pedig az <code>onOptionsItemSelected</code> függvény felülírására van szükségünk:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onOptionsItemSelected</span><span class="p">(</span><span class="n">item</span><span class="p">:</span><span class="w"> </span><span class="n">MenuItem</span><span class="p">):</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="n">item</span><span class="p">.</span><span class="na">itemId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">boughtButton</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">loadChart</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
-<span class="w">        </span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">notBoughtButton</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">loadChart</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+
+<span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">myMenuProvider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">object</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nc">MenuProvider</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreateMenu</span><span class="p">(</span><span class="n">menu</span><span class="p">:</span><span class="w"> </span><span class="n">Menu</span><span class="p">,</span><span class="w"> </span><span class="n">menuInflater</span><span class="p">:</span><span class="w"> </span><span class="n">MenuInflater</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">menuInflater</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">menu</span><span class="p">.</span><span class="na">menu_chart</span><span class="p">,</span><span class="w"> </span><span class="n">menu</span><span class="p">)</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="na">onOptionsItemSelected</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>Még egyetlen egy dolgunk van. A menüt általában az Activity kezeli, így a Fragmentből nem lehet elérni, sőt a függvények felüldefiniálása sem hatásos, mivel nem hívódnak meg. Ha mégis szeretnénk egy Fragmentből kezelni a a menüt, akkor ezt jeleznünk kell a <code>setHasOptionsMenu</code> beállításával:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreateView</span><span class="p">(</span>
-<span class="w">    </span><span class="n">inflater</span><span class="p">:</span><span class="w"> </span><span class="n">LayoutInflater</span><span class="p">,</span>
-<span class="w">    </span><span class="n">container</span><span class="p">:</span><span class="w"> </span><span class="n">ViewGroup?,</span>
-<span class="w">    </span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?</span>
-<span class="p">):</span><span class="w"> </span><span class="n">View? </span><span class="p">{</span>
-<span class="w">    </span><span class="n">_binding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FragmentChartBinding</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">inflater</span><span class="p">,</span><span class="w"> </span><span class="n">container</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span>
 
-<span class="w">    </span><span class="n">setHasOptionsMenu</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onMenuItemSelected</span><span class="p">(</span><span class="n">menuItem</span><span class="p">:</span><span class="w"> </span><span class="n">MenuItem</span><span class="p">):</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="n">menuItem</span><span class="p">.</span><span class="na">itemId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">boughtButton</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">loadChart</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+<span class="w">                </span><span class="kc">true</span>
+<span class="w">            </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">loadChart</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+<span class="w">            </span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">notBoughtButton</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">loadChart</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+<span class="w">                </span><span class="kc">true</span>
+<span class="w">            </span><span class="p">}</span>
 
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">binding</span><span class="p">.</span><span class="na">root</span>
+<span class="w">            </span><span class="k">else</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>Próbáljuk ki az alkalmazást! Most már teljes a funkciónalitás, lehet elemeket felvenni, megvásároltnak jelölni és megnézni a statisztikákat.</p>
@@ -2285,8 +2350,8 @@ A kiolvasás után a törlés is fontos, mert ha az érték benn marad a <em>sav
           </path>
         </svg>
       </span>
-      <span title="2024. május 3. 00:58:10">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2024. május 3. 00:58:10"><span class="timeago" datetime="2024-05-03T00:58:10+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2024. május 3. 00:58:10">2024-05-03</span>
+      <span title="2025. május 8. 23:34:25">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. május 8. 23:34:25"><span class="timeago" datetime="2025-05-08T23:34:25+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. május 8. 23:34:25">2025-05-08</span>
       </span>
     </span>
 
