@@ -94,22 +94,31 @@ Ezen a laboron nem új projektet fogunk létrehozni, hanem egy már létezőből
 
 	```kotlin
 	override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+    binding = ActivityMainBinding.inflate(layoutInflater)
+    setContentView(binding.root)
+    ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
+        val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+        v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+        insets
+    }
 
-        setSupportActionBar(binding.toolbar)
-    }	
+    setSupportActionBar(binding.toolbar)
+    }
 	```
 
 	Valamint le van tiltva az Actionbar az almalmazás témájában (NoActionBar öröklés):
 
 	```xml
-	<style name="Theme.ShoppingList" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Customize your theme here. -->
-		...
+    <style name="Base.Theme.ShoppingList" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 	```
+	
+	Az `onCreate`-ben figyeljük meg a `WindowInsets` beállítását is, amellyel elkerülhető, hogy a rendszer UI eltakarja a felületünket.
+
 	Az erőforrások között szerepelnek még a szükséges *string* -ek és képek valamint ikonok.
 
 	```xml
@@ -140,7 +149,7 @@ Ezen a laboron nem új projektet fogunk létrehozni, hanem egy már létezőből
 
 	Be van kapcsolva a *ViewBinding* :
 
-	```groovy
+	```kotlin
 	...
 	android {
 		...
@@ -154,78 +163,144 @@ Ezen a laboron nem új projektet fogunk létrehozni, hanem egy már létezőből
 
 	A PieChart kirajzolásához az [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart) library-t fogjuk használni.
 
-	settings.gradle:
-	```groovy
+	`settings.gradle.kts`:
+	
+	```kotlin
 	dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        ...
-        maven(url = "https://jitpack.io")
-   		}
+	    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+	    repositories {
+	        google()
+	        mavenCentral()
+	        maven(url = "https://jitpack.io")
+	    }
 	}
 	```
 	
-	App szintű build.gradle:
-	```groovy
+	`libs.versions.toml`:
+	
+	```toml
+	[versions]
+	...
+	mpandroidchart = "v3.1.0"
+	
+	[libraries]
+	...
+	mpandroidchart = { module = "com.github.PhilJay:MPAndroidChart", version.ref = "mpandroidchart" }
+	```
+	
+	Modul szintű build.gradle.kts:
+	```kotlin
 	dependencies {
 	    ...
-	    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
+	    //MPAndroidCharts
+	    implementation (libs.mpandroidchart)
 	}
 	```
 
-	
 	A [`Navigation Component`](https://developer.android.com/guide/navigation/navigation-getting-started) függőségei:
 
-	Elsőre nézzük a **project** szintű *Gradle* fájlt:
-	A *Jetpack Navigation* könyvtár használata miatt föl van véve a többi plugin mellé a `androidx.navigation.safeargs`:
+	`libs.versions.toml`:
 	
-	```groovy
+	```toml
+	[versions]
+	...
+	navigation = "2.9.0"
+	
+	[libraries]
+	...
+	androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation" }
+	androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation" }
+
+	[plugins]
+	...
+	androidx-navigation-safe-args = { id = "androidx.navigation.safeargs", version.ref = "navigation" }
+	```
+	
+	Ez után nézzük a **project** szintű *Gradle* fájlt:
+	A *Jetpack Navigation* könyvtár használata miatt föl van véve a többi plugin mellé a `libs.plugins.androidx.navigation.safe.args`:
+	
+	```kotlin
 	plugins {
 		...
-    	id("androidx.navigation.safeargs") version "2.7.7" apply false
+	    //Jetpack Navigation with Safe Arguments
+	    alias(libs.plugins.androidx.navigation.safe.args) apply false
 	}
 	```
 
-	A pluginok közé a modul szintű `build.gragle`-be még fel van véve a `androidx.navigation.safeargs.kotlin:
+	A modul szintű `build.gradle.kts`-be fel van véve a `libs.plugins.androidx.navigation.safe.args, valamint a függőségek is itt szerepelnek:
 	
-	```groovy
+	```kotlin
 	plugins {
 	    ...
-    	id("androidx.navigation.safeargs.kotlin")
+	    //Jetpack Navigation with Safe Arguments
+	    alias(libs.plugins.androidx.navigation.safe.args)
 	}
 	
 	android { ... }
 	
 	dependencies {
 		...
-		val nav_version = "2.7.7"
-    	implementation ("androidx.navigation:navigation-fragment-ktx:$nav_version")
-    	implementation ("androidx.navigation:navigation-ui-ktx:$nav_version")
+	    //Jetpack Navigation
+	    implementation (libs.androidx.navigation.fragment.ktx)
+	    implementation (libs.androidx.navigation.ui.ktx)
 	}
 	```
 	
 	[`Room`](https://developer.android.com/topic/libraries/architecture/room) hozzáadása a projekthez
 	
-	Az app modulhoz tartozó build.gradle fájlban a pluginokhoz hozzáírtunk egy sort (bekapcsoljuk a `Kotlin Symbol Procesing`-et - KSP):
-	```groovy
+	`libs.versions.toml`:
+
+	```toml
+	[versions]
+	...
+	ksp = "1.9.0-1.0.13"
+	room = "2.6.1"
+	
+	[libraries]
+	...
+	androidx-room-runtime = {group = "androidx.room", name="room-runtime", version.ref= "room" }
+	androidx-room-compiler = {group = "androidx.room", name="room-compiler", version.ref= "room" }
+	androidx-room-ktx = {group = "androidx.room", name="room-ktx", version.ref= "room" }
+	
+	[plugins]
+	...
+	google-devtools-ksp = { id = "com.google.devtools.ksp", version.ref="ksp"}
+	```
+	
+	A projekthez tartozó build.gradle.kts fájlban a pluginokhoz hozzáírtunk egy sort (bekapcsoljuk a `Kotlin Symbol Procesing`-et - KSP):
+	
+	```kotlin
 	plugins {
 		//...
-    	id("com.google.devtools.ksp")
+	    //Kotlin Symbol Processing
+	    alias(libs.plugins.google.devtools.ksp) apply false
 		//...
 	}
 	
 	//...
 	```
 	
-	Ezt követően, szintén ebben a `build.gradle` fájlban a `dependencies` blokkhoz van hozzáadva `Room` library:
-	```groovy
+	Az app modulhoz tartozó build.gradle fájlban a pluginokhoz hozzáírtunk egy sort (bekapcsoljuk a `Kotlin Symbol Procesing`-et - KSP):
+	
+	```kotlin
+	plugins {
+		//...
+    	alias(libs.plugins.google.devtools.ksp)
+		//...
+	}
+	
+	//...
+	```
+	
+	Ezt követően, szintén ebben a `build.gradle.kts` fájlban a `dependencies` blokkhoz van hozzáadva `Room` library:
+	
+	```kotlin
 	dependencies {
 	    //...
-	    //Room
-	    val room_version = "2.6.1"
-	    implementation ("androidx.room:room-runtime:$room_version")
-	    implementation ("androidx.room:room-ktx:$room_version")
-	    ksp("androidx.room:room-compiler:$room_version")
+	    //Room ORM Library
+	    ksp(libs.androidx.room.compiler)
+	    implementation(libs.androidx.room.runtime)
+	    implementation(libs.androidx.room.ktx)
 	}
 	```
 
@@ -375,13 +450,13 @@ A `tools:listitem` paraméter segítségével az Android Studio layout megjelen�
         android:id="@+id/ivIcon"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         tools:src="@drawable/open_book" />
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         android:layout_weight="1"
         android:orientation="vertical">
 
@@ -609,12 +684,13 @@ Az adatok perzisztens tárolásához a [`Room`](https://developer.android.com/to
 A `hu.bme.aut.kliensalkalmazasok.shoppinglist` *package*-ben hozzunk létre egy új *package*-et `data` néven. A `data` *package*-ben hozzunk létre egy új Kotlin osztályt, aminek a neve legyen  `ShoppingItem`:
 
 ```kotlin
-package hu.bme.aut.kliensalkalmazasok.shoppinglist.data;
+package hu.bme.aut.kliensalkalmazasok.shoppinglist.data
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverter
+import kotlin.jvm.JvmStatic
 
 @Entity(tableName = "shoppingitem")
 data class ShoppingItem(
@@ -755,6 +831,7 @@ class ShoppingAdapter(private val listener: ShoppingItemClickListener) :
     RecyclerView.Adapter<ShoppingAdapter.ShoppingViewHolder>() {
 
     private val items = mutableListOf<ShoppingItem>()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ShoppingViewHolder(
         ItemShoppingListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     )
@@ -1187,42 +1264,40 @@ Ebben vegyük fel a két opciónkat, amik közül az egyik a vegvett, a másik a
 
 A két *item* ebben az esetben csoportba van foglalva, és természetesen közülük egyszerre csak az egyik lehet kiválasztva.
 
-Ahhoz, hogy ez a menü felkerüljön a felületre, a `ChartFragment`-ben kell felülírnunk az `onCreateOptionsMenu` függvényt:
+Ahhoz, hogy ez a menü felkerüljön a felületre, a `ChartFragment`-ben létre kell hoznunk egy `MenuProvider`-t, majd azt beállítani az `onViewCreated` függvényben:
 
 ```kotlin
-override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-    super.onCreateOptionsMenu(menu, inflater)
-    inflater.inflate(R.menu.menu_chart, menu)
+override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+
+    (activity as MenuHost).addMenuProvider(
+        myMenuProvider,
+        viewLifecycleOwner,
+        Lifecycle.State.RESUMED
+    )
 }
-```
 
-A választás kezeléséhez pedig az `onOptionsItemSelected` függvény felülírására van szükségünk:
+private val myMenuProvider = object : MenuProvider {
 
-```kotlin
-override fun onOptionsItemSelected(item: MenuItem): Boolean {
-    when (item.itemId) {
-        R.id.boughtButton -> loadChart(true)
-        R.id.notBoughtButton -> loadChart(false)
+    override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+        menuInflater.inflate(R.menu.menu_chart, menu)
     }
-    return super.onOptionsItemSelected(item)
-}
-```
 
-Még egyetlen egy dolgunk van. A menüt általában az Activity kezeli, így a Fragmentből nem lehet elérni, sőt a függvények felüldefiniálása sem hatásos, mivel nem hívódnak meg. Ha mégis szeretnénk egy Fragmentből kezelni a a menüt, akkor ezt jeleznünk kell a `setHasOptionsMenu` beállításával:
+    override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+        return when (menuItem.itemId) {
+            R.id.boughtButton -> {
+                loadChart(true)
+                true
+            }
 
-```kotlin
-override fun onCreateView(
-    inflater: LayoutInflater,
-    container: ViewGroup?,
-    savedInstanceState: Bundle?
-): View? {
-    _binding = FragmentChartBinding.inflate(inflater, container, false)
+            R.id.notBoughtButton -> {
+                loadChart(false)
+                true
+            }
 
-    setHasOptionsMenu(true)
-
-    loadChart(true)
-
-    return binding.root
+            else -> false
+        }
+    }
 }
 ```
 
