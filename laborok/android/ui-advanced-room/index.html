@@ -1201,6 +1201,7 @@
 <li><a href="https://developer.android.com/topic/libraries/architecture/room"><code>Room</code></a></li>
 <li><a href="https://developer.android.com/guide/navigation/navigation-getting-started"><code>Navigation Component</code></a></li>
 <li><a href="https://github.com/PhilJay/MPAndroidChart"><code>MPAndroidChart</code></a></li>
+<li><a href="https://developer.android.com/develop/ui/views/components/menus"><code>Menu</code></a></li>
 </ul>
 <h2 id="az-alkalmazas-specifikacioja">Az alkalmazás specifikációja<a class="headerlink" href="#az-alkalmazas-specifikacioja" title="Permanent link">&para;</a></h2>
 <p>Az alkalmazás három felületből áll: egy a bevásárlólista elemeit jelenít meg. Új elemet a jobb alsó sarokban található <code>FloatingActionButton</code> segítségével vehetünk fel. Erre kattintva egy  új felület jelenik meg, amin megadhatjuk a vásárolni kívánt áru nevét, leírását, kategóriáját és becsült árát.
@@ -1992,8 +1993,6 @@ Látható, hogy a felületet a <em>holder</em> nevű <em>ViewHolder</em> objektu
 <span class="p">):</span><span class="w"> </span><span class="n">View? </span><span class="p">{</span>
 <span class="w">    </span><span class="n">_binding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FragmentShoppingListBinding</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">inflater</span><span class="p">,</span><span class="w"> </span><span class="n">container</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span>
 
-<span class="w">    </span><span class="n">setHasOptionsMenu</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
-
 <span class="w">    </span><span class="n">database</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ShoppingListDatabase</span><span class="p">.</span><span class="na">getDatabase</span><span class="p">(</span><span class="n">requireContext</span><span class="p">())</span>
 
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">binding</span><span class="p">.</span><span class="na">root</span>
@@ -2067,7 +2066,8 @@ Egy jobb megoldást biztosít a <a href="https://kotlinlang.org/docs/coroutines-
 
 <span class="kd">class</span><span class="w"> </span><span class="nc">CreateNewShoppingItemFragment</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Fragment</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">lateinit</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">binding</span><span class="p">:</span><span class="w"> </span><span class="n">FragmentCreateNewShoppingItemBinding</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">_binding</span><span class="p">:</span><span class="w"> </span><span class="n">FragmentCreateNewShoppingItemBinding? </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">binding</span><span class="w"> </span><span class="k">get</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_binding</span><span class="o">!!</span>
 
 <span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreateView</span><span class="p">(</span>
 <span class="w">        </span><span class="n">inflater</span><span class="p">:</span><span class="w"> </span><span class="n">LayoutInflater</span><span class="p">,</span>
@@ -2075,7 +2075,8 @@ Egy jobb megoldást biztosít a <a href="https://kotlinlang.org/docs/coroutines-
 <span class="w">        </span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?</span>
 <span class="w">    </span><span class="p">):</span><span class="w"> </span><span class="n">View? </span><span class="p">{</span>
 
-<span class="w">        </span><span class="n">binding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FragmentCreateNewShoppingItemBinding</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">LayoutInflater</span><span class="p">.</span><span class="na">from</span><span class="p">(</span><span class="n">context</span><span class="p">))</span>
+<span class="w">        </span><span class="n">_binding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FragmentCreateNewShoppingItemBinding</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">LayoutInflater</span><span class="p">.</span><span class="na">from</span><span class="p">(</span><span class="n">context</span><span class="p">))</span>
+
 <span class="w">        </span><span class="n">binding</span><span class="p">.</span><span class="na">spCategory</span><span class="p">.</span><span class="na">adapter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ArrayAdapter</span><span class="p">(</span>
 <span class="w">            </span><span class="n">requireContext</span><span class="p">(),</span>
 <span class="w">            </span><span class="n">android</span><span class="p">.</span><span class="na">R</span><span class="p">.</span><span class="na">layout</span><span class="p">.</span><span class="na">simple_spinner_dropdown_item</span><span class="p">,</span>
@@ -2086,6 +2087,11 @@ Egy jobb megoldást biztosít a <a href="https://kotlinlang.org/docs/coroutines-
 <span class="w">            </span><span class="c1">///TODO: create new item</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">binding</span><span class="p">.</span><span class="na">root</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onDestroyView</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">_binding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">        </span><span class="k">super</span><span class="p">.</span><span class="na">onDestroyView</span><span class="p">()</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -2350,8 +2356,8 @@ A kiolvasás után a törlés is fontos, mert ha az érték benn marad a <em>sav
           </path>
         </svg>
       </span>
-      <span title="2025. május 8. 23:34:25">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. május 8. 23:34:25"><span class="timeago" datetime="2025-05-08T23:34:25+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. május 8. 23:34:25">2025-05-08</span>
+      <span title="2025. május 9. 16:25:18">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. május 9. 16:25:18"><span class="timeago" datetime="2025-05-09T16:25:18+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. május 9. 16:25:18">2025-05-09</span>
       </span>
     </span>
 
