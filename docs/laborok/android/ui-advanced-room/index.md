@@ -19,6 +19,7 @@ Az alkalmazás a termékek listáját [`RecyclerView`](https://developer.android
 - [`Room`](https://developer.android.com/topic/libraries/architecture/room)
 - [`Navigation Component`](https://developer.android.com/guide/navigation/navigation-getting-started)
 - [`MPAndroidChart`](https://github.com/PhilJay/MPAndroidChart)
+- [`Menu`](https://developer.android.com/develop/ui/views/components/menus)
 
 ## Az alkalmazás specifikációja
 
@@ -922,8 +923,6 @@ override fun onCreateView(
 ): View? {
     _binding = FragmentShoppingListBinding.inflate(inflater, container, false)
 
-    setHasOptionsMenu(true)
-
     database = ShoppingListDatabase.getDatabase(requireContext())
 
     return binding.root
@@ -1013,7 +1012,8 @@ import hu.bme.aut.kliensalkalmazasok.shoppinglist.databinding.FragmentCreateNewS
 
 class CreateNewShoppingItemFragment : Fragment() {
 
-    private lateinit var binding: FragmentCreateNewShoppingItemBinding
+    private var _binding: FragmentCreateNewShoppingItemBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -1021,7 +1021,8 @@ class CreateNewShoppingItemFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = FragmentCreateNewShoppingItemBinding.inflate(LayoutInflater.from(context))
+        _binding = FragmentCreateNewShoppingItemBinding.inflate(LayoutInflater.from(context))
+
         binding.spCategory.adapter = ArrayAdapter(
             requireContext(),
             android.R.layout.simple_spinner_dropdown_item,
@@ -1032,6 +1033,11 @@ class CreateNewShoppingItemFragment : Fragment() {
             ///TODO: create new item
         }
         return binding.root
+    }
+
+	override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
     }
 }
 ```
