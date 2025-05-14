@@ -1064,7 +1064,7 @@
 </details>
 <h3 id="elemi-ui-epitoelemek-elkeszitese">Elemi UI építőelemek elkészítése<a class="headerlink" href="#elemi-ui-epitoelemek-elkeszitese" title="Permanent link">&para;</a></h3>
 <p>A fenti képeken látható, hogy a bejelentkeztetési és a regisztrációs formok egyedi kinézetű szövegmezőkből és címkékből épülnek fel. A <em>Compose</em> alapelve - ahogyan a neve is tükrözi, - hogy a felhasználói felületünket hierarchikusan építhetjük fel, és a kisebb építőelemekből összetettebbeket állíthatunk össze. Ez egyrészt segíti a fejlesztői gondolkodást, hiszen könnyen tudunk a felhasználói felület adott részére koncentrálni, ezeket függetlenül elkészíteni, és így idővel a részekből már könnyen összerakható lesz a teljes kívánt UI is. Másrészt, ez a megközelítés segíti az újrafelhasználást, hiszen a kisebb felületi elemek könnyen újrafelhasználhatók az alkalmazás különböző részeiben is.</p>
-<p>Először hozzunk létre egy <code>hu.bme.aut.kliensalkalmazasok.workplaceapp.ui.common</code> package-et. Ebbe fognak kerülni az alapvető fontosságú UI építőelemeink.</p>
+<p>Először hozzunk létre egy <code>hu.bme.aut.kliensalkalmazasok.workplaceapp.presentation.common</code> package-et. Ebbe fognak kerülni az alapvető fontosságú UI építőelemeink.</p>
 <p>Ezen belül készítsünk egy <code>ImageButton</code> nevű <em>composable</em> függvényt a következő tartalommal:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
 <span class="kd">fun</span><span class="w"> </span><span class="nf">ImageButton</span><span class="p">(</span>
@@ -1204,7 +1204,7 @@ paraméterezések esetén. Vizsgáljuk meg a hibajelzéssel ellátott megjelené
 <li><strong>imeAction</strong>: Az az akció, amit a mezőben az enter lenyomására le szeretnénk játszani.</li>
 <li>A <code>modifier</code> értékeként a komponens felhasználásakor nagyon sok paraméter megadható. Erre számos példát láthatunk az Android hivatalos dokumentációjában: <a href="https://developer.android.com/jetpack/compose/modifiers"></a></li>
 </ul>
-<p>A fentihez hasonlóan a <code>ui.common</code> package-be készítsünk egy újabb komponenst <code>PasswordTextField</code> néven az alábbi tartalommal:</p>
+<p>A fentihez hasonlóan a <code>presentation.common</code> package-be készítsünk egy újabb komponenst <code>PasswordTextField</code> néven az alábbi tartalommal:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@ExperimentalMaterial3Api</span>
 <span class="nd">@Composable</span>
 <span class="kd">fun</span><span class="w"> </span><span class="nf">PasswordTextField</span><span class="p">(</span>
@@ -1285,7 +1285,7 @@ paraméterezések esetén. Vizsgáljuk meg a hibajelzéssel ellátott megjelené
 <h3 id="az-alkalmazas-kepernyoinek-elkeszitese">Az alkalmazás képernyőinek elkészítése<a class="headerlink" href="#az-alkalmazas-kepernyoinek-elkeszitese" title="Permanent link">&para;</a></h3>
 <h4 id="a-login-kepernyo-elkeszitese">A Login képernyő elkészítése<a class="headerlink" href="#a-login-kepernyo-elkeszitese" title="Permanent link">&para;</a></h4>
 <p>Most, hogy a képernyők minden fontos alkotórésze a rendelkezésünkre áll, elkezdhetjük maguknak a képernyőknek az elkészítését. Kezdjük sorban a bejelentkező képernyővel!</p>
-<p>A képernyőknek és a hozzájuk kapcsolódó kódoknak hozzunk létre egy közös <code>hu.bme.aut.kliensalkalmazasok.workplaceapp.feature</code> package-et, majd ezen belül a bejelentkező képernyő a <code>login</code> package-be kerüljön! Készítsük el a képernyő kódját <code>LoginScreen</code> néven, majd adjuk meg a következő kódot:</p>
+<p>A képernyőknek és a hozzájuk kapcsolódó kódoknak hozzunk létre egy közös <code>hu.bme.aut.kliensalkalmazasok.workplaceapp.presentation.screen</code> package-et, majd ezen belül a bejelentkező képernyő a <code>login</code> package-be kerüljön! Készítsük el a képernyő kódját <code>LoginScreen</code> néven, majd adjuk meg a következő kódot:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@ExperimentalMaterial3Api</span>
 <span class="nd">@Composable</span>
 <span class="kd">fun</span><span class="w"> </span><span class="nf">LoginScreen</span><span class="p">(</span>
@@ -1394,7 +1394,7 @@ paraméterezések esetén. Vizsgáljuk meg a hibajelzéssel ellátott megjelené
 <span class="p">}</span>
 </code></pre></div>
 <h4 id="a-menu-kepernyo-elkeszitese">A menü képernyő elkészítése<a class="headerlink" href="#a-menu-kepernyo-elkeszitese" title="Permanent link">&para;</a></h4>
-<p>A második képernyő, amit el tudunk készíteni az alap építőelemeinkből, az a menü képernyő. Ezen négy gomb lesz a négy különböző funkcióhoz, azonban jelenleg csak egyet valósítunk meg. Helyezzünk el négy <em>ImageButton</em>-t a képernyő közepére 2x2-es elrendezésben. A képernyőt a <code>hu.bme.aut.kliensalkalmazasok.workplaceapp.feature.menu</code> package-be készísük el:</p>
+<p>A második képernyő, amit el tudunk készíteni az alap építőelemeinkből, az a menü képernyő. Ezen négy gomb lesz a négy különböző funkcióhoz, azonban jelenleg csak egyet valósítunk meg. Helyezzünk el négy <em>ImageButton</em>-t a képernyő közepére 2x2-es elrendezésben. A képernyőt a <code>hu.bme.aut.kliensalkalmazasok.workplaceapp.presentation.screen.menu</code> package-be készísük el:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@ExperimentalMaterial3Api</span>
 <span class="nd">@Composable</span>
 <span class="kd">fun</span><span class="w"> </span><span class="nf">MenuScreen</span><span class="p">(</span>
@@ -1509,8 +1509,8 @@ paraméterezések esetén. Vizsgáljuk meg a hibajelzéssel ellátott megjelené
 <span class="nd">@ExperimentalMaterial3Api</span>
 <span class="nd">@Composable</span>
 <span class="kd">fun</span><span class="w"> </span><span class="nf">NavGraph</span><span class="p">(</span>
-<span class="w">    </span><span class="n">navController</span><span class="p">:</span><span class="w"> </span><span class="n">NavHostController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rememberNavController</span><span class="p">(),</span>
-<span class="w">    </span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<span class="w">    </span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">,</span>
+<span class="w">    </span><span class="n">navController</span><span class="p">:</span><span class="w"> </span><span class="n">NavHostController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rememberNavController</span><span class="p">()</span>
 <span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">NavHost</span><span class="p">(</span>
 <span class="w">        </span><span class="n">navController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">navController</span><span class="p">,</span>
@@ -1556,7 +1556,7 @@ paraméterezések esetén. Vizsgáljuk meg a hibajelzéssel ellátott megjelené
 </code></pre></div>
 <p>Próbáljuk ki az alkalmazást! A bejelentkező képernyőről a megfelelő adatok megadása után át tudunk navigálni a menü képernyőre, és még a felhasználónév is átmegy.</p>
 <h3 id="a-profil-kepernyo-elkeszitese">A profil képernyő elkészítése<a class="headerlink" href="#a-profil-kepernyo-elkeszitese" title="Permanent link">&para;</a></h3>
-<p>A profil képernyőn szeretnénk megjeleníteni a főbb és a részletesebb adatokat külön-külön. Ehhez ezt a két felületet egy <em>HorizontalPager</em>-be fogjuk ágyazni, amiben kényelmesen lapozhatóak lesznek. Készítsük el előbb a két felületet a <code>hu.bme.aut.kliensalkalmazasok.workplaceapp.feature.profile</code> package-be:</p>
+<p>A profil képernyőn szeretnénk megjeleníteni a főbb és a részletesebb adatokat külön-külön. Ehhez ezt a két felületet egy <em>HorizontalPager</em>-be fogjuk ágyazni, amiben kényelmesen lapozhatóak lesznek. Készítsük el előbb a két felületet a <code>hu.bme.aut.kliensalkalmazasok.workplaceapp.presentation.screen.profile.page</code> package-be:</p>
 <p>MainProfilePage:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@ExperimentalMaterial3Api</span>
 <span class="nd">@Composable</span>
@@ -1659,7 +1659,7 @@ paraméterezések esetén. Vizsgáljuk meg a hibajelzéssel ellátott megjelené
 <span class="p">}</span>
 </code></pre></div>
 <p>Látható, hogy az adatokat a felületünk a <em>ViewModel</em>-től kapja. Komolyabb projektben ezek az adatok a <em>ViewModel</em> állapotához vannak kötve, így minden változás azonnal megjelenik a felületen. Itt most idő hiányában erre a megoldásra nem térünk ki, csak érzékeltetjük, hogy az architektúrában szerepel a <em>ViewModel</em> és a <em>Repository</em> is.</p>
-<p>Készítsük el a <code>ProfileViewModel</code>-t is ugyanebbe a package-be:</p>
+<p>Készítsük el a <code>ProfileViewModel</code>-t is a <code>hu.bme.aut.kliensalkalmazasok.workplaceapp.presentation.screen.profile</code> <em>package</em>-be:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">ProfileViewModel</span><span class="p">(</span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">repository</span><span class="p">:</span><span class="w"> </span><span class="n">PersonRepository</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
 <span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getPersonData</span><span class="p">()</span><span class="w"> </span><span class="o">=</span>
@@ -1667,31 +1667,27 @@ paraméterezések esetén. Vizsgáljuk meg a hibajelzéssel ellátott megjelené
 
 <span class="p">}</span>
 </code></pre></div>
-<p>Miután megvan a két oldalunk, ami az adatokat fogja megjeleníteni, ideje feltenni őket a felületre egy <em>HorizontalPager</em> segítségével. Ezeknek az összefogása hasonló módon fog működni, mint a <em>Screen</em>-eké, tehát készítsünk egy <em>sealed class</em>-t a tárolásukra:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">sealed</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">ProfilePage</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">object</span><span class="w"> </span><span class="nc">Main</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ProfilePage</span><span class="p">()</span>
-<span class="w">    </span><span class="kd">object</span><span class="w"> </span><span class="nc">Details</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ProfilePage</span><span class="p">()</span>
+<p>Miután megvan a két oldalunk, ami az adatokat fogja megjeleníteni, ideje feltenni őket a felületre egy <em>HorizontalPager</em> segítségével. A lehetőségek összefogására ezúttal egy <em>enum class</em>-szal fog történni, mivel itt nincsnek paraméterek.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">enum</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">ProfilePage</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Main</span><span class="p">,</span>
+<span class="w">    </span><span class="n">Details</span>
 <span class="p">}</span>
-
-<span class="kd">val</span><span class="w"> </span><span class="nv">pages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listOf</span><span class="p">(</span>
-<span class="w">    </span><span class="n">ProfilePage</span><span class="p">.</span><span class="na">Main</span><span class="p">,</span><span class="w"> </span><span class="n">ProfilePage</span><span class="p">.</span><span class="na">Details</span>
-<span class="p">)</span>
 </code></pre></div>
-<p>Ezek után már elkészíthetjük  a <code>ProfileScreen</code>-t:</p>
+<p>Ezek után már elkészíthetjük  a <code>ProfileScreen</code>-t, ahol sorszám alapján jelenítjük meg a <em>Profil</em> oldalakat:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@ExperimentalMaterial3Api</span>
 <span class="nd">@ExperimentalFoundationApi</span>
 <span class="nd">@Composable</span>
 <span class="kd">fun</span><span class="w"> </span><span class="nf">ProfileScreen</span><span class="p">(</span>
 <span class="w">    </span><span class="n">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">ProfileViewModel</span>
 <span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">pagerState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rememberPagerState</span><span class="p">(</span><span class="n">pageCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">pages</span><span class="p">.</span><span class="na">size</span><span class="w"> </span><span class="p">})</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">pagerState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rememberPagerState</span><span class="p">(</span><span class="n">pageCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">ProfilePage</span><span class="p">.</span><span class="na">entries</span><span class="p">.</span><span class="na">size</span><span class="w"> </span><span class="p">})</span>
 <span class="w">    </span><span class="n">HorizontalPager</span><span class="p">(</span>
 <span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
 <span class="w">            </span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">(),</span>
 <span class="w">        </span><span class="n">contentPadding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PaddingValues</span><span class="p">(</span><span class="n">horizontal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">32.</span><span class="n">dp</span><span class="p">),</span>
 <span class="w">        </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pagerState</span>
 <span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">pageIndex</span><span class="w"> </span><span class="o">-&gt;</span>
-<span class="w">        </span><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="n">pages</span><span class="o">[</span><span class="n">pageIndex</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="n">ProfilePage</span><span class="p">.</span><span class="na">entries</span><span class="o">[</span><span class="n">pageIndex</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">ProfilePage</span><span class="p">.</span><span class="na">Main</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">MainProfilePage</span><span class="p">(</span><span class="n">viewModel</span><span class="p">)</span>
 <span class="w">            </span><span class="n">ProfilePage</span><span class="p">.</span><span class="na">Details</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">DetailsProfilePage</span><span class="p">(</span><span class="n">viewModel</span><span class="p">)</span>
 <span class="w">        </span><span class="p">}</span>
@@ -1785,8 +1781,8 @@ paraméterezések esetén. Vizsgáljuk meg a hibajelzéssel ellátott megjelené
           </path>
         </svg>
       </span>
-      <span title="2024. május 10. 14:23:01">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2024. május 10. 14:23:01"><span class="timeago" datetime="2024-05-10T14:23:01+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2024. május 10. 14:23:01">2024-05-10</span>
+      <span title="2025. május 14. 13:37:40">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. május 14. 13:37:40"><span class="timeago" datetime="2025-05-14T13:37:40+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. május 14. 13:37:40">2025-05-14</span>
       </span>
     </span>
 
