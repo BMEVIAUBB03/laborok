@@ -47,7 +47,7 @@ Ezen a laboron nem új projektet fogunk létrehozni, hanem egy már létezőből
 
 A fenti képeken látható, hogy a bejelentkeztetési és a regisztrációs formok egyedi kinézetű szövegmezőkből és címkékből épülnek fel. A *Compose* alapelve - ahogyan a neve is tükrözi, - hogy a felhasználói felületünket hierarchikusan építhetjük fel, és a kisebb építőelemekből összetettebbeket állíthatunk össze. Ez egyrészt segíti a fejlesztői gondolkodást, hiszen könnyen tudunk a felhasználói felület adott részére koncentrálni, ezeket függetlenül elkészíteni, és így idővel a részekből már könnyen összerakható lesz a teljes kívánt UI is. Másrészt, ez a megközelítés segíti az újrafelhasználást, hiszen a kisebb felületi elemek könnyen újrafelhasználhatók az alkalmazás különböző részeiben is.
 
-Először hozzunk létre egy `hu.bme.aut.kliensalkalmazasok.workplaceapp.ui.common` package-et. Ebbe fognak kerülni az alapvető fontosságú UI építőelemeink.
+Először hozzunk létre egy `hu.bme.aut.kliensalkalmazasok.workplaceapp.presentation.common` package-et. Ebbe fognak kerülni az alapvető fontosságú UI építőelemeink.
 
 Ezen belül készítsünk egy `ImageButton` nevű *composable* függvényt a következő tartalommal:
 
@@ -202,7 +202,7 @@ Tekintsük át a fenti kódot! A komponens a konstruktoron keresztül számos pa
 - 
 A `modifier` értékeként a komponens felhasználásakor nagyon sok paraméter megadható. Erre számos példát láthatunk az Android hivatalos dokumentációjában: [](https://developer.android.com/jetpack/compose/modifiers)
 
-A fentihez hasonlóan a `ui.common` package-be készítsünk egy újabb komponenst `PasswordTextField` néven az alábbi tartalommal:
+A fentihez hasonlóan a `presentation.common` package-be készítsünk egy újabb komponenst `PasswordTextField` néven az alábbi tartalommal:
 
 ```kotlin
 @ExperimentalMaterial3Api
@@ -286,7 +286,7 @@ Ez a komponens csak két apró dologban tér el az előzőtől:
 
 Most, hogy a képernyők minden fontos alkotórésze a rendelkezésünkre áll, elkezdhetjük maguknak a képernyőknek az elkészítését. Kezdjük sorban a bejelentkező képernyővel!
 
-A képernyőknek és a hozzájuk kapcsolódó kódoknak hozzunk létre egy közös `hu.bme.aut.kliensalkalmazasok.workplaceapp.feature` package-et, majd ezen belül a bejelentkező képernyő a `login` package-be kerüljön! Készítsük el a képernyő kódját `LoginScreen` néven, majd adjuk meg a következő kódot:
+A képernyőknek és a hozzájuk kapcsolódó kódoknak hozzunk létre egy közös `hu.bme.aut.kliensalkalmazasok.workplaceapp.presentation.screen` package-et, majd ezen belül a bejelentkező képernyő a `login` package-be kerüljön! Készítsük el a képernyő kódját `LoginScreen` néven, majd adjuk meg a következő kódot:
 
 ```kotlin
 @ExperimentalMaterial3Api
@@ -405,7 +405,7 @@ fun LoginScreenPreview() {
 
 #### A menü képernyő elkészítése
 
-A második képernyő, amit el tudunk készíteni az alap építőelemeinkből, az a menü képernyő. Ezen négy gomb lesz a négy különböző funkcióhoz, azonban jelenleg csak egyet valósítunk meg. Helyezzünk el négy *ImageButton*-t a képernyő közepére 2x2-es elrendezésben. A képernyőt a `hu.bme.aut.kliensalkalmazasok.workplaceapp.feature.menu` package-be készísük el:
+A második képernyő, amit el tudunk készíteni az alap építőelemeinkből, az a menü képernyő. Ezen négy gomb lesz a négy különböző funkcióhoz, azonban jelenleg csak egyet valósítunk meg. Helyezzünk el négy *ImageButton*-t a képernyő közepére 2x2-es elrendezésben. A képernyőt a `hu.bme.aut.kliensalkalmazasok.workplaceapp.presentation.screen.menu` package-be készísük el:
 
 ```kotlin
 @ExperimentalMaterial3Api
@@ -531,8 +531,8 @@ Ezek után a navigációs gráf a következőként alakul (szintén a *navigatio
 @ExperimentalMaterial3Api
 @Composable
 fun NavGraph(
-    navController: NavHostController = rememberNavController(),
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navController: NavHostController = rememberNavController()
 ) {
     NavHost(
         navController = navController,
@@ -584,7 +584,7 @@ Próbáljuk ki az alkalmazást! A bejelentkező képernyőről a megfelelő adat
 
 ### A profil képernyő elkészítése
 
-A profil képernyőn szeretnénk megjeleníteni a főbb és a részletesebb adatokat külön-külön. Ehhez ezt a két felületet egy *HorizontalPager*-be fogjuk ágyazni, amiben kényelmesen lapozhatóak lesznek. Készítsük el előbb a két felületet a `hu.bme.aut.kliensalkalmazasok.workplaceapp.feature.profile` package-be:
+A profil képernyőn szeretnénk megjeleníteni a főbb és a részletesebb adatokat külön-külön. Ehhez ezt a két felületet egy *HorizontalPager*-be fogjuk ágyazni, amiben kényelmesen lapozhatóak lesznek. Készítsük el előbb a két felületet a `hu.bme.aut.kliensalkalmazasok.workplaceapp.presentation.screen.profile.page` package-be:
 
 MainProfilePage:
 
@@ -695,7 +695,7 @@ fun DetailsProfilePage(
 
 Látható, hogy az adatokat a felületünk a *ViewModel*-től kapja. Komolyabb projektben ezek az adatok a *ViewModel* állapotához vannak kötve, így minden változás azonnal megjelenik a felületen. Itt most idő hiányában erre a megoldásra nem térünk ki, csak érzékeltetjük, hogy az architektúrában szerepel a *ViewModel* és a *Repository* is.
 
-Készítsük el a `ProfileViewModel`-t is ugyanebbe a package-be:
+Készítsük el a `ProfileViewModel`-t is a `hu.bme.aut.kliensalkalmazasok.workplaceapp.presentation.screen.profile` *package*-be:
 
 ```kotlin
 class ProfileViewModel(private val repository: PersonRepository) {
@@ -706,21 +706,16 @@ class ProfileViewModel(private val repository: PersonRepository) {
 }
 ```
 
-Miután megvan a két oldalunk, ami az adatokat fogja megjeleníteni, ideje feltenni őket a felületre egy *HorizontalPager* segítségével. Ezeknek az összefogása hasonló módon fog működni, mint a *Screen*-eké, tehát készítsünk egy *sealed class*-t a tárolásukra:
+Miután megvan a két oldalunk, ami az adatokat fogja megjeleníteni, ideje feltenni őket a felületre egy *HorizontalPager* segítségével. A lehetőségek összefogására ezúttal egy *enum class*-szal fog történni, mivel itt nincsnek paraméterek.
 
 ```kotlin
-sealed class ProfilePage {
-    object Main : ProfilePage()
-    object Details : ProfilePage()
+enum class ProfilePage {
+    Main,
+    Details
 }
-
-val pages = listOf(
-    ProfilePage.Main, ProfilePage.Details
-)
-
 ```
 
-Ezek után már elkészíthetjük  a `ProfileScreen`-t:
+Ezek után már elkészíthetjük  a `ProfileScreen`-t, ahol sorszám alapján jelenítjük meg a *Profil* oldalakat:
 
 ```kotlin
 @ExperimentalMaterial3Api
@@ -729,14 +724,14 @@ Ezek után már elkészíthetjük  a `ProfileScreen`-t:
 fun ProfileScreen(
     viewModel: ProfileViewModel
 ) {
-    val pagerState = rememberPagerState(pageCount = { pages.size })
+    val pagerState = rememberPagerState(pageCount = { ProfilePage.entries.size })
     HorizontalPager(
         modifier = Modifier
             .fillMaxSize(),
         contentPadding = PaddingValues(horizontal = 32.dp),
         state = pagerState
     ) { pageIndex ->
-        when (pages[pageIndex]) {
+        when (ProfilePage.entries[pageIndex]) {
             ProfilePage.Main -> MainProfilePage(viewModel)
             ProfilePage.Details -> DetailsProfilePage(viewModel)
         }
