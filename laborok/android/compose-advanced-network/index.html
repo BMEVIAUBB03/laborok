@@ -1209,46 +1209,15 @@ Majd ennek egy konkrét implementációját is:</p>
 <span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">()</span>
 <span class="w">        </span><span class="n">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Room</span><span class="p">.</span><span class="na">databaseBuilder</span><span class="p">(</span>
-<span class="w">            </span><span class="n">applicationContext</span><span class="p">,</span>
-<span class="w">            </span><span class="n">CityDatabase</span><span class="o">::</span><span class="n">class</span><span class="p">.</span><span class="na">java</span><span class="p">,</span>
-<span class="w">            </span><span class="s">&quot;city_database&quot;</span>
-<span class="w">        </span><span class="p">).</span><span class="na">fallbackToDestructiveMigration</span><span class="p">().</span><span class="na">build</span><span class="p">()</span>
+<span class="w">                </span><span class="n">applicationContext</span><span class="p">,</span>
+<span class="w">                </span><span class="n">CityDatabase</span><span class="o">::</span><span class="n">class</span><span class="p">.</span><span class="na">java</span><span class="p">,</span>
+<span class="w">                </span><span class="s">&quot;city_database&quot;</span>
+<span class="w">            </span><span class="p">).</span><span class="na">fallbackToDestructiveMigration</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="na">build</span><span class="p">()</span>
 
 <span class="w">        </span><span class="n">cityRepository</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CityRepositoryImpl</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="na">dao</span><span class="p">)</span>
 
 <span class="w">        </span><span class="n">weatherRepository</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WeatherRepositoryImpl</span><span class="p">()</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>Ezek után készítsük el a lokálishoz hasonló UseCase-eket, amikkel egyszerűen összefoghatjuk a funkcióinkat. Vegyük fel a <code>domain.usecases.weather</code> package-ben a követkető osztályokat:</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.domain.usecases.weather</span>
-
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.data.remote.repository.WeatherRepository</span>
-
-<span class="kd">class</span><span class="w"> </span><span class="nc">WeatherUseCases</span><span class="p">(</span><span class="n">repository</span><span class="p">:</span><span class="w"> </span><span class="n">WeatherRepository</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">getCityWeatherUseCase</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetCityWeatherUseCase</span><span class="p">(</span><span class="n">repository</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>és</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.domain.usecases.weather</span>
-
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.data.remote.model.WeatherData</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.data.remote.repository.WeatherRepository</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">retrofit2.Call</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">java.io.IOException</span>
-
-<span class="kd">class</span><span class="w"> </span><span class="nc">GetCityWeatherUseCase</span><span class="p">(</span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">repository</span><span class="p">:</span><span class="w"> </span><span class="n">WeatherRepository</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-
-<span class="w">    </span><span class="kd">suspend</span><span class="w"> </span><span class="kd">operator</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">invoke</span><span class="p">(</span><span class="n">city</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">):</span><span class="w"> </span><span class="n">Call</span><span class="o">&lt;</span><span class="n">WeatherData?&gt;</span><span class="o">?</span><span class="w"> </span><span class="p">{</span>
-
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">repository</span><span class="p">.</span><span class="na">getWeather</span><span class="p">(</span><span class="n">city</span><span class="p">)</span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="n">IOException</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">()</span>
-<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-
 <span class="p">}</span>
 </code></pre></div>
 <p>A hálózati kommunikáció beállításával elkészültünk, a megfelelő függvényhívással már megkaphatjuk a kívánt adatot. Először a Város listába helyezzük el az aktuális időjárásnak megfelelő ikont. </p>
@@ -1269,8 +1238,8 @@ Majd ennek egy konkrét implementációját is:</p>
 <p>A képernyőkép szükséges feltétele a pontszám megszerzésének.</p>
 </div>
 <h4 id="a-reszletezo-nezet-megvalositasa">A részletező nézet megvalósítása<a class="headerlink" href="#a-reszletezo-nezet-megvalositasa" title="Permanent link">&para;</a></h4>
-<p>Kezdjük a részletes nézet felületével. Ezeket a fájlokat a <code>feature.weather</code> package-be készítsük el. Az állapotokat a <code>WeatherState</code> fogja össze:</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.feature.weather</span>
+<p>Kezdjük a részletes nézet felületével. Ezeket a fájlokat a <code>screen.weather</code> package-be készítsük el. Az állapotokat a <code>WeatherState</code> fogja össze:</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.presentation.screen.weather</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.data.remote.model.WeatherData</span>
 
@@ -1282,14 +1251,14 @@ Majd ennek egy konkrét implementációját is:</p>
 <span class="p">)</span>
 </code></pre></div>
 <p>Amelyeket a <code>WeatherViewModel</code> tárol. Itt található meg a hálózati hívás is.</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.feature.weather</span>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.presentation.screen.weather</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.*</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.viewmodel.initializer</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.lifecycle.viewmodel.viewModelFactory</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.WeatherInfoApplication</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.data.remote.model.WeatherData</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.domain.usecases.weather.WeatherUseCases</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.data.remote.repository.WeatherRepository</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.CoroutineScope</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.Dispatchers</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.coroutines.flow.MutableStateFlow</span>
@@ -1302,7 +1271,7 @@ Majd ennek egy konkrét implementációját is:</p>
 
 <span class="kd">class</span><span class="w"> </span><span class="nc">WeatherViewModel</span><span class="p">(</span>
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">savedStateHandle</span><span class="p">:</span><span class="w"> </span><span class="n">SavedStateHandle</span><span class="p">,</span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">weatherOperations</span><span class="p">:</span><span class="w"> </span><span class="n">WeatherUseCases</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">weatherRepository</span><span class="p">:</span><span class="w"> </span><span class="n">WeatherRepository</span>
 <span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ViewModel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MutableStateFlow</span><span class="p">(</span><span class="n">WeatherState</span><span class="p">())</span>
@@ -1317,34 +1286,31 @@ Majd ennek egy konkrét implementációját is:</p>
 
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">loadWeatherData</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">        </span><span class="n">viewModelScope</span><span class="p">.</span><span class="na">launch</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">viewModelScope</span><span class="p">.</span><span class="na">launch</span><span class="p">(</span><span class="n">Dispatchers</span><span class="p">.</span><span class="na">IO</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="n">CoroutineScope</span><span class="p">(</span><span class="n">coroutineContext</span><span class="p">).</span><span class="na">launch</span><span class="p">(</span><span class="n">Dispatchers</span><span class="p">.</span><span class="na">IO</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="n">weatherOperations</span><span class="p">.</span><span class="na">getCityWeatherUseCase</span><span class="p">(</span><span class="n">cityName</span><span class="p">)</span>
-<span class="w">                        </span><span class="o">?.</span><span class="na">enqueue</span><span class="p">(</span><span class="k">object</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nc">Callback</span><span class="o">&lt;</span><span class="n">WeatherData?&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                            </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onResponse</span><span class="p">(</span>
-<span class="w">                                </span><span class="n">call</span><span class="p">:</span><span class="w"> </span><span class="n">Call</span><span class="o">&lt;</span><span class="n">WeatherData?&gt;</span><span class="p">,</span>
-<span class="w">                                </span><span class="n">response</span><span class="p">:</span><span class="w"> </span><span class="n">Response</span><span class="o">&lt;</span><span class="n">WeatherData?&gt;</span>
-<span class="w">                            </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">response</span><span class="o">?.</span><span class="na">isSuccessful</span><span class="o">!!</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                                    </span><span class="n">_state</span><span class="p">.</span><span class="na">update</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                                        </span><span class="nb">it</span><span class="p">.</span><span class="na">copy</span><span class="p">(</span>
-<span class="w">                                            </span><span class="n">isLoading</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">                                            </span><span class="n">currentWeather</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">response</span><span class="p">.</span><span class="na">body</span><span class="p">()</span>
-<span class="w">                                        </span><span class="p">)</span>
-<span class="w">                                    </span><span class="p">}</span>
+<span class="w">                </span><span class="n">weatherRepository</span><span class="p">.</span><span class="na">getWeather</span><span class="p">(</span><span class="n">cityName</span><span class="p">)</span>
+<span class="w">                    </span><span class="o">?.</span><span class="na">enqueue</span><span class="p">(</span><span class="k">object</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nc">Callback</span><span class="o">&lt;</span><span class="n">WeatherData?&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onResponse</span><span class="p">(</span>
+<span class="w">                            </span><span class="n">call</span><span class="p">:</span><span class="w"> </span><span class="n">Call</span><span class="o">&lt;</span><span class="n">WeatherData?&gt;</span><span class="p">,</span>
+<span class="w">                            </span><span class="n">response</span><span class="p">:</span><span class="w"> </span><span class="n">Response</span><span class="o">&lt;</span><span class="n">WeatherData?&gt;</span>
+<span class="w">                        </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="na">isSuccessful</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                                </span><span class="n">_state</span><span class="p">.</span><span class="na">update</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                                    </span><span class="nb">it</span><span class="p">.</span><span class="na">copy</span><span class="p">(</span>
+<span class="w">                                        </span><span class="n">isLoading</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">                                        </span><span class="n">currentWeather</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">response</span><span class="p">.</span><span class="na">body</span><span class="p">()</span>
+<span class="w">                                    </span><span class="p">)</span>
 <span class="w">                                </span><span class="p">}</span>
 <span class="w">                            </span><span class="p">}</span>
+<span class="w">                        </span><span class="p">}</span>
 
-<span class="w">                            </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onFailure</span><span class="p">(</span>
-<span class="w">                                </span><span class="n">call</span><span class="p">:</span><span class="w"> </span><span class="n">Call</span><span class="o">&lt;</span><span class="n">WeatherData?&gt;</span><span class="p">,</span>
-<span class="w">                                </span><span class="n">t</span><span class="p">:</span><span class="w"> </span><span class="n">Throwable</span>
-<span class="w">                            </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                                </span><span class="n">t</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">()</span>
-<span class="w">                            </span><span class="p">}</span>
-<span class="w">                        </span><span class="p">})</span>
-
-<span class="w">                </span><span class="p">}</span>
+<span class="w">                        </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onFailure</span><span class="p">(</span>
+<span class="w">                            </span><span class="n">call</span><span class="p">:</span><span class="w"> </span><span class="n">Call</span><span class="o">&lt;</span><span class="n">WeatherData?&gt;</span><span class="p">,</span>
+<span class="w">                            </span><span class="n">t</span><span class="p">:</span><span class="w"> </span><span class="n">Throwable</span>
+<span class="w">                        </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                            </span><span class="n">t</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">()</span>
+<span class="w">                        </span><span class="p">}</span>
+<span class="w">                    </span><span class="p">})</span>
 
 <span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="n">Exception</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="n">_state</span><span class="p">.</span><span class="na">update</span><span class="w"> </span><span class="p">{</span>
@@ -1362,10 +1328,9 @@ Majd ennek egy konkrét implementációját is:</p>
 <span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">Factory</span><span class="p">:</span><span class="w"> </span><span class="n">ViewModelProvider</span><span class="p">.</span><span class="na">Factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModelFactory</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">initializer</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="kd">val</span><span class="w"> </span><span class="nv">savedStateHandle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createSavedStateHandle</span><span class="p">()</span>
-<span class="w">                </span><span class="kd">val</span><span class="w"> </span><span class="nv">weatherOperations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WeatherUseCases</span><span class="p">(</span><span class="n">WeatherInfoApplication</span><span class="p">.</span><span class="na">weatherRepository</span><span class="p">)</span>
 <span class="w">                </span><span class="n">WeatherViewModel</span><span class="p">(</span>
 <span class="w">                    </span><span class="n">savedStateHandle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">savedStateHandle</span><span class="p">,</span>
-<span class="w">                    </span><span class="n">weatherOperations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weatherOperations</span>
+<span class="w">                    </span><span class="n">weatherRepository</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WeatherInfoApplication</span><span class="p">.</span><span class="na">weatherRepository</span>
 <span class="w">                </span><span class="p">)</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
@@ -1373,9 +1338,8 @@ Majd ennek egy konkrét implementációját is:</p>
 <span class="p">}</span>
 </code></pre></div>
 <p>Az eredményt pedig végül a <code>WeatherScreen</code> jeleníti meg:</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.feature.weather</span>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.presentation.screen.weather</span>
 
-<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.ExperimentalFoundationApi</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.background</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.layout.*</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material3.*</span>
@@ -1394,120 +1358,93 @@ Majd ennek egy konkrét implementációját is:</p>
 <span class="k">import</span><span class="w"> </span><span class="nn">coil.compose.AsyncImage</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">coil.request.ImageRequest</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.R</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.presentation.common.WeatherDataText</span>
 
-<span class="nd">@OptIn</span><span class="p">(</span><span class="n">ExperimentalFoundationApi</span><span class="o">::</span><span class="n">class</span><span class="p">,</span><span class="w"> </span><span class="n">ExperimentalMaterial3Api</span><span class="o">::</span><span class="n">class</span><span class="p">)</span>
 <span class="nd">@Composable</span>
 <span class="kd">fun</span><span class="w"> </span><span class="nf">WeatherScreen</span><span class="p">(</span>
 <span class="w">    </span><span class="n">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">WeatherViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">(</span><span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WeatherViewModel</span><span class="p">.</span><span class="na">Factory</span><span class="p">)</span>
 <span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">state</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">viewModel</span><span class="p">.</span><span class="na">state</span><span class="p">.</span><span class="na">collectAsStateWithLifecycle</span><span class="p">()</span>
 
-<span class="w">    </span><span class="n">Scaffold</span><span class="p">(</span>
-<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">(),</span>
-
-<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">Box</span><span class="p">(</span>
-<span class="w">            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
-<span class="w">                </span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">()</span>
-<span class="w">                </span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="nb">it</span><span class="p">)</span>
-<span class="w">                </span><span class="p">.</span><span class="na">background</span><span class="p">(</span>
-<span class="w">                    </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">state</span><span class="p">.</span><span class="na">isLoading</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">state</span><span class="p">.</span><span class="na">isError</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                        </span><span class="n">MaterialTheme</span><span class="p">.</span><span class="na">colorScheme</span><span class="p">.</span><span class="na">secondaryContainer</span>
-<span class="w">                    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                        </span><span class="n">MaterialTheme</span><span class="p">.</span><span class="na">colorScheme</span><span class="p">.</span><span class="na">background</span>
-<span class="w">                    </span><span class="p">}</span>
-<span class="w">                </span><span class="p">),</span>
-<span class="w">            </span><span class="n">contentAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">Center</span>
-<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="na">isLoading</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="n">CircularProgressIndicator</span><span class="p">(</span>
-<span class="w">                    </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MaterialTheme</span><span class="p">.</span><span class="na">colorScheme</span><span class="p">.</span><span class="na">secondaryContainer</span>
-<span class="w">                </span><span class="p">)</span>
-<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="na">isError</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="n">Text</span><span class="p">(</span>
-<span class="w">                    </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">error</span><span class="o">?.</span><span class="na">message</span>
-<span class="w">                        </span><span class="o">?:</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">some_error_message</span><span class="p">)</span>
-<span class="w">                </span><span class="p">)</span>
-<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="n">Column</span><span class="p">(</span>
-
-<span class="w">                </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="n">Text</span><span class="p">(</span>
-<span class="w">                        </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">.</span><span class="na">cityName</span><span class="p">,</span>
-<span class="w">                        </span><span class="n">fontSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">24.</span><span class="n">sp</span>
-<span class="w">                    </span><span class="p">)</span>
-<span class="w">                    </span><span class="n">Text</span><span class="p">(</span>
-<span class="w">                        </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">currentWeather</span><span class="o">?.</span><span class="na">weather</span><span class="o">?.</span><span class="na">get</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="o">?.</span><span class="na">main</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="w">                    </span><span class="p">)</span>
-
-
-<span class="w">                    </span><span class="n">Text</span><span class="p">(</span>
-<span class="w">                        </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">currentWeather</span><span class="o">?.</span><span class="na">weather</span><span class="o">?.</span><span class="na">get</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="o">?.</span><span class="na">description</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="w">                    </span><span class="p">)</span>
-<span class="w">                    </span><span class="n">AsyncImage</span><span class="p">(</span>
-<span class="w">                        </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ImageRequest</span><span class="p">.</span><span class="na">Builder</span><span class="p">(</span><span class="n">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LocalContext</span><span class="p">.</span><span class="na">current</span><span class="p">)</span>
-<span class="w">                            </span><span class="p">.</span><span class="na">data</span><span class="p">(</span><span class="s">&quot;https://openweathermap.org/img/w/</span><span class="si">${</span><span class="n">state</span><span class="p">.</span><span class="na">currentWeather</span><span class="o">?.</span><span class="na">weather</span><span class="o">?.</span><span class="na">first</span><span class="p">()</span><span class="o">?.</span><span class="na">icon</span><span class="si">}</span><span class="s">.png&quot;</span><span class="p">)</span>
-<span class="w">                            </span><span class="p">.</span><span class="na">crossfade</span><span class="p">(</span><span class="n">enable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
-<span class="w">                            </span><span class="p">.</span><span class="na">build</span><span class="p">(),</span>
-<span class="w">                        </span><span class="n">contentDescription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
-<span class="w">                        </span><span class="n">contentScale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ContentScale</span><span class="p">.</span><span class="na">Crop</span><span class="p">,</span>
-<span class="w">                        </span><span class="n">placeholder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">painterResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">placeholder</span><span class="p">),</span>
-<span class="w">                        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
-<span class="w">                            </span><span class="p">.</span><span class="na">size</span><span class="p">(</span><span class="m">320.</span><span class="n">dp</span><span class="p">)</span>
-<span class="w">                    </span><span class="p">)</span>
-
-
-
-<span class="w">                    </span><span class="n">Spacer</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">size</span><span class="p">(</span><span class="m">24.</span><span class="n">dp</span><span class="p">))</span>
-
-<span class="w">                    </span><span class="n">Row</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                        </span><span class="n">Text</span><span class="p">(</span>
-<span class="w">                            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">weight</span><span class="p">(</span><span class="m">1f</span><span class="p">),</span>
-<span class="w">                            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">label_temperature</span><span class="p">)</span>
-<span class="w">                        </span><span class="p">)</span>
-<span class="w">                        </span><span class="n">Text</span><span class="p">(</span>
-<span class="w">                            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">currentWeather</span><span class="o">?.</span><span class="na">main</span><span class="o">?.</span><span class="na">temp</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="w">                        </span><span class="p">)</span>
-<span class="w">                    </span><span class="p">}</span>
-<span class="w">                    </span><span class="n">Row</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                        </span><span class="n">Text</span><span class="p">(</span>
-<span class="w">                            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">weight</span><span class="p">(</span><span class="m">1f</span><span class="p">),</span>
-<span class="w">                            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">label_min_temperature</span><span class="p">)</span>
-<span class="w">                        </span><span class="p">)</span>
-<span class="w">                        </span><span class="n">Text</span><span class="p">(</span>
-<span class="w">                            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">currentWeather</span><span class="o">?.</span><span class="na">main</span><span class="o">?.</span><span class="na">temp_min</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="w">                        </span><span class="p">)</span>
-<span class="w">                    </span><span class="p">}</span>
-<span class="w">                    </span><span class="n">Row</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                        </span><span class="n">Text</span><span class="p">(</span>
-<span class="w">                            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">weight</span><span class="p">(</span><span class="m">1f</span><span class="p">),</span>
-<span class="w">                            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">label_max_temperature</span><span class="p">)</span>
-<span class="w">                        </span><span class="p">)</span>
-<span class="w">                        </span><span class="n">Text</span><span class="p">(</span>
-<span class="w">                            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">currentWeather</span><span class="o">?.</span><span class="na">main</span><span class="o">?.</span><span class="na">temp_max</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="w">                        </span><span class="p">)</span>
-<span class="w">                    </span><span class="p">}</span>
-<span class="w">                    </span><span class="n">Row</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                        </span><span class="n">Text</span><span class="p">(</span>
-<span class="w">                            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">weight</span><span class="p">(</span><span class="m">1f</span><span class="p">),</span>
-<span class="w">                            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">label_pressure</span><span class="p">)</span>
-<span class="w">                        </span><span class="p">)</span>
-<span class="w">                        </span><span class="n">Text</span><span class="p">(</span>
-<span class="w">                            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">currentWeather</span><span class="o">?.</span><span class="na">main</span><span class="o">?.</span><span class="na">pressure</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="w">                        </span><span class="p">)</span>
-<span class="w">                    </span><span class="p">}</span>
-<span class="w">                    </span><span class="n">Row</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                        </span><span class="n">Text</span><span class="p">(</span>
-<span class="w">                            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">weight</span><span class="p">(</span><span class="m">1f</span><span class="p">),</span>
-<span class="w">                            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">label_humidity</span><span class="p">)</span>
-<span class="w">                        </span><span class="p">)</span>
-<span class="w">                        </span><span class="n">Text</span><span class="p">(</span>
-<span class="w">                            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">currentWeather</span><span class="o">?.</span><span class="na">main</span><span class="o">?.</span><span class="na">humidity</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="w">                        </span><span class="p">)</span>
-<span class="w">                    </span><span class="p">}</span>
-
-
+<span class="w">    </span><span class="n">Box</span><span class="p">(</span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<span class="w">            </span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">background</span><span class="p">(</span>
+<span class="w">                </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">state</span><span class="p">.</span><span class="na">isLoading</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">state</span><span class="p">.</span><span class="na">isError</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">MaterialTheme</span><span class="p">.</span><span class="na">colorScheme</span><span class="p">.</span><span class="na">secondaryContainer</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">MaterialTheme</span><span class="p">.</span><span class="na">colorScheme</span><span class="p">.</span><span class="na">background</span>
 <span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">),</span>
+<span class="w">        </span><span class="n">contentAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">Center</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="na">isLoading</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">CircularProgressIndicator</span><span class="p">(</span>
+<span class="w">                </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MaterialTheme</span><span class="p">.</span><span class="na">colorScheme</span><span class="p">.</span><span class="na">secondaryContainer</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="na">isError</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">                </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">error</span><span class="o">?.</span><span class="na">message</span>
+<span class="w">                    </span><span class="o">?:</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">some_error_message</span><span class="p">)</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Column</span><span class="p">(</span><span class="n">Modifier</span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="m">8.</span><span class="n">dp</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">.</span><span class="na">cityName</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">fontSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">24.</span><span class="n">sp</span>
+<span class="w">                </span><span class="p">)</span>
+<span class="w">                </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">currentWeather</span><span class="o">?.</span><span class="na">weather</span><span class="o">?.</span><span class="na">get</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="o">?.</span><span class="na">main</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">                </span><span class="p">)</span>
+<span class="w">                </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">currentWeather</span><span class="o">?.</span><span class="na">weather</span><span class="o">?.</span><span class="na">get</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="o">?.</span><span class="na">description</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">                </span><span class="p">)</span>
+
+<span class="w">                </span><span class="n">AsyncImage</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ImageRequest</span><span class="p">.</span><span class="na">Builder</span><span class="p">(</span><span class="n">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LocalContext</span><span class="p">.</span><span class="na">current</span><span class="p">)</span>
+<span class="w">                        </span><span class="p">.</span><span class="na">data</span><span class="p">(</span><span class="s">&quot;https://openweathermap.org/img/w/</span><span class="si">${</span><span class="n">state</span><span class="p">.</span><span class="na">currentWeather</span><span class="o">?.</span><span class="na">weather</span><span class="o">?.</span><span class="na">first</span><span class="p">()</span><span class="o">?.</span><span class="na">icon</span><span class="si">}</span><span class="s">.png&quot;</span><span class="p">)</span>
+<span class="w">                        </span><span class="p">.</span><span class="na">crossfade</span><span class="p">(</span><span class="n">enable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+<span class="w">                        </span><span class="p">.</span><span class="na">build</span><span class="p">(),</span>
+<span class="w">                    </span><span class="n">contentDescription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">contentScale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ContentScale</span><span class="p">.</span><span class="na">Crop</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">placeholder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">painterResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">placeholder</span><span class="p">),</span>
+<span class="w">                    </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<span class="w">                        </span><span class="p">.</span><span class="na">size</span><span class="p">(</span><span class="m">320.</span><span class="n">dp</span><span class="p">)</span>
+<span class="w">                </span><span class="p">)</span>
+
+<span class="w">                </span><span class="n">Spacer</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">size</span><span class="p">(</span><span class="m">24.</span><span class="n">dp</span><span class="p">))</span>
+
+<span class="w">                </span><span class="n">WeatherDataText</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="m">0.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="m">8.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="m">0.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="m">8.</span><span class="n">dp</span><span class="p">),</span>
+<span class="w">                    </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">label_temperature</span><span class="p">),</span>
+<span class="w">                    </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;</span><span class="si">${</span><span class="n">state</span><span class="p">.</span><span class="na">currentWeather</span><span class="o">?.</span><span class="na">main</span><span class="o">?.</span><span class="na">temp</span><span class="si">}</span><span class="s"> \u2103&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">textSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">24.</span><span class="n">sp</span>
+<span class="w">                </span><span class="p">)</span>
+<span class="w">                </span><span class="n">WeatherDataText</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="m">0.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="m">8.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="m">0.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="m">8.</span><span class="n">dp</span><span class="p">),</span>
+<span class="w">                    </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">label_min_temperature</span><span class="p">),</span>
+<span class="w">                    </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;</span><span class="si">${</span><span class="n">state</span><span class="p">.</span><span class="na">currentWeather</span><span class="o">?.</span><span class="na">main</span><span class="o">?.</span><span class="na">temp_min</span><span class="si">}</span><span class="s"> \u2103&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">textSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">24.</span><span class="n">sp</span>
+<span class="w">                </span><span class="p">)</span>
+<span class="w">                </span><span class="n">WeatherDataText</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="m">0.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="m">8.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="m">0.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="m">8.</span><span class="n">dp</span><span class="p">),</span>
+<span class="w">                    </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">label_max_temperature</span><span class="p">),</span>
+<span class="w">                    </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;</span><span class="si">${</span><span class="n">state</span><span class="p">.</span><span class="na">currentWeather</span><span class="o">?.</span><span class="na">main</span><span class="o">?.</span><span class="na">temp_max</span><span class="si">}</span><span class="s"> \u2103&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">textSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">24.</span><span class="n">sp</span>
+<span class="w">                </span><span class="p">)</span>
+<span class="w">                </span><span class="n">WeatherDataText</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="m">0.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="m">8.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="m">0.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="m">8.</span><span class="n">dp</span><span class="p">),</span>
+<span class="w">                    </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">label_pressure</span><span class="p">),</span>
+<span class="w">                    </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;</span><span class="si">${</span><span class="n">state</span><span class="p">.</span><span class="na">currentWeather</span><span class="o">?.</span><span class="na">main</span><span class="o">?.</span><span class="na">pressure</span><span class="si">}</span><span class="s"> hPa&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">textSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">24.</span><span class="n">sp</span>
+<span class="w">                </span><span class="p">)</span>
+<span class="w">                </span><span class="n">WeatherDataText</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="m">0.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="m">8.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="m">0.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="m">8.</span><span class="n">dp</span><span class="p">),</span>
+<span class="w">                    </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">label_humidity</span><span class="p">),</span>
+<span class="w">                    </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;</span><span class="si">${</span><span class="n">state</span><span class="p">.</span><span class="na">currentWeather</span><span class="o">?.</span><span class="na">main</span><span class="o">?.</span><span class="na">humidity</span><span class="si">}</span><span class="s"> %&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">textSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">24.</span><span class="n">sp</span>
+<span class="w">                </span><span class="p">)</span>
+
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
@@ -1517,9 +1454,9 @@ Majd ennek egy konkrét implementációját is:</p>
 <p>A felületek elkészülte után már csak össze kell kötnünk őket a navigációs gráffal. Itt fontos, hogy a részletes nézetnek át kell adnunk a megjeleníteni kívánt város nevét, hogy ő maga is le tudja kérni az adatokat. Először vegyük fel a <code>WeatherScreen</code>-t a <code>Screen</code> osztályba, és ne felejtsük el a paramétert:</p>
 <p>package hu.bme.aut.kliensalkalmazasok.weatherinfo.navigation</p>
 <div class="highlight"><pre><span></span><code><span class="kd">sealed</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Screen</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">route</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">object</span><span class="w"> </span><span class="nc">CityListScreen</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Screen</span><span class="p">(</span><span class="n">route</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;city_list&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">data</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="nc">CityListScreen</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Screen</span><span class="p">(</span><span class="n">route</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;city_list&quot;</span><span class="p">)</span>
 
-<span class="w">    </span><span class="kd">object</span><span class="w"> </span><span class="nc">WeatherScreen</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Screen</span><span class="p">(</span><span class="n">route</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;weather/{</span><span class="si">${</span><span class="n">Args</span><span class="p">.</span><span class="na">cityName</span><span class="si">}</span><span class="s">}&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">data</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="nc">WeatherScreen</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Screen</span><span class="p">(</span><span class="n">route</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;weather/{</span><span class="si">${</span><span class="n">Args</span><span class="p">.</span><span class="na">cityName</span><span class="si">}</span><span class="s">}&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="kd">fun</span><span class="w"> </span><span class="nf">passCityName</span><span class="p">(</span><span class="n">cityName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;weather/</span><span class="si">$</span><span class="n">cityName</span><span class="s">&quot;</span>
 
 <span class="w">        </span><span class="kd">object</span><span class="w"> </span><span class="nc">Args</span><span class="w"> </span><span class="p">{</span>
@@ -1531,8 +1468,6 @@ Majd ennek egy konkrét implementációját is:</p>
 <p>Majd pedig egészítsük ki a <code>NavGraph</code>-ot:</p>
 <div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.navigation</span>
 
-<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.foundation.ExperimentalFoundationApi</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.material3.ExperimentalMaterial3Api</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.runtime.Composable</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.compose.ui.Modifier</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.navigation.NavHostController</span>
@@ -1541,15 +1476,13 @@ Majd ennek egy konkrét implementációját is:</p>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.navigation.compose.composable</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.navigation.compose.rememberNavController</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.navigation.navArgument</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.feature.citylist.CityListScreen</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.feature.weather.WeatherScreen</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.presentation.screen.city_list.CityListScreen</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.weatherinfo.presentation.screen.weather.WeatherScreen</span>
 
-<span class="nd">@ExperimentalFoundationApi</span>
-<span class="nd">@ExperimentalMaterial3Api</span>
 <span class="nd">@Composable</span>
 <span class="kd">fun</span><span class="w"> </span><span class="nf">NavGraph</span><span class="p">(</span>
-<span class="w">    </span><span class="n">navController</span><span class="p">:</span><span class="w"> </span><span class="n">NavHostController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rememberNavController</span><span class="p">(),</span>
-<span class="w">    </span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<span class="w">    </span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">,</span>
+<span class="w">    </span><span class="n">navController</span><span class="p">:</span><span class="w"> </span><span class="n">NavHostController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rememberNavController</span><span class="p">()</span>
 <span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">NavHost</span><span class="p">(</span>
 <span class="w">        </span><span class="n">navController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">navController</span><span class="p">,</span>
@@ -1564,11 +1497,11 @@ Majd ennek egy konkrét implementációját is:</p>
 <span class="w">            </span><span class="p">)</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">        </span><span class="n">composable</span><span class="p">(</span><span class="n">Screen</span><span class="p">.</span><span class="na">WeatherScreen</span><span class="p">.</span><span class="na">route</span><span class="p">,</span>
-<span class="w">        </span><span class="n">arguments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listOf</span><span class="p">(</span>
-<span class="w">            </span><span class="n">navArgument</span><span class="p">(</span><span class="s">&quot;cityName&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NavType</span><span class="p">.</span><span class="na">StringType</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">        </span><span class="p">)</span>
+<span class="w">            </span><span class="n">arguments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listOf</span><span class="p">(</span>
+<span class="w">                </span><span class="n">navArgument</span><span class="p">(</span><span class="s">&quot;cityName&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NavType</span><span class="p">.</span><span class="na">StringType</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">)</span>
 <span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">WeatherScreen</span><span class="p">()</span>
 <span class="w">        </span><span class="p">}</span>
@@ -1603,8 +1536,8 @@ Majd ennek egy konkrét implementációját is:</p>
           </path>
         </svg>
       </span>
-      <span title="2024. május 17. 14:08:17">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2024. május 17. 14:08:17"><span class="timeago" datetime="2024-05-17T14:08:17+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2024. május 17. 14:08:17">2024-05-17</span>
+      <span title="2025. május 17. 15:24:40">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. május 17. 15:24:40"><span class="timeago" datetime="2025-05-17T15:24:40+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. május 17. 15:24:40">2025-05-17</span>
       </span>
     </span>
 
