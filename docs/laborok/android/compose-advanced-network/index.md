@@ -193,52 +193,15 @@ class WeatherInfoApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         db = Room.databaseBuilder(
-            applicationContext,
-            CityDatabase::class.java,
-            "city_database"
-        ).fallbackToDestructiveMigration().build()
+                applicationContext,
+                CityDatabase::class.java,
+                "city_database"
+            ).fallbackToDestructiveMigration(true).build()
 
         cityRepository = CityRepositoryImpl(db.dao)
 
         weatherRepository = WeatherRepositoryImpl()
     }
-}
-```
-
-Ezek után készítsük el a lokálishoz hasonló UseCase-eket, amikkel egyszerűen összefoghatjuk a funkcióinkat. Vegyük fel a `domain.usecases.weather` package-ben a követkető osztályokat:
-
-```kotlin
-package hu.bme.aut.kliensalkalmazasok.weatherinfo.domain.usecases.weather
-
-import hu.bme.aut.kliensalkalmazasok.weatherinfo.data.remote.repository.WeatherRepository
-
-class WeatherUseCases(repository: WeatherRepository) {
-    val getCityWeatherUseCase = GetCityWeatherUseCase(repository)
-}
-```
-
-és
-
-```kotlin
-package hu.bme.aut.kliensalkalmazasok.weatherinfo.domain.usecases.weather
-
-import hu.bme.aut.kliensalkalmazasok.weatherinfo.data.remote.model.WeatherData
-import hu.bme.aut.kliensalkalmazasok.weatherinfo.data.remote.repository.WeatherRepository
-import retrofit2.Call
-import java.io.IOException
-
-class GetCityWeatherUseCase(private val repository: WeatherRepository) {
-
-    suspend operator fun invoke(city: String): Call<WeatherData?>? {
-
-        return try {
-            return repository.getWeather(city)
-        } catch (e: IOException) {
-            e.printStackTrace()
-            return null
-        }
-    }
-
 }
 ```
 
@@ -265,10 +228,10 @@ El is készültünk a hálózati kommunikáció beállításával, próbáljuk k
 
 #### A részletező nézet megvalósítása
 
-Kezdjük a részletes nézet felületével. Ezeket a fájlokat a `feature.weather` package-be készítsük el. Az állapotokat a `WeatherState` fogja össze:
+Kezdjük a részletes nézet felületével. Ezeket a fájlokat a `screen.weather` package-be készítsük el. Az állapotokat a `WeatherState` fogja össze:
 
 ```kotlin
-package hu.bme.aut.kliensalkalmazasok.weatherinfo.feature.weather
+package hu.bme.aut.kliensalkalmazasok.weatherinfo.presentation.screen.weather
 
 import hu.bme.aut.kliensalkalmazasok.weatherinfo.data.remote.model.WeatherData
 
@@ -283,14 +246,14 @@ data class WeatherState(
 Amelyeket a `WeatherViewModel` tárol. Itt található meg a hálózati hívás is.
 
 ```kotlin
-package hu.bme.aut.kliensalkalmazasok.weatherinfo.feature.weather
+package hu.bme.aut.kliensalkalmazasok.weatherinfo.presentation.screen.weather
 
 import androidx.lifecycle.*
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import hu.bme.aut.kliensalkalmazasok.weatherinfo.WeatherInfoApplication
 import hu.bme.aut.kliensalkalmazasok.weatherinfo.data.remote.model.WeatherData
-import hu.bme.aut.kliensalkalmazasok.weatherinfo.domain.usecases.weather.WeatherUseCases
+import hu.bme.aut.kliensalkalmazasok.weatherinfo.data.remote.repository.WeatherRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -303,7 +266,7 @@ import retrofit2.Response
 
 class WeatherViewModel(
     private val savedStateHandle: SavedStateHandle,
-    private val weatherOperations: WeatherUseCases
+    private val weatherRepository: WeatherRepository
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(WeatherState())
@@ -318,34 +281,31 @@ class WeatherViewModel(
 
     private fun loadWeatherData() {
 
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             try {
-                CoroutineScope(coroutineContext).launch(Dispatchers.IO) {
-                    weatherOperations.getCityWeatherUseCase(cityName)
-                        ?.enqueue(object : Callback<WeatherData?> {
-                            override fun onResponse(
-                                call: Call<WeatherData?>,
-                                response: Response<WeatherData?>
-                            ) {
-                                if (response?.isSuccessful!!) {
-                                    _state.update {
-                                        it.copy(
-                                            isLoading = false,
-                                            currentWeather = response.body()
-                                        )
-                                    }
+                weatherRepository.getWeather(cityName)
+                    ?.enqueue(object : Callback<WeatherData?> {
+                        override fun onResponse(
+                            call: Call<WeatherData?>,
+                            response: Response<WeatherData?>
+                        ) {
+                            if (response.isSuccessful) {
+                                _state.update {
+                                    it.copy(
+                                        isLoading = false,
+                                        currentWeather = response.body()
+                                    )
                                 }
                             }
+                        }
 
-                            override fun onFailure(
-                                call: Call<WeatherData?>,
-                                t: Throwable
-                            ) {
-                                t.printStackTrace()
-                            }
-                        })
-
-                }
+                        override fun onFailure(
+                            call: Call<WeatherData?>,
+                            t: Throwable
+                        ) {
+                            t.printStackTrace()
+                        }
+                    })
 
             } catch (e: Exception) {
                 _state.update {
@@ -363,10 +323,9 @@ class WeatherViewModel(
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val savedStateHandle = createSavedStateHandle()
-                val weatherOperations = WeatherUseCases(WeatherInfoApplication.weatherRepository)
                 WeatherViewModel(
                     savedStateHandle = savedStateHandle,
-                    weatherOperations = weatherOperations
+                    weatherRepository = WeatherInfoApplication.weatherRepository
                 )
             }
         }
@@ -377,9 +336,8 @@ class WeatherViewModel(
 Az eredményt pedig végül a `WeatherScreen` jeleníti meg:
 
 ```kotlin
-package hu.bme.aut.kliensalkalmazasok.weatherinfo.feature.weather
+package hu.bme.aut.kliensalkalmazasok.weatherinfo.presentation.screen.weather
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -398,125 +356,99 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import hu.bme.aut.kliensalkalmazasok.weatherinfo.R
+import hu.bme.aut.kliensalkalmazasok.weatherinfo.presentation.common.WeatherDataText
 
-@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun WeatherScreen(
     viewModel: WeatherViewModel = viewModel(factory = WeatherViewModel.Factory)
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
-    Scaffold(
-        modifier = Modifier.fillMaxSize(),
-
-        ) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(it)
-                .background(
-                    color = if (!state.isLoading && !state.isError) {
-                        MaterialTheme.colorScheme.secondaryContainer
-                    } else {
-                        MaterialTheme.colorScheme.background
-                    }
-                ),
-            contentAlignment = Alignment.Center
-        ) {
-            if (state.isLoading) {
-                CircularProgressIndicator(
-                    color = MaterialTheme.colorScheme.secondaryContainer
-                )
-            } else if (state.isError) {
-                Text(
-                    text = state.error?.message
-                        ?: stringResource(id = R.string.some_error_message)
-                )
-            } else {
-                Column(
-
-                ) {
-                    Text(
-                        text = viewModel.cityName,
-                        fontSize = 24.sp
-                    )
-                    Text(
-                        text = state.currentWeather?.weather?.get(0)?.main ?: ""
-                    )
-
-
-                    Text(
-                        text = state.currentWeather?.weather?.get(0)?.description ?: ""
-                    )
-                    AsyncImage(
-                        model = ImageRequest.Builder(context = LocalContext.current)
-                            .data("https://openweathermap.org/img/w/${state.currentWeather?.weather?.first()?.icon}.png")
-                            .crossfade(enable = true)
-                            .build(),
-                        contentDescription = null,
-                        contentScale = ContentScale.Crop,
-                        placeholder = painterResource(id = R.drawable.placeholder),
-                        modifier = Modifier
-                            .size(320.dp)
-                    )
-
-
-
-                    Spacer(modifier = Modifier.size(24.dp))
-
-                    Row() {
-                        Text(
-                            modifier = Modifier.weight(1f),
-                            text = stringResource(R.string.label_temperature)
-                        )
-                        Text(
-                            text = state.currentWeather?.main?.temp.toString() ?: ""
-                        )
-                    }
-                    Row() {
-                        Text(
-                            modifier = Modifier.weight(1f),
-                            text = stringResource(R.string.label_min_temperature)
-                        )
-                        Text(
-                            text = state.currentWeather?.main?.temp_min.toString() ?: ""
-                        )
-                    }
-                    Row() {
-                        Text(
-                            modifier = Modifier.weight(1f),
-                            text = stringResource(R.string.label_max_temperature)
-                        )
-                        Text(
-                            text = state.currentWeather?.main?.temp_max.toString() ?: ""
-                        )
-                    }
-                    Row() {
-                        Text(
-                            modifier = Modifier.weight(1f),
-                            text = stringResource(R.string.label_pressure)
-                        )
-                        Text(
-                            text = state.currentWeather?.main?.pressure.toString() ?: ""
-                        )
-                    }
-                    Row() {
-                        Text(
-                            modifier = Modifier.weight(1f),
-                            text = stringResource(R.string.label_humidity)
-                        )
-                        Text(
-                            text = state.currentWeather?.main?.humidity.toString() ?: ""
-                        )
-                    }
-
-
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(
+                color = if (!state.isLoading && !state.isError) {
+                    MaterialTheme.colorScheme.secondaryContainer
+                } else {
+                    MaterialTheme.colorScheme.background
                 }
+            ),
+        contentAlignment = Alignment.Center
+    ) {
+        if (state.isLoading) {
+            CircularProgressIndicator(
+                color = MaterialTheme.colorScheme.secondaryContainer
+            )
+        } else if (state.isError) {
+            Text(
+                text = state.error?.message
+                    ?: stringResource(id = R.string.some_error_message)
+            )
+        } else {
+            Column(Modifier.padding(8.dp)) {
+                Text(
+                    text = viewModel.cityName,
+                    fontSize = 24.sp
+                )
+                Text(
+                    text = state.currentWeather?.weather?.get(0)?.main ?: ""
+                )
+                Text(
+                    text = state.currentWeather?.weather?.get(0)?.description ?: ""
+                )
+
+                AsyncImage(
+                    model = ImageRequest.Builder(context = LocalContext.current)
+                        .data("https://openweathermap.org/img/w/${state.currentWeather?.weather?.first()?.icon}.png")
+                        .crossfade(enable = true)
+                        .build(),
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop,
+                    placeholder = painterResource(id = R.drawable.placeholder),
+                    modifier = Modifier
+                        .size(320.dp)
+                )
+
+                Spacer(modifier = Modifier.size(24.dp))
+
+                WeatherDataText(
+                    modifier = Modifier.padding(0.dp, 8.dp, 0.dp, 8.dp),
+                    label = stringResource(id = R.string.label_temperature),
+                    value = "${state.currentWeather?.main?.temp} \u2103",
+                    textSize = 24.sp
+                )
+                WeatherDataText(
+                    modifier = Modifier.padding(0.dp, 8.dp, 0.dp, 8.dp),
+                    label = stringResource(id = R.string.label_min_temperature),
+                    value = "${state.currentWeather?.main?.temp_min} \u2103",
+                    textSize = 24.sp
+                )
+                WeatherDataText(
+                    modifier = Modifier.padding(0.dp, 8.dp, 0.dp, 8.dp),
+                    label = stringResource(id = R.string.label_max_temperature),
+                    value = "${state.currentWeather?.main?.temp_max} \u2103",
+                    textSize = 24.sp
+                )
+                WeatherDataText(
+                    modifier = Modifier.padding(0.dp, 8.dp, 0.dp, 8.dp),
+                    label = stringResource(id = R.string.label_pressure),
+                    value = "${state.currentWeather?.main?.pressure} hPa",
+                    textSize = 24.sp
+                )
+                WeatherDataText(
+                    modifier = Modifier.padding(0.dp, 8.dp, 0.dp, 8.dp),
+                    label = stringResource(id = R.string.label_humidity),
+                    value = "${state.currentWeather?.main?.humidity} %",
+                    textSize = 24.sp
+                )
+
             }
         }
     }
 }
 ```
+
 
 #### A részletes nézet bekötése a navigációba
 
@@ -526,9 +458,9 @@ package hu.bme.aut.kliensalkalmazasok.weatherinfo.navigation
 
 ```kotlin
 sealed class Screen(val route: String) {
-    object CityListScreen : Screen(route = "city_list")
+    data object CityListScreen : Screen(route = "city_list")
 
-    object WeatherScreen : Screen(route = "weather/{${Args.cityName}}") {
+    data object WeatherScreen : Screen(route = "weather/{${Args.cityName}}") {
         fun passCityName(cityName: String) = "weather/$cityName"
 
         object Args {
@@ -543,8 +475,6 @@ Majd pedig egészítsük ki a `NavGraph`-ot:
 ```kotlin
 package hu.bme.aut.kliensalkalmazasok.weatherinfo.navigation
 
-import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -553,15 +483,13 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import hu.bme.aut.kliensalkalmazasok.weatherinfo.feature.citylist.CityListScreen
-import hu.bme.aut.kliensalkalmazasok.weatherinfo.feature.weather.WeatherScreen
+import hu.bme.aut.kliensalkalmazasok.weatherinfo.presentation.screen.city_list.CityListScreen
+import hu.bme.aut.kliensalkalmazasok.weatherinfo.presentation.screen.weather.WeatherScreen
 
-@ExperimentalFoundationApi
-@ExperimentalMaterial3Api
 @Composable
 fun NavGraph(
-    navController: NavHostController = rememberNavController(),
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navController: NavHostController = rememberNavController()
 ) {
     NavHost(
         navController = navController,
@@ -576,11 +504,11 @@ fun NavGraph(
             )
         }
         composable(Screen.WeatherScreen.route,
-        arguments = listOf(
-            navArgument("cityName") {
-                type = NavType.StringType
-            }
-        )
+            arguments = listOf(
+                navArgument("cityName") {
+                    type = NavType.StringType
+                }
+            )
         ) {
             WeatherScreen()
         }
