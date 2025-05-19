@@ -82,15 +82,15 @@ A feladatra **12 pontot** lehet kapni, amiből legalább **6-ot** kell elérni a
 	- Erőforrások használata, szövegek erőforrásba szervezése (1 pont)
 	- sűrűségfüggetlen mértékegységek használata (1 pont)
 - Funkciók (5 pont)
-	- Hatékony működés, nincsenek felesleges ciklusok, újrarajzolások (2 pont)
+	- Hatékony működés, nincsenek felesleges ciklusok, újrarajzolások (3 pont)
 		- Különös tekintettel a RecyclerView-ra, diagramokra
 		- Hosszú hívások aszinkron módon
-- Megfelelő hibakezelés (2pont)
-	- Mi történik, ha a felhasználó érvénytelen adatot üt be (validáció)
-	- Mi történik, ha az internet nem elérhető (hibaüzenetek)
-	- Mi történik vissza gomb esetén
-	- Mi történik elforgatás esetén
-- Laborvezetői pontok (-9 – 3pont)
+	- Megfelelő hibakezelés (2pont)
+		- Mi történik, ha a felhasználó érvénytelen adatot üt be (validáció)
+		- Mi történik, ha az internet nem elérhető (hibaüzenetek)
+		- Mi történik vissza gomb esetén
+		- Mi történik elforgatás esetén
+- Laborvezetői pontok (-9 – 3 pont)
 	- Ezeket a laborvezető saját belátása szerint oszthatja az alábbiak alapján
 		- Mennyire logikusan elvárt a működés
 		- Mennyire történt törekvés a jó funkcionalitás megvalósítására, és nem csak a funkció látszat kivitelezése volt-e a cél
