@@ -1077,7 +1077,7 @@
 <p>Első lépésként indítsuk el az Android Studio-t, majd:</p>
 <ol>
 <li>Hozzunk létre egy új projektet, válasszuk az <em>Empty Views Activity</em> lehetőséget.</li>
-<li>A projekt neve legyen <code>PublicTransport</code>, a kezdő package <code>hu.bme.aut.android.publictransport</code>, a mentési hely pedig a kicheckoutolt repository-n belül a PublicTransport mappa.</li>
+<li>A projekt neve legyen <code>PublicTransport</code>, a kezdő package <code>hu.bme.aut.klaf.publictransport</code>, a mentési hely pedig a kicheckoutolt repository-n belül a PublicTransport mappa.</li>
 <li>Nyelvnek válasszuk a <em>Kotlin</em>-t.</li>
 <li>A minimum API szint legyen API24: Android 7.0.</li>
 <li>A <em>Build configuration language</em> Kotlin DSL legyen.</li>
@@ -1181,7 +1181,7 @@
 <div class="highlight"><pre><span></span><code><span class="n">android</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="p">...</span>
 <span class="w">    </span><span class="n">buildFeatures</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">viewBinding</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">        </span><span class="n">viewBinding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -1443,7 +1443,7 @@ A <code>binding</code> példány működéséhez három dolgot kell tennünk:</p
 
 <span class="nt">&lt;Button</span>
 <span class="w">    </span><span class="na">android:id=</span><span class="s">"@+id/btnPurchase"</span>
-<span class="w">    </span><span class="na">android:layout_width=</span><span class="s">"wrap_content"</span>
+<span class="w">    </span><span class="na">android:layout_width=</span><span class="s">"match_parent"</span>
 <span class="w">    </span><span class="na">android:layout_height=</span><span class="s">"wrap_content"</span>
 <span class="w">    </span><span class="na">android:layout_gravity=</span><span class="s">"center"</span>
 <span class="w">    </span><span class="na">android:layout_margin=</span><span class="s">"8dp"</span>
@@ -1567,7 +1567,7 @@ A <code>binding</code> példány működéséhez három dolgot kell tennünk:</p
 <span class="w">    </span><span class="na">xmlns:app=</span><span class="s">"http://schemas.android.com/apk/res-auto"</span>
 <span class="w">    </span><span class="na">xmlns:tools=</span><span class="s">"http://schemas.android.com/tools"</span>
 <span class="w">    </span><span class="na">android:layout_width=</span><span class="s">"match_parent"</span>
-<span class="w">    </span><span class="na">android:layout_height=</span><span class="s">"wrap_content"</span>
+<span class="w">    </span><span class="na">android:layout_height=</span><span class="s">"match_parent"</span>
 <span class="w">    </span><span class="na">android:layout_margin=</span><span class="s">"16dp"</span>
 <span class="w">    </span><span class="na">android:orientation=</span><span class="s">"vertical"</span>
 <span class="w">    </span><span class="na">tools:context=</span><span class="s">".PassActivity"</span><span class="nt">&gt;</span>
@@ -1601,9 +1601,10 @@ A <code>binding</code> példány működéséhez három dolgot kell tennünk:</p
 <span class="w">        </span><span class="na">android:layout_gravity=</span><span class="s">"center"</span>
 <span class="w">        </span><span class="na">android:layout_margin=</span><span class="s">"16dp"</span>
 <span class="w">        </span><span class="na">android:src=</span><span class="s">"@drawable/qrcode"</span>
+<span class="w">        </span><span class="na">app:layout_constraintBottom_toBottomOf=</span><span class="s">"parent"</span>
 <span class="w">        </span><span class="na">app:layout_constraintEnd_toEndOf=</span><span class="s">"parent"</span>
 <span class="w">        </span><span class="na">app:layout_constraintStart_toStartOf=</span><span class="s">"parent"</span>
-<span class="w">        </span><span class="na">app:layout_constraintTop_toBottomOf=</span><span class="s">"@id/tvDates"</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="na">app:layout_constraintTop_toTopOf=</span><span class="s">"parent"</span><span class="w"> </span><span class="nt">/&gt;</span>
 
 <span class="nt">&lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;</span>
 </code></pre></div>
@@ -1611,6 +1612,18 @@ A <code>binding</code> példány működéséhez három dolgot kell tennünk:</p
 <div class="highlight"><pre><span></span><code><span class="n">binding</span><span class="p">.</span><span class="na">tvTicketType</span><span class="p">.</span><span class="na">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">intent</span><span class="p">.</span><span class="na">getStringExtra</span><span class="p">(</span><span class="n">KEY_TYPE_STRING</span><span class="p">)</span>
 <span class="n">binding</span><span class="p">.</span><span class="na">tvDates</span><span class="p">.</span><span class="na">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">intent</span><span class="p">.</span><span class="na">getStringExtra</span><span class="p">(</span><span class="n">KEY_DATE_STRING</span><span class="p">)</span>
 </code></pre></div>
+<p>Próbáljuk ki az alkalmazásunkat!</p>
+<div class="admonition tip">
+<p class="admonition-title">edgeToEdge</p>
+<p>Ha el szeretnénk kerülni, hogy akár az állapotsáv, akár a kamera letakarja a felhasználói felületünket, használjuk az alábbi kódrészletet a megfelelő <em>Activity</em>-kben. Ezzel beállítunk egy <em>listenert</em>, ami figyeli a rendszer <em>inset</em>-jeit, és a felületünk <em>padding</em>-jét ehhez igazítja.</p>
+<div class="highlight"><pre><span></span><code><span class="n">enableEdgeToEdge</span><span class="p">()</span>
+<span class="n">ViewCompat</span><span class="p">.</span><span class="na">setOnApplyWindowInsetsListener</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">root</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">insets</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">systemBars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">insets</span><span class="p">.</span><span class="na">getInsets</span><span class="p">(</span><span class="n">WindowInsetsCompat</span><span class="p">.</span><span class="na">Type</span><span class="p">.</span><span class="na">systemBars</span><span class="p">())</span>
+<span class="w">    </span><span class="n">v</span><span class="p">.</span><span class="na">setPadding</span><span class="p">(</span><span class="n">systemBars</span><span class="p">.</span><span class="na">left</span><span class="p">,</span><span class="w"> </span><span class="n">systemBars</span><span class="p">.</span><span class="na">top</span><span class="p">,</span><span class="w"> </span><span class="n">systemBars</span><span class="p">.</span><span class="na">right</span><span class="p">,</span><span class="w"> </span><span class="n">systemBars</span><span class="p">.</span><span class="na">bottom</span><span class="p">)</span>
+<span class="w">    </span><span class="n">insets</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
 <div class="admonition example">
 <p class="admonition-title">BEADANDÓ</p>
 <p>Készíts egy <strong>képernyőképet</strong>, amelyen látszik a <strong>bérlet képernyő</strong> (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy <strong>ahhoz tartozó kódrészlet</strong>, valamint a <strong>neptun kódod a kódban valahol kommentként</strong>. A képet a megoldásban a repository-ba f4.png néven töltsd föl. </p>
@@ -1711,8 +1724,8 @@ A <code>binding</code> példány működéséhez három dolgot kell tennünk:</p
           </path>
         </svg>
       </span>
-      <span title="2025. április 11. 12:10:58">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. április 11. 12:10:58 CEST"><span class="timeago" datetime="2025-04-11T12:10:58+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. április 11. 12:10:58 CEST">2025-04-11</span>
+      <span title="2026. április 17. 16:58:19">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2026. április 17. 16:58:19 CEST"><span class="timeago" datetime="2026-04-17T16:58:19+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2026. április 17. 16:58:19 CEST">2026-04-17</span>
       </span>
     </span>
 
