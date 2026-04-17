@@ -1354,7 +1354,7 @@ A bal alsó sarokban található <code>FloatingActionButton</code>-re kattintva 
 <p><code>libs.versions.toml</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">[versions]</span>
 <span class="p">...</span>
-<span class="n">navigation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"2.9.0"</span>
+<span class="n">navigation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"2.9.7"</span>
 
 <span class="k">[libraries]</span>
 <span class="p">...</span>
@@ -1393,8 +1393,8 @@ A <em>Jetpack Navigation</em> könyvtár használata miatt föl van véve a töb
 <p><code>libs.versions.toml</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">[versions]</span>
 <span class="p">...</span>
-<span class="n">ksp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"1.9.0-1.0.13"</span>
-<span class="n">room</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"2.6.1"</span>
+<span class="n">ksp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"2.3.4"</span>
+<span class="n">room</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"2.8.4"</span>
 
 <span class="k">[libraries]</span>
 <span class="p">...</span>
@@ -1620,15 +1620,15 @@ A létrejött <code>fragment_shopping_list.xml</code> tartalmát cseréljük ki 
 
 <p>Az újonnan létrejött <em>fragmenteket</em> mozgassuk át egy <em>fragment</em> nevű <em>package</em>-be.</p>
 <p>Az akciók meghívásához használjuk a view binding-ot a <code>ShoppingListFragment</code>-ben:</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.shoppinglist.fragment</span>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.klaf.shoppinglist.fragment</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">android.os.Bundle</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">androidx.fragment.app.Fragment</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">android.view.LayoutInflater</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">android.view.View</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">android.view.ViewGroup</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">androidx.fragment.app.Fragment</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.navigation.fragment.findNavController</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.shoppinglist.databinding.FragmentShoppingListBinding</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.klaf.shoppinglist.databinding.FragmentShoppingListBinding</span>
 
 <span class="kd">class</span><span class="w"> </span><span class="nc">ShoppingListFragment</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Fragment</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
@@ -1781,8 +1781,8 @@ A létrejött <code>fragment_shopping_list.xml</code> tartalmát cseréljük ki 
 <p>A <code>Room</code> alapvető komponenseinek, architektúrájának és használatának leírása megtalálható a megfelelő <a href="https://developer.android.com/training/data-storage/room/">developer.android.com</a> oldalon.</p>
 </div>
 <h4 id="egy-modell-osztaly-letrehozasa">Egy modell osztály létrehozása<a class="headerlink" href="#egy-modell-osztaly-letrehozasa" title="Permanent link">¶</a></h4>
-<p>A <code>hu.bme.aut.kliensalkalmazasok.shoppinglist</code> <em>package</em>-ben hozzunk létre egy új <em>package</em>-et <code>data</code> néven. A <code>data</code> <em>package</em>-ben hozzunk létre egy új Kotlin osztályt, aminek a neve legyen  <code>ShoppingItem</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.shoppinglist.data</span>
+<p>A <code>hu.bme.aut.klaf.shoppinglist</code> <em>package</em>-ben hozzunk létre egy új <em>package</em>-et <code>data</code> néven. A <code>data</code> <em>package</em>-ben hozzunk létre egy új Kotlin osztályt, aminek a neve legyen  <code>ShoppingItem</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.klaf.shoppinglist.data</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.room.ColumnInfo</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.room.Entity</span>
@@ -1838,7 +1838,7 @@ Megfigyelhető továbbá, hogy ezen függvények el vannak látva a <code>@JvmSt
 <p>DAO = <a href="https://en.wikipedia.org/wiki/Data_access_object">Data Access Object</a></p>
 </div>
 <p>A <code>data</code> package-ben hozzunk létre egy új Kotlin interfészt, aminek a neve legyen  <code>ShoppingItemDao</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.shoppinglist.data</span>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.klaf.shoppinglist.data</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.room.Dao</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.room.Delete</span>
@@ -1868,7 +1868,7 @@ Megfigyelhető továbbá, hogy ezen függvények el vannak látva a <code>@JvmSt
 <p>Figyeljük meg, hogy az Android Studio a <code>@Query</code> <em>annotáció</em> paramétereként átadott SQLite scriptre is nyújt kódkiegészítést, hiba jelzést!</p>
 <h4 id="az-adatbazis-osztaly-letrehozasa">Az adatbázis osztály létrehozása<a class="headerlink" href="#az-adatbazis-osztaly-letrehozasa" title="Permanent link">¶</a></h4>
 <p>A <code>data</code> package-ben hozzunk létre egy új Kotlin osztályt, aminek a neve legyen  <code>ShoppingListDatabase</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.shoppinglist.data</span>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.klaf.shoppinglist.data</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">android.content.Context</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.room.Database</span>
@@ -1897,15 +1897,15 @@ Megfigyelhető továbbá, hogy ezen függvények el vannak látva a <code>@JvmSt
 <h3 id="lista-megjelenitese-recyclerview-val">Lista megjelenítése <code>RecyclerView</code>-val<a class="headerlink" href="#lista-megjelenitese-recyclerview-val" title="Permanent link">¶</a></h3>
 <h4 id="a-lista-adapter-letrehozasa">A lista adapter létrehozása<a class="headerlink" href="#a-lista-adapter-letrehozasa" title="Permanent link">¶</a></h4>
 <p>Következő lépésként a lista adaptert fogjuk létrehozni, ami a modell elemeket fogja majd szolgáltatni a <code>RecyclerView</code>-nak.</p>
-<p>A <code>hu.bme.aut.kliensalkalmazasok.shoppinglist</code> package-ben hozzunk létre egy új package-et <code>adapter</code> néven!</p>
+<p>A <code>hu.bme.aut.klaf.shoppinglist</code> package-ben hozzunk létre egy új package-et <code>adapter</code> néven!</p>
 <p>Az <code>adapter</code> package-ben hozzunk létre egy új Kotlin osztályt <code>ShoppingAdapter</code> néven:</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.shoppinglist.adapter</span>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.klaf.shoppinglist.adapter</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">android.view.LayoutInflater</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">android.view.ViewGroup</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.recyclerview.widget.RecyclerView</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.shoppinglist.data.ShoppingItem</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.shoppinglist.databinding.ItemShoppingListBinding</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.klaf.shoppinglist.data.ShoppingItem</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.klaf.shoppinglist.databinding.ItemShoppingListBinding</span>
 
 <span class="kd">class</span><span class="w"> </span><span class="nc">ShoppingAdapter</span><span class="p">(</span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">listener</span><span class="p">:</span><span class="w"> </span><span class="n">ShoppingItemClickListener</span><span class="p">)</span><span class="w"> </span><span class="p">:</span>
 <span class="w">    </span><span class="n">RecyclerView</span><span class="p">.</span><span class="na">Adapter</span><span class="o">&lt;</span><span class="n">ShoppingAdapter</span><span class="p">.</span><span class="na">ShoppingViewHolder</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
@@ -1926,7 +1926,8 @@ Megfigyelhető továbbá, hogy ezen függvények el vannak látva a <code>@JvmSt
 <span class="w">        </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onItemChanged</span><span class="p">(</span><span class="n">item</span><span class="p">:</span><span class="w"> </span><span class="n">ShoppingItem</span><span class="p">)</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="kd">inner</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">ShoppingViewHolder</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">binding</span><span class="p">:</span><span class="w"> </span><span class="n">ItemShoppingListBinding</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">RecyclerView</span><span class="p">.</span><span class="na">ViewHolder</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">root</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">inner</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">ShoppingViewHolder</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">binding</span><span class="p">:</span><span class="w"> </span><span class="n">ItemShoppingListBinding</span><span class="p">)</span><span class="w"> </span><span class="p">:</span>
+<span class="w">        </span><span class="n">RecyclerView</span><span class="p">.</span><span class="na">ViewHolder</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">root</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>A listát <code>RecyclerView</code> segítségével szeretnénk megjeleníteni, ezért az adapter a <code>RecyclerView.Adapter</code> osztályból származik. Az adapter a modell elemeket egy listában tárolja. A rendszer a <code>RecyclerView</code>-val való hatékony lista megjelenítéshez a <a href="https://developer.android.com/training/improving-layouts/smooth-scrolling#java"><em>ViewHolder</em> tervezési mintát</a> valósítja meg, ezért szükség van egy <code>ViewHolder</code> osztály megadására is. <code>ViewHolder</code>-eken keresztül érhetjük majd el a lista elemekhez tartozó <code>View</code>-kat. Mivel a <code>ViewHolder</code> osztály példányai az Adapterhez lesznek csatolva (azért, hogy elérjék a belső változóit), <code>inner class</code> osztályként kell definiálni.</p>
@@ -2051,7 +2052,7 @@ Egy jobb megoldást biztosít a <a href="https://kotlinlang.org/docs/coroutines-
 <h3 id="uj-elem-hozzaadasanak-megvalositasa">Új elem hozzáadásának megvalósítása<a class="headerlink" href="#uj-elem-hozzaadasanak-megvalositasa" title="Permanent link">¶</a></h3>
 <p>A <code>fragment_create_new_shopping_item.xml</code> felület már létezik, már csak azt kell megoldanunk, hogy a "Create new item" gomb megnyomásának hatására a kitöltött adatok alapján létrejöjjön egy új elem, és az bekerüljön az adatbázisba.</p>
 <p>Ehhez írjuk felüle a <code>CreateNewShoppingItem</code> osztályt az alábbi kóddal:</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.shoppinglist.fragment</span>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.klaf.shoppinglist.fragment</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">android.os.Bundle</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">android.view.LayoutInflater</span>
@@ -2059,8 +2060,8 @@ Egy jobb megoldást biztosít a <a href="https://kotlinlang.org/docs/coroutines-
 <span class="k">import</span><span class="w"> </span><span class="nn">android.view.ViewGroup</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">android.widget.ArrayAdapter</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">androidx.fragment.app.Fragment</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.shoppinglist.R</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.shoppinglist.databinding.FragmentCreateNewShoppingItemBinding</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.klaf.shoppinglist.R</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.klaf.shoppinglist.databinding.FragmentCreateNewShoppingItemBinding</span>
 
 <span class="kd">class</span><span class="w"> </span><span class="nc">CreateNewShoppingItemFragment</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Fragment</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
@@ -2171,7 +2172,7 @@ A kiolvasás után a törlés is fontos, mert ha az érték benn marad a <em>sav
 <p>A Statisztika képernyőn egy kördiagramot fogunk megjeleníteni, ami az egyes kategóriák egymáshoz való arányát mutatja a már megvásárolt és a még meg nem vásárolt termékek között. A két diagram közötti váltani a menü gombok megnyolásával lehet.</p>
 <p>A PieChart kirajzolásához az <a href="https://github.com/PhilJay/MPAndroidChart">MPAndroidChart</a> library-t fogjuk használni. A függöségek már benne vannak a projektben, ahogyan a diagram is fönt van a felületen. Már csak fel kell tölteni adattal.</p>
 <p>Írjuk meg a Fragment kódját (<code>ChartFragment.kt</code>):</p>
-<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.shoppinglist.fragment</span>
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">hu.bme.aut.klaf.shoppinglist.fragment</span>
 
 <span class="k">import</span><span class="w"> </span><span class="nn">android.os.Bundle</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">android.view.LayoutInflater</span>
@@ -2182,10 +2183,10 @@ A kiolvasás után a törlés is fontos, mert ha az érték benn marad a <em>sav
 <span class="k">import</span><span class="w"> </span><span class="nn">com.github.mikephil.charting.data.PieDataSet</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">com.github.mikephil.charting.data.PieEntry</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">com.github.mikephil.charting.utils.ColorTemplate</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.shoppinglist.R</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.shoppinglist.data.ShoppingItem</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.shoppinglist.data.ShoppingListDatabase</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.kliensalkalmazasok.shoppinglist.databinding.FragmentChartBinding</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.klaf.shoppinglist.R</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.klaf.shoppinglist.data.ShoppingItem</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.klaf.shoppinglist.data.ShoppingListDatabase</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">hu.bme.aut.klaf.shoppinglist.databinding.FragmentChartBinding</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">kotlin.concurrent.thread</span>
 
 <span class="kd">class</span><span class="w"> </span><span class="nc">ChartFragment</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Fragment</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
@@ -2352,8 +2353,8 @@ A kiolvasás után a törlés is fontos, mert ha az érték benn marad a <em>sav
           </path>
         </svg>
       </span>
-      <span title="2025. május 9. 16:25:18">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025. május 9. 16:25:18 CEST"><span class="timeago" datetime="2025-05-09T16:25:18+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025. május 9. 16:25:18 CEST">2025-05-09</span>
+      <span title="2026. április 17. 18:47:51">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2026. április 17. 18:47:51 CEST"><span class="timeago" datetime="2026-04-17T18:47:51+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2026. április 17. 18:47:51 CEST">2026-04-17</span>
       </span>
     </span>
 
