@@ -45,7 +45,7 @@ A feladatok megoldása során ne felejtsd el követni a [feladat beadás folyama
 Első lépésként indítsuk el az Android Studio-t, majd:
 
 1. Hozzunk létre egy új projektet, válasszuk az *Empty Views Activity* lehetőséget.
-2. A projekt neve legyen `PublicTransport`, a kezdő package `hu.bme.aut.android.publictransport`, a mentési hely pedig a kicheckoutolt repository-n belül a PublicTransport mappa.
+2. A projekt neve legyen `PublicTransport`, a kezdő package `hu.bme.aut.klaf.publictransport`, a mentési hely pedig a kicheckoutolt repository-n belül a PublicTransport mappa.
 3. Nyelvnek válasszuk a *Kotlin*-t.
 4. A minimum API szint legyen API24: Android 7.0.
 5. A *Build configuration language* Kotlin DSL legyen.
@@ -164,7 +164,7 @@ Először is be kell kapcsolnunk a modulunkra a `ViewBinding`-ot. Az `app` modul
 android {
     ...
     buildFeatures {
-        viewBinding true
+        viewBinding = true
     }
 }
 
@@ -478,7 +478,7 @@ Végül az oldal alján kiírjuk a kiválasztott bérlet árát, illetve ide ker
 
 <Button
     android:id="@+id/btnPurchase"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_margin="8dp"
@@ -640,7 +640,7 @@ Most már elkészíthetjük a `PassActivity`-t. Kezdjük a layout-jával (`activ
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_margin="16dp"
     android:orientation="vertical"
     tools:context=".PassActivity">
@@ -674,9 +674,10 @@ Most már elkészíthetjük a `PassActivity`-t. Kezdjük a layout-jával (`activ
         android:layout_gravity="center"
         android:layout_margin="16dp"
         android:src="@drawable/qrcode"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvDates" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
@@ -688,6 +689,20 @@ binding.tvTicketType.text = intent.getStringExtra(KEY_TYPE_STRING)
 binding.tvDates.text = intent.getStringExtra(KEY_DATE_STRING)
 
 ```
+
+Próbáljuk ki az alkalmazásunkat!
+
+!!!tip "edgeToEdge"
+	Ha el szeretnénk kerülni, hogy akár az állapotsáv, akár a kamera letakarja a felhasználói felületünket, használjuk az alábbi kódrészletet a megfelelő *Activity*-kben. Ezzel beállítunk egy *listenert*, ami figyeli a rendszer *inset*-jeit, és a felületünk *padding*-jét ehhez igazítja.
+
+	```kotlin
+	enableEdgeToEdge()
+	ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
+    	val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+    	v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+    	insets
+	}
+	```
 
 !!!example "BEADANDÓ"
 	Készíts egy **képernyőképet**, amelyen látszik a **bérlet képernyő** (emulátoron, készüléket tükrözve vagy képernyőfelvétellel), egy **ahhoz tartozó kódrészlet**, valamint a **neptun kódod a kódban valahol kommentként**. A képet a megoldásban a repository-ba f4.png néven töltsd föl. 
