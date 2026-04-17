@@ -205,7 +205,7 @@ Ezen a laboron nem új projektet fogunk létrehozni, hanem egy már létezőből
 	```toml
 	[versions]
 	...
-	navigation = "2.9.0"
+	navigation = "2.9.7"
 	
 	[libraries]
 	...
@@ -254,8 +254,8 @@ Ezen a laboron nem új projektet fogunk létrehozni, hanem egy már létezőből
 	```toml
 	[versions]
 	...
-	ksp = "1.9.0-1.0.13"
-	room = "2.6.1"
+	ksp = "2.3.4"
+	room = "2.8.4"
 	
 	[libraries]
 	...
@@ -509,15 +509,15 @@ Az újonnan létrejött *fragmenteket* mozgassuk át egy *fragment* nevű *packa
 Az akciók meghívásához használjuk a view binding-ot a `ShoppingListFragment`-ben:
 
 ```kotlin
-package hu.bme.aut.kliensalkalmazasok.shoppinglist.fragment
+package hu.bme.aut.klaf.shoppinglist.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import hu.bme.aut.kliensalkalmazasok.shoppinglist.databinding.FragmentShoppingListBinding
+import hu.bme.aut.klaf.shoppinglist.databinding.FragmentShoppingListBinding
 
 class ShoppingListFragment : Fragment() {
 
@@ -682,10 +682,10 @@ Az adatok perzisztens tárolásához a [`Room`](https://developer.android.com/to
     A `Room` alapvető komponenseinek, architektúrájának és használatának leírása megtalálható a megfelelő [developer.android.com](https://developer.android.com/training/data-storage/room/) oldalon.
 
 #### Egy modell osztály létrehozása
-A `hu.bme.aut.kliensalkalmazasok.shoppinglist` *package*-ben hozzunk létre egy új *package*-et `data` néven. A `data` *package*-ben hozzunk létre egy új Kotlin osztályt, aminek a neve legyen  `ShoppingItem`:
+A `hu.bme.aut.klaf.shoppinglist` *package*-ben hozzunk létre egy új *package*-et `data` néven. A `data` *package*-ben hozzunk létre egy új Kotlin osztályt, aminek a neve legyen  `ShoppingItem`:
 
 ```kotlin
-package hu.bme.aut.kliensalkalmazasok.shoppinglist.data
+package hu.bme.aut.klaf.shoppinglist.data
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -745,7 +745,7 @@ Megfigyelhető továbbá, hogy ezen függvények el vannak látva a `@JvmStatic`
 A `data` package-ben hozzunk létre egy új Kotlin interfészt, aminek a neve legyen  `ShoppingItemDao`:
 
 ```kotlin
-package hu.bme.aut.kliensalkalmazasok.shoppinglist.data
+package hu.bme.aut.klaf.shoppinglist.data
 
 import androidx.room.Dao
 import androidx.room.Delete
@@ -781,7 +781,7 @@ Figyeljük meg, hogy az Android Studio a `@Query` *annotáció* paramétereként
 A `data` package-ben hozzunk létre egy új Kotlin osztályt, aminek a neve legyen  `ShoppingListDatabase`:
 
 ```kotlin
-package hu.bme.aut.kliensalkalmazasok.shoppinglist.data
+package hu.bme.aut.klaf.shoppinglist.data
 
 import android.content.Context
 import androidx.room.Database
@@ -815,18 +815,18 @@ Ezen kívül van még egy statikus *getDatabase* függvény, ami azt írja le, h
 #### A lista adapter létrehozása
 Következő lépésként a lista adaptert fogjuk létrehozni, ami a modell elemeket fogja majd szolgáltatni a `RecyclerView`-nak.
 
-A `hu.bme.aut.kliensalkalmazasok.shoppinglist` package-ben hozzunk létre egy új package-et `adapter` néven!
+A `hu.bme.aut.klaf.shoppinglist` package-ben hozzunk létre egy új package-et `adapter` néven!
 
 Az `adapter` package-ben hozzunk létre egy új Kotlin osztályt `ShoppingAdapter` néven:
 
 ```kotlin
-package hu.bme.aut.kliensalkalmazasok.shoppinglist.adapter
+package hu.bme.aut.klaf.shoppinglist.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import hu.bme.aut.kliensalkalmazasok.shoppinglist.data.ShoppingItem
-import hu.bme.aut.kliensalkalmazasok.shoppinglist.databinding.ItemShoppingListBinding
+import hu.bme.aut.klaf.shoppinglist.data.ShoppingItem
+import hu.bme.aut.klaf.shoppinglist.databinding.ItemShoppingListBinding
 
 class ShoppingAdapter(private val listener: ShoppingItemClickListener) :
     RecyclerView.Adapter<ShoppingAdapter.ShoppingViewHolder>() {
@@ -847,7 +847,8 @@ class ShoppingAdapter(private val listener: ShoppingItemClickListener) :
         fun onItemChanged(item: ShoppingItem)
     }
 
-    inner class ShoppingViewHolder(val binding: ItemShoppingListBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class ShoppingViewHolder(val binding: ItemShoppingListBinding) :
+        RecyclerView.ViewHolder(binding.root)
 }
 ```
 
@@ -999,7 +1000,7 @@ A `fragment_create_new_shopping_item.xml` felület már létezik, már csak azt 
 Ehhez írjuk felüle a `CreateNewShoppingItem` osztályt az alábbi kóddal:
 
 ```Kotlin
-package hu.bme.aut.kliensalkalmazasok.shoppinglist.fragment
+package hu.bme.aut.klaf.shoppinglist.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -1007,8 +1008,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
-import hu.bme.aut.kliensalkalmazasok.shoppinglist.R
-import hu.bme.aut.kliensalkalmazasok.shoppinglist.databinding.FragmentCreateNewShoppingItemBinding
+import hu.bme.aut.klaf.shoppinglist.R
+import hu.bme.aut.klaf.shoppinglist.databinding.FragmentCreateNewShoppingItemBinding
 
 class CreateNewShoppingItemFragment : Fragment() {
 
@@ -1035,7 +1036,7 @@ class CreateNewShoppingItemFragment : Fragment() {
         return binding.root
     }
 
-	override fun onDestroyView() {
+    override fun onDestroyView() {
         _binding = null
         super.onDestroyView()
     }
@@ -1150,7 +1151,7 @@ A PieChart kirajzolásához az [MPAndroidChart](https://github.com/PhilJay/MPAnd
 Írjuk meg a Fragment kódját (`ChartFragment.kt`):
 
 ```kotlin
-package hu.bme.aut.kliensalkalmazasok.shoppinglist.fragment
+package hu.bme.aut.klaf.shoppinglist.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -1161,10 +1162,10 @@ import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.utils.ColorTemplate
-import hu.bme.aut.kliensalkalmazasok.shoppinglist.R
-import hu.bme.aut.kliensalkalmazasok.shoppinglist.data.ShoppingItem
-import hu.bme.aut.kliensalkalmazasok.shoppinglist.data.ShoppingListDatabase
-import hu.bme.aut.kliensalkalmazasok.shoppinglist.databinding.FragmentChartBinding
+import hu.bme.aut.klaf.shoppinglist.R
+import hu.bme.aut.klaf.shoppinglist.data.ShoppingItem
+import hu.bme.aut.klaf.shoppinglist.data.ShoppingListDatabase
+import hu.bme.aut.klaf.shoppinglist.databinding.FragmentChartBinding
 import kotlin.concurrent.thread
 
 class ChartFragment : Fragment() {
