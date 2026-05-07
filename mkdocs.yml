@@ -99,7 +99,7 @@ nav:
       - laborok/android/basics/index.md
       - laborok/android/ui-basics/index.md
       - laborok/android/ui-advanced-room/index.md
-      - laborok/android/ui-compose-basics/index.md
+      - laborok/android/compose-basics/index.md
       - laborok/android/compose-advanced-network/index.md
   - "Házi feladat":
       - hf/web/index.md
