@@ -673,9 +673,7 @@ fun AppNavigation(modifier: Modifier = Modifier) {
             entry<Screen.MenuScreenDestination> { navKey ->
                 MenuScreen(
                     userName = navKey.userName,
-                    onProfileButtonClick = {
-                        backStack.add(Screen.ProfileScreenDestination)
-                    },
+                    onProfileButtonClick = {},
                     onSalaryButtonClick = {},
                     onHolidayButtonClick = {},
                     onCafeteriaButtonClick = {}
