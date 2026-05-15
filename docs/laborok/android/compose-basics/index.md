@@ -952,7 +952,7 @@ fun ProfileScreen(
 Most már nincs is más hátra, minthogy bekössük a *ProfileScreen*-t is a navigációba. Egészítsük ki a `Screen` osztályunkat:
 
 ```kotlin
-interface Screen : NavKey {
+sealed interface Screen : NavKey {
     @Serializable
     data object LoginScreenDestination : Screen
 
